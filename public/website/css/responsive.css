@@ -1,0 +1,797 @@
+@media screen and (max-width: 1440px){
+.topbar .social-icons { margin-right: 5px;}
+.what-we-do .element1 {left: 20px; top: 70px;}
+.what-we-do .element1 img{width: 95px;}
+.what-we-do .element2 {right: 10px; margin-top: -34px;}
+.what-we-do .element2 img{width: 90px;}
+.what-we-do h3 {margin-bottom: 14px;}
+.service-section .element1 {left: 12px;}
+.service-section .element1 img{width: 95px;}
+.service-section .element2 {right: 10px; margin-top: -34px;}
+.service-section .element2 img{width: 90px;}
+.plan .element1 {left: 20px;}
+.plan .element2 {right: 10px; margin-top: -34px;}
+.manage-section .manage-wrapper .content {right: 94px; top: -18px;}
+.manage-section .manage-wrapper .manage-image {right: 98px;}
+.manage-section .manage-wrapper .homeelement {bottom: 86px; right: 16px;}
+/* About  */
+.sub-banner .box {top: 22px;}
+.repay-section .about-repaylayer {bottom: -76px;}
+.work-section .element1 {left: 22px; top: 48px;}
+.work-section .element1 img{width: 95px;}
+.work-section .element2 {right: 16px; bottom: 26px;}
+.work-section .element2 img{width: 90px;}
+.work-section .work-wrapper .mobile-bg {right: 98px;}
+.work-section .work-wrapper .mobile-image {right: 68px;}
+.work-section .work-wrapper .work-element1 {right: 36px;}
+.work-section .work-wrapper .work-element {left: -24px;}
+.blog-section .element2 {display: none;}
+.blog-section .element1 {left: 16px;}
+.blog-section .element1 img{width: 95px;}
+/* Service  */
+.service .services-icon {right: 20px;}
+.service .element1 {bottom: 50px;}
+.benefit-section .element1 {left: 20px;}
+.benefit-section .element2 {right: 10px; margin-top: -156px;}
+.testimonial-section .homeelement1 {bottom: -88px;}
+/* Team  */
+.member-section .element2 {display: none;}
+/* Contact  */
+.message-section .element1{left: 20px;}
+.message-section .element2{display: none;}
+}
+@media only screen and (max-width : 1199px){
+h1 {font-size: 54px; line-height: 54px;}
+h2 {font-size: 50px; line-height: 56px;}
+h3 {font-size: 26px; line-height: 30px;}
+h4 {font-size: 22px; line-height: 28px;}
+p {font-size: 18px; line-height: 24px;}
+.text-size-16 {font-size: 16px; line-height: 24px;}
+.topbar .email {margin-left: 10px;}
+.topbar .social-icons {margin-right: 8px;}
+.navbar {padding: 14px 0;}
+.navbar-brand figure img{width: 118px;}
+.navbar-nav li {margin: 0px 12px;}
+.navbar-nav li:last-child {margin-left: 22px;}
+.navbar-nav .nav-item .signup {padding: 18px;}
+.bannermain {padding: 100px 0 0;}
+.bannermain .banner h1 {margin-bottom: 20px;}
+.bannermain .banner h6 {margin-bottom: 10px;}
+.bannermain .banner p {margin-bottom: 24px;}
+.bannermain .button_text {padding: 15px 30px;}
+.bannermain .banner-wrapper .homeelement1 {top: -14px; left: 0;}
+.bannermain .banner-wrapper .banner-image img {margin-top: -70px; margin-left: 76px; padding-left: 0; width: 390px;}
+.bannermain .banner-wrapper .content {left: -18px; top: -46px;}
+.bannermain .banner-wrapper .content img {width: 600px;}
+.bannermain .banner-wrapper .homeelement {bottom: 80px;}
+.what-we-do {padding: 100px 0;}
+.what-we-do .subheading h6 {margin-bottom: 10px;}
+.what-we-do .subheading h2 {padding: 0 124px; margin-bottom: 60px;}
+.what-we-do .img {margin-bottom: 20px;}
+.what-we-do .img img{width: 76px;}
+.what-we-do h3 {margin-bottom: 10px;}
+.what-we-do .text-size-18 {padding: 0px 10px;}
+.what-we-do .service2 {padding-top: 100px;}
+.what-we-do .arrow1 {left: 242px; top: 32px;}
+.what-we-do .arrow1 img{width: 145px;}
+.what-we-do .arrow2 {right: 256px; top: 56px;}
+.what-we-do .arrow2 img{width: 145px;}
+.what-we-do .element3 {left: 46px;}
+.what-we-do .account {padding: 10px;}
+.what-we-do .element1 {left: 16px; top: 100px;}
+.what-we-do .element2 {margin-top: -110px;}
+.what-we-do .element2 img {width: 85px;}
+.about-repay {padding: 170px 0;}
+.about-repay .about-content h6 {margin-bottom: 10px;}
+.about-repay .about-content h2 {margin-bottom: 15px; padding: 0;}
+.about-repay .about-content .text-size-18 {margin-bottom: 20px;}
+.about-repay .about-content .right-lower .content {padding: 2px 8px 0 10px;}
+.about-repay .about-content span {font-size: 28px; line-height: 28px; margin-bottom: 5px;}
+.about-repay .about-content .right-lower .icon{width: 70px;}
+.about-repay .about-wrapper .circle img{width: 550px;}
+.about-repay .about-wrapper .image {left: 66px; top: -74px;}
+.about-repay .about-wrapper .image img{width: 360px;}
+.about-repay .about-wrapper .homeelement1 {bottom: -442px;}
+.about-repay .about-wrapper .videobutton {right: 16px; top: -12px;}
+.about-repay .about-wrapper .videobutton img{width: 170px;}
+.service-section {padding: 100px 0 74px;}
+.service-section .service-content h6 {margin-bottom: 10px;}
+.service-section .service-content h2 {margin-bottom: 50px;}
+.service-section .service-content .services-icon {right: 18px; top: 0;}
+.service-section .service-content .service-image {margin-bottom: 30px;}
+.service-section .services-data .service-box .img {margin-bottom: 20px;}
+.service-section .services-data .service-box .more {padding: 8px 26px;}
+.service-section .services-data .service-box h3 {margin-bottom: 10px;}
+.service-section .services-data .service-box .text-size-18 {padding: 0; margin-bottom: 25px;}
+.service-section .services-data .service-box {margin-bottom: 20px; padding: 50px 10px;}
+.service-section .services-data .service-box .img img{width: 76px;}
+.service-section .services-data .service-box .img2 {margin-bottom: 23px;}
+.service-section .services-data .service-box .img2 img {width: 86px;}
+.service-section .services-data .service-box .img3 {margin-bottom: 18px;}
+.service-section .services-data .service-box .img3 img {width: 69px;}
+.service-section .services-data .service-box .img5 {margin-bottom: 25px;}
+.service-section .services-data .service-box .img5 img {width: 82px;}
+.service-section .services-data .service-box .img6 {margin-bottom: 32px;}
+.service-section .services-data .service-box .img6 img {width: 84px;}
+.service-section .element1 {display: none;}
+.service-section .element2 {display: none;}
+.manage-section {padding: 90px 0 70px;}
+.manage-section .manage-content h2 {padding-right: 0; margin-bottom: 35px;}
+.manage-section .manage-content .content h4 {margin-bottom: 10px;}
+.manage-section .manage-content .content .text-size-16 {margin-bottom: 20px;}
+.manage-section .manage-content .content .text {padding-right: 0;}
+.manage-section .manage-content .icon img{width: 76px;}
+.manage-section .manage-wrapper .content img {width: 550px}
+.manage-section .manage-wrapper .content {right: 70px; top: 48px;}
+.manage-section .manage-wrapper .manage-image {right: 80px; top: -8px;}
+.manage-section .manage-wrapper .manage-image img{width: 350px;}
+.manage-section .manage-wrapper .homeelement1 {top: 70px; left: -4px;}
+.manage-section .manage-wrapper .homeelement {bottom: 30px; right: 4px;}
+.plan {padding: 100px 0 90px;}
+.plan .element1 {margin-top: 30px;}
+.plan .element1 img {width: 95px;}
+.plan .element2 {display: none;}
+.plan .facility{text-align: center;}
+.plan .facility li {margin: 0 10px;}
+.plan .content h6 {margin-bottom: 10px;}
+.plan .content h2 {margin-bottom: 50px; padding: 0 180px;}
+.plan .content .element3 {top: 126px;}
+.need-section {padding: 100px 0;}
+.need-section .content h6 {margin-bottom: 10px;}
+.need-section .content h2 {margin-bottom: 15px;}
+.need-section .content p {padding: 0 80px; margin-bottom: 35px;}
+.need-section .img {margin-bottom: 20px;}
+.need-section .img img{width: 76px;}
+.need-section .img3 img {width: 67px;}
+.need-section h3 {margin-bottom: 10px;}
+.need-section .text-size-18 {padding: 0;}
+.need-section .service2 {padding-top: 100px;}
+.need-section .arrow1 {left: 242px; top: 32px;}
+.need-section .arrow1 img{width: 145px;}
+.need-section .arrow2 {right: 256px; top: 56px;}
+.need-section .arrow2 img{width: 145px;}
+.footer-section .partner-section{padding: 40px 0;}
+.footer-section .partner-section .partner li {margin-right: 43px;}
+.footer-section {padding-bottom: 30px;}
+.footer-section .middle-portion {padding-top: 90px;}
+.footer-section .footer-logo img{width: 118px;}
+.footer-section .middle-portion .line {margin: 0 0 16px 0;}
+.footer-section .middle-portion .social-icons .circle {margin-right: 4px;}
+/* About  */
+.sub-banner {padding: 90px 0 0px;}
+.sub-banner .box {top: 20px; padding: 4px 30px;}
+.sub-banner .banner-section .banner_content h1 {margin-bottom: 15px;}
+.sub-banner .banner-section .banner_content p {padding: 0 105px; margin-bottom: 54px;}
+.about-section {padding: 100px 0 24px;}
+.about-section .img3 {margin-bottom: 26px;}
+.about-section .img3 img {width: 80px;}
+.about-section .element2 {display: none;}
+.about-section .subheading h2 {padding: 0 116px; margin-bottom: 56px;}
+.repay-section {padding: 170px 0 160px;}
+.repay-section .about-repaylayer {bottom: -60px;}
+.work-section {padding: 130px 0 40px;}
+.work-section .work-content h6 {margin-bottom: 10px;}
+.work-section .work-content h2 {margin-bottom: 10px;}
+.work-section .work-content ul li {margin-bottom: 20px;}
+.work-section .work-content .for-space {margin-bottom: 25px;}
+.work-section .work-content .image_apple img{width: 144px;}
+.work-section .work-content .image_google img{width: 142px;}
+.work-section .work-wrapper .mobile-bg {top: -54px; right: 80px;}
+.work-section .work-wrapper .mobile-bg img{width: 550px;}
+.work-section .work-wrapper .mobile-image {top: -32px; right: 54px;}
+.work-section .work-wrapper .mobile-image img{width: 430px;}
+.work-section .work-wrapper .work-element1 {top: -48px; right: 28px;}
+.work-section .work-wrapper .work-element {bottom: 52px; left: -24px;}
+.work-section .element2 {right: 272px; margin-top: -102px;}
+.work-section .element1 {display: none;}
+.work-section .element2 {display: none;}
+.accordian-section {padding: 100px 0;}
+.accordian-section .accordion-card {margin-bottom: 26px; padding: 0 22px;}
+.accordian-section .accordian-inner .accordion-card .btn {padding: 15px 0px;}
+.accordian-section .accordian-inner .card-body {padding: 0 0 20px;}
+.accordian-section .accordion-content h6 {margin-bottom: 10px;}
+.accordian-section .accordion-content h2 {margin-bottom: 10px;}
+.accordian-section .accordion-content p {margin-bottom: 23px;}
+.accordian-section .accordion-content h3 {margin-bottom: 10px;}
+.accordian-section .accordion-content .icon img{width: 63px;}
+.accordian-section .accordion-content .text-size-16 {margin-bottom: 16px;}
+.accordian-section .accordion-content .right-lower .content {padding: 0 12px;}
+.blog-section {padding: 100px 0px 104px;}
+.blog-section .subheading h6 {margin-bottom: 10px;}
+.blog-section .subheading h2 {margin-bottom: 40px;}
+.blog-section .blog-box figure {margin-bottom: 15px;}
+.blog-section .blog-box .button {margin-bottom: 10px;}
+.blog-section .blog-box p {margin-bottom: 10px;}
+.blog-section .blog-box .content {padding: 0 25px;}
+.blog-section .blog-box .blogimage img{width: 290px;}
+/* FAQ */
+.faq-section {padding: 100px 0 70px;}
+.faq-section .subheading h6 {margin-bottom: 10px;}
+.faq-section .subheading h2 {margin-bottom: 40px;}
+/* Pricing */
+.pricing-faq {padding: 100px 0 75px;}
+/* Service  */
+.service .services-icon {display: none;}
+.payment-section .content h6 {margin-bottom: 10px;}
+.payment-section .content h2 {margin-bottom: 10px; padding: 0 145px;}
+.payment-section {padding: 100px 0 220px;}
+.payment-section .content p {padding: 0 100px; margin-bottom: 50px;}
+.videosection {margin-top: -212px;}
+.benefit-section {padding: 100px 0 40px;}
+.benefit-section .element1 {top: 128px;}
+.benefit-section .element1 img{width: 95px;}
+.benefit-section .subheading h6 {margin-bottom: 10px;}
+.benefit-section .subheading h2 {padding: 0 215px; margin-bottom: 90px;}
+.benefit-section .benefit-wrapper .circle {left: -60px; top: -70px;}
+.benefit-section .benefit-wrapper .circle img{width: 600px;}
+.benefit-section .benefit-wrapper .benefit-image {left: 50px; top: -92px;}
+.benefit-section .benefit-wrapper .benefit-image img{width: 350px;}
+.benefit-section .benefit-wrapper .homeelement {top: -40px;}
+.benefit-section .benefit-wrapper .homeelement1 {bottom: 58px;}
+.benefit-section .element2 {display: none;}
+.benefit-section .benefit-content .content {margin-bottom: 30px;}
+.benefit-section .benefit-content .icon1 img {width: 70px;}
+.benefit-section .benefit-content .icon2 {margin-bottom: 15px;}
+.testimonial-section {padding: 100px 0 130px;}
+.testimonial-section .content .quote-icon {margin-bottom: 24px;}
+.testimonial-section .quote-icon img{width: 90px;}
+.testimonial-section .content h6 {margin-bottom: 10px;}
+.testimonial-section .content h2 {margin-bottom: 16px;}
+.testimonial-section .content p {margin-bottom: 24px;}
+.testimonial-section .content .button-text {padding: 12px 22px;}
+.testimonial-section .testimonial-circle {left: 36px; top: 0;}
+.testimonial-section .testimonial-circle img{width: 440px;}
+.testimonial-section .review_content img {width: 90px; margin-bottom: 15px;}
+#carouselExampleControls {padding: 40px 74px 30px 100px;}
+.testimonial-section .homeelement {top: -8px;}
+.testimonial-section .homeelement1 {bottom: -42px;}
+/* Team  */
+.member-section {padding: 100px 0 65px;}
+.member-section .content h2 {margin-bottom: 40px;padding: 0;}
+.member-section .content .element3 {top: 88px;}
+.member-section .team-box figure img {width: 266px;}
+.member-section .content h3 {margin-bottom: 10px;}
+.member-section .content p {margin-bottom: 15px; padding: 0 10px;}
+.member-section .team-box {margin-bottom: 35px; padding: 12px 0 24px;}
+/* Contact  */
+.message-section {padding: 100px 0;}
+.message-section .content h6 {margin-bottom: 10px;}
+.message-section .content h2 {margin-bottom: 20px;}
+.message-section .element1 {display: none;}
+.message-section .message_content h4 {margin-bottom: 10px;}
+.message-section .message_content input {padding: 15px; margin-bottom: 10px;}
+.message-section .message_content textarea {padding: 15px; height: 125px; margin-bottom: 10px;}
+.message-section .message_content .open_account {padding: 15px 54px;}
+.message-section .content .element3 {top: 70px;}
+.message-section .map {padding-top: 30px;}
+.message-section .map iframe {height: 510px;}
+/* Blog  */
+.blog-posts { padding: 100px 0 0;}
+}
+@media only screen and (max-width : 991px) {
+h1 {font-size: 42px; line-height: 48px;}
+h2 {font-size: 40px; line-height: 44px;}
+h3 {font-size: 24px; line-height: 28px;}
+h4 {font-size: 20px; line-height: 24px;}
+.h4{font-size: 20px; line-height: 24px;}
+.text-size-18 {font-size: 16px; line-height: 22px;}
+.topbar .social-icons ul li a i {margin-left: 14px;}
+.navbar-nav .nav-item .signup { padding: 12px 30px !important; font-size: 16px !important; line-height: 16px !important; background-color: transparent; font-weight: 400 !important; display: block; text-align: left; border-radius: 0; color: var(--e-global-color-primary) !important;}
+.navbar-nav .nav-item .signup:hover { color: var(--e-global-color-white) !important; background-color: var(--e-global-color-secondary) !important;}
+.navbar-nav .active > .signup {background-color: var(--e-global-color-accent); color: var(--e-global-color-white) !important;}
+.navbar-collapse {background: var(--e-global-color-white); position: absolute; right: 0px; width: 30%; top: 60px; z-index: 16; padding: 0;}
+.navbar-toggler {margin-left: auto; border: none !important; width: 60px; height: 40px; background-color: var(--e-global-color-accent); color: var(--e-global-color-white) !important;}
+.navbar-light .navbar-toggler-icon { background: var(--e-global-color-white); height: 2px; margin: 7px 0 0 0; width: 100%; float: right;}
+.navbar-toggler span.navbar-toggler-icon:first-child {margin-top: 0;}
+.navbar-toggler span.navbar-toggler-icon {transition: all 0.15s;}
+.collapse:not(.show) {display: none;}
+.navbar-collapse ul{align-items: unset; text-align: unset; margin-left: 0;}
+ button:focus {outline: none;}
+.navbar-nav .nav-item a {font-size: 16px; line-height: 16px; padding: 12px 30px !important; color: var(--e-global-color-primary) !important;}
+.navbar-nav .active > a {color: var(--e-global-color-white) !important; background-color: var(--e-global-color-secondary) !important;}
+.navbar-nav .nav-item a:hover{color: var(--e-global-color-white) !important; background-color: var(--e-global-color-secondary) !important;}
+.navbar li {margin: 0 !important; padding: 0;}
+.bannermain {padding: 118px 0 0;}
+.bannermain .banner h1 {margin-bottom: 10px;}
+.bannermain .banner h6 {margin-bottom: 8px;}
+.bannermain .banner p{margin-bottom: 25px;}
+.bannermain .button_text {padding: 15px 20px;}
+.bannermain .banner-wrapper .homeelement1 {top: 4px; left: 10px;}
+.bannermain .banner-wrapper .homeelement1 img{width: 76px;}
+.bannermain .banner-wrapper .content {left: -28px; top: -26px;}
+.bannermain .banner-wrapper .content img {width: 500px;}
+.bannermain .banner-wrapper .banner-image img {margin-top: -46px; margin-left: 56px; width: 300px;}
+.bannermain .banner-wrapper .homeelement {bottom: 50px; right: 0px;}
+.bannermain .banner-wrapper .homeelement img{width: 76px;}
+.what-we-do {padding: 70px 0;}
+.what-we-do .element1 {display: none;}
+.what-we-do .element2 {display: none;}
+.what-we-do .element3 {display: none;}
+.what-we-do .arrow1 {display: none;}
+.what-we-do .arrow2 {display: none;}
+.what-we-do .subheading h2 {padding: 0 80px; margin-bottom: 50px;}
+.what-we-do .img img {width: 65px;}
+.what-we-do .img {margin-bottom: 15px;}
+.what-we-do .text-size-18 {padding: 0 30px;}
+.what-we-do .service1 {margin-bottom: 40px;}
+.what-we-do .service2 {padding-top: 7px;}
+.what-we-do .account {text-align: center;}
+.what-we-do .account .heading {padding-left: 0px;}
+.about-repay {padding: 120px 0 100px;}
+.about-repay .about-wrapper .circle {top: -28px;}
+.about-repay .about-wrapper .circle img {width: 470px}
+.about-repay .about-wrapper .videobutton {right: 4px; top: 14px;}
+.about-repay .about-wrapper .videobutton img {width: 140px;}
+.about-repay .about-wrapper .image {left: 8px; top: -50px;}
+.about-repay .about-wrapper .homeelement {left: -16px; top: -26px;}
+.about-repay .about-wrapper .homeelement img{width: 76px;}
+.about-repay .about-wrapper .homeelement1 {bottom: -374px; right: -44px;}
+.about-repay .about-wrapper .homeelement1 img{width: 76px;}
+.about-repay .about-content .text-size-18 {margin-bottom: 15px; padding: 0;}
+.about-repay .about-content .text {margin-bottom: 26px !important;}
+.about-repay .about-content span {font-size: 24px; line-height: 24px; margin-bottom: 3px;}
+.about-repay .about-content .right-lower .icon {margin-right: 10px;}
+.about-repay .about-content .right-lower .content {padding: 0;}
+.service-section {padding: 70px 0 60px;}
+.service-section .service-content .services-icon {right: 0}
+.service-section .service-content .services-icon img{width: 120px;}
+.service-section .service-content h2 {margin-bottom: 30px;}
+.service-section .services-data .service-box .text-size-18 {padding: 0 20px;}
+.service-section .services-data .service-box .img {margin-bottom: 15px;}
+.service-section .services-data .service-box .img img {width: 60px;}
+.service-section .services-data .service-box .img2 img {width: 72px;}
+.service-section .services-data .service-box .img3 {margin-bottom: 7px;}
+.service-section .services-data .service-box .img5 img {width: 70px;}
+.service-section .services-data .service-box {margin-bottom: 10px; padding: 30px 8px;}
+.service-section .services-data .service-box .more {padding: 8px 20px;}
+.service-section .services-data .mobile-image {top: 70px;}
+.manage-section {padding: 60px 0 45px;}
+.manage-section .manage-content .content {padding-left: 22px;}
+.manage-section .manage-content h2 {margin-bottom: 25px;}
+.manage-section .manage-wrapper .content img {width: 438px;}
+.manage-section .manage-wrapper .manage-image {right: 50px; top: 8px;}
+.manage-section .manage-wrapper .content {top: 100px;}
+.manage-section .manage-content .icon img{width: 65px;}
+.manage-section .manage-wrapper .homeelement {bottom: 16px; right: -10px;}
+.manage-section .manage-wrapper .homeelement img{width: 76px;}
+.manage-section .manage-wrapper .homeelement1 img{width: 73px;}
+.manage-section .manage-wrapper .homeelement1 {top: 90px;}
+.manage-section .manage-layer {display: none;}
+.plan {padding: 70px 0 60px;}
+.plan .element1 {display: none;}
+.plan .facility li p {padding-left: 6px;}
+.plan .facility li {margin: 0 32px;}
+.plan .facility li:first-child {margin-left: 28px;}
+.plan .facility .font1 {margin-top: -2px;}
+.plan .facility .text4{margin-left: -5px; margin-right: 34px;}
+.plan .facility .text5{ margin-right: 74px; margin-left: 25px;}
+.plan .content h2 {margin-bottom: 30px; padding: 0px 130px;}
+.plan .pricing {margin-bottom: 15px; padding: 15px;}
+.plan .pricing .icon {top: 20px;}
+.plan .content .element3 {display: none;}
+.need-section {padding: 70px 0 30px;}
+.need-section .content p {padding: 0 4px; margin-bottom: 35px;}
+.need-section .img img {width: 65px;}
+.need-section .img {margin-bottom: 15px;}
+.need-section .img2 {margin-bottom: 10px;}
+.need-section .text-size-18 {padding: 0 40px;}
+.need-section .service1 {margin-bottom: 40px;}
+.need-section .service2 {padding-top: 7px;}
+.need-section .arrow1 {display: none;}
+.need-section .arrow2 {display: none;}
+.need-section .need-layer {display: none;}
+.footer-section .partner-section .partner .partner1 img {width: 85px;}
+.footer-section .partner-section .partner li {margin-right: 30px;}
+.footer-section {padding-bottom: 10px;}
+.footer-section .middle-portion {padding-top: 65px;}
+.footer-section .middle-portion .links{padding-left: 20px;}
+.footer-section .middle-portion .social-icons .circle {margin-right: 2px;}
+.copyright {padding: 8px 0px;}
+/* About  */
+.sub-banner {padding: 60px 0 0px;}
+.sub-banner .banner-section .banner_content h1 {margin-bottom: 10px;}
+.sub-banner .banner-section .banner_content p {padding: 0 50px; margin-bottom: 25px;}
+.about-section {padding: 70px 0 30px;}
+.repay-section .about-repaylayer {bottom: -42px;}
+.repay-section .about-wrapper .homeelement1 {bottom: -390px; right: -38px;}
+.work-section {padding: 70px 0;}
+.work-section .work-content p {margin-bottom: 20px;}
+.work-section .work-content ul {padding-left: 20px;}
+.work-section .work-content ul li {margin-bottom: 15px;}
+.work-section .work-content li:before {font-size: 14px; line-height: 14px; margin-left: -28px;}
+.work-section .work-content .image_google {margin-right: 5px;}
+.work-section .work-content .image_google img{width: 140px;}
+.work-section .work-content .image_apple img{width: 141px;}
+.work-section .work-wrapper .work-element1 img{width: 76px;}
+.work-section .work-wrapper .work-element img{width: 76px;}
+.work-section .work-wrapper .mobile-bg {top: -26px; right: 90px;}
+.work-section .work-wrapper .mobile-bg img {width: 450px;}
+.work-section .work-wrapper .mobile-image {top: 14px; right: 50px;}
+.work-section .work-wrapper .work-element1 {top: -10px; right: 12px;}
+.work-section .work-wrapper .work-element {bottom: 44px; left: -38px;}
+.accordian-section {padding: 70px 0;}
+.accordian-section .accordion-content p {margin-bottom: 16px;}
+.accordian-section .accordion-content .right-lower .content {padding: 0;}
+.accordian-section-inner {padding-top: 60px;}
+.blog-section {padding: 70px 0;}
+.blog-section .element1 {left: 20px; top: 60px;}
+.blog-section .element1 img {width: 80px;}
+.blog-section .blog-box figure {margin-bottom: 10px;}
+.blog-section .blog-box .blogimage img {width: 210px;}
+.blog-section .blog-box .content {padding: 0 10px;}
+.blog-section .blog-box .button {padding: 5px 10px;}
+.blog-section .blog-box {padding-bottom: 15px;}
+/* FAQ */
+.faq-section {padding: 70px 0 40px;}
+.faq-section .subheading h2 {margin-bottom: -14px;}
+.faq-section .accordion-card {margin-bottom: 24px; padding: 0 20px;}
+.faq-section .accordian-inner .accordion-card .btn {padding: 16px 0px;}
+.faq-section .accordian-inner .card-body {padding: 0px 0 20px;}
+/* Pricing */
+.pricing-faq {padding: 70px 0 48px;}
+/* Service  */
+.service {padding: 70px 0 45px;}
+.service .services-icon {display: none;}
+.service .services-data .service-box {margin-bottom: 22px;}
+.service .services-data .service-box .img6 img {width: 79px;}
+.payment-section {padding: 70px 0 150px;}
+.payment-section .content h2 {margin-bottom: 10px; padding: 0 100px;}
+.payment-section .content p {padding: 0; margin-bottom: 40px;}
+.videosection {margin-top: -155px;}
+.benefit-section {padding: 70px 0 40px;}
+.benefit-section .subheading h2 {padding: 0 150px; margin-bottom: 65px;}
+.benefit-section .element1 {display: none;}
+.benefit-section .benefit-content .icon {margin-bottom: 12px;}
+.benefit-section .benefit-content .icon1 {margin-bottom: 17px;}
+.benefit-section .benefit-content .icon1 img {width: 74px;}
+.benefit-section .benefit-content h4 {margin-bottom: 8px;}
+.benefit-section .benefit-wrapper .circle img {width: 468px;}
+.benefit-section .benefit-wrapper .circle {top: 0;}
+.benefit-section .benefit-wrapper .benefit-image {left: 24px; top: -26px;}
+.benefit-section .benefit-wrapper .benefit-image img {width: 280px;}
+.benefit-section .benefit-wrapper .homeelement {top: 18px;}
+.benefit-section .benefit-wrapper .homeelement img{width: 76px;}
+.benefit-section .benefit-wrapper .homeelement1 {bottom: 0;}
+.benefit-section .benefit-wrapper .homeelement1 img{width: 76px;}
+.testimonial-section {padding: 70px 0 100px;}
+.testimonial-section .content .quote-icon {margin-bottom: 20px;}
+.testimonial-section .quote-icon img {width: 80px;}
+.testimonial-section .content h2 {margin-bottom: 10px;}
+.testimonial-section .content p {margin-bottom: 20px;}
+.testimonial-section .content .button-text {padding: 10px 16px;}
+.testimonial-section .review_content img {width: 85px;}
+.testimonial-section .testimonial-circle {left: -14px;}
+.testimonial-section .testimonial-circle img { width: 390px;}
+#carouselExampleControls {padding: 40px 30px 30px 26px;}
+.testimonial-section .homeelement {top: 0; left: -50px;}
+.testimonial-section .homeelement img{width: 76px;}
+.testimonial-section .homeelement1 {bottom: -50px; right: -8px;}
+.testimonial-section .homeelement1 img{width: 76px;}
+.testimonial-section .review_content {padding: 15px 0 35px 0;}
+/* Team  */
+.member-section {padding: 70px 0 40px;}
+.member-section .team-box figure img {width: 195px;}
+.member-section .content h2 {margin-bottom: 20px; padding: 0;}
+.member-section .content p {padding: 0;}
+.member-section .team-box li {height: 30px; width: 30px; padding-top: 2px;}
+.member-section .team-box {margin-bottom: 30px; padding: 8px 0 20px;}
+/* Contact  */
+.message-section {padding: 70px 0;}
+.message-section .element1 img {width: 80px;}
+.message-section .element1 {margin-top: -28px;}
+.message-section .message_content input {padding: 10px;}
+.message-section .message_content textarea {padding: 10px; height: 100px;}
+.message-section .message_content .open_account {padding: 10px;}
+.message-section .content .element3 {top: 60px; right: 70px;}
+.message-section .element3 img{width: 76px;}
+.message-section .map iframe {height: 418px;}
+/* Blog  */
+.blog-posts { padding: 70px 0 0;}
+.login-form .login-form-title { margin-bottom: 30px; }
+.login-form .login-page-logo { margin-bottom: 15px; }
+}
+@media only screen and (max-width : 767px){
+h1 {font-size: 36px; line-height: 44px;}
+h2 {font-size: 34px; line-height: 40px;}
+h3 {font-size: 22px; line-height: 26px;}
+h4 {font-size: 18px; line-height: 22px;}
+h6 {font-size: 14px; line-height: 18px;}
+p {font-size: 16px; line-height: 22px;}
+.text-size-18 {font-size: 16px; line-height: 24px;}
+.topbar .email {margin-left: 0px; text-align: center;}
+.navbar {padding: 10px 0;}
+.navbar-toggler{width: 50px;}
+.navbar-collapse {width: 40%;}
+.bannermain .button_text {font-size: 14px; line-height: 16px; padding: 15px;}
+.bannermain {padding: 60px 0 0;}
+.bannermain .banner{text-align: center;}
+.bannermain .banner p {padding: 0 70px;}
+.bannermain .banner-wrapper{text-align: center;}
+.bannermain .banner-wrapper .homeelement1 {top: 90px; left: 36px;}
+.bannermain .banner-wrapper .banner-image img {margin-top: 20px; margin-left: -6px;}
+.bannermain .banner-wrapper .content {left: 20px; top: 70px;}
+.bannermain .banner-wrapper .content img {width: 480px;}
+.bannermain .banner-wrapper .homeelement {bottom: 38px; right: 46px;}
+.what-we-do {padding: 60px 0 45px;}
+.what-we-do .subheading h2 {padding: 0 60px; margin-bottom: 40px;}
+.what-we-do .account {margin-bottom: 15px; padding: 10px 60px;}
+.what-we-do .text-size-18 {padding: 0 58px;}
+.about-repay {padding: 110px 0 62px;}
+.about-repay .about-wrapper{text-align: center; margin-bottom: 458px;}
+.about-repay .about-wrapper .circle {top: -40px; right: 0px;}
+.about-repay .about-wrapper .circle img {width: 510px;}
+.about-repay .about-wrapper .image {left: 96px; top: -48px;}
+.about-repay .about-wrapper .image img {width: 336px;}
+.about-repay .about-wrapper .videobutton {right: 60px;}
+.about-repay .about-wrapper .videobutton img {width: 148px;}
+.about-repay .about-wrapper .homeelement {left: 24px; top: -10px;}
+.about-repay .about-content{text-align: center;}
+.about-repay .about-content .right-lower{padding-left: 54px;}
+.about-repay .about-content .text-size-18 {padding: 0 40px;}
+.service-section {padding: 60px 0 50px;}
+.service-section .service-content .services-icon {display: none;}
+.service-section .services-data .mobile-image {top: 10px; text-align: center;}
+.manage-section {padding: 50px 0 35px;}
+.manage-section .manage-content{text-align: center;}
+.manage-section .manage-content h2 {margin-bottom: 30px;}
+.manage-section .manage-content .icon{margin-bottom: 20px !important;}
+.manage-section .manage-content .content {padding-left: 0;}
+.manage-section .manage-content .content .text-size-16 {margin-bottom: 30px; padding: 0 60px;}
+.manage-section .manage-wrapper{text-align: center;}
+.manage-section .manage-wrapper .content {top: 20px; right: 2px;}
+.manage-section .manage-wrapper .manage-image {right: 138px; top: 6px;}
+.manage-section .manage-wrapper .manage-image img {width: 260px;}
+.manage-section .manage-wrapper .homeelement1 {top: 60px; left: 30px;}
+.manage-section .manage-wrapper .homeelement {bottom: 14px; right: 46px;}
+.plan {padding: 60px 0 50px;}
+.plan .content h2 {margin-bottom: 30px; padding: 0;}
+.plan .pricing .text1 {margin-bottom: 20px !important;}
+.plan .facility li {margin: 0 15px;}
+.plan .facility li:first-child {margin-left: 0;}
+.plan .facility .text4 {margin: 0 -14px;}
+.plan .facility .text5 {margin-right: 72px; margin-left: 42px;}
+.plan .facility li:last-child {margin: 0;}
+.plan .pricing {padding: 15px 20px;}
+.need-section {padding: 60px 0 20px;}
+.need-section .content h2 {margin-bottom: 10px;}
+.need-section .text-size-18 {padding: 0 76px;}
+.need-section .content p {padding: 0; margin-bottom: 40px;}
+.footer-section .partner-section{padding: 40px 0px 20px; text-align: center;}
+.footer-section .partner-section .partner li {margin: 0 60px 25px 0;}
+.footer-section .partner-section .partner li:first-child {margin-left: 58px;}
+.footer-section {padding-bottom: 0;}
+.footer-section .middle-portion {padding-top: 55px;}
+.footer-section .middle-portion .icon{padding-left: 20px;}
+/* About  */
+.sub-banner {padding: 50px 0 0px;}
+.sub-banner .banner-section .banner_content p {padding: 0 10px;}
+.sub-banner .box {top: 18px; padding: 4px 22px;}
+.sub-banner .banner-section .banner_content h1 {margin-bottom: 6px;}
+.sub-banner .banner-section .banner_content p {margin-bottom: 20px;}
+.about-section {padding: 60px 0 20px;}
+.repay-section .about-repaylayer {bottom: -30px;}
+.work-section {padding: 60px 0 20px;}
+.work-section .work-content{text-align: center;}
+.work-section .work-content p {margin-bottom: 24px;}
+.work-section .work-content ul {text-align: left; padding-left: 33px;}
+.work-section .work-content li:before {margin-left: -40px;}
+.work-section .work-content .for-space {margin-bottom: 30px;}
+.work-section .work-content .image_google img {width: 130px;}
+.work-section .work-content .image_apple img {width: 130px;}
+.work-section .work-wrapper{text-align: center;}
+.work-section .work-wrapper .mobile-image {top: 38px; right: 108px;}
+.work-section .work-wrapper .mobile-image img {width: 310px;}
+.work-section .work-wrapper .mobile-bg {top: 0px; right: -8px}
+.work-section .work-wrapper .work-element1 {top: 16px; right: 40px;}
+.work-section .work-wrapper .work-element {bottom: 32px; left: 44px;}
+.accordian-section {padding: 62px 0;}
+.accordian-section .faq{text-align: center;}
+.accordian-section-inner {padding-top: 0;}
+.accordian-section .accordion-card {margin-bottom: 20px;}
+.accordian-section .for-space {margin-bottom: 45px;}
+.accordian-section .accordion-content{text-align: center;}
+.accordian-section .accordion-content p {padding: 0 30px;}
+.accordian-section .accordion-content .right-lower{padding-left: 58px;}
+.accordian-section .accordion-content .right-lower .content {padding: 0 12px;}
+.accordian-section .accordion-content .icon img {width: 58px;}
+.blog-section {padding: 60px 0 40px;}
+.blog-section .subheading h2 {margin-bottom: 30px;}
+.blog-section .element1 {display: none;}
+.blog-section .blog-box{text-align: center; margin-bottom: 40px;}
+.blog-section .blog-box .content {padding: 0;}
+.blog-section .blog-box .button {padding: 5px 22px;}
+.blog-section .blog-box figure img {width: 100%;}
+.blog-section .blog-box .blogimage img {width: 100%;}
+.blog-section .blog-box p {padding: 0 120px;}
+/* FAQ */
+.faq-section {padding: 60px 0 35px;}
+.faq-section .subheading h2 {margin-bottom: 30px;}
+/* Pricing */
+.pricing-faq .accordian-section-inner {padding-top: 0;}
+.pricing-faq .subheading h2 {margin-bottom: 30px;}
+/* Service  */
+.payment-section {padding: 60px 0 130px;}
+.payment-section .content h2 {padding: 0 74px;}
+.payment-section .content p {padding: 0; margin-bottom: 20px;}
+.videosection {margin-top: -115px;}
+.benefit-section {padding: 60px 0 30px;}
+.benefit-section .subheading h2 {margin-bottom: 55px; padding: 0 90px;}
+.benefit-section .benefit-wrapper{text-align: center; margin-bottom: 25px;}
+.benefit-section .benefit-wrapper .circle {top: 0; left: 38px;}
+.benefit-section .benefit-wrapper .benefit-image {left: 8px;}
+.benefit-section .benefit-wrapper .homeelement {left: 66px;}
+.benefit-section .benefit-wrapper .homeelement1 {bottom: 44px; right: 36px;}
+.testimonial-section {padding: 60px 0 80px;}
+.testimonial-section .content{text-align: center; margin-bottom: 60px;}
+.testimonial-section .testimonial-wrapper{text-align: center;}
+.testimonial-section .testimonial-circle {left: 76px;}
+.testimonial-section .review_content {padding: 0px 0 30px 0;}
+#carouselExampleControls .carousel-control-prev { width: 40px; padding: 5px 8px;}
+#carouselExampleControls .carousel-control-next { width: 40px; padding: 5px 8px;}
+.testimonial-section .review_content .text-size-18 {margin-bottom: 6px;}
+#carouselExampleControls {padding: 40px 140px 30px 137px;}
+.testimonial-section .homeelement {left: 30px;}
+.testimonial-section .homeelement1 {bottom: -10px; right: 30px;}
+/* Team  */
+.member-section {padding: 60px 0 30px;}
+.member-section .content p {margin-bottom: 10px; padding: 0 100px;}
+.member-section .team-box figure img {width: 50%;}
+/* Contact  */
+.message-section {padding: 60px 0;}
+.message-section .element1 {margin-top: -16px;}
+.message-section .element1 img { width: 80px;}
+.message-section .content .element3 {right: 30px;}
+/* Blog  */
+.blog-posts { padding: 60px 0 0;}
+.single-post .single-post-heading { font-size: 26px !important; }
+.login-form .login-page-logo img { width: 140px; }
+.sign-up-form .login-form-box { width: 100%; }
+.sign-up-form { padding: 60px 0; }
+}
+@media only screen and (max-width : 575px) {
+h2 {font-size: 30px; line-height: 36px;}
+.navbar-collapse {width: 50%;}
+.navbar-brand figure img {width: 112px;}
+.navbar-nav .nav-item .signup {padding: 12px 20px !important;}
+.navbar-nav .nav-item a {padding: 12px 20px !important;}
+.bannermain .banner h6 {margin-bottom: 2px;}
+.bannermain .banner h1 {margin-bottom: 4px;}
+.bannermain .banner p {margin-bottom: 16px; padding: 0;}
+.bannermain .banner-wrapper .homeelement1 {left: 18px; top: 76px;}
+.bannermain .banner-wrapper .homeelement1 img {width: 58px;}
+.bannermain .banner-wrapper .banner-image img {margin-top: 18px; margin-left: -10px; width: 242px;}
+.bannermain .banner-wrapper .content {left: -14px; top: 56px;}
+.bannermain .banner-wrapper .content img {width: 390px;}
+.bannermain .banner-wrapper .homeelement {right: 15px;}
+.bannermain .banner-wrapper .homeelement img {width: 58px;}
+.what-we-do .subheading h2 {margin-bottom: 44px; padding: 0;}
+.what-we-do .text-size-18 {padding: 0;}
+.what-we-do .account {padding: 10px 40px;}
+.about-repay .about-wrapper .circle { display: none;}
+.about-repay .about-wrapper .image {left: 26px; top: -50px;}
+.about-repay .about-wrapper .videobutton {right: -6px; top: -22px;}
+.about-repay .about-wrapper .homeelement {left: 6px;}
+.about-repay .about-wrapper .homeelement1 {bottom: -396px; right: 0;}
+.about-repay .about-wrapper {margin-bottom: 416px;}
+.about-repay .about-wrapper .homeelement img {width: 58px;}
+.about-repay .about-wrapper .homeelement1 img {width: 58px;}
+.about-repay .about-content h6 {margin-bottom: 6px;}
+.about-repay .about-content h2 {margin-bottom: 10px; padding: 0 10px;}
+.about-repay .about-content .text-size-18 {margin-bottom: 10px; padding: 0 20px;}
+.about-repay .about-content .text {margin-bottom: 20px !important;}
+.about-repay .about-content .right-lower .icon {margin-right: 0;}
+.about-repay .about-content .right-lower {padding-left: 0;}
+.service-section .service-content h6 {margin-bottom: 5px;}
+.service-section .service-content h2 {margin-bottom: 25px; padding: 0 60px;}
+.service-section .services-data .service-box .text-size-18 {padding: 0;}
+.manage-section {padding: 50px 0 77px;}
+.manage-section .manage-wrapper .content {top: 20px; right: 38px;}
+.manage-section .manage-wrapper .content img {width: 380px;}
+.manage-section .manage-content .content .text-size-16 {padding: 0 10px}
+.manage-section .manage-wrapper .manage-image {right: 62px; top: -10px;}
+.manage-section .manage-wrapper .homeelement1 {top: 20px; left: 20px;}
+.manage-section .manage-wrapper .homeelement1 img {width: 60px;}
+.manage-section .manage-wrapper .homeelement {bottom: 4px; right: 14px;}
+.manage-section .manage-wrapper .homeelement img {width: 58px;}
+.plan .content h6 {margin-bottom: 6px;}
+.plan .content h2 {margin-bottom: 20px;}
+.plan .pricing {margin-bottom: 20px;}
+.plan .facility li p {padding-left: 4px; margin-top: -6px;}
+.plan .facility li {margin: 0 16px 6px;}
+.plan .facility .text3 {margin-right: 29px; margin-left: 0;}
+.plan .facility .text4 {margin-left: 0; margin-right: 37px;}
+.plan .facility .text5 {margin-right: 48px; margin-left: -37px;}
+.need-section .text-size-18 {padding: 0 25px;}
+.footer-section .partner-section{padding: 40px 0px 20px;}
+.footer-section .partner-section .partner li {margin: 0 52px 25px 0;}
+.footer-section .partner-section .partner li:first-child {margin-left: 48px;}
+.footer-section .partner-section .partner .img-mb{margin-left: 40px;}
+.footer-section {padding-bottom: 60px;}
+.footer-section .middle-portion{text-align: center; padding-top: 40px;}
+.footer-section .middle-portion p{display: none;}
+.footer-section .middle-portion .payment-icon {left: 4px;}
+.footer-section .middle-portion .line {display: none;}
+/* About  */
+.repay-section .about-repaylayer {bottom: -16px;}
+.work-section {padding: 60px 0 45px;}
+.work-section .work-wrapper .mobile-bg img {width: 340px;}
+.work-section .work-wrapper .mobile-bg {right: 6px;}
+.work-section .work-wrapper .mobile-image {top: 26px; right: 56px;}
+.work-section .work-wrapper .mobile-image img {width: 250px;}
+.work-section .work-wrapper .work-element1 img {width: 58px;}
+.work-section .work-wrapper .work-element img {width: 58px;}
+.work-section .work-wrapper .work-element1 {right: 24px;}
+.work-section .work-wrapper .work-element {left: 24px;}
+.work-section .work-content h2 {padding: 0 30px;}
+.accordian-section {padding: 62px 0 55px;}
+.accordian-section .accordion-content .text-size-16 {margin-bottom: 20px;}
+.accordian-section .accordion-content .right-lower .content {padding: 0;}
+.accordian-section .accordion-content .right-lower {padding-left: 0;}
+.blog-section .element1 {display: none;}
+.blog-section .subheading h2 {margin-bottom: 20px;}
+.blog-section .blog-box p {padding: 0px;}
+/* Pricing */
+.pricing-faq {padding: 60px 0 45px;}
+/* Service  */
+.payment-section {padding: 60px 0 74px;}
+.payment-section .content h2 {padding: 0;}
+.videosection {margin-top: -74px;}
+.benefit-section .subheading h2 {padding: 0 20px;}
+.benefit-section .benefit-content .text-size-16{margin-bottom: 28px; padding: 0 30px;}
+.benefit-section .benefit-wrapper .circle {display: none;}
+.benefit-section .benefit-wrapper .homeelement {left: 40px;}
+.benefit-section .benefit-wrapper .homeelement img {width: 58px;}
+.benefit-section .benefit-wrapper .homeelement1 {bottom: 26px; right: 16px;}
+.benefit-section .benefit-wrapper .homeelement1 img {width: 58px;}
+.testimonial-section {padding: 60px 0 90px;}
+.testimonial-section .testimonial-circle {left: 0; right: 0; top: -30px;}
+.testimonial-section .testimonial-circle img {width: 350px;}
+.testimonial-section .content {margin-bottom: 80px;}
+.testimonial-section .review_content img {width: 75px;}
+.testimonial-section .review_content {padding: 12px 0 28px;}
+#carouselExampleControls {padding: 0 150px}
+.testimonial-section .homeelement {left: 10px; top: -34px;}
+.testimonial-section .homeelement img {width: 58px;}
+.testimonial-section .homeelement1 {bottom: -36px; right: 16px;}
+.testimonial-section .homeelement1 img {width: 58px;}
+/* Team  */
+.member-section .content p {padding: 0 20px;}
+/* Contact  */
+.message-section .element1 {display: none;}
+.message-section .content .element3 {top: 64px; right: 10px;}
+.message-section .element3 img {width: 58px;}
+/* Blog  */
+.login-form .login-form-box { width: 100%; }
+.login-form .login-card { padding: 30px; margin-bottom: 20px; }
+.login-form .login-card label { font-size: 16px; }
+.login-form .login-card .input-field { padding: 0px 10px; width: 100%; height: 48px; line-height: 48px; font-size: 16px; }
+.login-form .login-card .btn-primary { line-height: 40px; font-size: 16px; }
+.login-form .login-card .forgot-password { font-size: 16px; }
+.login-form .login-form-box .join-now-outer a { font-size: 16px; }
+.login-form .login-page-logo img { width: 120px; }
+.sign-up-form .login-card label { line-height: 22px; }
+.sign-up-form .login-card .select-option { padding: 0px 30px 0px 10px; height: 48px !important; line-height: 48px; }
+.sign-up-form .login-card .select-option { background-position: 97.2% 20px; }
+}
+@media only screen and (max-width : 574px){
+.testimonial-section .testimonial-circle {left: 0; right: 0; top: -30px;}
+.testimonial-section .testimonial-circle img {width: 350px;}
+.testimonial-section .review_content {padding: 12px 0 25px;}
+#carouselExampleControls {padding: 0 130px;}
+}
+@media only screen and (max-width : 527px){
+.testimonial-section .review_content {padding: 10px 0 25px;}
+#carouselExampleControls {padding: 0 100px;}
+}
+@media only screen and (max-width : 486px){
+.testimonial-section .review_content {padding: 10px 0 25px;}
+#carouselExampleControls {padding: 0 100px;}
+}
+@media only screen and (max-width : 467px){
+.testimonial-section .review_content {padding: 0px 0 25px;}
+#carouselExampleControls {padding: 0 100px;}
+}
+@media only screen and (max-width : 427px){
+.testimonial-section .review_content {padding: 0px 0 25px;}
+#carouselExampleControls {padding: 0 50px;}
+}
