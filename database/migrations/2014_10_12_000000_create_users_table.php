@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('organization_id')->nullable();
+            $table->string('is_active')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

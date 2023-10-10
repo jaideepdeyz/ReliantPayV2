@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Livewire\Dealer\Registration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('register', [AuthController::class,'register'])->name('register');
+Route::post('registerPhaseOne', [AuthController::class,'registerPhaseOne'])->name('registerPhaseOne');
 Route::get('login', [AuthController::class,'login'])->name('login');
+
+// Livewire Routes 
+Route::get('dealer-registration/{userID}', Registration::class)->name('dealer-registration');
 
