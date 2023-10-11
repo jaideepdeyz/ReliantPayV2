@@ -17,6 +17,7 @@ class Registration extends Component
 
     public function phase1Next()
     {
+        $this->dispatch('showModal', ['alias' => 'modals.services-offered']);
         dd('reached here');
         $this->validate([
             'business_name' => 'required',
