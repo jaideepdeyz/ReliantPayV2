@@ -24,5 +24,6 @@ Route::post('registerPhaseOne', [AuthController::class,'registerPhaseOne'])->nam
 Route::get('login', [AuthController::class,'login'])->name('login');
 
 // Livewire Routes 
-Route::get('dealer-registration/{userID}', Registration::class)->name('dealer-registration');
+// Route::get('dealer-registration/{userID}', Registration::class)->name('dealer-registration');
+Route::get('dealer-registration', Registration::class)->name('dealer-registration');
 

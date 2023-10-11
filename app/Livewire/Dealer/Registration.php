@@ -8,18 +8,12 @@ use Livewire\Component;
 
 class Registration extends Component
 {
-    public $user;
     public $business_name;
     public $business_address;
     public $business_website;
     public $business_email;
     public $business_phone;
     public $currentStep = 1;
-
-    public function mount($userID)
-    {
-        $this->user = User::find($userID);
-    }
 
     public function registerdealer()
     {
@@ -52,7 +46,6 @@ class Registration extends Component
 
     public function render()
     {   
-        $org = Organization::where('dealer_id', $this->user->id)->first();
-        return view('livewire.dealer.registration', compact('org'))->layout('layouts.guest-base');
+        return view('livewire.dealer.registration')->layout('layouts.guest-base');
     }
 }
