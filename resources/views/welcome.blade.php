@@ -14,7 +14,7 @@
                     <h6>Simple. Transparent. Secure </h6>
                     <h1>The Smart Way for<span>Online Payment</span> Solution.</h1>
                     <p class="banner-text">Lorem ipsum dolor sit amet, consectetur adipisc ing elit sed do eiusmod tempor.</p>
-                    <div class="button"><a  class="button_text" href="{{route('register')}}">Open a Free Account</a></div>
+                    <div class="button"><a  class="button_text" href="{{route('dealer-registration')}}">Open a Free Account</a></div>
                 </div>
             </div>
             <div class=" col-lg-7 col-md-7 col-sm-12">

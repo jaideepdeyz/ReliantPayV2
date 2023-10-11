@@ -15,8 +15,9 @@ class Registration extends Component
     public $business_phone;
     public $currentStep = 1;
 
-    public function registerdealer()
+    public function phase1Next()
     {
+        dd('reached here');
         $this->validate([
             'business_name' => 'required',
             'business_address' => 'required',

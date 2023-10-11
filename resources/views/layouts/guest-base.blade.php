@@ -10,8 +10,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('auth/images/favicon.ico') }}">
 
-		<!-- Theme Config Js -->
-		<script src="{{ asset('auth/js/head.js') }}"></script>
+		
 
 		<!-- Bootstrap css -->
 		<link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
@@ -22,7 +21,8 @@
 		<!-- Icons css -->
 		<link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
-       
+        <!-- Theme Config Js -->
+		<script src="{{ asset('auth/js/head.js') }}"></script>
 
         @livewireStyles
 
@@ -34,12 +34,15 @@
         @yield('content')
 
 
-       
 
-        <!-- scripts js -->
         @livewireScripts
 
-        @stack('scripts')
+        
+
+        <!-- scripts js -->
+        
+
+        {{-- @stack('scripts')
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <!-- Authentication js -->
@@ -48,7 +51,7 @@
             window.addEventListener('swal', function(e) {
 			Swal.fire(e.detail);
 		});
-	    </script>
-
+	    </script> --}}
     </body>
+
 </html>

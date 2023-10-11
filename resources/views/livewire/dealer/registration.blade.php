@@ -12,12 +12,11 @@
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dealer Registration</a></li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Business Registration</h4>
+                    <h4 class="page-title">ReliantPay Registration</h4>
                 </div>
             </div>
         </div>
         <form wire:submit="registerDealer">
-    
             <div class="row">
                 <div class="col-lg-12">
         
@@ -26,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Business Information Step-{{$currentStep}}</h5>
+                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Dealer Business Information Step-{{$currentStep}}</h5>
                                 <div class="mb-3 col-md-12">
                                     <label for="business_name" class="form-label">Business Name</label>
                                     <input type="text" class="form-control @error('business_name') is-invalid @enderror" placeholder="Enter business name" wire:model="business_name">
@@ -84,8 +83,8 @@
                                     <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span> --}}
                                 {{-- </div>  --}}
                                 
-                                <div>
-                                    <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
+                                <div class="col-md-12 float-right">
+                                    <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="phase1Next">Next</button>
                                 </div>
                             </div>
                                                                    
@@ -299,7 +298,7 @@
             </div>
             <!-- end row -->
         
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12">
         
                     
@@ -342,7 +341,7 @@
                     </div>
                 
                 </div> <!-- end col -->
-            </div>
+            </div> --}}
             <!-- end row -->
         
             <!-- file preview template -->
