@@ -46,7 +46,7 @@ class Registration extends Component
     }
 
     public function render()
-    {   
+    {
         return view('livewire.dealer.registration')->layout('layouts.guest-base');
     }
 }
