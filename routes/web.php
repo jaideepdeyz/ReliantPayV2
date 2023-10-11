@@ -19,11 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register', [AuthController::class,'register'])->name('register');
-Route::post('registerPhaseOne', [AuthController::class,'registerPhaseOne'])->name('registerPhaseOne');
 Route::get('login', [AuthController::class,'login'])->name('login');
 
 // Livewire Routes 
-// Route::get('dealer-registration/{userID}', Registration::class)->name('dealer-registration');
 Route::get('dealer-registration', Registration::class)->name('dealer-registration');
 

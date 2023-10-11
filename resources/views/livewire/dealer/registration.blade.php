@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <form wire:submit.prevent="registerdealer">
+        <form wire:submit="registerDealer">
     
             <div class="row">
                 <div class="col-lg-12">
@@ -68,8 +68,8 @@
                                     @enderror
                                 </div>
                                 
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Products & Services</label>
+                                {{-- <div class="mb-3 col-md-6">
+                                    <label class="form-label">Products & Services</label> --}}
                                     {{-- <input type="text" id="selectize-tags" name="business_product_services" value ="{{ old('business_product_services') }}" wire:model="business_product_services"> --}}
                                     {{-- <div wire:ignore class="form-group">
                                         <select id= "business_product_services" name="business_product_services" class="select2 form-control" multiple="multiple" data-placeholder="Select services" style="width: 100%;">
@@ -83,7 +83,7 @@
                                       
                                     </div>
                                     <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span> --}}
-                                </div> 
+                                {{-- </div>  --}}
                                 
                                 <div>
                                     <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
@@ -103,7 +103,7 @@
                                 
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="business_PCI_DSS_compliance_status" name="business_PCI_DSS_compliance_status" wire:model="business_PCI_DSS_compliance_status">    
+                                    <input type="checkbox" class="form-check-input" wire:model="business_PCI_DSS_compliance_status">    
                                         <label class="form-check-label" for="business_PCI_DSS_compliance_status">
                                             PCI DSS Compliance
                                     </label>
@@ -112,7 +112,7 @@
         
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="business_HTTPS_compliance_status" name="business_HTTPS_compliance_status" wire:model="business_HTTPS_compliance_status">    
+                                    <input type="checkbox" class="form-check-input" wire:model="business_HTTPS_compliance_status">    
                                         <label class="form-check-label" for="business_HTTPS_compliance_status">
                                             HTTPS Compliance
                                     </label>
@@ -133,49 +133,49 @@
         
                             <div class="mb-3">
                                 <label for="business_bank_account_name" class="form-label">Bank Account Name</label>
-                                <input type="text" class="form-control" id="business_bank_account_name" name="business_bank_account_name" placeholder="Enter Bank Account Name" value ="{{ old('business_bank_account_name') }}" wire:model="business_bank_account_name">
+                                <input type="text" class="form-control" id="business_bank_account_name" placeholder="Enter Bank Account Name" wire:model="business_bank_account_name">
                                 <span class="text-danger"> @error('business_bank_account_name') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_account_address" class="form-label">Bank Account Address</label>
-                                <input type="text" class="form-control" id="business_bank_account_address" name="business_bank_account_address" placeholder="Enter Bank Address" value ="{{ old('business_bank_account_address') }}" wire:model="business_bank_account_address">
+                                <input type="text" class="form-control" placeholder="Enter Bank Address" wire:model="business_bank_account_address">
                                 <span class="text-danger"> @error('business_bank_account_address') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_name" class="form-label">Bank Name</label>
-                                <input type="text" class="form-control" id="business_bank_name" name="business_bank_name" placeholder="Enter Bank Name" value ="{{ old('business_bank_name') }}" wire:model="business_bank_name">
+                                <input type="text" class="form-control" placeholder="Enter Bank Name" wire:model="business_bank_name">
                                 <span class="text-danger"> @error('business_bank_name') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_address" class="form-label">Bank Address</label>
-                                <input type="text" class="form-control" id="business_bank_address" name="business_bank_address" placeholder="Enter Bank Address" value ="{{ old('business_bank_address') }}" wire:model="business_bank_address">
+                                <input type="text" class="form-control" nplaceholder="Enter Bank Address" wire:model="business_bank_address">
                                 <span class="text-danger"> @error('business_address') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_IBAN" class="form-label">Bank IBAN</label>
-                                <input type="text" class="form-control" id="business_bank_IBAN" name="business_bank_IBAN" placeholder="Enter IBAN" value ="{{ old('business_bank_IBAN') }}" wire:model="business_bank_IBAN">
+                                <input type="text" class="form-control" placeholder="Enter IBAN" wire:model="business_bank_IBAN">
                                 <span class="text-danger"> @error('business_bank_IBAN') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_IFSC" class="form-label">Bank IFSC</label>
-                                <input type="text" class="form-control" id="business_bank_IFSC" name="business_bank_IFSC" placeholder="Enter IFSC" value ="{{ old('business_bank_IFSC') }}"  wire:model="business_bank_IFSC">
+                                <input type="text" class="form-control" placeholder="Enter IFSC" wire:model="business_bank_IFSC">
                                 <span class="text-danger"> @error('business_bank_IFSC') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_SWIFT_code" class="form-label">Bank SWIFT Code</label>
-                                <input type="text" class="form-control" id="business_bank_SWIFT_code" name="business_bank_SWIFT_code" placeholder="Enter SWIFT Code" value ="{{ old('business_bank_SWIFT_code') }}" wire:model="business_bank_SWIFT_code">
+                                <input type="text" class="form-control" placeholder="Enter SWIFT Code" wire:model="business_bank_SWIFT_code">
                                 <span class="text-danger"> @error('business_bank_SWIFT_code') {{ $message}} @enderror </span>
                             </div>
         
                             <div class="mb-3">
                                 <label for="business_bank_routing_code" class="form-label">Bank Routing Code</label>
-                                <input type="text" class="form-control" id="business_bank_routing_code" name="business_bank_routing_code" placeholder="Enter Routing Code" value ="{{ old('business_bank_routing_code') }}" wire:model="business_bank_routing_code">
+                                <input type="text" class="form-control" placeholder="Enter Routing Code" wire:model="business_bank_routing_code">
                                 <span class="text-danger"> @error('business_bank_routing_code') {{ $message}} @enderror </span>
                             </div>
         
@@ -279,7 +279,7 @@
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 5/5: Terms & Conditions</h5>
         
                                 <div class="mb-3">
-        
+                                    {{-- Authorized Dealer Individual Name, email and password comes here --}}
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="terms" name="terms" wire:model="terms">
                                         
