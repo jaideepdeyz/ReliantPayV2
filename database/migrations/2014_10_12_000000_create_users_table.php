@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('organization_id')->nullable();
             $table->string('is_active')->nullable();
+            $table->string('is_approved')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
