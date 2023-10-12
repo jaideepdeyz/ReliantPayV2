@@ -5,7 +5,7 @@
 <!--Banner-->
 <section class="bannermain position-relative">
     <figure class="mb-0 bgshape">
-        <img src="{{ asset('website/images/homebanner-bgshape.png') }}" alt="" class="img-fluid">
+        <img src="{{ asset('website/images/dashboardbanner-bgshape.png') }}" alt="" class="img-fluid">
     </figure>
     <div class="container">
         <div class="row">
@@ -20,16 +20,16 @@
             <div class=" col-lg-7 col-md-7 col-sm-12">
                 <div class="banner-wrapper">
                     <figure class="mb-0 homeelement1">
-                        <img src="{{ asset('website/images/homeelement1.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('website/images/dashboardelement1.png') }}" class="img-fluid" alt="">
                     </figure>
                     <figure class="mb-0 banner-image">
-                        <img src="{{ asset('website/images/homebanner-image.png') }}" class="img-fluid" alt="banner-image">
+                        <img src="{{ asset('website/images/dashboardbanner-image.png') }}" class="img-fluid" alt="banner-image">
                     </figure>
                     <figure class="mb-0 content img-bg">
-                        <img src="{{ asset('website/images/homebanner-img-bg.png') }}" alt="banner-image-bg">
+                        <img src="{{ asset('website/images/dashboardbanner-img-bg.png') }}" alt="banner-image-bg">
                     </figure>
                     <figure class="mb-0 homeelement">
-                        <img src="{{ asset('website/images/homeelement.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('website/images/dashboardelement.png') }}" class="img-fluid" alt="">
                     </figure>
                 </div>
             </div>
@@ -145,10 +145,10 @@
                         <img src="{{ asset('website/images/image-2.png') }}" alt="" class="img-fluid">
                     </figure>
                     <figure class="homeelement mb-0">
-                        <img src="{{ asset('website/images/homeelement.png') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('website/images/dashboardelement.png') }}" alt="" class="img-fluid">
                     </figure>
                     <figure class="homeelement1 mb-0">
-                        <img src="{{ asset('website/images/homeelement.png') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('website/images/dashboardelement.png') }}" alt="" class="img-fluid">
                     </figure>
                 </div>
             </div>
@@ -332,7 +332,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="manage-wrapper">
                     <figure class="mb-0 homeelement1">
-                        <img src="{{ asset('website/images/homeelement1.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('website/images/dashboardelement1.png') }}" class="img-fluid" alt="">
                     </figure>
                     <figure class="mb-0 manage-image">
                         <img src="{{ asset('website/images/manage-your-everything-image.png') }}" class="img-fluid" alt="">
@@ -341,7 +341,7 @@
                         <img src="{{ asset('website/images/manageyour-mange-your-bg.png') }}" alt="" class="">
                     </figure>
                     <figure class="mb-0 homeelement">
-                        <img src="{{ asset('website/images/homeelement.png" class="img-fluid') }}" alt="">
+                        <img src="{{ asset('website/images/dashboardelement.png" class="img-fluid') }}" alt="">
                     </figure>
                 </div>
             </div>

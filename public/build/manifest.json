@@ -1,19 +1,11 @@
 {
-  "node_modules/@popperjs/core/lib/index.js": {
-    "file": "assets/index-928954bb.js",
-    "isDynamicEntry": true,
-    "src": "node_modules/@popperjs/core/lib/index.js"
-  },
   "resources/css/app.css": {
-    "file": "assets/app-4ed993c7.js",
+    "file": "assets/app-b28aecaa.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "dynamicImports": [
-      "node_modules/@popperjs/core/lib/index.js"
-    ],
-    "file": "assets/app-b5a69d97.js",
+    "file": "assets/app-87fccfb9.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

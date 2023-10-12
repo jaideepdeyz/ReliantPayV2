@@ -1,6 +1,4 @@
-@extends('layouts.guest-base')
-@section('content')
-
+<x-guest-base>
  <div class="auth-fluid">
             <!--Auth fluid left content -->
             <div class="auth-fluid-form-box">
@@ -15,7 +13,7 @@
                                         <img src="{{ asset ('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
                                     </span>
                                 </a>
-            
+
                                 <a href="index.html" class="logo logo-light text-center">
                                     <span class="logo-lg">
                                         <img src="{{ asset ('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
@@ -31,21 +29,21 @@
                          @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
                                 @foreach ($errors->all() as $error)
-                                    
+
                                         <ul>
                                             <li>
                                                 {{$error}}
                                             </li>
                                         </ul>
-                                   
+
                                 @endforeach
                                  </div>
                             @endif
-                        
-                        <!-- form -->
-                      
 
-                            <form method="POST" action="{{ route('registerPhaseOne')}}">
+                        <!-- form -->
+
+
+                            <form method="POST" action="{{ route('register')}}">
 
                                 @csrf
 
@@ -108,11 +106,11 @@
             <div class="auth-fluid-right text-center">
                 <div class="auth-user-testimonial">
                     {{-- <h2 class="mb-3 text-white">I love the color!</h2> --}}
-                
+
                 </div> <!-- end auth-user-testimonial-->
             </div>
             <!-- end Auth fluid right content -->
         </div>
+</x-guest-base>
 
 
-@stop
