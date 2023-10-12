@@ -15,96 +15,76 @@
     <form wire:submit="registerDealer">
         <div class="row">
             <div class="col-lg-12">
-
-                @if ($currentStep == 1)
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Dealer Business Information
-                                    Step-{{ $currentStep }}</h5>
-                                <div class="mb-3 col-md-12">
-                                    <label for="business_name" class="form-label">Business Name</label>
-                                    <input type="text"
-                                        class="form-control @error('business_name') is-invalid @enderror"
-                                        placeholder="Enter business name" wire:model="business_name">
-                                    @error('business_name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-12">
-                                    <label for="business_address" class="form-label">Address</label>
-                                    <textarea class="form-control @error('business_address') is-invalid @enderror" rows="4"
-                                        placeholder="Enter business address" wire:model="business_address"></textarea>
-                                    @error('business_address')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="business_website" class="form-label">Website</label>
-                                    <input type="text"
-                                        class="form-control @error('business_website') is-invalid @enderror"
-                                        placeholder="Enter business website" value ="{{ old('business_website') }}"
-                                        wire:model="business_website">
-                                    @error('business_website')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="business_email" class="form-label">E-Mail</label>
-                                    <input type="text"
-                                        class="form-control @error('business_email') is-invalid @enderror"
-                                        placeholder="Enter business email" wire:model="business_email">
-                                    @error('business_email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label for="business_phone" class="form-label">Phone</label>
-                                    <input type="text"
-                                        class="form-control  @error('business_phone') is-invalid @enderror"
-                                        placeholder="Enter business phone" wire:model="business_phone">
-                                    @error('business_phone')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                {{-- <div class="mb-3 col-md-6">
-                                    <label class="form-label">Products & Services</label> --}}
-                                {{-- <input type="text" id="selectize-tags" name="business_product_services" value ="{{ old('business_product_services') }}" wire:model="business_product_services"> --}}
-                                {{-- <div wire:ignore class="form-group">
-                                        <select id= "business_product_services" name="business_product_services" class="select2 form-control" multiple="multiple" data-placeholder="Select services" style="width: 100%;">
-                                            <option value="Airline Ticketing">Airline Ticketing</option>
-                                            <option value="Hotel Booking">Hotel Booking</option>
-                                            <option value="Internet Services">Internet Services</option>
-                                            <option value="HVAC Services">HVAC Services</option>
-                                            <option value="Others">Others</option>
-                                        </select>
-
-
-                                    </div>
-                                    <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span> --}}
-                                {{-- </div>  --}}
-
-                                <div class="col-md-12 float-right">
-                                    <button type="button" class="btn w-sm btn-success waves-effect waves-light"
-                                        wire:click="phase1Next">Next</button>
-                                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Dealer Business Information</h5>
+                            <div class="mb-3 col-md-12">
+                                <label for="business_name" class="form-label">Business Name</label>
+                                <input type="text"
+                                    class="form-control @error('business_name') is-invalid @enderror"
+                                    placeholder="Enter business name" wire:model="business_name">
+                                @error('business_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                        </div>
-                    </div> <!-- end card -->
-                @endif
+                            <div class="mb-3 col-md-12">
+                                <label for="business_address" class="form-label">Address</label>
+                                <textarea class="form-control @error('business_address') is-invalid @enderror" rows="4"
+                                    placeholder="Enter business address" wire:model="business_address"></textarea>
+                                @error('business_address')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                @if ($currentStep == 2)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 2/5: Statutory Compliances</h5>
+                            <div class="mb-3 col-md-6">
+                                <label for="business_website" class="form-label">Website</label>
+                                <input type="text"
+                                    class="form-control @error('business_website') is-invalid @enderror"
+                                    placeholder="Enter business website" value ="{{ old('business_website') }}"
+                                    wire:model="business_website">
+                                @error('business_website')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
+                                <label for="business_email" class="form-label">E-Mail</label>
+                                <input type="text"
+                                    class="form-control @error('business_email') is-invalid @enderror"
+                                    placeholder="Enter business email" wire:model="business_email">
+                                @error('business_email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="business_phone" class="form-label">Phone</label>
+                                <input type="text"
+                                    class="form-control  @error('business_phone') is-invalid @enderror"
+                                    placeholder="Enter business phone" wire:model="business_phone">
+                                @error('business_phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-3 col-md-6">
+                                <label class="form-label">Products & Services</label>
+                                <select id= "business_product_services" wire:model="business_product_services" class="select2 form-control" multiple="multiple" data-placeholder="Select services" style="width: 100%;">
+                                    <option value="Airline Ticketing">Airline Ticketing</option>
+                                    <option value="Hotel Booking">Hotel Booking</option>
+                                    <option value="Internet Services">Internet Services</option>
+                                    <option value="HVAC Services">HVAC Services</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 2/5: Statutory Compliances</h5>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"
                                         wire:model="business_PCI_DSS_compliance_status">
@@ -114,7 +94,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"
                                         wire:model="business_HTTPS_compliance_status">
@@ -124,26 +104,20 @@
                                 </div>
                             </div>
 
-
-                        </div>
-                    </div> <!-- end card -->
-                @endif
-
-                @if ($currentStep == 3)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Step 3/5: Bank Details</h5>
-
-                            <div class="mb-3">
+                            <div class="col-md-12 mb-3">
+                                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Step 3/5: Bank Details</h5>
+                            </div>
+                            
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_account_name" class="form-label">Bank Account Name</label>
-                                <input type="text" class="form-control" id="business_bank_account_name"
+                                <input type="text" class="form-control" 
                                     placeholder="Enter Bank Account Name" wire:model="business_bank_account_name">
                                 <span class="text-danger"> @error('business_bank_account_name')
                                         {{ $message }}
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_account_address" class="form-label">Bank Account
                                     Address</label>
                                 <input type="text" class="form-control" placeholder="Enter Bank Address"
@@ -153,7 +127,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_name" class="form-label">Bank Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Bank Name"
                                     wire:model="business_bank_name">
@@ -162,16 +136,16 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_address" class="form-label">Bank Address</label>
-                                <input type="text" class="form-control" nplaceholder="Enter Bank Address"
+                                <input type="text" class="form-control" placeholder="Enter Bank Address"
                                     wire:model="business_bank_address">
-                                <span class="text-danger"> @error('business_address')
+                                <span class="text-danger"> @error('business_bank_address')
                                         {{ $message }}
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_IBAN" class="form-label">Bank IBAN</label>
                                 <input type="text" class="form-control" placeholder="Enter IBAN"
                                     wire:model="business_bank_IBAN">
@@ -180,7 +154,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_IFSC" class="form-label">Bank IFSC</label>
                                 <input type="text" class="form-control" placeholder="Enter IFSC"
                                     wire:model="business_bank_IFSC">
@@ -189,7 +163,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_SWIFT_code" class="form-label">Bank SWIFT Code</label>
                                 <input type="text" class="form-control" placeholder="Enter SWIFT Code"
                                     wire:model="business_bank_SWIFT_code">
@@ -198,7 +172,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_bank_routing_code" class="form-label">Bank Routing Code</label>
                                 <input type="text" class="form-control" placeholder="Enter Routing Code"
                                     wire:model="business_bank_routing_code">
@@ -206,17 +180,11 @@
                                         {{ $message }}
                                     @enderror </span>
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Step 4/5: Upload Documents</h5>
+                            </div>
 
-                        </div>
-                    </div> <!-- end card -->
-                @endif
-
-                @if ($currentStep == 4)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Step 4/5: Upload Documents</h5>
-
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
 
                                 <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                                     x-on:livewire-upload-finish="isUploading = false"
@@ -246,7 +214,7 @@
 
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_scan_EIN" class="form-label">Scanned EIN</label>
                                 <input type="file" id="business_scan_EIN" name="business_scan_EIN"
                                     class="form-control" wire:model="business_scan_EIN">
@@ -255,7 +223,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_scan_PAN" class="form-label">Scanned PAN</label>
                                 <input type="file" id="business_scan_PAN" name="business_scan_PAN"
                                     class="form-control" wire:model="business_scan_PAN">
@@ -264,7 +232,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_scan_registration_document" class="form-label">Scanned Business
                                     Registration</label>
                                 <input type="file" id="business_scan_registration_document"
@@ -275,18 +243,18 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="business_scan_signed_contract" class="form-label">Scanned Bank Statement
+                            <div class="mb-3 col-md-6">
+                                <label for="business_scan_bank_statement" class="form-label">Scanned Bank Statement
                                     (Last 06 Months)</label>
-                                <input type="file" id="business_scan_signed_contract"
-                                    name="business_scan_signed_contract" class="form-control"
+                                <input type="file" id="business_scan_bank_statement"
+                                    name="business_scan_bank_statement" class="form-control"
                                     wire:model="business_scan_signed_contract">
-                                <span class="text-danger"> @error('business_scan_signed_contract')
+                                <span class="text-danger"> @error('business_scan_bank_statement')
                                         {{ $message }}
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_scan_utility_bills" class="form-label">Scanned Utility Bills
                                     (Last 03 Months) </label>
                                 <input type="file" id="business_scan_utility_bills"
@@ -297,7 +265,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_scan_business_tax_returns" class="form-label">Business Tax
                                     Returns (Last 03 Years)</label>
                                 <input type="file" id="business_scan_business_tax_returns"
@@ -308,7 +276,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_premises_external_pictures" class="form-label">Business Premises
                                     Pictures (External)</label>
                                 <input type="file" id="business_premises_external_pictures"
@@ -319,7 +287,7 @@
                                     @enderror </span>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-6">
                                 <label for="business_premises_internal_pictures" class="form-label">Business Premises
                                     Pictures (Office)</label>
                                 <input type="file" id="business_premises_internal_pictures"
@@ -330,83 +298,71 @@
                                     @enderror </span>
                             </div>
 
+                            <div class="col-md-12 mb-3">
+                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 5/5: Terms & Conditions</h5>
+                            </div>
 
-                        </div>
-                    </div> <!-- end card -->
-                @endif
+                            <div class="mb-3 col-md-6">
+                                <div class="form-group">
+                                    <label for="authorized_persons_name">Authorized Persons Name</label>
+                                    <input type="text" wire:model="authorized_persons_name" class="form-control @error('authorized_persons_name') is-invalid @enderror">
+                                    @error('authorized_persons_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
+                            <div class="mb-3 col-md-6">
+                                <div class="form-group">
+                                    <label for="authorized_persons_email">Authorized Persons Email</label>
+                                    <input type="email" wire:model="authorized_persons_email" class="form-control @error('authorized_persons_email') is-invalid @enderror">
+                                    @error('authorized_persons_email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
-                @if ($currentStep == 5)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 5/5: Terms & Conditions</h5>
+                            <div class="mb-3 col-md-6">
+                                <div class="form-group">
+                                    <label for="password">Enter Password</label>
+                                    <input type="password" wire:model="password" class="form-control @error('password') is-invalid @enderror">
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
-                            <div class="mb-3">
-                                {{-- Authorized Dealer Individual Name, email and password comes here --}}
+                            <div class="mb-3 col-md-6">
+                                <div class="form-group">
+                                    <label for="password_confirmation">Confirm Password</label>
+                                    <input type="password" wire:model="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                                    @error('password_confirmation')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="terms" name="terms"
                                         wire:model="terms">
 
                                     <label class="form-check-label" for="terms">
-                                        You must agree to our terms and conditions.
+                                        I agree to the terms and conditions and submit this application for registration.
                                     </label>
                                 </div>
-
                             </div>
 
+                            <div class="col-md-12 float-right">
+                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Preview</button>
+                            </div>
                         </div>
-                    </div> <!-- end card -->
-                @endif
 
+                    </div>
+                </div> <!-- end card -->
             </div> <!-- end col -->
 
         </div>
-        <!-- end row -->
-
-        {{-- <div class="row">
-                <div class="col-12">
-
-
-                    <div class="action-buttons d-flex justify-content-between  mb-3">
-
-                        @if ($currentStep == 1)
-
-                        <div>
-                            <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="increaseStep()">Next</button>
-                        </div>
-
-                        @endif
-
-
-                        @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5)
-
-                            <div>
-                                <button type="button" class="btn w-sm btn-secondary waves-effect waves-light" wire:click="decreaseStep()">Back</button>
-                            </div>
-
-                        @endif
-
-                        @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
-
-                            <div>
-                                <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="increaseStep">Next</button>
-                            </div>
-
-                        @endif
-
-                        @if ($currentStep == 5)
-
-                            <div>
-                                <button type="Submit" class="btn w-sm btn-success waves-effect waves-light">Submit</button>
-                            </div>
-
-                        @endif
-
-
-                    </div>
-
-                </div> <!-- end col -->
-            </div> --}}
         <!-- end row -->
 
         <!-- file preview template -->
