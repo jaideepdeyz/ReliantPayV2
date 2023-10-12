@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -42,7 +43,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'is_active' => 'Yes',
             'is_approved' => 'No',
-            'role' => 'Dealer'
+            'role' => RoleEnum::DEALER,
         ]);
 
         event(new Registered($user));
