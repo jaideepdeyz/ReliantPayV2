@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dealer;
 
+use App\Enums\StatusEnum;
 use App\Models\Organization;
 use App\Models\OrganizationServiceMap;
 use App\Models\ProductService;
@@ -9,7 +10,6 @@ use App\Models\RegistrationUpload;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
@@ -75,14 +75,14 @@ class Registration extends Component
             'business_bank_SWIFT_code' => 'required',
             'business_bank_routing_code' => 'required',
             'business_scan_signed_contract' => 'required|mimes:pdf',
-        //     'business_scan_EIN' => 'required|mimes:pdf',
-        //     'business_scan_PAN' => 'required|mimes:pdf',
-        //     'business_scan_registration_document' => 'required|mimes:pdf',
-        //     'business_scan_bank_statement' => 'required|mimes:pdf',
-        //     'business_scan_utility_bills' => 'required|mimes:pdf',
-        //     'business_scan_business_tax_returns' => 'required|mimes:pdf',
-        //     'business_premises_external_pictures' => 'required|mimes:pdf',
-        //     'business_premises_internal_pictures' => 'required|mimes:pdf',
+            'business_scan_EIN' => 'required|mimes:pdf',
+            'business_scan_PAN' => 'required|mimes:pdf',
+            'business_scan_registration_document' => 'required|mimes:pdf',
+            'business_scan_bank_statement' => 'required|mimes:pdf',
+            'business_scan_utility_bills' => 'required|mimes:pdf',
+            'business_scan_business_tax_returns' => 'required|mimes:pdf',
+            'business_premises_external_pictures' => 'required|mimes:pdf',
+            'business_premises_internal_pictures' => 'required|mimes:pdf',
         ]);
 
         try{
@@ -105,6 +105,7 @@ class Registration extends Component
                 'business_bank_IFSC' => $this->business_bank_IFSC,
                 'business_bank_SWIFT_code' => $this->business_bank_SWIFT_code,
                 'business_bank_routing_code' => $this->business_bank_routing_code,
+                'status' => StatusEnum::SUBMITTED,
             ]);
 
             //storing Services and Products of an Organization
@@ -125,14 +126,14 @@ class Registration extends Component
             $this->orgID = $org->id;
             //storing registration file uploads of an organization
             $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
-            // $this->storeFile($this->business_scan_EIN, 'EIN');
-            // $this->storeFile($this->business_scan_PAN, 'PAN');
-            // $this->storeFile($this->business_scan_registration_document, 'Registration Document');
-            // $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
-            // $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
-            // $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
-            // $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
-            // $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+            $this->storeFile($this->business_scan_EIN, 'EIN');
+            $this->storeFile($this->business_scan_PAN, 'PAN');
+            $this->storeFile($this->business_scan_registration_document, 'Registration Document');
+            $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
+            $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
+            $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
+            $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
+            $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
 
             DB::commit();
             return redirect()->route('dashboard');

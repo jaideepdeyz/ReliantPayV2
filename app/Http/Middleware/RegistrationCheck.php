@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\RoleEnum;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,24 @@ class RegistrationCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->organization_id == null){
-            return redirect()->route('dealer_register');
-        }else{
-             return $next($request);
+        // if(Auth::user()->organization_id == null){
+        //     return redirect()->route('dealer_register');
+        // }else{
+        //      return $next($request);
+        // }
+
+        switch(Auth::User()->role)
+        {
+            case RoleEnum::DEALER->value:
+                if(Auth::user()->organization_id == null){
+                    return redirect()->route('dealer_register');
+                }else{
+                     return $next($request);
+                }
+                break;
+            case RoleEnum::ADMIN->value:
+                return $next($request);
+                break;
         }
     }
 }

@@ -237,9 +237,8 @@
                             <div class="mb-3 col-md-6">
                                 <label for="business_scan_bank_statement" class="form-label">Scanned Bank Statement
                                     (Last 06 Months)</label>
-                                <input type="file" id="business_scan_bank_statement"
-                                    name="business_scan_bank_statement" class="form-control"
-                                    wire:model="business_scan_signed_contract">
+                                <input type="file" class="form-control"
+                                    wire:model="business_scan_bank_statement">
                                 <span class="text-danger"> @error('business_scan_bank_statement')
                                         {{ $message }}
                                     @enderror </span>

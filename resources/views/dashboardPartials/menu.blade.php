@@ -38,8 +38,13 @@
             <div class="collapse" id="settings">
                 <ul class="sub-menu">
                     <li class="menu-item">
-                        <a href="{{ route('employee-management.index') }}" class="menu-link">
-                            <span class="menu-text">All Employees </span>
+                        <a href="{{route('registrationApproval')}}" class="menu-link">
+                            <span class="menu-text">Dealer Registration Approval</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <span class="menu-text">All Dealers</span>
                         </a>
                     </li>
                     @if (Auth::User()->role == 'SADMIN')

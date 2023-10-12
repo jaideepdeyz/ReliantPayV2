@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('business_bank_IFSC')->nullable();
             $table->string('business_bank_SWIFT_code')->nullable();
             $table->string('business_bank_routing_code')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
