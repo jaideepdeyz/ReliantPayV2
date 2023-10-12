@@ -3,6 +3,9 @@
 namespace App\Livewire\Dealer;
 
 use App\Models\Organization;
+use App\Models\OrganizationServiceMap;
+use App\Models\ProductService;
+use App\Models\RegistrationUpload;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -18,7 +21,7 @@ class Registration extends Component
     public $business_website;
     public $business_email;
     public $business_phone;
-    public $business_product_services;
+    public $business_product_services = [];
     //compliances
     public $business_PCI_DSS_compliance_status;
     public $business_HTTPS_compliance_status;
@@ -31,7 +34,7 @@ class Registration extends Component
     public $business_bank_IFSC;
     public $business_bank_SWIFT_code;
     public $business_bank_routing_code;
-    //authorized person details 
+    //authorized person details
     public $authorized_persons_name;
     public $authorized_persons_email;
     public $password;
@@ -51,15 +54,14 @@ class Registration extends Component
     public function registerDealer()
     {
         // $this->dispatch('showModal', ['alias' => 'modals.services-offered']);
-        dd($this->business_product_services);
-        
+        // dd($this->business_product_services);
+
         $this->validate([
             'business_name' => 'required',
             'business_address' => 'required',
             'business_website' => 'required',
             'business_email' => 'required|email',
             'business_phone' => 'required',
-            'business_product_services' => 'required',
             'business_PCI_DSS_compliance_status' => 'required',
             'business_HTTPS_compliance_status' => 'required',
             'business_bank_account_name' => 'required',
@@ -73,18 +75,20 @@ class Registration extends Component
             'authorized_persons_name' => 'required',
             'authorized_persons_email' => 'required|email',
             'password' => 'required|confirmed',
-            'business_scan_signed_contract' => 'required|file',
-            'business_scan_EIN' => 'required|file',
-            'business_scan_PAN' => 'required|file',
-            'business_scan_registration_document' => 'required|file',
-            'business_scan_bank_statement' => 'required|file',
-            'business_scan_utility_bills' => 'required|file',
-            'business_scan_business_tax_returns' => 'required|file',
-            'business_premises_external_pictures' => 'required|file',
-            'business_premises_internal_pictures' => 'required|file',
+            'business_scan_signed_contract' => 'required|mimes:pdf',
+            'business_scan_EIN' => 'required|mimes:pdf',
+            'business_scan_PAN' => 'required|mimes:pdf',
+            'business_scan_registration_document' => 'required|mimes:pdf',
+            'business_scan_bank_statement' => 'required|mimes:pdf',
+            'business_scan_utility_bills' => 'required|mimes:pdf',
+            'business_scan_business_tax_returns' => 'required|mimes:pdf',
+            'business_premises_external_pictures' => 'required|mimes:pdf',
+            'business_premises_internal_pictures' => 'required|mimes:pdf',
         ]);
 
-        $org = Organization::create([
+        $org = Organization::updateOrcreate(
+            ['id' => $this->orgID],
+            [
             'business_name' => $this->business_name,
             'business_address' => $this->business_address,
             'business_website' => $this->business_website,
@@ -105,13 +109,54 @@ class Registration extends Component
             'password' => Hash::make($this->password),
         ]);
 
+        //storing Services and Products of an Organization
+        if(!$org->productsServices)
+        {
+            foreach($this->business_product_services as $service){
+                OrganizationServiceMap::create([
+                 'organization_id' => $org->id,
+                 'service_name' => $service
+                ]);
+             }
+        } else {
+            $org->productsServices()->delete();
+            foreach($this->business_product_services as $service){
+                OrganizationServiceMap::create([
+                 'organization_id' => $org->id,
+                 'service_name' => $service
+                ]);
+             }
+        }
+
+        //storing registration file uploads of an organization
+        $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
+        $this->storeFile($this->business_scan_EIN, 'EIN');
+        $this->storeFile($this->business_scan_PAN, 'PAN');
+        $this->storeFile($this->business_scan_registration_document, 'Registration Document');
+        $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
+        $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
+        $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
+        $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
+        $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+
+
+        $this->orgID = $org->id;
         $this->render();
     }
 
-   
+    public function storeFile($file, $docName)
+    {
+        $file = RegistrationUpload::create([
+            'organization_id' => $this->orgID,
+            'document_name' => $docName,
+            'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID.'/', $docName.'.'.$file->getClientOriginalExtension()),
+        ]);
+    }
+
 
     public function render()
     {
-        return view('livewire.dealer.registration')->layout('layouts.guest-base');
+        $services = ProductService::all();
+        return view('livewire.dealer.registration', compact('services'))->layout('layouts.guest-base');
     }
 }

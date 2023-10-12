@@ -72,11 +72,14 @@
                             <div class="form-group mb-3 col-md-6">
                                 <label class="form-label">Products & Services</label>
                                 <select id= "business_product_services" wire:model="business_product_services" class="select2 form-control" multiple="multiple" data-placeholder="Select services" style="width: 100%;">
-                                    <option value="Airline Ticketing">Airline Ticketing</option>
+                                    {{-- <option value="Airline Ticketing">Airline Ticketing</option>
                                     <option value="Hotel Booking">Hotel Booking</option>
                                     <option value="Internet Services">Internet Services</option>
                                     <option value="HVAC Services">HVAC Services</option>
-                                    <option value="Others">Others</option>
+                                    <option value="Others">Others</option> --}}
+                                    @foreach ($services as $service)
+                                        <option value="{{ $service->name }}">{{ $service->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span>
                             </div>
@@ -107,10 +110,10 @@
                             <div class="col-md-12 mb-3">
                                 <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Step 3/5: Bank Details</h5>
                             </div>
-                            
+
                             <div class="mb-3 col-md-6">
                                 <label for="business_bank_account_name" class="form-label">Bank Account Name</label>
-                                <input type="text" class="form-control" 
+                                <input type="text" class="form-control"
                                     placeholder="Enter Bank Account Name" wire:model="business_bank_account_name">
                                 <span class="text-danger"> @error('business_bank_account_name')
                                         {{ $message }}
@@ -185,33 +188,11 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-
-                                <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
-                                    x-on:livewire-upload-finish="isUploading = false"
-                                    x-on:livewire-upload-error="isUploading = false"
-                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
-
-                                    <label for="business_scan_signed_contract" class="form-label">Scanned Signed
-                                        Contract</label>
-                                    <input type="file" id="business_scan_signed_contract"
-                                        name="business_scan_signed_contract" class="form-control"
-                                        wire:model="business_scan_signed_contract">
-                                    <span class="text-danger"> @error('business_scan_signed_contract')
-                                            {{ $message }}
-                                        @enderror </span>
-
-                                    <div x-show="isUploading" class="progress mt-2">
-                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                            x-bind:style="`width: ${progress}%`" aria-valuenow="30" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-
-                                    {{-- <div >
-                                    <progress max="100" x-bind:value="progress"></progress>
-                                </div> --}}
-
-                                </div>
-
+                                <label for="business_scan_signed_contract" class="form-label">Scanned Signed Contract</label>
+                                <input type="file" class="form-control @error('business_scan_signed_contract') is-invalid @enderror" wire:model="business_scan_signed_contract">
+                                <span class="text-danger"> @error('business_scan_signed_contract')
+                                        {{ $message }}
+                                    @enderror </span>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -354,7 +335,7 @@
                             </div>
 
                             <div class="col-md-12 float-right">
-                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Preview</button>
+                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Submit Registration Request</button>
                             </div>
                         </div>
 
@@ -366,7 +347,7 @@
         <!-- end row -->
 
         <!-- file preview template -->
-        <div class="d-none" id="uploadPreviewTemplate">
+        {{-- <div class="d-none" id="uploadPreviewTemplate">
             <div class="card mt-1 mb-0 shadow-none border">
                 <div class="p-2">
                     <div class="row align-items-center">
@@ -386,7 +367,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </form>
 </div>

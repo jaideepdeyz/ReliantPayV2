@@ -11,4 +11,14 @@ class Organization extends Model
 
     protected $guarded = [];
 
+    public function productsServices()
+    {
+        return $this->hasMany(OrganizationServiceMap::class, 'organization_id', 'id');
+    }
+
+    public function registrationUploads()
+    {
+        return $this->hasMany(RegistrationUpload::class, 'organization_id', 'id');
+    }
+
 }
