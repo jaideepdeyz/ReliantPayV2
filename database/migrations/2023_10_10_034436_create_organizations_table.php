@@ -29,9 +29,6 @@ return new class extends Migration
             $table->string('business_bank_IFSC')->nullable();
             $table->string('business_bank_SWIFT_code')->nullable();
             $table->string('business_bank_routing_code')->nullable();
-            $table->string('authorized_persons_name')->nullable();
-            $table->string('authorized_persons_email')->nullable();
-            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

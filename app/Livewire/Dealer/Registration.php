@@ -7,6 +7,8 @@ use App\Models\OrganizationServiceMap;
 use App\Models\ProductService;
 use App\Models\RegistrationUpload;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -60,7 +62,7 @@ class Registration extends Component
             'business_name' => 'required',
             'business_address' => 'required',
             'business_website' => 'required',
-            'business_email' => 'required|email',
+            'business_email' => 'required|email|unique:App\Models\Organization,business_email',
             'business_phone' => 'required',
             'business_PCI_DSS_compliance_status' => 'required',
             'business_HTTPS_compliance_status' => 'required',
@@ -72,77 +74,72 @@ class Registration extends Component
             'business_bank_IFSC' => 'required',
             'business_bank_SWIFT_code' => 'required',
             'business_bank_routing_code' => 'required',
-            'authorized_persons_name' => 'required',
-            'authorized_persons_email' => 'required|email',
-            'password' => 'required|confirmed',
-            // 'business_scan_signed_contract' => 'required|mimes:pdf',
-            // 'business_scan_EIN' => 'required|mimes:pdf',
-            // 'business_scan_PAN' => 'required|mimes:pdf',
-            // 'business_scan_registration_document' => 'required|mimes:pdf',
-            // 'business_scan_bank_statement' => 'required|mimes:pdf',
-            // 'business_scan_utility_bills' => 'required|mimes:pdf',
-            // 'business_scan_business_tax_returns' => 'required|mimes:pdf',
-            // 'business_premises_external_pictures' => 'required|mimes:pdf',
-            // 'business_premises_internal_pictures' => 'required|mimes:pdf',
+            'business_scan_signed_contract' => 'required|mimes:pdf',
+        //     'business_scan_EIN' => 'required|mimes:pdf',
+        //     'business_scan_PAN' => 'required|mimes:pdf',
+        //     'business_scan_registration_document' => 'required|mimes:pdf',
+        //     'business_scan_bank_statement' => 'required|mimes:pdf',
+        //     'business_scan_utility_bills' => 'required|mimes:pdf',
+        //     'business_scan_business_tax_returns' => 'required|mimes:pdf',
+        //     'business_premises_external_pictures' => 'required|mimes:pdf',
+        //     'business_premises_internal_pictures' => 'required|mimes:pdf',
         ]);
 
-        $org = Organization::updateOrcreate(
-            ['id' => $this->orgID],
-            [
-            'business_name' => $this->business_name,
-            'business_address' => $this->business_address,
-            'business_website' => $this->business_website,
-            'business_email' => $this->business_email,
-            'business_phone' => $this->business_phone,
-            'business_PCI_DSS_compliance_status' => $this->business_PCI_DSS_compliance_status,
-            'business_HTTPS_compliance_status' => $this->business_HTTPS_compliance_status,
-            'business_bank_account_name' => $this->business_bank_account_name,
-            'business_bank_account_address' => $this->business_bank_account_address,
-            'business_bank_name' => $this->business_bank_name,
-            'business_bank_address' => $this->business_bank_address,
-            'business_bank_IBAN' => $this->business_bank_IBAN,
-            'business_bank_IFSC' => $this->business_bank_IFSC,
-            'business_bank_SWIFT_code' => $this->business_bank_SWIFT_code,
-            'business_bank_routing_code' => $this->business_bank_routing_code,
-            'authorized_persons_name' => $this->authorized_persons_name,
-            'authorized_persons_email' => $this->authorized_persons_email,
-            'password' => Hash::make($this->password),
-        ]);
-        $this->orgID = $org->id;
+        try{
+            DB::beginTransaction();
+            $org = Organization::create(
+                [
+                'user_id' => Auth::user()->id,
+                'business_name' => $this->business_name,
+                'business_address' => $this->business_address,
+                'business_website' => $this->business_website,
+                'business_email' => $this->business_email,
+                'business_phone' => $this->business_phone,
+                'business_PCI_DSS_compliance_status' => $this->business_PCI_DSS_compliance_status,
+                'business_HTTPS_compliance_status' => $this->business_HTTPS_compliance_status,
+                'business_bank_account_name' => $this->business_bank_account_name,
+                'business_bank_account_address' => $this->business_bank_account_address,
+                'business_bank_name' => $this->business_bank_name,
+                'business_bank_address' => $this->business_bank_address,
+                'business_bank_IBAN' => $this->business_bank_IBAN,
+                'business_bank_IFSC' => $this->business_bank_IFSC,
+                'business_bank_SWIFT_code' => $this->business_bank_SWIFT_code,
+                'business_bank_routing_code' => $this->business_bank_routing_code,
+            ]);
 
-        //storing Services and Products of an Organization
-        if(!$org->productsServices)
-        {
+            //storing Services and Products of an Organization
+
             foreach($this->business_product_services as $service){
                 OrganizationServiceMap::create([
-                 'organization_id' => $org->id,
-                 'service_name' => $service
+                    'organization_id' => $org->id,
+                    'service_name' => $service
                 ]);
-             }
-        } else {
-            $org->productsServices()->delete();
-            foreach($this->business_product_services as $service){
-                OrganizationServiceMap::create([
-                 'organization_id' => $org->id,
-                 'service_name' => $service
-                ]);
-             }
+            }
+
+            // store org id in user table
+            $user = User::find(Auth::user()->id)->update([
+                'organization_id' => $org->id,
+
+            ]);
+
+            $this->orgID = $org->id;
+            //storing registration file uploads of an organization
+            $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
+            // $this->storeFile($this->business_scan_EIN, 'EIN');
+            // $this->storeFile($this->business_scan_PAN, 'PAN');
+            // $this->storeFile($this->business_scan_registration_document, 'Registration Document');
+            // $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
+            // $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
+            // $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
+            // $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
+            // $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+
+            DB::commit();
+            return redirect()->route('dashboard');
+        }catch(\Exception $e){
+            DB::rollback();
+            dd($e);
         }
-
-
-        //storing registration file uploads of an organization
-        $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
-        // $this->storeFile($this->business_scan_EIN, 'EIN');
-        // $this->storeFile($this->business_scan_PAN, 'PAN');
-        // $this->storeFile($this->business_scan_registration_document, 'Registration Document');
-        // $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
-        // $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
-        // $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
-        // $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
-        // $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
-
-
-        $this->render();
     }
 
     public function storeFile($file, $docName)

@@ -13,7 +13,7 @@
                         {{ csrf_field() }}
                     </form>
                 </div>
-                <h4 class="page-title">ReliantPay Registration</h4>
+                <h4 class="page-title">ReliantPay | Business Registration Form</h4>
             </div>
         </div>
     </div>
@@ -291,50 +291,6 @@
 
                             <div class="col-md-12 mb-3">
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 5/5: Terms & Conditions</h5>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <div class="form-group">
-                                    <label for="authorized_persons_name">Authorized Persons Name</label>
-                                    <input type="text" wire:model="authorized_persons_name"
-                                        class="form-control @error('authorized_persons_name') is-invalid @enderror">
-                                    @error('authorized_persons_name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <div class="form-group">
-                                    <label for="authorized_persons_email">Authorized Persons Email</label>
-                                    <input type="email" wire:model="authorized_persons_email"
-                                        class="form-control @error('authorized_persons_email') is-invalid @enderror">
-                                    @error('authorized_persons_email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <div class="form-group">
-                                    <label for="password">Enter Password</label>
-                                    <input type="password" wire:model="password"
-                                        class="form-control @error('password') is-invalid @enderror">
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <div class="form-group">
-                                    <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" wire:model="password_confirmation"
-                                        class="form-control @error('password_confirmation') is-invalid @enderror">
-                                    @error('password_confirmation')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
 
                             <div class="mb-3 col-md-6">
