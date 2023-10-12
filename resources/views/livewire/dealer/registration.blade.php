@@ -42,7 +42,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-4">
                                 <label for="business_website" class="form-label">Website</label>
                                 <input type="text"
                                     class="form-control @error('business_website') is-invalid @enderror"
@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-4">
                                 <label for="business_email" class="form-label">E-Mail</label>
                                 <input type="text" class="form-control @error('business_email') is-invalid @enderror"
                                     placeholder="Enter business email" wire:model="business_email">
@@ -62,7 +62,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-4">
                                 <label for="business_phone" class="form-label">Phone</label>
                                 <input type="text"
                                     class="form-control  @error('business_phone') is-invalid @enderror"
@@ -71,17 +71,25 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-md-12 mb-2">
+                                <h5 style="opacity:0.7">Products & Services (Please select all applicable products &
+                                    services)</h5>
+                            </div>
+                            @foreach ($services as $service)
+                                <div class="col-md-3 mb-2">
+                                    <div class="form-group">
+                                        <input type="checkbox" class="form-check-input"
+                                            wire:model="business_product_services.{{ $service->name }}">
+                                        <label for="" class="form-check-label">{{ $service->name }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
 
-                            <div class="form-group mb-3 col-md-6">
+                            {{-- <div class="form-group mb-3 col-md-6">
                                 <label class="form-label">Products & Services</label>
                                 <select id= "business_product_services" wire:model="business_product_services"
                                     class="select2 form-control" multiple="multiple" data-placeholder="Select services"
                                     style="width: 100%;">
-                                    {{-- <option value="Airline Ticketing">Airline Ticketing</option>
-                                    <option value="Hotel Booking">Hotel Booking</option>
-                                    <option value="Internet Services">Internet Services</option>
-                                    <option value="HVAC Services">HVAC Services</option>
-                                    <option value="Others">Others</option> --}}
                                     @foreach ($services as $service)
                                         <option value="{{ $service->name }}">{{ $service->name }}</option>
                                     @endforeach
@@ -89,8 +97,9 @@
                                 <span class="text-danger"> @error('business_product_services')
                                         {{ $message }}
                                     @enderror </span>
-                            </div>
-                            <div class="col-md-12 mb-3">
+                            </div> --}}
+
+                            <div class="col-md-12 mb-3 mt-3">
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 2/5: Statutory Compliances</h5>
                             </div>
 
@@ -237,8 +246,7 @@
                             <div class="mb-3 col-md-6">
                                 <label for="business_scan_bank_statement" class="form-label">Scanned Bank Statement
                                     (Last 06 Months)</label>
-                                <input type="file" class="form-control"
-                                    wire:model="business_scan_bank_statement">
+                                <input type="file" class="form-control" wire:model="business_scan_bank_statement">
                                 <span class="text-danger"> @error('business_scan_bank_statement')
                                         {{ $message }}
                                     @enderror </span>

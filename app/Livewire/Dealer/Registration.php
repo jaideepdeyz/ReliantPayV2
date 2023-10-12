@@ -56,7 +56,6 @@ class Registration extends Component
     public function registerDealer()
     {
         // $this->dispatch('showModal', ['alias' => 'modals.services-offered']);
-        // dd($this->business_product_services);
 
         $this->validate([
             'business_name' => 'required',
@@ -82,7 +81,7 @@ class Registration extends Component
             'business_scan_utility_bills' => 'required|mimes:pdf',
             'business_scan_business_tax_returns' => 'required|mimes:pdf',
             'business_premises_external_pictures' => 'required|mimes:pdf',
-            'business_premises_internal_pictures' => 'required|mimes:pdf',
+            'business_premises_internal_pictures' => 'required|mimes:pdf'
         ]);
 
         try{
@@ -109,12 +108,14 @@ class Registration extends Component
             ]);
 
             //storing Services and Products of an Organization
-
-            foreach($this->business_product_services as $service){
-                OrganizationServiceMap::create([
-                    'organization_id' => $org->id,
-                    'service_name' => $service
-                ]);
+            foreach($this->business_product_services as $key=> $service){
+                if($service == true)
+                {
+                    OrganizationServiceMap::create([
+                        'organization_id' => $org->id,
+                        'service_name' => $key
+                    ]);
+                }
             }
 
             // store org id in user table
