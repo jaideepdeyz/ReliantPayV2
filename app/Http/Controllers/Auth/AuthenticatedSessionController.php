@@ -29,7 +29,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(Auth::User()->is_active == 'No')
+        {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Your account is not active. Please contact admin.');
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
     }
 
     /**
