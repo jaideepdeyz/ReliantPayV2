@@ -49,7 +49,7 @@ class Registration extends Component
     public $business_scan_business_tax_returns;
     public $business_premises_external_pictures;
     public $business_premises_internal_pictures;
-    public $orgID;
+    public $orgID=null;
 
     public function registerDealer()
     {
@@ -75,15 +75,15 @@ class Registration extends Component
             'authorized_persons_name' => 'required',
             'authorized_persons_email' => 'required|email',
             'password' => 'required|confirmed',
-            'business_scan_signed_contract' => 'required|mimes:pdf',
-            'business_scan_EIN' => 'required|mimes:pdf',
-            'business_scan_PAN' => 'required|mimes:pdf',
-            'business_scan_registration_document' => 'required|mimes:pdf',
-            'business_scan_bank_statement' => 'required|mimes:pdf',
-            'business_scan_utility_bills' => 'required|mimes:pdf',
-            'business_scan_business_tax_returns' => 'required|mimes:pdf',
-            'business_premises_external_pictures' => 'required|mimes:pdf',
-            'business_premises_internal_pictures' => 'required|mimes:pdf',
+            // 'business_scan_signed_contract' => 'required|mimes:pdf',
+            // 'business_scan_EIN' => 'required|mimes:pdf',
+            // 'business_scan_PAN' => 'required|mimes:pdf',
+            // 'business_scan_registration_document' => 'required|mimes:pdf',
+            // 'business_scan_bank_statement' => 'required|mimes:pdf',
+            // 'business_scan_utility_bills' => 'required|mimes:pdf',
+            // 'business_scan_business_tax_returns' => 'required|mimes:pdf',
+            // 'business_premises_external_pictures' => 'required|mimes:pdf',
+            // 'business_premises_internal_pictures' => 'required|mimes:pdf',
         ]);
 
         $org = Organization::updateOrcreate(
@@ -108,6 +108,7 @@ class Registration extends Component
             'authorized_persons_email' => $this->authorized_persons_email,
             'password' => Hash::make($this->password),
         ]);
+        $this->orgID = $org->id;
 
         //storing Services and Products of an Organization
         if(!$org->productsServices)
@@ -128,19 +129,19 @@ class Registration extends Component
              }
         }
 
+
         //storing registration file uploads of an organization
         $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
-        $this->storeFile($this->business_scan_EIN, 'EIN');
-        $this->storeFile($this->business_scan_PAN, 'PAN');
-        $this->storeFile($this->business_scan_registration_document, 'Registration Document');
-        $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
-        $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
-        $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
-        $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
-        $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+        // $this->storeFile($this->business_scan_EIN, 'EIN');
+        // $this->storeFile($this->business_scan_PAN, 'PAN');
+        // $this->storeFile($this->business_scan_registration_document, 'Registration Document');
+        // $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
+        // $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
+        // $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
+        // $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
+        // $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
 
 
-        $this->orgID = $org->id;
         $this->render();
     }
 
@@ -149,7 +150,7 @@ class Registration extends Component
         $file = RegistrationUpload::create([
             'organization_id' => $this->orgID,
             'document_name' => $docName,
-            'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID.'/', $docName.'.'.$file->getClientOriginalExtension()),
+            'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
         ]);
     }
 
