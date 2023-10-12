@@ -4,9 +4,14 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">ReliantPay</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dealer Registration</a></li>
+                        <li class="breadcrumb-item"><button
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="btn btn-primary btn-sm">Logout</button>
+                        </li>
                     </ol>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: one;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
                 <h4 class="page-title">ReliantPay Registration</h4>
             </div>
@@ -21,8 +26,7 @@
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Dealer Business Information</h5>
                             <div class="mb-3 col-md-12">
                                 <label for="business_name" class="form-label">Business Name</label>
-                                <input type="text"
-                                    class="form-control @error('business_name') is-invalid @enderror"
+                                <input type="text" class="form-control @error('business_name') is-invalid @enderror"
                                     placeholder="Enter business name" wire:model="business_name">
                                 @error('business_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -51,8 +55,7 @@
 
                             <div class="mb-3 col-md-6">
                                 <label for="business_email" class="form-label">E-Mail</label>
-                                <input type="text"
-                                    class="form-control @error('business_email') is-invalid @enderror"
+                                <input type="text" class="form-control @error('business_email') is-invalid @enderror"
                                     placeholder="Enter business email" wire:model="business_email">
                                 @error('business_email')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -71,7 +74,9 @@
 
                             <div class="form-group mb-3 col-md-6">
                                 <label class="form-label">Products & Services</label>
-                                <select id= "business_product_services" wire:model="business_product_services" class="select2 form-control" multiple="multiple" data-placeholder="Select services" style="width: 100%;">
+                                <select id= "business_product_services" wire:model="business_product_services"
+                                    class="select2 form-control" multiple="multiple" data-placeholder="Select services"
+                                    style="width: 100%;">
                                     {{-- <option value="Airline Ticketing">Airline Ticketing</option>
                                     <option value="Hotel Booking">Hotel Booking</option>
                                     <option value="Internet Services">Internet Services</option>
@@ -81,7 +86,9 @@
                                         <option value="{{ $service->name }}">{{ $service->name }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger"> @error('business_product_services') {{ $message}} @enderror </span>
+                                <span class="text-danger"> @error('business_product_services')
+                                        {{ $message }}
+                                    @enderror </span>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 2/5: Statutory Compliances</h5>
@@ -113,8 +120,8 @@
 
                             <div class="mb-3 col-md-6">
                                 <label for="business_bank_account_name" class="form-label">Bank Account Name</label>
-                                <input type="text" class="form-control"
-                                    placeholder="Enter Bank Account Name" wire:model="business_bank_account_name">
+                                <input type="text" class="form-control" placeholder="Enter Bank Account Name"
+                                    wire:model="business_bank_account_name">
                                 <span class="text-danger"> @error('business_bank_account_name')
                                         {{ $message }}
                                     @enderror </span>
@@ -188,8 +195,11 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="business_scan_signed_contract" class="form-label">Scanned Signed Contract</label>
-                                <input type="file" class="form-control @error('business_scan_signed_contract') is-invalid @enderror" wire:model="business_scan_signed_contract">
+                                <label for="business_scan_signed_contract" class="form-label">Scanned Signed
+                                    Contract</label>
+                                <input type="file"
+                                    class="form-control @error('business_scan_signed_contract') is-invalid @enderror"
+                                    wire:model="business_scan_signed_contract">
                                 <span class="text-danger"> @error('business_scan_signed_contract')
                                         {{ $message }}
                                     @enderror </span>
@@ -286,7 +296,8 @@
                             <div class="mb-3 col-md-6">
                                 <div class="form-group">
                                     <label for="authorized_persons_name">Authorized Persons Name</label>
-                                    <input type="text" wire:model="authorized_persons_name" class="form-control @error('authorized_persons_name') is-invalid @enderror">
+                                    <input type="text" wire:model="authorized_persons_name"
+                                        class="form-control @error('authorized_persons_name') is-invalid @enderror">
                                     @error('authorized_persons_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -296,7 +307,8 @@
                             <div class="mb-3 col-md-6">
                                 <div class="form-group">
                                     <label for="authorized_persons_email">Authorized Persons Email</label>
-                                    <input type="email" wire:model="authorized_persons_email" class="form-control @error('authorized_persons_email') is-invalid @enderror">
+                                    <input type="email" wire:model="authorized_persons_email"
+                                        class="form-control @error('authorized_persons_email') is-invalid @enderror">
                                     @error('authorized_persons_email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -306,7 +318,8 @@
                             <div class="mb-3 col-md-6">
                                 <div class="form-group">
                                     <label for="password">Enter Password</label>
-                                    <input type="password" wire:model="password" class="form-control @error('password') is-invalid @enderror">
+                                    <input type="password" wire:model="password"
+                                        class="form-control @error('password') is-invalid @enderror">
                                     @error('password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -316,7 +329,8 @@
                             <div class="mb-3 col-md-6">
                                 <div class="form-group">
                                     <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" wire:model="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                                    <input type="password" wire:model="password_confirmation"
+                                        class="form-control @error('password_confirmation') is-invalid @enderror">
                                     @error('password_confirmation')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -329,13 +343,15 @@
                                         wire:model="terms">
 
                                     <label class="form-check-label" for="terms">
-                                        I agree to the terms and conditions and submit this application for registration.
+                                        I agree to the terms and conditions and submit this application for
+                                        registration.
                                     </label>
                                 </div>
                             </div>
 
                             <div class="col-md-12 float-right">
-                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Submit Registration Request</button>
+                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Submit
+                                    Registration Request</button>
                             </div>
                         </div>
 
