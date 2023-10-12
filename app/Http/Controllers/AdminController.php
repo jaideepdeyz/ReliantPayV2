@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
+use App\Models\OrganizationServiceMap;
 use App\Models\RegistrationUpload;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,8 @@ class AdminController extends Controller
     {
         $org = Organization::find($id);
         $docs = RegistrationUpload::where('organization_id', $org->id)->get();
-        return view('dealers.show', compact('org', 'docs'));
+        $services = OrganizationServiceMap::where('organization_id', $org->id)->get();
+        return view('dealers.show', compact('org', 'docs', 'services'));
     }
 
     /**

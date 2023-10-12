@@ -21,4 +21,9 @@ class Organization extends Model
         return $this->hasMany(RegistrationUpload::class, 'organization_id', 'id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
 }
