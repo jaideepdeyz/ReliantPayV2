@@ -48,6 +48,16 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="{{route('bookSales', StatusEnum::SUBMITTED->value)}}" class="menu-link">
+                            <span class="menu-text">Sales Generated</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{route('salesByStatus', StatusEnum::PENDING->value)}}" class="menu-link">
+                            <span class="menu-text">Authorizations Pending</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="{{route('salesByStatus', StatusEnum::AUTHORIZED->value)}}" class="menu-link">
                             <span class="menu-text">Authorized Sales </span>
                         </a>

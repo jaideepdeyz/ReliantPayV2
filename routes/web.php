@@ -3,9 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Agent\BookSales;
-use App\Livewire\Agent\SalesByStatus;
 use App\Livewire\Agents\AddAgent;
+use App\Livewire\Agents\BookSales;
+use App\Livewire\Agents\SalesByStatus;
 use App\Livewire\Dealer\DealersByActivityStatus;
 use App\Livewire\Dealer\DealersByStatus;
 use App\Livewire\Dealer\Registration;
@@ -47,6 +47,8 @@ Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->
 Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
 Route::get('bookSales', BookSales::class)->name('bookSales');
 Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
+
+
 });
 
 require __DIR__.'/auth.php';
