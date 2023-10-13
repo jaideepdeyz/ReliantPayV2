@@ -1,5 +1,5 @@
  <!--   Core JS Files   -->
- <script src="{{ asset('dashboardAssets/js/core/popper.min.js') }}"></script>
+ {{-- <script src="{{ asset('dashboardAssets/js/core/popper.min.js') }}"></script> --}}
  <script src="{{ asset('dashboardAssets/js/core/bootstrap.min.js') }}"></script>
  <script src="{{ asset('dashboardAssets/js/plugins/perfect-scrollbar.min.js') }}"></script>
  <script src="{{ asset('dashboardAssets/js/plugins/smooth-scrollbar.min.js') }}"></script>

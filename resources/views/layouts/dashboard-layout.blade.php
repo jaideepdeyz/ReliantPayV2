@@ -930,7 +930,9 @@
     <script src="{{ asset('auth/js/vendor.min.js') }}"></script>
 
     <!-- App js -->
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('auth/js/app.min.js') }}"></script>
+    <script src="{{ asset('auth/js/core/popper.min.js') }}"></script>
 
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
@@ -939,6 +941,7 @@
 
     <!-- Dashboar 1 init js-->
     <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script>
+    <livewire:modals/>
     @livewireScripts
 </body>
 

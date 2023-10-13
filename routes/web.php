@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Agents\AddAgent;
 use App\Livewire\Dealer\DealersByActivityStatus;
 use App\Livewire\Dealer\DealersByStatus;
 use App\Livewire\Dealer\Registration;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 // Route::get('registrationApproval', RegistrationApproval::class)->name('registrationApproval');
 Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
 Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
+Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
 });
 
 require __DIR__.'/auth.php';

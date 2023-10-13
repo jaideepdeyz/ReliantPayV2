@@ -20,7 +20,7 @@
             <div class="collapse" id="menuIcons">
                 <ul class="sub-menu">
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('agentsIndex')}}" class="menu-link">
                             <span class="menu-text">Add Agent </span>
                         </a>
                     </li>
