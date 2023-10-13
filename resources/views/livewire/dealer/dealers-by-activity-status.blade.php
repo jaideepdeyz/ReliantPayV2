@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">New Dealer Registrations</div>
+            <div class="card-header">{{$label}} | Dealers</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-borderless table-nowrap table-hover table-centered m-0">
@@ -11,30 +11,28 @@
                                 <th>Dealer Email</th>
                                 <th>Dealer Phone</th>
                                 <th>Dealer Address</th>
-                                <th>Status</th>
+                                <th>Login Active</th>
                                 <th>Dealer Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($dealers as $dealer)
+                            @foreach($users as $user)
                             <tr>
-                                <td>{{ $dealer->business_name }}</td>
-                                <td>{{ $dealer->business_email }}</td>
-                                <td>{{ $dealer->business_phone }}</td>
-                                <td>{{ $dealer->business_address }}</td>
-                                <td> <span class="badge bg-soft-success text-dark">{{ $dealer->status }}</span></td>
+                                <td>{{ $user->organization->business_name }}</td>
+                                <td>{{ $user->organization->business_email }}</td>
+                                <td>{{ $user->organization->business_phone }}</td>
+                                <td>{{ $user->organization->business_address }}</td>
+                                <td> <span class="badge bg-soft-success text-dark">{{ $user->is_active }}</span></td>
                                 <td>
-                                    <a href="{{route('adminActions.show', $dealer->id)}}" class="btn btn-sm btn-primary">Show | View</a>
+                                    <a href="{{route('adminActions.show', $user->organization->id)}}" class="btn btn-sm btn-primary">Show | View</a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $dealers->links() }}
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-

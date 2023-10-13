@@ -5,22 +5,25 @@
                 <div class="align-items-center d-flex h-100">
                     <div class="p-3">
 
-                        {{-- <!-- Logo -->
+                        <!-- Logo -->
                         <div class="auth-brand text-center text-lg-start">
                             <div class="auth-brand">
                                 <a href="index.html" class="logo logo-dark text-center">
                                     <span class="logo-lg">
-                                        <img src="{{ asset ('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
+                                        <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
+                                            alt="">
                                     </span>
                                 </a>
-
+    
                                 <a href="index.html" class="logo logo-light text-center">
                                     <span class="logo-lg">
-                                        <img src="{{ asset ('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
+                                        <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
+                                            alt="">
                                     </span>
                                 </a>
                             </div>
-                        </div> --}}
+                        </div>
+                        
 
                         <!-- title-->
                         <h4 class="mt-0">Sign Up</h4>

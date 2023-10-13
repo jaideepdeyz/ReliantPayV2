@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dealer Details</div>
+                <div class="card-header">Dealer Details | <span class="badge bg-secondary">{{$org->status}}</span></div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <tr>
@@ -67,7 +67,7 @@
 
                         <tr>
                             <th>Business Bank Routing Code:</th>
-                            <td>{{ $org->business_bank_routing_code }}</td>
+                            <td colspan="3">{{ $org->business_bank_routing_code }}</td>
                         </tr>
                     </table>
                     <div class="row">

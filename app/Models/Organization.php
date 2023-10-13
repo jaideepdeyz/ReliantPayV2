@@ -26,4 +26,9 @@ class Organization extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function transactionLogs()
+    {
+        return $this->hasMany(TransactionLog::class, 'organization_id', 'id');
+    }
+
 }

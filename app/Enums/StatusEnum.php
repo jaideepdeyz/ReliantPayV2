@@ -7,6 +7,8 @@ enum StatusEnum: string
     case REJECTED = 'Rejected';
     case APPROVED = 'Approved';
     case AUTHORIZED = 'Authorized';
+    case INACTIVE = 'Deactivated'; // user login deactivated
+    case ACTIVE = 'Activated'; // user login activated
 
 
 }

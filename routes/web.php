@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Dealer\DealersByActivityStatus;
+use App\Livewire\Dealer\DealersByStatus;
 use App\Livewire\Dealer\Registration;
 use App\Livewire\Dealer\RegistrationApproval;
 use Illuminate\Support\Facades\Route;
@@ -21,10 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','registrationCheck'])->name('dashboard');
+Route::middleware('auth', 'verified','registrationCheck')->group(function () {
+    Route::get('dashboard', [HomeController::class, 'redirector'])->name('dashboard');
+});
 
+    Route::resource('adminActions', AdminController::class);
+    // livewire routes
 Route::middleware('auth')->group(function () {
     Route::get('dealer_register', Registration::class)->name('dealer_register');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,7 +38,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('adminActions', AdminController::class);
     // livewire routes
-Route::get('registrationApproval', RegistrationApproval::class)->name('registrationApproval');
+// Route::get('registrationApproval', RegistrationApproval::class)->name('registrationApproval');
+Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
+Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
 });
 
 require __DIR__.'/auth.php';

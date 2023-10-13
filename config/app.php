@@ -184,7 +184,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'RoleEnum' => App\Enums\RoleEnumEnum::class,
+        'RoleEnum' => App\Enums\RoleEnum::class,
+        'StatusEnum' => App\Enums\StatusEnum::class,
     ])->toArray(),
 
 ];

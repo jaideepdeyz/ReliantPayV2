@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">New Dealer Registrations</div>
+            <div class="card-header">{{$status}} | Dealers</div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-borderless table-nowrap table-hover table-centered m-0">
@@ -36,5 +36,3 @@
         </div>
     </div>
 </div>
-
-

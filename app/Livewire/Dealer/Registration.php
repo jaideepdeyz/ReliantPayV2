@@ -7,6 +7,7 @@ use App\Models\Organization;
 use App\Models\OrganizationServiceMap;
 use App\Models\ProductService;
 use App\Models\RegistrationUpload;
+use App\Models\TransactionLog;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -121,10 +122,10 @@ class Registration extends Component
             // store org id in user table
             $user = User::find(Auth::user()->id)->update([
                 'organization_id' => $org->id,
-
             ]);
 
             $this->orgID = $org->id;
+
             //storing registration file uploads of an organization
             $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
             $this->storeFile($this->business_scan_EIN, 'EIN');
@@ -135,6 +136,17 @@ class Registration extends Component
             $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
             $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
             $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+
+            //storing transaction log 
+            TransactionLog::create([
+                'organization_id' => $org->id,
+                'user_id' => auth()->user()->id,
+                'updated_by' => auth()->user()->id,
+                'sales_id' => null,
+                'type' => 'Registration',
+                'status' => StatusEnum::SUBMITTED,
+                'remarks' => 'Registration Submitted',
+            ]);
 
             DB::commit();
             return redirect()->route('dashboard');

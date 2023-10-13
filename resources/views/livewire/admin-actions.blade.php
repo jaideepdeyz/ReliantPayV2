@@ -4,7 +4,7 @@
     </div>
     <div class="col-md-12">
         <button class="btn btn-sm btn-success" wire:click="approve">Approve</button>
-        <button class="btn btn-sm btn-danger" wire:click="reject">Reject</button>
+        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#rejectionModal">Reject</button>
         @switch($org->user->is_active)
             @case('No')
                 <button class="btn btn-sm btn-primary" wire:click="activate">Activate</button>
@@ -13,5 +13,30 @@
                 <button class="btn btn-sm btn-warning" wire:click="deactivate">De Activate</button>
                 @break
          @endswitch
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="rejectionModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="rejectionModalLabel">Reject Registration</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form wire:submit="rejectOrganization">
+                    <div class="row">
+                        <div class="col-md-12 form-group mb-2">
+                            <label for="remarks">Reason for Rejection</label>
+                            <textarea class="form-control" wire:model="remarks" cols="30" rows="5" required></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-sm btn-primary" >Reject</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
