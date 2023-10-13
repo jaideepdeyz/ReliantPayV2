@@ -32,6 +32,13 @@ class RegistrationCheck
                      return $next($request);
                 }
                 break;
+            case RoleEnum::AGENT->value:
+                if(Auth::user()->organization_id == null){
+                    return redirect()->route('dealer_register');
+                }else{
+                     return $next($request);
+                }
+                break;
             case RoleEnum::ADMIN->value:
                 return $next($request);
                 break;

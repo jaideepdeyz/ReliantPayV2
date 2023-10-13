@@ -23,7 +23,10 @@ class HomeController extends Controller
                 }
                 break;
             case RoleEnum::AGENT->value:
-                return redirect()->route('sales.dashboard');
+                if(Auth::User()->is_active == 'Yes')
+                {
+                    return view('agentDashboard');
+                } 
                 break;
             default:
                 return redirect()->route('login');
