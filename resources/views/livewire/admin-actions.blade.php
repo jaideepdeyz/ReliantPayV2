@@ -1,4 +1,22 @@
 <div class="row">
+    <div class="col-md-6 mb-3">
+        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Uploaded Documents</h5>
+        <ol>
+            @foreach($docs as $doc)
+                    <li class="mb-2"><button class="btn btn-sm btn-dark" wire:click="openPdf('{{$doc->document_filepath}}', '{{$doc->document_name}}')">{{$doc->document_name}}</button></li>
+            @endforeach
+        </ol>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Products and Services Offered</h5>
+        <ol>
+            @foreach($services as $service)
+                    <li >{{$service->service_name}}</li>
+            @endforeach
+        </ol>
+    </div>
+
     <div class="col-md-12">
         <h5 class="text-uppercase text-white bg-primary p-2 mt-0 mb-3">Administrative Section</h5>
     </div>

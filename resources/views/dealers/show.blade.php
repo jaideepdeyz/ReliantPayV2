@@ -70,25 +70,7 @@
                             <td colspan="3">{{ $org->business_bank_routing_code }}</td>
                         </tr>
                     </table>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Uploaded Documents</h5>
-                            <ol>
-                                @foreach($docs as $doc)
-                                        <li><a href="{{Storage::URL($doc->document_filepath)}}" target="_blank">{{$doc->document_name}}</a></li>
-                                @endforeach
-                            </ol>
-                        </div>
 
-                        <div class="col-md-6 mb-3">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Products and Services Offered</h5>
-                            <ol>
-                                @foreach($services as $service)
-                                        <li>{{$service->service_name}}</li>
-                                @endforeach
-                            </ol>
-                        </div>
-                    </div>
 
                     @livewire('admin-actions', ['orgID' => $org->id ])
 

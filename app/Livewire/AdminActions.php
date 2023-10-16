@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Enums\StatusEnum;
 use App\Models\Organization;
+use App\Models\OrganizationServiceMap;
+use App\Models\RegistrationUpload;
 use App\Models\TransactionLog;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +17,21 @@ class AdminActions extends Component
     public $org;
     public $remarks;
     public $status;
+    public $docs;
+    public $services;
 
     public function mount($orgID)
     {
         $this->orgID = $orgID;
         $this->org = Organization::find($this->orgID);
+        $this->docs = RegistrationUpload::where('organization_id', $this->orgID)->get();
+        $this->services = OrganizationServiceMap::where('organization_id', $this->orgID)->get();
 
+    }
+
+    public function openPdf($url, $title)
+    {
+        $this->dispatch('showModal', ['alias' => 'modals.pdf-reader', 'params' => ['url' => $url, 'title' => $title]]);
     }
 
     public function approve()
@@ -42,7 +53,7 @@ class AdminActions extends Component
             DB::rollback();
             dd($e);
         }
-        
+
     }
 
     public function rejectOrganization()
@@ -86,7 +97,7 @@ class AdminActions extends Component
             DB::rollback();
             dd($e);
         }
-        
+
     }
 
     public function activate()
@@ -106,7 +117,7 @@ class AdminActions extends Component
             DB::rollback();
             dd($e);
         }
-       
+
     }
 
 

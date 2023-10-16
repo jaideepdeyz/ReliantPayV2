@@ -39,9 +39,8 @@ class AdminController extends Controller
     public function show($id)
     {
         $org = Organization::find($id);
-        $docs = RegistrationUpload::where('organization_id', $org->id)->get();
-        $services = OrganizationServiceMap::where('organization_id', $org->id)->get();
-        return view('dealers.show', compact('org', 'docs', 'services'));
+
+        return view('dealers.show', compact('org'));
     }
 
     /**

@@ -24,6 +24,8 @@
 
     <!-- Icons css -->
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
 
@@ -932,7 +934,8 @@
     <!-- App js -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('auth/js/app.min.js') }}"></script>
-    <script src="{{ asset('auth/js/core/popper.min.js') }}"></script>
+    {{-- <script src="{{ asset('auth/js/core/popper.min.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>

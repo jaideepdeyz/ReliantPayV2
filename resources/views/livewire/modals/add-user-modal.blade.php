@@ -4,7 +4,7 @@
         <button type="button" class="btn-close" wire:click="$dispatch('hideModal')" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <p>hehe.</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary"  wire:click="$dispatch('hideModal')">Close</button>
