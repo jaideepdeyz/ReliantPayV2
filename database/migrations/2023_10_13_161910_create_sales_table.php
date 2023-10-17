@@ -38,6 +38,7 @@ return new class extends Migration
             $table->longText('cc_billing_address')->nullable();
             $table->string('amount_charged')->nullable();
             $table->longText('comments')->nullable();
+            $table->longText('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -8,6 +8,7 @@
                 </span>
             </div>
             <div class="card-body">
+                <h5>Default Password for new agents added is "Agent@123#"</h5>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
