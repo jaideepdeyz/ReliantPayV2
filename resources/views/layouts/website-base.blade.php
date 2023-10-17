@@ -82,8 +82,8 @@
         <div class="container">
             <nav class="navbar position-relative navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
-                    <figure class="mb-0"><img src="{{ asset('website/images/banner-logo.png') }}" alt=""
-                            class="img-fluid"></figure>
+                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
+                            alt="" class="img-fluid" style="max-height:100px"></figure>
                 </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

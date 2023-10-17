@@ -24,8 +24,8 @@ Project:  Repay
 
 :root {
     --e-global-color-primary: #28214c;
-    --e-global-color-secondary: #00A9A4;
-    --e-global-color-accent: #ff6400;
+    --e-global-color-secondary: #6a59d0;
+    --e-global-color-accent: #4c7aeb;
     --e-global-color-text: #777777;
     --e-global-color-very-dark-blue:#010647;
     --e-global-color-very-dark-gray:#555555;
@@ -142,13 +142,13 @@ p{
     box-shadow: 1px 1px 100px -20px #888888;
 }
 .navbar-collapse ul{
-    align-items: center; 
-    display: inherit; 
+    align-items: center;
+    display: inherit;
 }
 .navbar-nav .nav-item a{
     font-size: 16px;
     line-height: 18px;
-    font-weight: 400; 
+    font-weight: 400;
     color: var(--e-global-color-black) !important;
     font-family: 'Oxygen', sans-serif;
 }
@@ -165,7 +165,7 @@ p{
 .navbar-nav .nav-item .signup {
     font-size: 16px;
     line-height: 18px;
-    font-weight: 400; 
+    font-weight: 400;
     padding: 16px 15px;
     border-radius: 5px;
     display: inline-block;
@@ -184,7 +184,7 @@ p{
     padding-bottom: 0;
 }
 .navbar{
-    padding: 18px 0;
+    padding: 0;
 }
 .navbar-nav li{
     margin: 0 16px;
@@ -248,7 +248,7 @@ p{
     height: auto;
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 230px 0 0;
+    padding: 132px 0 0;
     vertical-align: middle;
     overflow: hidden;
 }
@@ -537,11 +537,11 @@ p{
     line-height: 16px;
     font-weight: 400;
     font-family: 'Jost', sans-serif;
-    padding: 10px 33px; 
+    padding: 10px 33px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 5px; 
+    border-radius: 5px;
     color: var(--e-global-color-text);
     background-color: #eeeeee;
     transition: all 0.3s ease-in-out;
@@ -985,7 +985,7 @@ p{
 }
 .work-section .work-content .image_wrapper{
     display: inline-flex;
-} 
+}
 .work-section .work-content .image_google{
     margin-right: 12px;
 }
@@ -1158,7 +1158,7 @@ p{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius: 5px; 
+    border-radius: 5px;
     color: var(--e-global-color-white);
     background-color: var(--e-global-color-secondary);
     transition: all 0.3s ease-in-out;
@@ -1359,10 +1359,10 @@ p{
     margin-bottom: 30px;
 }
 .testimonial-section .content .button-text{
-    padding: 16px 32px; 
+    padding: 16px 32px;
     text-align: center;
     display: inline-block;
-    border-radius: 5px; 
+    border-radius: 5px;
     color: var(--e-global-color-white) !important;
     background-color: var(--e-global-color-accent);
     transition: all 0.3s ease-in-out;
@@ -1417,7 +1417,7 @@ p{
     padding: 30px 74px 30px 100px;;
     text-align: center;
     display: inline-block;
-    border-radius: 100px; 
+    border-radius: 100px;
     color: var(--e-global-color-white) !important;
     transition: all 0.3s ease-in-out;
     position: relative;
@@ -1662,10 +1662,10 @@ p{
     line-height: 20px;
     font-weight: 400;
     font-family: 'Oxygen', sans-serif;
-    padding: 16px 32px; 
+    padding: 16px 32px;
     text-align: center;
     display: inline-block;
-    border-radius: 5px; 
+    border-radius: 5px;
     color: var(--e-global-color-white) !important;
     background-color: var(--e-global-color-accent);
     transition: all 0.3s ease-in-out;

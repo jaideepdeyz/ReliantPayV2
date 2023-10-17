@@ -21,18 +21,8 @@
                 </div>
                 <div class=" col-lg-7 col-md-7 col-sm-12">
                     <div class="banner-wrapper">
-                        <figure class="mb-0 homeelement1">
-                            <img src="{{ asset('website/images/dashboardelement1.png') }}" class="img-fluid" alt="">
-                        </figure>
-                        <figure class="mb-0 banner-image">
-                            <img src="{{ asset('website/images/dashboardbanner-image.png') }}" class="img-fluid"
-                                alt="banner-image">
-                        </figure>
-                        <figure class="mb-0 content img-bg">
-                            <img src="{{ asset('website/images/dashboardbanner-img-bg.png') }}" alt="banner-image-bg">
-                        </figure>
-                        <figure class="mb-0 homeelement">
-                            <img src="{{ asset('website/images/dashboardelement.png') }}" class="img-fluid" alt="">
+                        <figure class="mb-0 d-none d-md-block">
+                            <img src="{{ asset('img/online-pay.svg') }}" class="img-fluid" alt="">
                         </figure>
                     </div>
                 </div>
