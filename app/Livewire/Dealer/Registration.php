@@ -54,36 +54,10 @@ class Registration extends Component
     public $business_premises_internal_pictures;
     public $orgID=null;
 
+    public $currentStep = 1;
+
     public function registerDealer()
     {
-        // $this->dispatch('showModal', ['alias' => 'modals.services-offered']);
-
-        $this->validate([
-            'business_name' => 'required',
-            'business_address' => 'required',
-            'business_website' => 'required',
-            'business_email' => 'required|email|unique:App\Models\Organization,business_email',
-            'business_phone' => 'required',
-            'business_PCI_DSS_compliance_status' => 'required',
-            'business_HTTPS_compliance_status' => 'required',
-            'business_bank_account_name' => 'required',
-            'business_bank_account_address' => 'required',
-            'business_bank_name' => 'required',
-            'business_bank_address' => 'required',
-            'business_bank_IBAN' => 'required',
-            'business_bank_IFSC' => 'required',
-            'business_bank_SWIFT_code' => 'required',
-            'business_bank_routing_code' => 'required',
-            'business_scan_signed_contract' => 'required|mimes:pdf',
-            'business_scan_EIN' => 'required|mimes:pdf',
-            'business_scan_PAN' => 'required|mimes:pdf',
-            'business_scan_registration_document' => 'required|mimes:pdf',
-            'business_scan_bank_statement' => 'required|mimes:pdf',
-            'business_scan_utility_bills' => 'required|mimes:pdf',
-            'business_scan_business_tax_returns' => 'required|mimes:pdf',
-            'business_premises_external_pictures' => 'required|mimes:pdf',
-            'business_premises_internal_pictures' => 'required|mimes:pdf'
-        ]);
 
         try{
             DB::beginTransaction();
@@ -163,6 +137,94 @@ class Registration extends Component
             'document_name' => $docName,
             'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
         ]);
+    }
+
+    public function increaseStep()
+    {
+        switch($this->currentStep)
+        {
+            case 1:
+                $this->validate([
+                    'business_name' => 'required',
+                    'business_address' => 'required',
+                    'business_website' => 'required',
+                    'business_email' => 'required|email|unique:App\Models\Organization,business_email',
+                    'business_phone' => 'required',
+                ]);
+                $this->currentStep = $this->currentStep + 1;
+                $this->business_name = $this->business_name;
+                $this->business_address = $this->business_address;
+                $this->business_website = $this->business_website;
+                $this->business_email = $this->business_email;
+                $this->business_phone = $this->business_phone;
+                $this->business_product_services = $this->business_product_services;
+                $this->render();
+                break;
+            case 2:
+                $this->validate([
+                    'business_PCI_DSS_compliance_status' => 'required',
+                    'business_HTTPS_compliance_status' => 'required',
+                ]);
+                $this->currentStep = $this->currentStep + 1;
+                $this->business_PCI_DSS_compliance_status = $this->business_PCI_DSS_compliance_status;
+                $this->business_HTTPS_compliance_status = $this->business_HTTPS_compliance_status;
+                $this->render();
+                break;
+            case 3:
+                $this->validate([
+                    'business_bank_account_name' => 'required',
+                    'business_bank_account_address' => 'required',
+                    'business_bank_name' => 'required',
+                    'business_bank_address' => 'required',
+                    'business_bank_IBAN' => 'required',
+                    'business_bank_IFSC' => 'required',
+                    'business_bank_SWIFT_code' => 'required',
+                    'business_bank_routing_code' => 'required',
+                ]);
+                $this->currentStep = $this->currentStep + 1;
+                $this->business_bank_account_name = $this->business_bank_account_name;
+                $this->business_bank_account_address = $this->business_bank_account_address;
+                $this->business_bank_name = $this->business_bank_name;
+                $this->business_bank_address = $this->business_bank_address;
+                $this->business_bank_IBAN = $this->business_bank_IBAN;
+                $this->business_bank_IFSC = $this->business_bank_IFSC;
+                $this->business_bank_SWIFT_code = $this->business_bank_SWIFT_code;
+                $this->business_bank_routing_code = $this->business_bank_routing_code;
+                $this->render();
+                break;
+            case 4:
+                $this->validate([
+                    'business_scan_signed_contract' => 'required|mimes:pdf',
+                    'business_scan_EIN' => 'required|mimes:pdf',
+                    'business_scan_PAN' => 'required|mimes:pdf',
+                    'business_scan_registration_document' => 'required|mimes:pdf',
+                    'business_scan_bank_statement' => 'required|mimes:pdf',
+                    'business_scan_utility_bills' => 'required|mimes:pdf',
+                    'business_scan_business_tax_returns' => 'required|mimes:pdf',
+                    'business_premises_external_pictures' => 'required|mimes:pdf',
+                    'business_premises_internal_pictures' => 'required|mimes:pdf'
+                ]);
+                $this->currentStep = $this->currentStep + 1;
+                $this->business_scan_signed_contract = $this->business_scan_signed_contract;
+                $this->business_scan_EIN = $this->business_scan_EIN;
+                $this->business_scan_PAN = $this->business_scan_PAN;
+                $this->business_scan_registration_document = $this->business_scan_registration_document;
+                $this->business_scan_bank_statement = $this->business_scan_bank_statement;
+                $this->business_scan_utility_bills = $this->business_scan_utility_bills;
+                $this->business_scan_business_tax_returns = $this->business_scan_business_tax_returns;
+                $this->business_premises_external_pictures = $this->business_premises_external_pictures;
+                $this->business_premises_internal_pictures = $this->business_premises_internal_pictures;
+                $this->render();
+                break;
+        }
+        
+        
+    }
+
+    public function decreaseStep()
+    {
+        $this->currentStep = $this->currentStep - 1;
+        $this->render();
     }
 
 
