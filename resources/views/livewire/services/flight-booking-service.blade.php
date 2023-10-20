@@ -1,17 +1,22 @@
 <div class="row">
     <div class="col-md-12">
-        <form wire:submit="storeSaleBooking">
-            <div class="row justify-content-center">
+        <form wire:submit="storeFlightBooking">
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="card h-100">
+                        <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
                                 Step 2/5: Details for Flight Booking
                             </h5>
-                            <span class="float-right bg-dark text-white p-2">Sale ID: {{$appID}}</span>
-                        </div>
-                        <div class="card-body">
                             <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label for="airline_name" class="form-label">Airline Name</label>
+                                    <input type="text" class="form-control @error('airline_name') is-invalid @enderror"
+                                        wire:model="airline_name">
+                                    @error('airline_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="departureCountry" class="form-label">Departure Country</label>
                                     <select class="form-control @error('departureCountry') is-invalid @enderror"
@@ -81,7 +86,16 @@
                                     @enderror
                                 </div>
 
-                                
+                                <div class="mb-3 col-md-6">
+                                    <label for="confirmation_number" class="form-label">Confirmation #</label>
+                                    <input class="form-control @error('confirmation_number') is-invalid @enderror"
+                                        wire:model="confirmation_number">
+                                    @error('confirmation_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
                                 <div class="mb-3 col-md-4">
                                     <label for="departure_date" class="form-label">Departure Date</label>
                                     <input type="date" class="form-control @error('departure_date') is-invalid @enderror"
@@ -101,10 +115,19 @@
                                 </div>
 
                                 <div class="mb-3 col-md-4">
-                                    <label for="customer_email" class="form-label">Customers / Primary Passengers Email</label>
-                                    <input type="text" class="form-control @error('customer_email') is-invalid @enderror"
-                                        wire:model="customer_email">
-                                    @error('customer_email')
+                                    <label for="no_days_hotel_car" class="form-label">No. of days (Hotel / Car)</label>
+                                    <input type="text" class="form-control @error('no_days_hotel_car') is-invalid @enderror"
+                                        wire:model="no_days_hotel_car" placeholder="No. of days for Hotels or Cars">
+                                    @error('no_days_hotel_car')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label for="comments" class="form-label">Comments</label>
+                                    <textarea type="text" class="form-control @error('comments') is-invalid @enderror"
+                                        wire:model="comments" col=20 row=20></textarea>
+                                    @error('comments')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -112,7 +135,34 @@
                                 <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
                                     <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
                                 </div>
-    
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
+                                Details of Sale Booking
+                            </h5>
+                            <span class="badge bg-blue"><h5 class="text-white">Sale ID: {{$appID}}</h5></span>
+                            <div class="table-responsive mt-2">
+                                <table class="table table-striped table-sm table-bordered">
+                                    <tr>
+                                        <th><i class="mdi mdi-account"></i> Customer's Name</th>
+                                        <td>{{ $bookingDetails->customer_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><i class="mdi mdi-phone"></i> Customer's Phone</th>
+                                        <td>{{ $bookingDetails->customer_phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><i class="mdi mdi-email-check"></i> Customer's Email</th>
+                                        <td>{{ $bookingDetails->customer_email }}</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -187,6 +187,7 @@ return [
         'RoleEnum' => App\Enums\RoleEnum::class,
         'StatusEnum' => App\Enums\StatusEnum::class,
         'TravelCategoryEnum' => App\Enums\TravelCategoryEnum::class,
+        'ServiceEnum' => App\Enums\ServiceEnum::class,
     ])->toArray(),
 
 ];

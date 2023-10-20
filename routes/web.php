@@ -10,7 +10,8 @@ use App\Livewire\Dealer\DealersByActivityStatus;
 use App\Livewire\Dealer\DealersByStatus;
 use App\Livewire\Dealer\Registration;
 use App\Livewire\Dealer\RegistrationApproval;
-use App\Livewire\Services\FlightBooking;
+use App\Livewire\Services\AddPassengerService;
+use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,8 @@ Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->
 Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
 Route::get('bookSales', BookSales::class)->name('bookSales');
 Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
-Route::get('flightBooking/{appID}', FlightBooking::class)->name('flightBooking');
+Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
+Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
 
 
 });
