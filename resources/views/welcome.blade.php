@@ -127,33 +127,13 @@
         </div>
     </section>
     <!--About Repay-->
-    <section class="about-repay">
+    <section class="about-repay" style="background:#f2f2f2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 my-auto">
                     <div class="about-wrapper">
-                        <figure class="circle mb-0">
-                            <img src="{{ asset('website/images/image-2-bg.png') }}" alt="">
-                        </figure>
-                        <div class="position-relative">
-                            <a class="popup-vimeo"
-                                href="https://video-previews.elements.envatousercontent.com/h264-video-previews/d1c81f1e-849f-4d45-ae57-b61c2f5db34a/25628048.mp4">
-                                <figure class="mb-0 videobutton">
-                                    <img class="thumb img-fluid" style="cursor: pointer"
-                                        src="{{ asset('website/images/play-button.png') }}" alt="">
-                                </figure>
-                            </a>
-                        </div>
                         <figure class="image mb-0">
-                            <img src="{{ asset('website/images/image-2.png') }}" alt="" class="img-fluid">
-                        </figure>
-                        <figure class="homeelement mb-0">
-                            <img src="{{ asset('website/images/dashboardelement.png') }}" alt=""
-                                class="img-fluid">
-                        </figure>
-                        <figure class="homeelement1 mb-0">
-                            <img src="{{ asset('website/images/dashboardelement.png') }}" alt=""
-                                class="img-fluid">
+                            <img src="{{ asset('img/online-transaction.svg') }}" alt="" class="img-fluid">
                         </figure>
                     </div>
                 </div>
@@ -191,7 +171,7 @@
     <!--Services section-->
     <section class="service-section">
         <div class="container">
-            <div class="row position-relative">
+            <div class="row position-relative justify-content-center">
                 <div class="service-content">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <figure class="mb-0 services-icon">
@@ -200,10 +180,6 @@
                         </figure>
                         <h6>OUR SERVICES</h6>
                         <h2>Smart Solution for Your Payment</h2>
-                        <figure class="service-image" data-aos="fade-up">
-                            <img src="{{ asset('website/images/services-our-services-image.png') }}" class="img-fluid"
-                                alt="">
-                        </figure>
                     </div>
                 </div>
             </div>
@@ -298,7 +274,7 @@
         </div>
     </section>
     <!-- manage -->
-    <section class="manage-section">
+    <section class="manage-section" style="background:#f2f2f2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -359,22 +335,11 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="manage-wrapper">
-                        <figure class="mb-0 homeelement1">
-                            <img src="{{ asset('website/images/dashboardelement1.png') }}" class="img-fluid"
+                        <figure class="mb-0">
+                            <img src="{{ asset('img/survey.svg') }}" class="img-fluid"
                                 alt="">
                         </figure>
-                        <figure class="mb-0 manage-image">
-                            <img src="{{ asset('website/images/manage-your-everything-image.png') }}" class="img-fluid"
-                                alt="">
-                        </figure>
-                        <figure class="mb-0 content img-bg">
-                            <img src="{{ asset('website/images/manageyour-mange-your-bg.png') }}" alt=""
-                                class="">
-                        </figure>
-                        <figure class="mb-0 homeelement">
-                            <img src="{{ asset('website/images/dashboardelement.png" class="img-fluid') }}"
-                                alt="">
-                        </figure>
+
                     </div>
                 </div>
             </div>
@@ -543,7 +508,7 @@
         </div>
     </section>
     <!-- need more help? -->
-    <section class="need-section">
+    <section class="need-section"  style="background:#f2f2f2">
         <div class="container">
             <div class="row">
                 <div class="col-12">

@@ -99,12 +99,14 @@ p{
 
 
 .topbar {
-    padding: 8px 0px;
+    padding: 4px 0px;
     color: var(--e-global-color-white);
     background-color: var(--e-global-color-primary);
+
 }
 .topbar .email {
     margin-left: 5px;
+    font-size:14px !important;
 }
 .topbar .email .text-size-16{
     font-family: 'Jost', sans-serif;
@@ -119,7 +121,7 @@ p{
     margin-right: -6px;
 }
 .topbar .social-icons ul {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 16px;
     font-weight: 400;
     font-family: 'Jost', sans-serif;

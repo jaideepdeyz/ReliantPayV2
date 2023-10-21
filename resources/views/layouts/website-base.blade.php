@@ -52,7 +52,7 @@
                             <img src="{{ asset('website/images/header-emailicon.png') }}" alt=""
                                 class="img-fluid">
                         </figure>
-                        <a href="mailto:support@repay.com" class="mb-0 text-size-16 text-white">support@repay.com</a>
+                        <a href="mailto:support@repay.com" class="mb-0 text-size-14 text-white">support@reliantpay.com</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 sol-sm-12 d-md-block d-none">
@@ -219,7 +219,7 @@
                     <div class="col-lg-4 col-md-5 col-sm-6 col-12">
                         <a href="./index.html">
                             <figure class="footer-logo">
-                                <img src="{{ asset('website/images/footer-logo.png') }}" class="img-fluid"
+                                <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" class="img-fluid"
                                     alt="">
                             </figure>
                         </a>
@@ -306,7 +306,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="text-size-16">Copyright @2023 Repay. All Rights Reserved</p>
+                    <p class="text-white" style="font-size:14px;">Copyright @2023 ReliantPay. All Rights Reserved</p>
                 </div>
             </div>
         </div>
