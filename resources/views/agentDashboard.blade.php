@@ -79,5 +79,7 @@
                 </div>
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col-->
+
+        @livewire('agents.book-sales')
     </div>
 </x-dashboard-layout>
