@@ -27,6 +27,7 @@ class BookSales extends Component
     public $sale;
     public $status;
     public $remarks;
+    public $search;
 
     public function storeSaleBooking()
     {
@@ -115,12 +116,17 @@ class BookSales extends Component
     }
 
 
-
     public function render()
     {
         $this->agent_name = auth()->user()->name;
         $services = ServiceMaster::all();
-        $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(10);
+        $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)
+        ->when($this->search, function($query){
+            $query->where('id', 'like', '%'.$this->search.'%');
+        })->orWhere('customer_name', 'like', '%'.$this->search.'%')
+        ->orWhere('customer_email', 'like', '%'.$this->search.'%')
+        ->orWhere('app_status', 'like', '%'.$this->search.'%')
+        ->orderBy('created_at', 'DESC')->paginate(10);
         return view('livewire.agents.book-sales', compact('services', 'bookedSales'))->layout('layouts.dashboard-layout');
     }
 }
