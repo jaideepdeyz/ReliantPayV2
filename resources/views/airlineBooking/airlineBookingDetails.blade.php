@@ -1,10 +1,15 @@
 <x-dashboard-layout>
     <div class="row">
         <div class="col-md-12">
+            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
+                Booking Summary
+                <span class="float-right"> <a href="{{route('sendAuthorizationMail', $bookingDetails->id)}}" class="btn btn-sm btn-primary">Send Authorization Link</a></span>
+            </h5>
+
             <div class="card">
                 <div class="card-body">
                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                        Booking Details
+                        Details
                     </h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered">
@@ -135,9 +140,20 @@
                                 <td>Amount Charged:</td>
                                 <td>{{ $billingDetails->amount_charged}}</td>
                             </tr>
+                            <tr>
+                                <td>Billing Address:</td>
+                                <td colspan="3">{{ $billingDetails->cc_billing_address}}</td>
+                                <td><a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}" class="btn btn-sm btn-primary" target="_blank">Customer's ID</a></td>
+                            </tr>
+                            <tr>
+                                <td>Comments / Remarks :</td>
+                                <td colspan="3">{{$billingDetails->comments}}</td>
+                            </tr>
 
                         </table>
                     </div>
+
+                    <a href="{{route('sendAuthorizationMail', $bookingDetails->id)}}" class="btn btn-sm btn-success">Send Authorization Link</a>
                 </div>
             </div>
         </div>

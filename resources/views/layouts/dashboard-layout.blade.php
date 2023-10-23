@@ -21,6 +21,7 @@
 
     <!-- App css -->
     <link href="{{ asset('auth/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('auth/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Icons css -->
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -409,8 +410,8 @@
                             <div>
                                 <script>
                                     document.write(new Date().getFullYear())
-                                </script> © Ubold - <a href="https://coderthemes.com/"
-                                    target="_blank">Coderthemes.com</a>
+                                </script> © ReliantPay - <a href="https://reliantpay.com/"
+                                    target="_blank">reliantpay.com</a>
                             </div>
                         </div>
                         <div class="col-md-6">

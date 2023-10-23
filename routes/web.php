@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AirlineBookingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Agents\AddAgent;
 use App\Livewire\Agents\BookSales;
@@ -45,8 +46,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('adminActions', AdminController::class);
     Route::resource('airlineBooking', AirlineBookingController::class);
+
     // livewire routes
-// Route::get('registrationApproval', RegistrationApproval::class)->name('registrationApproval');
 Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
 Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
 Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
@@ -55,6 +56,9 @@ Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus'
 Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
 Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
 Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
+
+// Email routes
+Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
 
 
 });
