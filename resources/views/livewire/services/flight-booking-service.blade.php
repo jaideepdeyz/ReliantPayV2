@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12">
-        <form wire:submit="storeFlightBooking">
-            <div class="row">
-                <div class="col-md-6">
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
@@ -133,36 +133,9 @@
                                 </div>
 
                                 <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                                    <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
+                                    <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="storeFlightBooking">Next</button>
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                                Details of Sale Booking
-                            </h5>
-                            <span class="badge bg-blue"><h5 class="text-white">Sale ID: {{$appID}}</h5></span>
-                            <div class="table-responsive mt-2">
-                                <table class="table table-striped table-sm table-bordered">
-                                    <tr>
-                                        <th><i class="mdi mdi-account"></i> Customer's Name</th>
-                                        <td>{{ $bookingDetails->customer_name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="mdi mdi-phone"></i> Customer's Phone</th>
-                                        <td>{{ $bookingDetails->customer_phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="mdi mdi-email-check"></i> Customer's Email</th>
-                                        <td>{{ $bookingDetails->customer_email }}</td>
-                                    </tr>
-                                </table>
                             </div>
                         </div>
                     </div>

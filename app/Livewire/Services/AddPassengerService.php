@@ -15,22 +15,18 @@ class AddPassengerService extends Component
     public $gender;
     public $dob;
     public $relationship_to_card_holder;
-
+    public $passengers = [];
+    public $passengerID;
 
     public function mount($appID)
     {
         $this->appID = $appID;
+        $this->passengers = Passenger::where('app_id', $this->appID)->get();
     }
 
     public function storePassenger()
     {
-        // $this->validate([
-        //     'full_name' => 'required',
-        //     'gender' => 'required',
-        //     'dob' => 'required',
-        //     'relationship_to_card_holder' => 'required',
-        // ]);
-
+        // dd('yaay');
         try {
             DB::beginTransaction();
             Passenger::create([
@@ -42,10 +38,9 @@ class AddPassengerService extends Component
             ]);
             DB::commit();
             $this->reset(['full_name', 'gender', 'dob', 'relationship_to_card_holder']);
-            $this->render();
+            $this->passengers = Passenger::where('app_id', $this->appID)->get();
         } catch (\Exception $e) {
             DB::rollback();
-            $this->reset();
             dd($e->getMessage());
         }
     }
@@ -54,19 +49,30 @@ class AddPassengerService extends Component
     {
         try {
             DB::beginTransaction();
-            Passenger::find($passengerID)->delete();
+            $this->passengerID = $passengerID;
+            Passenger::find($this->passengerID)->delete();
             DB::commit();
-            $this->render();
+            $this->reset('passengerID');
+            $this->passengers = Passenger::where('app_id', $this->appID)->get();
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
         }
     }
 
+    public function nextStep()
+    {
+        return redirect()->route('billingDetails', ['appID' => $this->appID]);
+    }
+
+    public function previousStep()
+    {
+        return redirect()->route('flightBooking', ['appID' => $this->appID]);
+    }
+
     public function render()
     {
-        $passengers = Passenger::where('app_id', $this->appID)->get();
-        $bookingDetails = SaleBooking::find($this->appID);
-        return view('livewire.services.add-passenger-service', compact('passengers', 'bookingDetails'))->layout('layouts.dashboard-layout');
+
+        return view('livewire.services.add-passenger-service')->layout('layouts.dashboard-layout');
     }
 }

@@ -21,4 +21,14 @@ class FlightBooking extends Model
     {
         return $this->hasMany(Passenger::class, 'app_id', 'app_id');
     }
+
+    public function departureAirport()
+    {
+        return $this->hasOne(Airport::class, 'id', 'departure_location');
+    }
+
+    public function destinationAirport()
+    {
+        return $this->hasOne(Airport::class, 'id', 'destination_location');
+    }
 }

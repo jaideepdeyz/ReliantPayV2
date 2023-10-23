@@ -5,9 +5,13 @@ namespace App\Livewire\Services;
 use App\Models\Airport;
 use App\Models\Country;
 use App\Models\FlightBooking;
+use App\Models\Passenger;
+use App\Models\Payment;
 use App\Models\SaleBooking;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class FlightBookingService extends Component
 {
@@ -17,6 +21,7 @@ class FlightBookingService extends Component
     public $airports = [];
     public $destinationAirports = [];
 
+    //flight details
     public $airline_name;
     public $confirmation_number;
     public $departure_location;
@@ -27,9 +32,16 @@ class FlightBookingService extends Component
     public $no_days_hotel_car;
     public $comments;
 
+    //passenger details
+    public $full_name;
+    public $gender;
+    public $dob;
+    public $relationship_to_card_holder;
+
     public function mount($appID)
     {
         $this->appID = $appID;
+
 
     }
 
@@ -47,18 +59,6 @@ class FlightBookingService extends Component
 
     public function storeFlightBooking()
     {
-        // dd($this->airline_name);
-        // $this->validate([
-        //     // 'airline_name' => 'required',
-        //     'confirmation_number' => 'required',
-        //     // 'departure_location' => 'required',
-        //     'departure_date' => 'required',
-        //     'destination_location' => 'required',
-        //     'oneway_or_roundtrip' => 'required',
-        //     'no_days_hotel_car' => 'required',
-        //     'comments' => 'required',
-        // ]);
-
         try {
             DB::beginTransaction();
             FlightBooking::updateOrCreate(
@@ -81,7 +81,6 @@ class FlightBookingService extends Component
             DB::rollback();
             dd($e->getMessage());
         }
-
     }
 
     public function render()
