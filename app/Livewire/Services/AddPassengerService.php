@@ -26,7 +26,13 @@ class AddPassengerService extends Component
 
     public function storePassenger()
     {
-        // dd('yaay');
+        $this->validate([
+            'full_name' => 'required',
+            'gender' => 'required',
+            'dob' => 'required',
+            'relationship_to_card_holder' => 'required',
+        ]);
+
         try {
             DB::beginTransaction();
             Passenger::create([

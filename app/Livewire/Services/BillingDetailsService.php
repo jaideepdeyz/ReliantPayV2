@@ -30,22 +30,41 @@ class BillingDetailsService extends Component
     {
         $this->appID = $appID;
         $billingDetails = Payment::where('app_id', $this->appID)->first();
-        $this->cc_name = $billingDetails->cc_name;
-        $this->cc_phone = $billingDetails->cc_phone;
-        $this->cc_email = $billingDetails->cc_email;
-        $this->cc_dob = $billingDetails->cc_dob;
-        $this->cc_number = $billingDetails->cc_number;
-        $this->cc_type = $billingDetails->cc_type;
-        $this->cc_expiration_date = $billingDetails->cc_expiration_date;
-        $this->cc_cvc = $billingDetails->cc_cvc;
-        $this->cc_billing_address = $billingDetails->cc_billing_address;
-        $this->amount_charged = $billingDetails->amount_charged;
-        $this->billingComments = $billingDetails->comments;
+        if($billingDetails)
+        {
+            $this->cc_name = $billingDetails->cc_name;
+            $this->cc_phone = $billingDetails->cc_phone;
+            $this->cc_email = $billingDetails->cc_email;
+            $this->cc_dob = $billingDetails->cc_dob;
+            $this->cc_number = $billingDetails->cc_number;
+            $this->cc_type = $billingDetails->cc_type;
+            $this->cc_expiration_date = $billingDetails->cc_expiration_date;
+            $this->cc_cvc = $billingDetails->cc_cvc;
+            $this->cc_billing_address = $billingDetails->cc_billing_address;
+            $this->amount_charged = $billingDetails->amount_charged;
+            $this->billingComments = $billingDetails->comments;
+        }
+
 
     }
 
     public function saveBillingDetails()
     {
+        // $this->validate([
+        //     'cc_name' => 'required',
+        //     'cc_phone' => 'required',
+        //     'cc_email' => 'required',
+        //     'cc_dob' => 'required',
+        //     'cc_number' => 'required',
+        //     'cc_type' => 'required',
+        //     'cc_expiration_date' => 'required',
+        //     'cc_cvc' => 'required',
+        //     'cc_billing_address' => 'required',
+        //     'amount_charged' => 'required',
+        //     // 'billingComments' => 'required',
+        //     // 'primary_passenger_id_doc' => 'required|mimes:pdf',
+        // ]);
+
         try {
             DB::beginTransaction();
             $payment = Payment::updateOrCreate(
@@ -63,15 +82,27 @@ class BillingDetailsService extends Component
                 'cc_billing_address' => $this->cc_billing_address,
                 'amount_charged' => $this->amount_charged,
                 'comments' => $this->billingComments,
-                'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/passengerID_'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
                 ]
             );
+
+            if($this->primary_passenger_id_doc)
+            {
+                $payment->update([
+                'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/passengerID_'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
+                ]);
+            }
+
             DB::commit();
             return redirect()->route('airlineBooking.show', $this->appID);
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
         }
+    }
+
+    public function previousStep()
+    {
+        return redirect()->route('addPassengers', ['appID' => $this->appID]);
     }
 
     public function render()

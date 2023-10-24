@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form>
+        <form wire:submit="storeFlightBooking">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card h-100">
@@ -11,8 +11,7 @@
                             <div class="row">
                                 <div class="mb-3 col-md-12">
                                     <label for="airline_name" class="form-label">Airline Name</label>
-                                    <input type="text" class="form-control @error('airline_name') is-invalid @enderror"
-                                        wire:model="airline_name">
+                                    <input type="text" class="form-control @error('airline_name') is-invalid @enderror" wire:model="airline_name">
                                     @error('airline_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -33,8 +32,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="departure_location" class="form-label">Departure Aiport</label>
-                                    <select class="form-control @error('departure_location') is-invalid @enderror"
-                                        wire:model="departure_location">
+                                    <select class="form-control @error('departure_location') is-invalid @enderror" wire:model="departure_location">
                                         <option value="">Select Departure Airport</option>
                                         @foreach ($airports as $airport)
                                             <option value="{{ $airport->id }}">{{ $airport->name }}</option>
@@ -133,7 +131,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                                    <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="storeFlightBooking">Next</button>
+                                    <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
                                 </div>
 
                             </div>

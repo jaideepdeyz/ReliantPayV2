@@ -41,7 +41,21 @@ class FlightBookingService extends Component
     public function mount($appID)
     {
         $this->appID = $appID;
-
+        $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
+        if($flightBooking)
+        {
+            $this->airline_name = $flightBooking->airline_name;
+            $this->confirmation_number = $flightBooking->confirmation_number;
+            $this->departureCountry = $flightBooking->departure_country;
+            $this->departure_location = $flightBooking->departure_location;
+            $this->departure_date = $flightBooking->departure_date;
+            $this->destination_location = $flightBooking->destination_location;
+            $this->destinationCountry = $flightBooking->destination_country;
+            $this->oneway_or_roundtrip = $flightBooking->oneway_or_roundtrip;
+            $this->return_date = $flightBooking->return_date;
+            $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
+            $this->comments = $flightBooking->comments;
+        }
 
     }
 
@@ -66,8 +80,10 @@ class FlightBookingService extends Component
                 [
                     'airline_name' => $this->airline_name,
                     'confirmation_number' => $this->confirmation_number,
+                    'departure_country' => $this->departureCountry,
                     'departure_location' => $this->departure_location,
                     'departure_date' => $this->departure_date,
+                    'destination_country' => $this->destinationCountry,
                     'destination_location' => $this->destination_location,
                     'oneway_or_roundtrip' => $this->oneway_or_roundtrip,
                     'return_date' => $this->return_date,
@@ -85,23 +101,9 @@ class FlightBookingService extends Component
 
     public function render()
     {
-        $countries = Country::all();
+        $countries = Country::orderBy('name', 'ASC')->get();
         $bookingDetails = SaleBooking::find($this->appID);
-        $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
-        if($flightBooking)
-        {
-            $this->airline_name = $flightBooking->airline_name;
-            $this->confirmation_number = $flightBooking->confirmation_number;
-            $this->departure_location = $flightBooking->departure_location;
-            $this->departure_date = $flightBooking->departure_date;
-            $this->destination_location = $flightBooking->destination_location;
-            $this->oneway_or_roundtrip = $flightBooking->oneway_or_roundtrip;
-            $this->return_date = $flightBooking->return_date;
-            $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
-            $this->comments = $flightBooking->comments;
-        } else {
-            $this->reset(['airline_name', 'confirmation_number', 'departure_location', 'departure_date', 'destination_location', 'oneway_or_roundtrip', 'return_date', 'no_days_hotel_car', 'comments']);
-        }
+
         return view('livewire.services.flight-booking-service', compact('countries', 'bookingDetails'))->layout('layouts.dashboard-layout');
     }
 }

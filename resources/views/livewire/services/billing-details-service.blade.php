@@ -118,6 +118,7 @@
                             </div>
 
                             <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
+                                <button type="button" class="btn w-sm btn-danger waves-effect waves-light" wire:click="previousStep">Back</button>
                                 <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
                             </div>
 
