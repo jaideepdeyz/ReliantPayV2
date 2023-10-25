@@ -95,18 +95,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="./index.html">Home</a>
+                            <a class="nav-link" href="{{url('/')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./service.html">Service</a>
+                            <a class="nav-link" href="{{route('about-us')}}">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./pricing.html">Pricing</a>
+                            <a class="nav-link" href="#">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./contact.html">Contact Us</a>
+                            <a class="nav-link" href="{{route('contact-us')}}">Contact Us</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle dropdown-color navbar-text-color" href="#"
                                 id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"> Pages </a>
@@ -126,34 +126,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle dropdown-color navbar-text-color" href="#"
-                                id="navbarDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> Blog </a>
-                            <div class="dropdown-menu drop-down-content">
-                                <ul class="list-unstyled drop-down-pages">
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="single-post.html">Single Post</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="infinite-scroll.html">Infinite Scroll</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link" href="load-more.html">Load
-                                            More</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link" href="one-column.html">One
-                                            Column</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link" href="two-column.html">Two
-                                            Column</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="three-column.html">Three Column</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="three-colum-sidbar.html">Three Column Sidebar</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="four-column.html">Four Column</a></li>
-                                    <li class="nav-item"><a class="dropdown-item nav-link"
-                                            href="six-colum-full-wide.html">Six Column</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link login" href="{{ route('login') }}"><i
                                     class="fa-solid fa-user-lock"></i>Sign in</a>
@@ -169,50 +142,7 @@
 
     <!-- Footer -->
     <section class="footer-section">
-        <div class="partner-section">
-            <div class="container">
-                <div class="partner">
-                    <ul class="mb-0 list-unstyled">
-                        <li>
-                            <figure class="mb-0 partner1">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-1.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="mb-0 partner1 partner2">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-2.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                        <li class="img-mb">
-                            <figure class="mb-0 partner1 partner3">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-3.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="mb-0 partner1 partner4">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-4.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="mb-0 partner1 partner5">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-5.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                        <li>
-                            <figure class="mb-0 partner1 partner5">
-                                <img class="img-fluid" src="{{ asset('website/images/partner-logo-6.png') }}"
-                                    alt="">
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
         <div class="container">
             <div class="middle-portion">
                 <div class="row">
@@ -223,8 +153,7 @@
                                     alt="">
                             </figure>
                         </a>
-                        <p class="text-size-16 footer-text">Lorem ipsum dolor sit amet, consectetur adipisc ing elitsed
-                            do eiusmod tempororem ipsum dolor sit am econsect ametconsectetetur.</p>
+                        <p class="text-size-16 footer-text">Welcome to ReliantPay, your trusted partner in the world of secure and seamless online payments.</p>
                         <figure class="mb-0 payment-icon">
                             <img src="{{ asset('website/images/payment-card.png') }}" class="img-fluid"
                                 alt="">
@@ -278,7 +207,7 @@
                             <hr class="line">
                             <ul class="list-unstyled mb-0">
                                 <li class="text-size-16 text">Email: <a href="mailto:info@repay.com"
-                                        class="mb-0 text text-decoration-none text-size-16">info@repay.com</a></li>
+                                        class="mb-0 text text-decoration-none text-size-16">info@reliantpay.com</a></li>
                                 <li class="text-size-16 text">Phone: <a href="tel:+4733378901"
                                         class="mb-0 text text-decoration-none text-size-16">+1 234 567 89 0 0</a></li>
                                 <li class="text-size-16 text1">Fax: <a href="tel:+198765432199"

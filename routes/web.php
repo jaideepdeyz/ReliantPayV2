@@ -32,6 +32,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// page routes
+Route::view('about-us', 'pages.about-us')->name('about-us');
+Route::view('contact-us', 'pages.contact-us')->name('contact-us');
+
 Route::middleware('auth', 'verified','registrationCheck')->group(function () {
     Route::get('dashboard', [HomeController::class, 'redirector'])->name('dashboard');
 });

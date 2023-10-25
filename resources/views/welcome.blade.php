@@ -12,9 +12,8 @@
                 <div class="col-lg-5 col-md-5 col-sm-12 col-12">
                     <div class="banner" data-aos="fade-right">
                         <h6>Simple. Transparent. Secure </h6>
-                        <h1>The Smart Way for<span>Online Payment</span> Solution.</h1>
-                        <p class="banner-text">Lorem ipsum dolor sit amet, consectetur adipisc ing elit sed do eiusmod
-                            tempor.</p>
+                        <h1>Where <span>Payments</span> and Services Unite</h1>
+                        <p class="banner-text">Welcome to ReliantPay, your trusted partner in the world of secure and seamless online payments.</p>
                         <div class="button"><a class="button_text" href="{{ route('register') }}">Open a Free Account</a>
                         </div>
                     </div>
@@ -51,8 +50,8 @@
                                 class="img-fluid">
                         </figure>
                         <h3>Payment Solution</h3>
-                        <p class="mb-0 text-size-18">Lorem ipsum dolor sit ametcon sec tetur adipiscing elit sed do eiusmod
-                            tempor in cididod temunt.</p>
+                        <p class="mb-0 text-size-18">we offer a range of payment options to cater to your unique needs.
+                        </p>
                     </div>
                 </div>
                 <figure class="arrow1 mb-0" data-aos="fade-down">
@@ -65,8 +64,8 @@
                                 class="img-fluid">
                         </figure>
                         <h3>Growth Business</h3>
-                        <p class="mb-0 text-size-18">Labore et dolore magna aliqua quis ipsum suspendisse ultrices gravida
-                            risus commo ddolore magnao.</p>
+                        <p class="mb-0 text-size-18">Whether you're a startup or an established enterprise, we offer a range of payment options to cater to your unique needs.
+                        </p>
                     </div>
                 </div>
                 <figure class="arrow2 mb-0" data-aos="fade-up">
@@ -79,8 +78,9 @@
                                 class="img-fluid">
                         </figure>
                         <h3>Connected People</h3>
-                        <p class="mb-0 text-size-18">viverra maecenas accumsan lacus vel facili sis consectetur adipiscing
-                            mae-cenelit seiscingsd.</p>
+                        <p class="mb-0 text-size-18">Our dedicated support team is ready to assist you with any questions or issues you may encounter.
+
+                        </p>
                     </div>
                 </div>
                 <figure class="element3 mb-0">
@@ -139,12 +139,10 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="about-content" data-aos="fade-up">
-                        <h6>ABOUT REPAY</h6>
-                        <h2>We Have The Most Users All Over The World</h2>
-                        <p class="text-size-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore</p>
-                        <p class="text-size-18 text">magna aliquaQuis ipsum suspendisse ultrices gravida. Risus com- modo
-                            viverra maecenas.</p>
+                        <h6>ABOUT RELIANTPAY</h6>
+                        <h2>Revolutionizing the way businesses handle payments</h2>
+                        <p class="text-size-18">Welcome to ReliantPay, your trusted partner in the world of secure and seamless online payments. At ReliantPay, we've made it our mission to empower businesses of all sizes by providing a cutting-edge payment gateway aggregation service.
+                        </p>
                         <div class="right-lower">
                             <figure class="mb-0 icon">
                                 <img src="{{ asset('website/images/happy-customer-icon.png') }}" alt=""
@@ -195,9 +193,9 @@
                                     alt="" class="img-fluid">
                             </figure>
                             <div class="content">
-                                <h3>Payment Management</h3>
-                                <p class="text-size-18">Lorem ipsum dolor sit ametcon sec tetur adipiscing elit sed do
-                                    eiusmod tempor in cididod temunt.</p>
+                                <h3>Airline Ticketing (Current Offering)
+                                </h3>
+                                <p class="text-size-18">Experience the world with the ease and convenience of booking your airline tickets through ReliantPay. </p>
                                 <a href="./pricing.html" class="more">More</a>
                             </div>
                         </div>
@@ -209,9 +207,9 @@
                                     class="img-fluid">
                             </figure>
                             <div class="content">
-                                <h3>Personal Dashboard</h3>
-                                <p class="text-size-18">Lorem ipsum dolor sit ametcon sec tetur adipiscing elit sed do
-                                    eiusmod tempor in cididod temunt.</p>
+                                <h3>Hotel Booking (Coming Soon)
+                                </h3>
+                                <p class="text-size-18">Elevate your travel experience by booking your accommodations with ReliantPay.</p>
                                 <a href="./pricing.html" class="more">More</a>
                             </div>
                         </div>
@@ -223,9 +221,9 @@
                                     alt="" class="img-fluid">
                             </figure>
                             <div class="content">
-                                <h3>Integrated Payments</h3>
-                                <p class="text-size-18">Lorem ipsum dolor sit ametcon sec tetur adipiscing elit sed do
-                                    eiusmod tempor in cididod temunt.</p>
+                                <h3>Cab Services (Coming Soon)
+                                </h3>
+                                <p class="text-size-18">Your travel experience wouldn't be complete without reliable transportation at your destination. </p>
                                 <a href="./pricing.html" class="more">More</a>
                             </div>
                         </div>
@@ -239,9 +237,9 @@
                                     class="img-fluid">
                             </figure>
                             <div class="content">
-                                <h3>Business Tracking</h3>
-                                <p class="text-size-18">Lorem ipsum dolor sit ametcon sec tetur adipiscing elit sed do
-                                    eiusmod tempor in cididod temunt.</p>
+                                <h3>Amtrak Booking (Coming Soon)
+                                </h3>
+                                <p class="text-size-18">For travelers exploring the beauty of the United States, we're thrilled to announce that we'll soon be offering Amtrak booking services.</p>
                                 <a href="./pricing.html" class="more">More</a>
                             </div>
                         </div>
@@ -279,7 +277,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="manage-content" data-aos="fade-right">
-                        <h2>Manage Everything in Your Hand</h2>
+                        <h2>Why Reliantpay</h2>
                         <div class="first">
                             <div class="row">
                                 <div class="col-lg-2 col-md-2 col-sm-12 col-12">
@@ -290,9 +288,8 @@
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-12 col-12">
                                     <div class="content">
-                                        <h4>User Friendly</h4>
-                                        <p class="text-size-16 text">Lorem ipsum dolor sit ametcon sec tetur adipiscing
-                                            elit sed do eiusmod tempor in cididod temunt.</p>
+                                        <h4>Comprehensive Services</h4>
+                                        <p class="text-size-16 text">With ReliantPay, you gain access to a comprehensive suite of services.</p>
                                     </div>
                                 </div>
                             </div>
@@ -307,9 +304,8 @@
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-12 col-12">
                                     <div class="content">
-                                        <h4>Best Support</h4>
-                                        <p class="text-size-16">Sec tetur adipiscing elit sed do eiusmod tempor in cididod
-                                            temunt Lorem ipsum dolor sit ametcon.</p>
+                                        <h4>Simplified Booking</h4>
+                                        <p class="text-size-16">Our user-friendly platform makes booking a breeze. </p>
                                     </div>
                                 </div>
                             </div>
@@ -324,9 +320,8 @@
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-12 col-12">
                                     <div class="content">
-                                        <h4>Secure</h4>
-                                        <p class="text-size-16">Adipiscing elit sed do eiusmod tempor in cididod temunt.
-                                            Lorem ipsum dolor sit ametcon sec tetur.</p>
+                                        <h4>Cost Savings</h4>
+                                        <p class="text-size-16">We're committed to offering competitive pricing across all our services. </p>
                                     </div>
                                 </div>
                             </div>
@@ -347,9 +342,10 @@
         <figure class="mb-0 manage-layer">
             <img src="{{ asset('website/images/mange-layer.png') }}" alt="" class="img-fluid">
         </figure>
+
     </section>
     <!-- plan and pricing -->
-    <section class="plan">
+    {{-- <section class="plan">
         <div class="container">
             <figure class="element1 mb-0">
                 <img src="{{ asset('website/images/what-we-do-icon-1.png') }}" class="img-fluid" alt="">
@@ -506,9 +502,9 @@
                 <img src="{{ asset('website/images/what-we-do-icon-2.png') }}" class="img-fluid" alt="">
             </figure>
         </div>
-    </section>
+    </section> --}}
     <!-- need more help? -->
-    <section class="need-section"  style="background:#f2f2f2">
+    {{-- <section class="need-section"  style="background:#f2f2f2">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -565,7 +561,7 @@
         <figure class="mb-0 need-layer">
             <img src="{{ asset('website/images/need-layer.png') }}" alt="" class="img-fluid">
         </figure>
-    </section>
+    </section> --}}
     <!-- Partner -->
 
 
