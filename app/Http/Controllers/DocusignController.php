@@ -28,7 +28,9 @@ class DocusignController extends Controller
      */
     public function index()
     {
+       
         return view('docusign.connect');
+        
     }
 
 
@@ -39,6 +41,7 @@ class DocusignController extends Controller
      */
     public function connectDocusign()
     {
+       
         try {
             $params = [
                 'response_type' => 'code',
