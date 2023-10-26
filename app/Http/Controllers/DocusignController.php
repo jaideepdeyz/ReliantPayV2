@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use DocuSign\eSign\Configuration;
 use DocuSign\eSign\Api\EnvelopesApi;
@@ -9,6 +10,7 @@ use DocuSign\eSign\Client\ApiClient;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Session;
+
 
 class DocusignController extends Controller
 {   
@@ -157,19 +159,20 @@ class DocusignController extends Controller
         Log::info($demo_docs_path);
       
 
-        $arrContextOptions=array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
-            ),
-        );  
-        set_time_limit(120);
-        $content_bytes = file_get_contents($demo_docs_path,false, stream_context_create($arrContextOptions));
+        // $arrContextOptions=array(
+        //     "ssl"=>array(
+        //         "verify_peer"=>false,
+        //         "verify_peer_name"=>false,
+        //     ),
+        // );  
+        // set_time_limit(0);
+        // $content_bytes = file_get_contents($demo_docs_path,false, stream_context_create($arrContextOptions));
+        $pdf = Pdf::loadView('pdf.sample');
        
-        Log::info('content_bytes');
-        // dd($content_bytes);
-        $base64_file_content = base64_encode($content_bytes);
-        dd($base64_file_content);
+      
+        $base64_file_content = base64_encode($pdf->output());
+        Log::info('base64_file_content');
+      
         # Create the document model
         $document = new \DocuSign\eSign\Model\Document([# create the DocuSign document object
         'document_base64' => $base64_file_content,
