@@ -7,6 +7,7 @@ use DocuSign\eSign\Configuration;
 use DocuSign\eSign\Api\EnvelopesApi;
 use DocuSign\eSign\Client\ApiClient;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Session;
 
 class DocusignController extends Controller
@@ -147,10 +148,14 @@ class DocusignController extends Controller
 
     private function make_envelope($args)
     {   
+        Log::info('make_envelope');
+
         
-        $filename = 'World_Wide_Corp_lorem.pdf';
+        $filename = 'dummy.pdf';
 
         $demo_docs_path = asset('doc/'.$filename);
+        Log::info($demo_docs_path);
+      
 
         $arrContextOptions=array(
             "ssl"=>array(
@@ -158,11 +163,13 @@ class DocusignController extends Controller
                 "verify_peer_name"=>false,
             ),
         );  
-
+        set_time_limit(120);
         $content_bytes = file_get_contents($demo_docs_path,false, stream_context_create($arrContextOptions));
+       
+        Log::info('content_bytes');
         // dd($content_bytes);
         $base64_file_content = base64_encode($content_bytes);
-        // dd($base64_file_content);
+        dd($base64_file_content);
         # Create the document model
         $document = new \DocuSign\eSign\Model\Document([# create the DocuSign document object
         'document_base64' => $base64_file_content,
@@ -218,6 +225,7 @@ class DocusignController extends Controller
      */
     private function getTemplateArgs()
     {   
+        
         $envelope_args = [
             'signer_client_id' => $this->signer_client_id,
             'ds_return_url' => route('docusign')
@@ -228,7 +236,7 @@ class DocusignController extends Controller
             'ds_access_token' => Session::get('docusign_auth_code'),
             'envelope_args' => $envelope_args
         ];
-        
+       
         return $args;
         
     }
