@@ -10,8 +10,7 @@ use DocuSign\eSign\Api\EnvelopesApi;
 use DocuSign\eSign\Client\ApiClient;
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Session;
-
+use Illuminate\Support\Facades\Session;
 
 class DocusignController extends Controller
 {
@@ -34,12 +33,23 @@ class DocusignController extends Controller
     {
 
         // check if path has params
-        // if ($request->has('event')) {
-        //     $envelopeApi = new \DocuSign\eSign\Api\EnvelopesApi($this->apiClient());
+        if ($request->has('event')) {
+            $event = $request->event;
+            if ($event == 'signing_complete') {
+                $auth_form = AuthorizationForm::where('ds_access_token', Session::get('docusign_auth_code'))->first();
+                $envelopeApi = new \DocuSign\eSign\Api\EnvelopesApi($this->apiClient());
 
-        //     $tmp_file = $envelopeApi->getDocument('203a63cf-c0e2-4dc1-b1d7-7a8d05fa5c9a', '2', 'ab884e85-a95c-48a5-a10e-d50fcb43d10b');
-        //     file_put_contents('doc/signedfile.pdf', file_get_contents($tmp_file->getPathname()));
-        // }
+                $tmp_file = $envelopeApi->getDocument($auth_form->account_id, $auth_form->document_id, $auth_form->envelope_id);
+                
+                $file_name = rand() . '.pdf';
+                $file_path = storage_path('app/public/authorization/' . $file_name);
+                file_put_contents($file_path, file_get_contents($tmp_file->getPathname()));
+                $auth_form->signed_document = $file_path;
+                $auth_form->save();
+                Session::forget('docusign_auth_code');
+                return redirect()->route('docusign')->with('success', 'Document Signed Successfully');
+            }
+        }
 
         return view('docusign.connect');
     }
@@ -148,12 +158,12 @@ class DocusignController extends Controller
 
             $results = $envelope_api->createRecipientView($args['account_id'], $envelope_id, $recipient_view_request);
             // save envelope id and other details in database
-            AuthorizationForm::create([
+            $auth_form = AuthorizationForm::create([
                 'unsigned_document' => 'dummy.pdf',
                 'envelope_id' => $envelope_id,
                 'account_id' => $args['account_id'],
-                'document_id' => 2,
-                'ds_access_token' => $args['ds_access_token']
+                'ds_access_token' => $args['ds_access_token'],
+                'document_id'=>1
             ]);
 
 
@@ -192,7 +202,7 @@ class DocusignController extends Controller
             'document_base64' => $base64_file_content,
             'name' => 'Example document', # can be different from actual file name
             'file_extension' => 'pdf', # many different document types are accepted
-            'document_id' => 2, # a label used to reference the doc
+            'document_id' => 1, # a label used to reference the doc
         ]);
         # Create the signer recipient model
         $signer = new \DocuSign\eSign\Model\Signer([ # The signer
