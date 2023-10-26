@@ -88,7 +88,7 @@ class BillingDetailsService extends Component
             if($this->primary_passenger_id_doc)
             {
                 $payment->update([
-                'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/passengerID_'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
+                'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/'.$this->appID.'/passengerID_doc.'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
                 ]);
             }
 
