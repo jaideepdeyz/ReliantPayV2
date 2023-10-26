@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Log;
 
-class ManageOrganizationsComponent extends Component
+class ManageOrganizations extends Component
 {
     use WithPagination;
 
@@ -67,9 +67,9 @@ class ManageOrganizationsComponent extends Component
 
         Log::info('Admin dealers Listing Results: ' . json_encode($dealers));
 
-        return view('livewire.admin.manage-organizations-component', [
+        return view('livewire.admin.manage-organizations', [
             'dealers'=>$dealers,
-        ]);
+        ])->layout('layouts.dashboard-layout');
 
     }
 

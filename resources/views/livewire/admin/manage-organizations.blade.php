@@ -34,19 +34,21 @@
                         </div><!-- end col-->
                     </div>
 
-                     <div class="row mb-3">
+                    <div class="row mb-3">
                         <div class="row mt-3 d-flex justify-content-between">
 
                             <div class="col-md-4">
                                 <div class="form-floating">
-                                    <input wire:model.live.debounce.300ms="search" class="form-control" id="floatingInputGrid" placeholder="search" value="search">
+                                    <input wire:model.live.debounce.300ms="search" class="form-control"
+                                        id="floatingInputGrid" placeholder="search" value="search">
                                     <label for="floatingInputGrid">Search</label>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-floating">
-                                    <select wire:model.live="perPage" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                    <select wire:model.live="perPage" class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
                                         <option value="10">10 Records</option>
                                         <option value="20">20 Records</option>
                                         <option value="50">50 Records</option>
@@ -60,129 +62,131 @@
                     </div>
 
                     <div class="row mb-3">
-                        @if($dealers->count()>0)
+                        @if ($dealers->count() > 0)
                             <div class="flex">
-                                    <table class="table table-hover table-borderless wrap table-fixed">
-                                        <thead class="table-light">
-                                            <tr>
+                                <table class="table table-hover table-borderless wrap table-fixed">
+                                    <thead class="table-light">
+                                        <tr>
 
-                                                <th class="col-md-1">SL</th>
-
-
-                                                @include('livewire.util.datatable-sortable-th',[
-                                                    'name' => 'name',
-                                                    'displayName' => 'NAME',
-                                                    'width' => 2,
-                                                ])
-
-                                                @include('livewire.util.datatable-sortable-th',[
-                                                    'name' => 'email',
-                                                    'displayName' => 'EMAIL',
-                                                    'width' => 1,
-                                                ])
-
-                                                <th class="col-md-1" style="text-align:center;">PHONE</th>
-
-                                                <th class="col-md-2" style="text-align:center;">ADDRESS</th>
-
-                                                @include('livewire.util.datatable-sortable-th',[
-                                                    'name' => 'status',
-                                                    'displayName' => 'STATUS',
-                                                    'width' => 1,
-                                                ])
-
-                                                <th class="col-md-1" style="text-align:center;">ACTION</th>
-                                            </tr>
-                                        </thead>
+                                            <th class="col-md-1">SL</th>
 
 
-                                        <tbody>
+                                            @include('livewire.util.datatable-sortable-th', [
+                                                'name' => 'name',
+                                                'displayName' => 'NAME',
+                                                'width' => 2,
+                                            ])
+
+                                            @include('livewire.util.datatable-sortable-th', [
+                                                'name' => 'email',
+                                                'displayName' => 'EMAIL',
+                                                'width' => 1,
+                                            ])
+
+                                            <th class="col-md-1" style="text-align:center;">PHONE</th>
+
+                                            <th class="col-md-2" style="text-align:center;">ADDRESS</th>
+
+                                            @include('livewire.util.datatable-sortable-th', [
+                                                'name' => 'status',
+                                                'displayName' => 'STATUS',
+                                                'width' => 1,
+                                            ])
+
+                                            <th class="col-md-1" style="text-align:center;">ACTION</th>
+                                        </tr>
+                                    </thead>
 
 
-                                            @foreach ($dealers as $d)
-                                                <tr wire:key={{ $d->id }}>
-
-                                                    <td>
-                                                        {{ $loop->iteration }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{  $d->business_name }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $d->business_email }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $d->business_phone }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $d->business_address }}
-                                                    </td>
-
-                                                    <td>
-                                                        {{ $d->status }}
-                                                    </td>
+                                    <tbody>
 
 
+                                        @foreach ($dealers as $d)
+                                            <tr wire:key={{ $d->id }}>
+
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $d->business_name }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $d->business_email }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $d->business_phone }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $d->business_address }}
+                                                </td>
+
+                                                <td>
+                                                    @if ($d->status == 'Approved')
+                                                        <span class="badge bg-success">{{ $d->status }}</span>
+                                                    @elseif($d->status == 'Rejected')
+                                                        <span class="badge bg-danger">{{ $d->status }}</span>
+                                                    @else
+                                                        <span class="badge bg-warning">{{ $d->status }}</span>
+                                                    @endif
+                                                </td>
 
 
-                                                    <td style="text-align:center;">
-                                                        <div>
 
-                                                            <div class="dropdown d-none d-xl-block">
-                                                                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown"
-                                                                    href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                                    <i class="mdi mdi-chevron-down-box text-success" style="font-size: 24px;"></i>
+
+                                                <td style="text-align:center;">
+                                                    <div>
+
+                                                        <div class="dropdown d-none d-xl-block">
+                                                            <a class="nav-link dropdown-toggle waves-effect waves-light"
+                                                                data-bs-toggle="dropdown" href="#" role="button"
+                                                                aria-haspopup="false" aria-expanded="false">
+                                                                <i class="mdi mdi-chevron-down-box text-success"
+                                                                    style="font-size: 24px;"></i>
+                                                            </a>
+
+                                                            <div class="dropdown-menu">
+
+
+                                                                <a href="{{ route('dealers.show', $d->id) }}"
+                                                                    class="btn">
+                                                                    <i class="fas fa-eye text-success"></i> View</a>
+
+                                                                <!-- item-->
+
+                                                                <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#updateCountries"
+                                                                    wire:click="editCountries({{ $d->id }})"
+                                                                    class="btn">
+                                                                    <i class="fas fa-edit text-primary"></i> Edit
                                                                 </a>
 
-                                                                <div class="dropdown-menu">
-
-
-                                                                    <a href="{{route('adminActions.show', $d->id)}}" class="btn">
-                                                                        <i class="fas fa-eye text-success"></i> View</a>
-
-                                                                    <!-- item-->
-
-                                                                    <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                        data-bs-target="#updateCountries"
-                                                                        wire:click="editCountries({{ $d->id }})" class="btn">
-                                                                        <i class="fas fa-edit text-primary"></i> Edit
-                                                                    </a>
-
-                                                                    {{-- <a href="{{ route('editobaquestion', ['id' => $d->id]) }}"
+                                                                {{-- <a href="{{ route('editobaquestion', ['id' => $d->id]) }}"
                                                                         class="btn">
                                                                         <i class="fas fa-edit text-primary"></i> Edit question
                                                                     </a> --}}
 
-                                                                    <div class="dropdown-divider"></div>
+                                                                <div class="dropdown-divider"></div>
 
-                                                                    <!-- item-->
+                                                                <!-- item-->
 
-                                                                   <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteCountries"
-                                                                        wire:click="deleteCountriescomp({{ $d->id }})" class="btn">
-                                                                        <i class="fas fa-trash text-danger"></i> Delete
-                                                                    </a>
-
-
-
-
-                                                                </div>
+                                                                <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteCountries"
+                                                                    wire:click="deleteCountriescomp({{ $d->id }})"
+                                                                    class="btn">
+                                                                    <i class="fas fa-trash text-danger"></i> Delete
+                                                                </a>
                                                             </div>
                                                         </div>
-                                                    </td>
+                                                    </div>
+                                                </td>
 
-                                                </tr>
-                                            @endforeach
-
-
-
-                                        </tbody>
-
-
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
 
                                 <div class="d-flex justify-content-end">
@@ -190,16 +194,10 @@
                                 </div>
 
                             </div>
-
-
                         @else
-                        <p>No data found!!</p>
+                            <p>No data found!!</p>
                         @endif
                     </div>
-
-
-
-
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col -->
@@ -257,8 +255,8 @@
 
 
     <!-- Update Country Modal -->
-    <div wire:ignore.self class="modal fade" id="updateCountries" tabindex="-1" aria-labelledby="updateCountriesLabel"
-        aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="updateCountries" tabindex="-1"
+        aria-labelledby="updateCountriesLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -339,13 +337,6 @@
             $('#updateCountries').modal('hide');
             $('#deleteCountries').modal('hide');
         })
-
-
-
     </script>
 
 </div>
-
-
-
-

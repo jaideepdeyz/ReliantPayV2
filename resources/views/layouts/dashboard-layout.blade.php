@@ -33,15 +33,94 @@
 <body>
 
 
- <div id="wrapper">
+    <div id="wrapper">
+        <div class="app-menu">
 
-        @if (Auth::user()->role == 'Admin')
-            @include('partials.admin.admin-sidebar')
-        @elseif (Auth::user()->role == 'Dea;er')
-            @include('partials.dealer.dealer-sidebar')
-        @elseif (Auth::user()->role == 'Agent')
-            @include('partials.agent.agent-sidebar')
-        @endif
+            <!-- Brand Logo -->
+            <div class="text-center p-3">
+                <a href="#">
+                    <span>
+                        <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="Reliant Pay"
+                            class="img-fluid">
+                    </span>
+                </a>
+            </div>
+
+            <!-- menu-left -->
+            <div class="scrollbar">
+
+                <!-- User box -->
+                <div class="user-box text-center">
+                    <img src="{{ asset('auth/images/users/user-1.jpg') }} alt="user-img" title="Mat Helme"
+                        class="rounded-circle avatar-md">
+
+                    <div class="dropdown">
+                        <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block"
+                            data-bs-toggle="dropdown">{{ Auth::user()->name }}</a>
+                        <div class="dropdown-menu user-pro-dropdown">
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-user me-1"></i>
+                                <span>My Account</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings me-1"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-lock me-1"></i>
+                                <span>Lock Screen</span>
+                            </a>
+
+                            <!-- item-->
+
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fe-log-out me-1"></i>
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">Admin Head</p>
+                </div>
+
+
+                <!--- Menu -->
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="{{ route('dashboard') }}" class="menu-link">
+                            <span class="menu-icon"><i class="mdi mdi-view-dashboard-outline"></i></span>
+                            <span class="menu-text">Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title">Actions</li>
+
+                    @if (Auth::user()->role == 'Admin')
+                        <x-admin-menu />
+                    @elseif (Auth::user()->role == 'Dealer')
+                        <x-dealer-menu />
+                    @elseif (Auth::user()->role == 'Agent')
+                        <x-agent-menu />
+                    @endif
+                </ul>
+                <!--- End Menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
 
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
@@ -75,50 +154,7 @@
                             <i class="mdi mdi-menu"></i>
                         </button>
 
-                        <!-- Dropdown Menu -->
-                        <div class="dropdown d-none d-xl-block">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown"
-                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                Create New
-                                <i class="mdi mdi-chevron-down ms-1"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    <i class="fe-briefcase me-1"></i>
-                                    <span>New Projects</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    <i class="fe-user me-1"></i>
-                                    <span>Create Users</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    <i class="fe-bar-chart-line- me-1"></i>
-                                    <span>Revenue Report</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    <i class="fe-settings me-1"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">
-                                    <i class="fe-headphones me-1"></i>
-                                    <span>Help & Support</span>
-                                </a>
-
-                            </div>
-                        </div>
-
-               </div>
+                    </div>
 
                     <ul class="topbar-menu d-flex align-items-center">
                         <!-- Topbar Search Form -->
@@ -448,8 +484,38 @@
             <!-- ========== Topbar End ========== -->
 
             <div class="content">
+                <div class="container-fluid">
 
-                @yield('content')
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <form class="d-flex align-items-center mb-3">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control border-0" id="dash-daterange">
+                                            <span class="input-group-text bg-blue border-blue text-white">
+                                                <i class="mdi mdi-calendar-range"></i>
+                                            </span>
+                                        </div>
+                                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-2">
+                                            <i class="mdi mdi-autorenew"></i>
+                                        </a>
+                                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-1">
+                                            <i class="mdi mdi-filter-variant"></i>
+                                        </a>
+                                    </form>
+                                </div>
+                                <h4 class="page-title">Dashboard</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                </div> <!-- container -->
+                <div class="container-fluid">
+                    {{ $slot }}
+                </div>
 
                 <!-- Footer Start -->
                 <footer class="footer">
@@ -459,8 +525,8 @@
                                 <div>
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> © Reliant Pay - <a
-                                        href="https://reliantpay.com/" target="_blank">Reliant Pay</a>
+                                    </script> © Reliant Pay - <a href="https://reliantpay.com/"
+                                        target="_blank">Reliant Pay</a>
                                 </div>
                             </div>
 
@@ -949,7 +1015,7 @@
 
         </div>
         <!-- END wrapper -->
- </div>
+    </div>
 
 
 
@@ -969,7 +1035,7 @@
 
     <!-- Dashboar 1 init js-->
     <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script>
-    <livewire:modals/>
+    <livewire:modals />
     @livewireScripts
 </body>
 

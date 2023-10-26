@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
-use App\Models\OrganizationServiceMap;
-use App\Models\RegistrationUpload;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class DealerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('dealers.index');
     }
 
     /**
@@ -36,10 +34,9 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
         $org = Organization::find($id);
-
         return view('dealers.show', compact('org'));
     }
 

@@ -6,11 +6,13 @@ use App\Http\Controllers\DocusignController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\AdminActions;
 use App\Livewire\Agents\AddAgent;
 use App\Livewire\Agents\BookSales;
 use App\Livewire\Agents\SalesByStatus;
 use App\Livewire\Dealer\DealersByActivityStatus;
 use App\Livewire\Dealer\DealersByStatus;
+use App\Livewire\Dealer\DealerShow;
 use App\Livewire\Dealer\Registration;
 use App\Livewire\Dealer\RegistrationApproval;
 use App\Livewire\Services\AddPassengerService;
@@ -18,6 +20,8 @@ use App\Livewire\Services\BillingDetailsService;
 use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\OrganizationsController;
+use App\Http\Controllers\DealerController;
+use App\Livewire\Admin\ManageOrganizations;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,39 +48,38 @@ Route::get('sign-document',[DocusignController::class,'signDocument'])->name('do
 Route::view('about-us', 'pages.about-us')->name('about-us');
 Route::view('contact-us', 'pages.contact-us')->name('contact-us');
 
-Route::middleware('auth', 'verified','registrationCheck')->group(function () {
+Route::middleware(['auth', 'verified','registrationCheck'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'redirector'])->name('dashboard');
 });
 
-    Route::resource('adminActions', AdminController::class);
-    // livewire routes
 Route::middleware('auth')->group(function () {
     Route::get('dealer_register', Registration::class)->name('dealer_register');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('adminActions', AdminController::class);
+    // Route::resource('dealers', DealerController::class);
     Route::resource('airlineBooking', AirlineBookingController::class);
 
-    // livewire routes
-Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
+    // dealer routes
+    Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
+    Route::get('dealers/show/{orgID}', DealerShow::class)->name('dealers.show');
 
-//added by jaideep
-Route::get('/admin/manageorganizations/', [OrganizationsController::class, 'show'])->name('managedealers');
+    //Organization Routes
+    Route::get('/admin/manageorganizations', ManageOrganizations::class)->name('manageorganizations');
 
 
 
-Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
-Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
-Route::get('bookSales', BookSales::class)->name('bookSales');
-Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
-Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
-Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
-Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
+    Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
+    Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
+    Route::get('bookSales', BookSales::class)->name('bookSales');
+    Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
+    Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
+    Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
+    Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
 
-// Email routes
-Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
+    // Email routes
+    Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
 
 
 });

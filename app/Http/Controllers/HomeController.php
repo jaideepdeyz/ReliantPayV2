@@ -17,9 +17,9 @@ class HomeController extends Controller
             case RoleEnum::DEALER->value:
                 if(Auth::User()->is_approved == 'Yes')
                 {
-                    return view('dealer.dealerDashboard');
+                    return view('dealers.dealerDashboard');
                 } else {
-                    return view('dealer.submittedDealerDashboard');
+                    return view('dealers.submittedDealerDashboard');
                 }
                 break;
             case RoleEnum::AGENT->value:

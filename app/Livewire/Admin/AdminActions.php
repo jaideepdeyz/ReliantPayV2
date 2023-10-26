@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
 use App\Enums\StatusEnum;
 use App\Models\Organization;
@@ -48,7 +48,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
-            return redirect()->route('dashboard');
+            return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
@@ -73,7 +73,7 @@ class AdminActions extends Component
                 'is_approved' => 'No',
             ]);
             DB::commit();
-            return redirect()->route('dashboard');
+            return redirect()->route('manageorganizations');
         }catch(\Exception $e){
             DB::rollback();
             dd($e);
@@ -92,7 +92,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
-            return redirect()->route('dashboard');
+            return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
@@ -112,15 +112,13 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
-            return redirect()->route('dashboard');
+            return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
         }
 
     }
-
-
     public function transactionLog()
     {
             TransactionLog::create([
@@ -136,6 +134,6 @@ class AdminActions extends Component
 
     public function render()
     {
-        return view('livewire.admin-actions');
+        return view('livewire.admin.admin-actions')->layout('layouts.admin');
     }
 }
