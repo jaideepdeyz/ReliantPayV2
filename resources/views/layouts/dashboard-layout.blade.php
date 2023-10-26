@@ -100,9 +100,6 @@
                             <span class="menu-text">Dashboard </span>
                         </a>
                     </li>
-
-                    <li class="menu-title">Actions</li>
-
                     @if (Auth::user()->role == 'Admin')
                         <x-admin-menu />
                     @elseif (Auth::user()->role == 'Dealer')

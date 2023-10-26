@@ -74,6 +74,7 @@ class BookSales extends Component
                 break;
             default:
                     return redirect()->back();
+                    break;
         }
     }
 
@@ -127,6 +128,6 @@ class BookSales extends Component
         ->orWhere('customer_email', 'like', '%'.$this->search.'%')
         ->orWhere('app_status', 'like', '%'.$this->search.'%')
         ->orderBy('created_at', 'DESC')->paginate(10);
-        return view('livewire.agents.book-sales', compact('services', 'bookedSales'))->layout('layouts.dashboard-layout');
+        return view('livewire.agents.book-sales', compact('services', 'bookedSales'));
     }
 }
