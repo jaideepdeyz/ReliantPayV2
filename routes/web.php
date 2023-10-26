@@ -17,7 +17,7 @@ use App\Livewire\Services\AddPassengerService;
 use App\Livewire\Services\BillingDetailsService;
 use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\OrganizationsController;
+use App\Http\Controllers\admin\OrganizationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//docusign routes 
+//docusign routes
 Route::get('docusign',[DocusignController::class, 'index'])->name('docusign');
 Route::get('connect-docusign',[DocusignController::class, 'connectDocusign'])->name('connect.docusign');
 Route::get('docusign/callback',[DocusignController::class,'callback'])->name('docusignCallback');

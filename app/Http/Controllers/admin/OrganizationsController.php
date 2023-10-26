@@ -19,7 +19,6 @@ class OrganizationsController extends Controller
 
     public function show()
     {
-        //Log::info('Logged in user is: ' . Auth::user()->name . ' Profile pic is :' . Auth::user()->image . ' ID is: ' . Auth::user()->id . ' and old ID is:' . Auth::user()->old_student_id);
         return view('admin.manage-organizations');
     }
     /**
