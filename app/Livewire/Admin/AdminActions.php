@@ -118,7 +118,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
-            return redirect()->back();
+            return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);

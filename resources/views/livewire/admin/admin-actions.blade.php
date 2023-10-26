@@ -50,16 +50,19 @@
             </div>
             <div class="card-body">
                 <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#alertModal"
-                    wire:click="setAction('Approve')">Approve</button>
+                    wire:click="setAction('approve')">Approve</button>
                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                     data-bs-target="#rejectionModal">Reject</button>
                 @switch($org->user->is_active)
                     @case('No')
-                        <button class="btn btn-sm btn-primary" wire:click="activate">Activate</button>
+                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#alertModal"
+                            wire:click="setAction('activate')" wire:click="setAction('activate')">Activate</button>
                     @break
 
                     @case('Yes')
-                        <button class="btn btn-sm btn-warning" wire:click="deactivate">De Activate</button>
+                        <button class="btn btn-sm btn-warning"data-bs-toggle="modal" data-bs-target="#alertModal"
+                            wire:click="setAction('deactivate')" wire:click="setAction('deactivate')">De
+                            Activate</button>
                     @break
                 @endswitch
             </div>
@@ -92,12 +95,15 @@
     </div>
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
         wire:ignore.self>
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <h1>Alert</h1>
                     <p>Are you sure you want to {{ $action }} this registration?</p>
-                    <button class="btn btn-primary" wire:click="approve">{{ $action }}</button>
+                    <button class="btn btn-primary text-uppercase"
+                        @if ($action == 'approve') wire:click="approve"
+                        @elseif($action == 'activate') wire:click="activate"
+                        @elseif($action == 'deactivate') wire:click="deactivate" @endif>{{ $action }}</button>
                 </div>
             </div>
         </div>
