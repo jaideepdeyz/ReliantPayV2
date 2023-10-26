@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\OrganizationsController;
 use App\Http\Controllers\DealerController;
 use App\Livewire\Admin\ManageOrganizations;
+use App\Livewire\Agents\AgentDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +68,8 @@ Route::middleware('auth')->group(function () {
 
     //Organization Routes
     Route::get('/admin/manageorganizations', ManageOrganizations::class)->name('manageorganizations');
-
+    // Agents Routes
+    Route::get('agentDashboard',AgentDashboard::class)->name('agentDashboard');
 
 
     Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');

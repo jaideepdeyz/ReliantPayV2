@@ -5,17 +5,14 @@
     <meta charset="utf-8" />
     <title>ReliantPAY| Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
-
     <!-- Plugins css -->
     <link href="{{ asset('auth/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Theme Config Js -->
     <script src="{{ asset('auth/js/head.js') }}"></script>
-
     <!-- Bootstrap css -->
     <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
 
@@ -31,8 +28,6 @@
 </head>
 
 <body>
-
-
     <div id="wrapper">
         <div class="app-menu">
 

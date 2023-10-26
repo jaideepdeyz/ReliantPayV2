@@ -126,11 +126,14 @@
 
                                                 <td>
                                                     @if ($d->status == 'Approved')
-                                                        <span class="badge bg-success">{{ $d->status }}</span>
+                                                        <span
+                                                            class="badge bg-success badge-lg">{{ $d->status }}</span>
                                                     @elseif($d->status == 'Rejected')
-                                                        <span class="badge bg-danger">{{ $d->status }}</span>
+                                                        <span
+                                                            class="badge bg-danger badge-lg">{{ $d->status }}</span>
                                                     @else
-                                                        <span class="badge bg-warning">{{ $d->status }}</span>
+                                                        <span
+                                                            class="badge bg-warning badge-lg">{{ $d->status }}</span>
                                                     @endif
                                                 </td>
 

@@ -49,7 +49,8 @@
                 <h5 class="text-white text-uppercase">Administrative Section</h5>
             </div>
             <div class="card-body">
-                <button class="btn btn-sm btn-success" wire:click="approve">Approve</button>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#alertModal"
+                    wire:click="setAction('Approve')">Approve</button>
                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                     data-bs-target="#rejectionModal">Reject</button>
                 @switch($org->user->is_active)
@@ -85,6 +86,18 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
+        wire:ignore.self>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h1>Alert</h1>
+                    <p>Are you sure you want to {{ $action }} this registration?</p>
+                    <button class="btn btn-primary" wire:click="approve">{{ $action }}</button>
                 </div>
             </div>
         </div>

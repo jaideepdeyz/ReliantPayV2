@@ -19,6 +19,7 @@ class AdminActions extends Component
     public $status;
     public $docs;
     public $services;
+    public $action;
 
     public function mount($orgID)
     {
@@ -32,6 +33,11 @@ class AdminActions extends Component
     public function openPdf($url, $title)
     {
         $this->dispatch('showModal', ['alias' => 'modals.pdf-reader', 'params' => ['url' => $url, 'title' => $title]]);
+    }
+
+    public function setAction($action)
+    {
+        $this->action = $action;
     }
 
     public function approve()
