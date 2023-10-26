@@ -29,9 +29,14 @@ class DocusignController extends Controller
      *
      * @return render
      */
+
+    public function startSigning($appID)
+    {
+        return redirect()->route('docusign');
+    }
+
     public function index(Request $request)
     {
-
         // check if path has params
         if ($request->has('event')) {
             $event = $request->event;

@@ -38,7 +38,7 @@ bgcolor="#f6f6f6">
                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                         <tr>
                             <td style="text-align: center">
-                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="{{asset('images/adminlogo/admin-logo-light.png')}}" height="24" alt="logo"/></a> <br/>
+                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="images/adminlogo/admin-logo-light.png" height="24" alt="logo"/></a> <br/>
                             </td>
                         </tr>
                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
