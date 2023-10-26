@@ -56,4 +56,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransactionLog::class, 'user_id', 'id');
     }
+
+
 }

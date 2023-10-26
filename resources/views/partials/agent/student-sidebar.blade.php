@@ -70,27 +70,30 @@
                             </a>
                         </li>
 
-                        @if(!Auth::user()->approved)
 
-                        <li class="menu-title">Business Registration</li>
+
+                        <li class="menu-title">Submissions</li>
 
                         <li class="menu-item">
-                            <a href="{{ route('agentregistration')}}" class="menu-link">
+                            <a href="{{ route('studentoba')}}" class="menu-link">
                                 <span class="menu-icon"><i class="mdi mdi-book"></i></span>
-                                <span class="menu-text"> Business Information </span>
+                                <span class="menu-text"> Open Book Assessments </span>
                             </a>
                         </li>
 
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('studentvma')}}" class="menu-link">
                                 <span class="menu-icon"><i class="mdi mdi-video"></i></span>
-                                <span class="menu-text"> Owner Details </span>
+                                <span class="menu-text"> Verse Memorisation </span>
                             </a>
                         </li>
 
-                        @endif
-
-
+                        <li class="menu-item">
+                            <a href="{{ route('studentsadhana')}}" class="menu-link">
+                                <span class="menu-icon"><i class="mdi mdi-clipboard-multiple-outline"></i></span>
+                                <span class="menu-text"> Sadhana Sheets </span>
+                            </a>
+                        </li>
 
                         {{-- <li class="menu-item">
                             <a href="#menuEcommerce" data-bs-toggle="collapse" class="menu-link">

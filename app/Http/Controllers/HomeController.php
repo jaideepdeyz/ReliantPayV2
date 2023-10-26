@@ -12,21 +12,21 @@ class HomeController extends Controller
     {
         switch(Auth::User()->role){
             case RoleEnum::ADMIN->value:
-                return view('adminDashboard');
+                return view('admin.adminDashboard');
                 break;
             case RoleEnum::DEALER->value:
                 if(Auth::User()->is_approved == 'Yes')
                 {
-                    return view('dealerDashboard');
+                    return view('dealer.dealerDashboard');
                 } else {
-                    return view('submittedDealerDashboard');
+                    return view('dealer.submittedDealerDashboard');
                 }
                 break;
             case RoleEnum::AGENT->value:
                 if(Auth::User()->is_active == 'Yes')
                 {
-                    return view('agentDashboard');
-                } 
+                    return view('agent.agentDashboard');
+                }
                 break;
             default:
                 return redirect()->route('login');

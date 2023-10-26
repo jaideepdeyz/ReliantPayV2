@@ -1,8 +1,9 @@
-@extends('layouts.auth.auth-base')
+@extends('layouts.dashboard-layout')
 @section('content')
 
-     <!-- Start Content-->
-                    <div class="container-fluid">
+
+
+<div class="container-fluid">
 
                         <!-- start page title -->
                         <div class="row">
@@ -552,7 +553,5 @@
                         <!-- end row -->
 
                     </div> <!-- container -->
-
-                </div> <!-- content -->
 
 @stop

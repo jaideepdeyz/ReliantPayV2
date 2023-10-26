@@ -16,6 +16,7 @@ use App\Livewire\Services\AddPassengerService;
 use App\Livewire\Services\BillingDetailsService;
 use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrganizationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,12 @@ Route::middleware('auth')->group(function () {
 
     // livewire routes
 Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
+
+//added by jaideep
+Route::get('/admin/manageorganizations/', [OrganizationsController::class, 'show'])->name('managedealers');
+
+
+
 Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
 Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
 Route::get('bookSales', BookSales::class)->name('bookSales');

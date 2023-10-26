@@ -1,98 +1,263 @@
  <!-- ========== Menu ========== -->
-            <div class="app-menu">
+ <div class="app-menu">
 
-                <!-- Brand Logo -->
-                <!-- Brand Logo -->
-               <div class="text-center p-3">
-                    <a href="#">
-                        <span >
-                            <img src="{{ asset ('auth/images/adminlogo/admin-logo-light.png') }}" alt="Reliant Pay">
-                        </span>
-                    </a>
-                </div>
-
-                <!-- menu-left -->
-                <div class="scrollbar">
-
-                    <!-- User box -->
-                    <div class="user-box text-center">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
-                        <div class="dropdown">
-                            <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block" data-bs-toggle="dropdown">{{ Auth::user()->name}}</a>
-                            <div class="dropdown-menu user-pro-dropdown">
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fe-user me-1"></i>
-                                    <span>My Account</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fe-settings me-1"></i>
-                                    <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fe-lock me-1"></i>
-                                    <span>Lock Screen</span>
-                                </a>
-
-                                <!-- item-->
-
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="fe-log-out me-1"></i>
-                                    Logout
-                                </a>
-
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                </form>
+     <!-- Brand Logo -->
+     <div class="text-center p-3">
+         <a href="#">
+             <span>
+                 <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="Reliant Pay">
+             </span>
+         </a>
+     </div>
 
 
 
-                            </div>
-                        </div>
-                        <p class="text-muted mb-0">Admin Head</p>
-                    </div>
+     <!-- menu-left -->
+     <div class="scrollbar">
 
-                     </br>
+         <!-- User box -->
+         <div class="user-box text-center">
+
+             <img src="{{ asset('auth/images/users/user-1.jpg') }} alt="user-img" title="Mat Helme"
+                 class="rounded-circle avatar-md">
 
 
-                    <!--- Menu -->
-                    <ul class="menu">
+             <div class="dropdown">
+                 <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block"
+                     data-bs-toggle="dropdown">{{ Auth::user()->name }}</a>
+                 <div class="dropdown-menu user-pro-dropdown">
+
+                     <!-- item-->
+                     <a href="javascript:void(0);" class="dropdown-item notify-item">
+                         <i class="fe-user me-1"></i>
+                         <span>My Account</span>
+                     </a>
+
+                     <!-- item-->
+                     <a href="javascript:void(0);" class="dropdown-item notify-item">
+                         <i class="fe-settings me-1"></i>
+                         <span>Settings</span>
+                     </a>
+
+                     <!-- item-->
+                     <a href="javascript:void(0);" class="dropdown-item notify-item">
+                         <i class="fe-lock me-1"></i>
+                         <span>Lock Screen</span>
+                     </a>
+
+                     <!-- item-->
+
+                     <a href="{{ route('logout') }}"
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         <i class="fe-log-out me-1"></i>
+                         Logout
+                     </a>
+
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                         @csrf
+                     </form>
+
+
+
+                 </div>
+             </div>
+             <p class="text-muted mb-0">Admin Head</p>
+         </div>
+
+
+         </br>
+
+
+         <!--- Menu -->
+         <ul class="menu">
+
+             <li class="menu-item">
+                 <a href="{{ route('dashboard') }}" class="menu-link">
+                     <span class="menu-icon"><i class="mdi mdi-view-dashboard-outline"></i></span>
+                     <span class="menu-text">Dashboard </span>
+                 </a>
+             </li>
+
+             <li class="menu-title">Actions</li>
+
+             <li class="menu-item">
+                 <a href="#menuStudentSubmissions" data-bs-toggle="collapse" class="menu-link">
+                     <span class="menu-icon"><i class="mdi mdi-clipboard-account"></i></span>
+                     <span class="menu-text"> Dealers </span>
+                     <span class="menu-arrow"></span>
+                 </a>
+                 <div class="collapse" id="menuStudentSubmissions">
+                     <ul class="sub-menu">
 
                          <li class="menu-item">
-                            <a href="{{ route('studentdashboard')}}" class="menu-link">
-                                <span class="menu-icon"><i class="mdi mdi-view-dashboard-outline"></i></span>
-                                <span class="menu-text">Dashboard </span>
-                            </a>
-                        </li>
+                             <a href="{{ route('managedealers') }}" class="menu-link">
 
-                        @if(!Auth::user()->approved)
-
-                        <li class="menu-title">Business Registration</li>
-
-                        <li class="menu-item">
-                            <a href="{{ route('agentregistration')}}" class="menu-link">
-                                <span class="menu-icon"><i class="mdi mdi-book"></i></span>
-                                <span class="menu-text"> Business Information </span>
-                            </a>
-                        </li>
-
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <span class="menu-icon"><i class="mdi mdi-video"></i></span>
-                                <span class="menu-text"> Owner Details </span>
-                            </a>
-                        </li>
-
-                        @endif
+                                 <span class="menu-text"> Manage Dealers </span>
+                             </a>
+                         </li>
 
 
 
-                        {{-- <li class="menu-item">
+                     </ul>
+                 </div>
+             </li>
+
+
+             <li class="menu-item">
+                 <a href="#menuAdministration" data-bs-toggle="collapse" class="menu-link">
+                     <span class="menu-icon"><i class="mdi mdi-account-star"></i></span>
+                     <span class="menu-text"> Administration </span>
+                     <span class="menu-arrow"></span>
+                 </a>
+                 <div class="collapse" id="menuAdministration">
+                     <ul class="sub-menu">
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Manage Articles </span>
+                             </a>
+                         </li>
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Manage Events </span>
+                             </a>
+                         </li>
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Manage CBA </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Manage Courses </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Manage Batches </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="manageteachers" class="menu-link">
+
+                                 <span class="menu-text"> Manage Teachers </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="manageexams" class="menu-link">
+
+                                 <span class="menu-text"> Manage Exams </span>
+                             </a>
+                         </li>
+
+
+
+                     </ul>
+                 </div>
+             </li>
+
+
+             <li class="menu-item">
+                 <a href="#menuPayments" data-bs-toggle="collapse" class="menu-link">
+                     <span class="menu-icon"><i class="mdi mdi-account-cash"></i></span>
+                     <span class="menu-text"> Finance </span>
+                     <span class="menu-arrow"></span>
+                 </a>
+                 <div class="collapse" id="menuPayments">
+                     <ul class="sub-menu">
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Online Payments </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Offline Payments </span>
+                             </a>
+                         </li>
+
+                     </ul>
+                 </div>
+             </li>
+
+
+             <li class="menu-item">
+                 <a href="#menuSettings" data-bs-toggle="collapse" class="menu-link">
+                     <span class="menu-icon"><i class="mdi mdi-cog"></i></span>
+                     <span class="menu-text"> Settings </span>
+                     <span class="menu-arrow"></span>
+                 </a>
+                 <div class="collapse" id="menuSettings">
+                     <ul class="sub-menu">
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> OBA Questions </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Countries </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Indian States </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Course Delivery Modes </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Course Languages </span>
+                             </a>
+                         </li>
+
+                         <li class="menu-item">
+                             <a href="#" class="menu-link">
+
+                                 <span class="menu-text"> Course Categories </span>
+                             </a>
+                         </li>
+
+                     </ul>
+                 </div>
+             </li>
+
+
+
+
+
+
+
+
+
+
+             {{-- <li class="menu-item">
                             <a href="#menuEcommerce" data-bs-toggle="collapse" class="menu-link">
                                 <span class="menu-icon"><i class="mdi mdi-cart-outline"></i></span>
                                 <span class="menu-text"> Ecommerce </span>
@@ -154,7 +319,7 @@
                             </div>
                         </li> --}}
 
-                        {{-- <li class="menu-item">
+             {{-- <li class="menu-item">
                             <a href="#menuCrm" data-bs-toggle="collapse" class="menu-link">
                                 <span class="menu-icon"><i class="mdi mdi-account-multiple-outline"></i></span>
                                 <span class="menu-text"> CRM </span>
@@ -1052,8 +1217,8 @@
                             </div>
                         </li>
                     </ul> --}}
-                    <!--- End Menu -->
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <!-- ========== Left menu End ========== -->
+             <!--- End Menu -->
+             <div class="clearfix"></div>
+     </div>
+ </div>
+ <!-- ========== Left menu End ========== -->
