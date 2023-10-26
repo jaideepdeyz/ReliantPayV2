@@ -24,7 +24,8 @@ class MailController extends Controller
             $mailData = [
                 'title' => 'Payment Authorization Mail',
                 'body' => 'This is for testing email using smtp',
-                'file_path' => 'http://localhost:8000/authorizePayment/' . $app->id,
+                'file_path' => 'http://localhost:8000/docusign/' . $app->id,
+                'amount' => $app->payment->amount_charged,
             ];
 
             Mail::to($app->customer_email)->send(new AuthorizationMail($mailData));

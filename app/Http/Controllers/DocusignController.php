@@ -40,7 +40,7 @@ class DocusignController extends Controller
                 $envelopeApi = new \DocuSign\eSign\Api\EnvelopesApi($this->apiClient());
 
                 $tmp_file = $envelopeApi->getDocument($auth_form->account_id, $auth_form->document_id, $auth_form->envelope_id);
-                
+
                 $file_name = rand() . '.pdf';
                 $file_path = storage_path('app/public/authorization/' . $file_name);
                 file_put_contents($file_path, file_get_contents($tmp_file->getPathname()));
@@ -188,7 +188,7 @@ class DocusignController extends Controller
         //         "verify_peer"=>false,
         //         "verify_peer_name"=>false,
         //     ),
-        // );  
+        // );
         // set_time_limit(0);
         // $content_bytes = file_get_contents($demo_docs_path,false, stream_context_create($arrContextOptions));
         $pdf = Pdf::loadView('pdf.sample');
