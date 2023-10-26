@@ -45,7 +45,7 @@ class DocusignController extends Controller
                 'scope' => 'signature',
                 'client_id' => env('DOCUSIGN_CLIENT_ID'),
                 'state' => 'a39fh23hnf23',
-                'redirect_uri' => route('docusign.callback'),
+                'redirect_uri' => route('docusignCallback'),
             ];
             $queryBuild = http_build_query($params);
 
