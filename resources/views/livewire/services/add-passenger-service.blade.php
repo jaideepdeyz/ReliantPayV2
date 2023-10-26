@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" wire:poll.keep-alive>
     <div class="col-md-12">
         <div class="card h-100">
             <div class="card-body">
@@ -97,7 +97,7 @@
 
                 <div class="row">
                     <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                        <button type="button" class="btn w-sm btn-success waves-effect waves-dark" wire:click="previousStep">Back</button>
+                        <button type="button" class="btn w-sm btn-danger waves-effect waves-dark" wire:click="previousStep">Back</button>
                         <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="nextStep">Next</button>
                     </div>
                 </div>

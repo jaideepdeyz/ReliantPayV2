@@ -20,6 +20,7 @@ class FlightBookingService extends Component
     public $destinationCountry;
     public $airports = [];
     public $destinationAirports = [];
+    public $isRoundTrip = 'No';
 
     //flight details
     public $airline_name;
@@ -27,7 +28,7 @@ class FlightBookingService extends Component
     public $departure_location;
     public $departure_date;
     public $destination_location;
-    public $oneway_or_roundtrip;
+    public $tripType;
     public $return_date;
     public $no_days_hotel_car;
     public $comments;
@@ -51,12 +52,24 @@ class FlightBookingService extends Component
             $this->departure_date = $flightBooking->departure_date;
             $this->destination_location = $flightBooking->destination_location;
             $this->destinationCountry = $flightBooking->destination_country;
-            $this->oneway_or_roundtrip = $flightBooking->oneway_or_roundtrip;
+            $this->tripType = $flightBooking->oneway_or_roundtrip;
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
         }
 
+    }
+
+    public function updatedTripType($value)
+    {
+        if($value == 'One Way')
+        {
+            $this->isRoundTrip = 'No';
+        }
+        else
+        {
+            $this->isRoundTrip = 'Yes';
+        }
     }
 
     public function updatedDepartureCountry($value)
@@ -85,7 +98,7 @@ class FlightBookingService extends Component
                     'departure_date' => $this->departure_date,
                     'destination_country' => $this->destinationCountry,
                     'destination_location' => $this->destination_location,
-                    'oneway_or_roundtrip' => $this->oneway_or_roundtrip,
+                    'oneway_or_roundtrip' => $this->tripType,
                     'return_date' => $this->return_date,
                     'no_days_hotel_car' => $this->no_days_hotel_car,
                     'comments' => $this->comments,

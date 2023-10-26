@@ -72,14 +72,14 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="oneway_or_roundtrip" class="form-label">One Way or Round Trip ?</label>
-                                    <select class="form-control @error('oneway_or_roundtrip') is-invalid @enderror"
-                                        wire:model="oneway_or_roundtrip">
+                                    <label for="tripType" class="form-label">One Way or Round Trip ?</label>
+                                    <select class="form-control @error('tripType') is-invalid @enderror"
+                                        wire:model.live="tripType" required>
                                         <option value="">Select Option</option>
                                         <option value="One Way">One Way</option>
                                         <option value="Round Trip">Round Trip</option>
                                     </select>
-                                    @error('oneway_or_roundtrip')
+                                    @error('tripType')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -103,10 +103,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-4">
+                                <div class="mb-3 col-md-4 @if($isRoundTrip=='No') d-none @endif">
                                     <label for="return_date" class="form-label">Return Date</label>
                                     <input type="date" class="form-control @error('return_date') is-invalid @enderror"
-                                        wire:model="return_date">
+                                        wire:model="return_date" @if($isRoundTrip=='Yes') required @endif>
                                     @error('return_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

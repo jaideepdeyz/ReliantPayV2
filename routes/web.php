@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AirlineBookingController;
+use App\Http\Controllers\DocusignController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProfileController;
@@ -32,6 +33,12 @@ use App\Http\Controllers\Admin\OrganizationsController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//docusign routes 
+Route::get('docusign',[DocusignController::class, 'index'])->name('docusign');
+Route::get('connect-docusign',[DocusignController::class, 'connectDocusign'])->name('connect.docusign');
+Route::get('docusign/callback',[DocusignController::class,'callback'])->name('docusignCallback');
+Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
 
 // page routes
 Route::view('about-us', 'pages.about-us')->name('about-us');
