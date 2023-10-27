@@ -77,9 +77,7 @@ class ManageOrganizations extends Component
         $dealers = Organization::search($this->search)
         ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->perPage);
-
         Log::info('Admin dealers Listing Results: ' . json_encode($dealers));
-
         return view('livewire.admin.manage-organizations', [
             'dealers'=>$dealers,
         ])->layout('layouts.dashboard-layout');

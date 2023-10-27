@@ -1,11 +1,13 @@
 <script>
-    window.addEventListener('message', event => {
-        $.toast({
-            heading: 'event.detail[0].heading',
-            text: 'event.detail[0].heading',
-            showHideTransition: 'slide',
-            icon: 'event.detail[0].heading',
-            position: 'top-right'
-        })
+    document.addEventListener('livewire:initialized', () => {
+        @this.on('message', (event) => {
+            $.toast({
+                heading: event.heading,
+                text: event.text,
+                showHideTransition: 'slide',
+                icon: event.heading,
+                position: 'top-right'
+            });
+        });
     });
 </script>

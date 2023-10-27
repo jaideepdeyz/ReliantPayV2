@@ -32,11 +32,10 @@ class AddAgent extends Component
         if($user->is_active == 'Yes')
         {
              $user->update(['is_active' => 'No']);
-            $this->dispatch('message', ['heading' => 'success', 'text' => 'Agent deactivated']);
+            $this->dispatch('message', heading:'success',text:'Agent deactivated')->self();
         }else{
             $user->update(['is_active' => 'Yes']);
-            $this->dispatch('message', ['heading' => 'success', 'text' => 'Agent deactivated']);
-
+            $this->dispatch('message', heading:'success',text:'Agent activated')->self();
         }
     }
 

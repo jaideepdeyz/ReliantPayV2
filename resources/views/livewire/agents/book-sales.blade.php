@@ -1,80 +1,13 @@
 <div class="row mb-5">
-    <div class="col-md-12">
-        <form wire:submit="storeSaleBooking">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">New Booking</h5>
-                            <div class="row">
-                                {{-- <div class="mb-3 col-md-4">
-                                    <span class="badge bg-blue"><h5 class="text-white">Agent : {{$agent_name}}</h5></span>
-                                </div> --}}
-
-                                <div class="mb-3 col-md-3">
-                                    <label for="service_id" class="form-label">Service</label>
-                                    <select class="form-control @error('service_id') is-invalid @enderror"
-                                        wire:model="service_id">
-                                        <option value="">Select Service</option>
-                                        @foreach ($services as $service)
-                                            <option value="{{ $service->id }}">{{ $service->service_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('service_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-3">
-                                    <label for="customer_name" class="form-label">Customer's Name</label>
-                                    <input type="text"
-                                        class="form-control @error('customer_name') is-invalid @enderror"
-                                        wire:model="customer_name">
-                                    @error('customer_name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-3">
-                                    <label for="customer_phone" class="form-label">Customer's Phone</label>
-                                    <input type="text"
-                                        class="form-control @error('customer_phone') is-invalid @enderror"
-                                        wire:model="customer_phone">
-                                    @error('customer_phone')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-3">
-                                    <label for="customer_email" class="form-label">Customer's Email</label>
-                                    <input type="text"
-                                        class="form-control @error('customer_email') is-invalid @enderror"
-                                        wire:model="customer_email">
-                                    @error('customer_email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-4 action-buttons d-flex justify-content-between">
-                                    <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Create
-                                        New Booking</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </form>
-    </div>
-
     <div class="col-md-12 mt-3">
         <div class="card h-100">
+            <div class="card-header">
+                <h5 class="d-inline header-title mb-0">Latest Bookings</h5>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
+                    class="btn btn-primary btn-sm float-right"><i class="fas fa-plus"></i> Create new
+                    Booking</button>
+            </div>
             <div class="card-body">
-                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Latest Bookings</h5>
                 <div class="row mb-3">
                     <div class="form-group col-md-3">
                         <label for="">Search by ID</label>
@@ -135,7 +68,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary"
+                                        <button class="btn btn-sm btn-success"
                                             wire:click="viewBooking({{ $booking->id }})">Proceed</button>
                                         <button type="button" class="btn btn-sm btn-danger"
                                             onclick="confirm('Are you sure you want to delete this booking?') || event.stopImmediatePropagation()"
@@ -146,6 +79,70 @@
                         </tbody>
                     </table>
                     {{ $bookedSales->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newBookingModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
+        wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-title">Create new booking</h4>
+                </div>
+                <div class="modal-body">
+                    <form wire:submit="storeSaleBooking">
+                        <div class="form-group mb-2">
+                            <label for="service_id" class="form-label">Service</label>
+                            <select class="form-control @error('service_id') is-invalid @enderror"
+                                wire:model="service_id">
+                                <option value="">Select Service</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">
+                                        {{ $service->service_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('service_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="customer_name" class="form-label">Customer's Name</label>
+                            <input type="text" class="form-control @error('customer_name') is-invalid @enderror"
+                                wire:model="customer_name">
+                            @error('customer_name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="customer_phone" class="form-label">Customer's
+                                Phone</label>
+                            <input type="text" class="form-control @error('customer_phone') is-invalid @enderror"
+                                wire:model="customer_phone">
+                            @error('customer_phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="customer_email" class="form-label">Customer's
+                                Email</label>
+                            <input type="text" class="form-control @error('customer_email') is-invalid @enderror"
+                                wire:model="customer_email">
+                            @error('customer_email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="my-3">
+                            <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Create
+                                New Booking</button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>

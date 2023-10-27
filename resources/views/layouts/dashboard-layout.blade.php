@@ -24,9 +24,10 @@
     <!-- Icons css -->
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
     @vite(['resources/js/app.js'])
+    <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
+
+
     @livewireStyles
 </head>
 
@@ -317,7 +318,6 @@
         <!-- END wrapper -->
     </div>
 
-    <x-toast-session />
     <!-- Vendor js -->
     <script src="{{ asset('auth/js/vendor.min.js') }}"></script>
 
@@ -328,6 +328,9 @@
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
+    <x-toast-session />
+
     <livewire:modals />
     @livewireScripts
 </body>

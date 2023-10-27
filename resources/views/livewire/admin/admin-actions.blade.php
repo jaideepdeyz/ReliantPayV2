@@ -60,7 +60,7 @@
                     @break
 
                     @case('Yes')
-                        <button class="btn btn-sm btn-warning"data-bs-toggle="modal" data-bs-target="#alertModal"
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#alertModal"
                             wire:click="setAction('deactivate')" wire:click="setAction('deactivate')">De
                             Activate</button>
                     @break

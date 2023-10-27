@@ -7,7 +7,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dealers</a></li>
+                        <li class="breadcrumb-item">Admin Dashboard</li>
                         <li class="breadcrumb-item active">Manage Dealers</li>
                     </ol>
                 </div>
@@ -20,33 +20,35 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    <div class="row mb-2">
-                        <div class="col-sm-4">
-                            Dealers
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="header-title">
+                                Dealers
+                            </h4>
                         </div>
-                        <div class="col-sm-8">
-                            <div class="text-sm-end">
-                                <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#Countries"><i class="mdi mdi-plus-circle me-2"></i> Add
-                                    Dealer </a>
-                            </div>
-                        </div><!-- end col-->
+                        <div class="text-sm-end col-md-8">
+                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#Countries"><i class="mdi mdi-plus-circle me-2"></i> Add
+                                Dealer </a>
+                        </div>
                     </div>
-
+                </div>
+                <div class="card-body pt-0">
                     <div class="row mb-3">
                         <div class="row mt-3 d-flex justify-content-between">
 
                             <div class="col-md-4">
-                                <div class="form-floating">
+                                <div class="form-group">
+                                    <label for="">Search</label>
                                     <input wire:model.live.debounce.300ms="search" class="form-control"
-                                        id="floatingInputGrid" placeholder="search" value="search">
-                                    <label for="floatingInputGrid">Search</label>
+                                        placeholder="search" value="search">
                                 </div>
                             </div>
 
                             <div class="col-md-2">
-                                <div class="form-floating">
+                                <div class="form-group">
+                                    <label for="floatingSelect">Page Size</label>
                                     <select wire:model.live="perPage" class="form-select" id="floatingSelect"
                                         aria-label="Floating label select example">
                                         <option value="10">10 Records</option>
@@ -54,7 +56,6 @@
                                         <option value="50">50 Records</option>
                                         <option value="100">100 Records</option>
                                     </select>
-                                    <label for="floatingSelect">Page Size</label>
                                 </div>
                             </div>
 
