@@ -48,7 +48,7 @@
                     @endif
                 </div>
                 <div class="my-5">
-                    <button class="btn btn-success btn-submit">Submit</button>
+                    <button class="btn btn-success btn-submit">Send to Document to sign</button>
                 </div>
         </form>
         </div>

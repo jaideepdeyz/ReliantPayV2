@@ -19,8 +19,14 @@ use Illuminate\Support\Facades\Log;
 
 class JwtDocuSignController extends Controller
 {
-    public function index()
+    
+    private $signer_client_id = 1000;
+    public function index(Request $request)
     {
+        if($request->has('state')){
+            dd($request->all());
+        }
+        
         return view('docusign.create');
     }
   /**
@@ -64,7 +70,9 @@ class JwtDocuSignController extends Controller
                     'scope' => 'signature impersonation',
                     'redirect_uri' =>route('contract'),
                     'client_id' => env('DS_CLIENT_ID'),
-                    'response_type' => 'code'
+                    'response_type' => 'code',
+                    'state'=> 'a=123',
+
                 ], '', '&', PHP_QUERY_RFC3986);
                 // dd($authorizationUrl);
                return redirect($authorizationUrl);
@@ -98,6 +106,20 @@ class JwtDocuSignController extends Controller
         try {            
             $envelopeApi = new EnvelopesApi($apiClient);
             $result = $envelopeApi->createEnvelope($accountInfo[0]->getAccountId(), $envelopeDefenition);
+            $envelope_id = $result->getEnvelopeId();
+
+            // $authentication_method = 'None';          
+            // $recipient_view_request = new \DocuSign\eSign\Model\RecipientViewRequest([
+            //     'authentication_method' => $authentication_method,
+            //     'client_user_id' =>$this->signer_client_id,
+            //     'recipient_id' => $envelopeDefenition->getCompositeTemplates()[0]->getInlineTemplates()[0]->getRecipients()->getSigners()[0]->getRecipientId(),
+            //     'return_url' => route('contract'),
+            //     'user_name' => $request->name,
+            //     'email' => $request->email
+            // ]);
+
+            // $results = $envelopeApi->createRecipientView(env('DOCUSIGN_ACCOUNT_ID'), $envelope_id, $recipient_view_request);
+            // return redirect()->to($results['url']);
         } catch (\Throwable $th) {
             return back()->withError($th->getMessage())->withInput();
         }      
@@ -139,7 +161,7 @@ class JwtDocuSignController extends Controller
         $signer = new Signer([
             'email' => $recipientEmail,  
             'name' =>  $recipientName,  
-            'recipient_id' => "1",  
+            'recipient_id' => rand(),  
             'tabs' => $tabs1 
             ]);
         $signers = [$signer];
