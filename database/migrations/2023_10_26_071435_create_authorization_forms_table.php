@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('authorization_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('app_id');
+            $table->string('app_id')->nullable();
             $table->string('unsigned_document')->nullable();
             $table->string('signed_document')->nullable();
             $table->string('envelope_id')->nullable();

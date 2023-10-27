@@ -29,7 +29,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 col-md-3">
-                            <label for="gender" class="form-label">Departure Country</label>
+                            <label for="gender" class="form-label">Gender</label>
                             <select class="form-control @error('gender') is-invalid @enderror" wire:model="gender">
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
