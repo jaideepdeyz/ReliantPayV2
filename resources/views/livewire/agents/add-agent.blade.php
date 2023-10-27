@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                <h5>Agents of {{ Auth::User()->organization->business_name }}</h5>
+            <div class="card-header pb-1">
+                <h5 class="d-inline card-header px-0">Agents of {{ Auth::User()->organization->business_name }}</h5>
                 <span class="float-right">
                     <button class="btn btn-sm btn-primary" wire:click="addAgent">Add Agent</button>
                 </span>
             </div>
             <div class="card-body">
-                <h5>Default Password for new agents added is "Agent@123#"</h5>
+                <h5 class="text-danger">Default Password for new agents added is "Agent@123#"</h5>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -39,5 +39,4 @@
             </div>
         </div>
     </div>
-    <x-toast-livewire />
 </div>
