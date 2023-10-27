@@ -15,6 +15,7 @@ use DocuSign\eSign\Model\Tabs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class JwtDocuSignController extends Controller
@@ -103,7 +104,8 @@ class JwtDocuSignController extends Controller
          * 
          */
         $envelopeDefenition = $this->buildEnvelope($request);           
-        try {            
+        try { 
+            DB::beginTransaction();           
             $envelopeApi = new EnvelopesApi($apiClient);
             $result = $envelopeApi->createEnvelope($accountInfo[0]->getAccountId(), $envelopeDefenition);
             $envelope_id = $result->getEnvelopeId();
