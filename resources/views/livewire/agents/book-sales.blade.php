@@ -1,10 +1,10 @@
-<div class="row mb-5">
+<div class="row">
     <div class="col-md-12 mt-3">
         <div class="card h-100">
             <div class="card-header">
                 <h5 class="d-inline header-title mb-0">Latest Bookings</h5>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
-                    class="btn btn-primary btn-sm float-right"><i class="fas fa-plus"></i> Create new
+                    class="btn btn-danger btn-sm float-right"><i class="fas fa-plus"></i> Create new
                     Booking</button>
             </div>
             <div class="card-body">
@@ -68,11 +68,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-success"
+                                        <button class="btn btn-sm btn-primary"
                                             wire:click="viewBooking({{ $booking->id }})">Proceed</button>
-                                        <button type="button" class="btn btn-sm btn-danger"
-                                            onclick="confirm('Are you sure you want to delete this booking?') || event.stopImmediatePropagation()"
-                                            wire:click="deleteSaleBooking({{ $booking->id }})">Delete</button>
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#alertModal"
+                                            wire:click='setId({{ $booking->id }})'>Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,13 +83,13 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="newBookingModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
         wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="header-title">Create new booking</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
@@ -107,7 +107,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group mb-2">
                             <label for="customer_name" class="form-label">Customer's Name</label>
                             <input type="text" class="form-control @error('customer_name') is-invalid @enderror"
@@ -116,7 +115,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group mb-2">
                             <label for="customer_phone" class="form-label">Customer's
                                 Phone</label>
@@ -126,25 +124,37 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group mb-2">
                             <label for="customer_email" class="form-label">Customer's
                                 Email</label>
-                            <input type="text" class="form-control @error('customer_email') is-invalid @enderror"
+                            <input type="email" class="form-control @error('customer_email') is-invalid @enderror"
                                 wire:model="customer_email">
                             @error('customer_email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="my-3">
                             <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Create
                                 New Booking</button>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
+        wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h1>Alert!</h1>
+                    <p>Are you sure you want to delete this booking?</p>
+                    <button class="btn btn-primary text-uppercase" wire:click="deleteSaleBooking()"
+                        data-bs-dismiss="modal">Yes delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

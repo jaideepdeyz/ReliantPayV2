@@ -28,6 +28,7 @@ class BookSales extends Component
     public $status;
     public $remarks;
     public $search;
+    public $selectedID;
 
     public function storeSaleBooking()
     {
@@ -63,6 +64,11 @@ class BookSales extends Component
 
     }
 
+    public function setId($id)
+    {
+        $this->selectedID = $id;
+    }
+
     public function viewBooking($bookingID)
     {
         // dd($bookingID);
@@ -78,10 +84,10 @@ class BookSales extends Component
         }
     }
 
-    public function deleteSaleBooking($appID)
+    public function deleteSaleBooking()
     {
 
-        $this->sale = SaleBooking::find($appID);
+        $this->sale = SaleBooking::find($this->selectedID);
         try {
             DB::beginTransaction();
             $this->sale->flightBooking()->delete();
@@ -94,13 +100,12 @@ class BookSales extends Component
             $this->transactionLog();
 
             DB::commit();
-            return redirect()->back();
-
+            $this->reset('selectedID');
+            $this->dispatch('message', heading:'success',text:'Booking deleted')->to(AgentDashboard::class);
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
         }
-
     }
 
     public function transactionLog()
