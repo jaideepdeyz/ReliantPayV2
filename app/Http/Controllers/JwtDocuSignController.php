@@ -207,7 +207,7 @@ class JwtDocuSignController extends Controller
             );        
             $token = $response[0];
             $accessToken = $token->getAccessToken();
-            Log::info('Access Token: ' . $accessToken);
+            
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
             throw $th;
