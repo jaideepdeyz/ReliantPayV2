@@ -70,7 +70,7 @@ class JwtDocuSignController extends Controller
                 $authorizationUrl = 'https://'.env('DS_AUTH_SERVER') . '/oauth/auth?' . http_build_query([
                     'scope' => 'signature impersonation',
                     'redirect_uri' =>route('contract'),
-                    'client_id' => env('DS_CLIENT_ID'),
+                    'client_id' => env('DOCUSIGN_CLIENT_ID'),
                     'response_type' => 'code',
                     'state'=> 'a=123',
 
@@ -200,7 +200,7 @@ class JwtDocuSignController extends Controller
         try {
             $privateKey = file_get_contents(storage_path(env('DS_KEY_PATH')),true);
             $response = $apiClient->requestJWTUserToken(
-                $ikey = env('DS_CLIENT_ID'),
+                $ikey = env('DOCUSIGN_CLIENT_ID'),
                 $userId = env('DS_IMPERSONATED_USER_ID'),
                 $key = $privateKey,
                 $scope = env('DS_JWT_SCOPE')
