@@ -1,4 +1,17 @@
 <div class="row" wire:poll.keep-alive>
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
+                    <li class="breadcrumb-item">Agent Dashboard</li>
+                    <li class="breadcrumb-item">Flight Booking</li>
+                    <li class="breadcrumb-item active">Add Passenger</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Add Passenger</h4>
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="card h-100">
             <div class="card-body">
@@ -17,8 +30,7 @@
                         </div>
                         <div class="mb-3 col-md-3">
                             <label for="gender" class="form-label">Departure Country</label>
-                            <select class="form-control @error('gender') is-invalid @enderror"
-                                wire:model="gender">
+                            <select class="form-control @error('gender') is-invalid @enderror" wire:model="gender">
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -39,7 +51,8 @@
                         </div>
 
                         <div class="mb-3 col-md-3">
-                            <label for="relationship_to_card_holder" class="form-label">Relationship to Card Holder ?</label>
+                            <label for="relationship_to_card_holder" class="form-label">Relationship to Card Holder
+                                ?</label>
                             <select class="form-control @error('relationship_to_card_holder') is-invalid @enderror"
                                 wire:model="relationship_to_card_holder">
                                 <option value="">Select Option</option>
@@ -58,7 +71,8 @@
                         </div>
 
                         <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                            <button type="submit" class="btn w-sm btn-success waves-effect waves-danger">Add Passenger</button>
+                            <button type="submit" class="btn w-sm btn-success waves-effect waves-danger">Add
+                                Passenger</button>
                         </div>
                     </div>
                 </form>
@@ -79,17 +93,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($passengers as $passenger)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$passenger->full_name}}</td>
-                                <td>{{$passenger->dob}}</td>
-                                <td>{{$passenger->gender}}</td>
-                                <td>{{$passenger->relationship_to_card_holder}}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-danger" wire:click="deletePassenger({{$passenger->id}})">Delete</button>
-                                </td>
-                            </tr>
+                            @foreach ($passengers as $passenger)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $passenger->full_name }}</td>
+                                    <td>{{ $passenger->dob }}</td>
+                                    <td>{{ $passenger->gender }}</td>
+                                    <td>{{ $passenger->relationship_to_card_holder }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger"
+                                            wire:click="deletePassenger({{ $passenger->id }})">Delete</button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -97,8 +112,10 @@
 
                 <div class="row">
                     <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                        <button type="button" class="btn w-sm btn-danger waves-effect waves-dark" wire:click="previousStep">Back</button>
-                        <button type="button" class="btn w-sm btn-success waves-effect waves-light" wire:click="nextStep">Next</button>
+                        <button type="button" class="btn w-sm btn-danger waves-effect waves-dark"
+                            wire:click="previousStep">Back</button>
+                        <button type="button" class="btn w-sm btn-success waves-effect waves-light"
+                            wire:click="nextStep">Next</button>
                     </div>
                 </div>
             </div>

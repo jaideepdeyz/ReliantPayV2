@@ -13,10 +13,10 @@ class AddPassengerService extends Component
 {
     public $appID;
     public $full_name;
-    public $gender = '';
-    public $dob = '';
-    public $relationship_to_card_holder = '';
-    public $passengerID = '';
+    public $gender ;
+    public $dob;
+    public $relationship_to_card_holder;
+    public $passengerID;
 
     public function mount($appID)
     {

@@ -5,8 +5,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dealer</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Dealer Dashboard</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Dealer Dashboard</h4>
