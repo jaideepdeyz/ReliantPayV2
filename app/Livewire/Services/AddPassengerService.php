@@ -12,13 +12,12 @@ use Livewire\Component;
 class AddPassengerService extends Component
 {
     public $appID;
-    public $full_name = '';
+    public $full_name;
     public $gender = '';
     public $dob = '';
     public $relationship_to_card_holder = '';
-    public $passengers = [];
     public $passengerID = '';
-    
+
     public function mount($appID)
     {
         $this->appID = $appID;
@@ -43,8 +42,7 @@ class AddPassengerService extends Component
                 'relationship_to_card_holder' => $this->relationship_to_card_holder,
             ]);
             DB::commit();
-            $this->reset();
-            $this->render();
+            $this->reset(['full_name','gender', 'dob', 'relationship_to_card_holder']);
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
@@ -78,7 +76,9 @@ class AddPassengerService extends Component
     public function render()
     {
         // $this->reset();
-        $this->passengers = Passenger::where('app_id', $this->appID)->get();
-        return view('livewire.services.add-passenger-service')->layout('layouts.dashboard-layout');
+        $passengers = Passenger::where('app_id', $this->appID)->get();
+        return view('livewire.services.add-passenger-service',[
+            'passengers' => $passengers,
+        ])->layout('layouts.dashboard-layout');
     }
 }

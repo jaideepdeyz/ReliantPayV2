@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5>Agents of {{Auth::User()->organization->business_name}}</h5>
+                <h5>Agents of {{ Auth::User()->organization->business_name }}</h5>
                 <span class="float-right">
                     <button class="btn btn-sm btn-primary" wire:click="addAgent">Add Agent</button>
                 </span>
@@ -20,17 +20,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($agents as $agent)
-                            <tr>
-                                <td>{{$agent->name}}</td>
-                                <td>{{$agent->email}}</td>
-                                <td>{{$agent->is_active}}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                    <button class="btn btn-sm btn-secondary">Deactivate</button>
-                                </td>
-                            </tr>
+                            @foreach ($agents as $agent)
+                                <tr>
+                                    <td>{{ $agent->name }}</td>
+                                    <td>{{ $agent->email }}</td>
+                                    <td>{{ $agent->is_active }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">Edit</button>
+                                        <button
+                                            class="btn btn-sm {{ $agent->is_active == 'Yes' ? 'btn-danger' : 'btn-info' }}"
+                                            wire:click='activateDeactivate({{ $agent->id }})'>{{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}</button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -38,4 +39,5 @@
             </div>
         </div>
     </div>
+    <x-toast-livewire />
 </div>

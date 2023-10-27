@@ -10,6 +10,7 @@ use App\Livewire\AdminActions;
 use App\Livewire\Agents\AddAgent;
 use App\Livewire\Agents\BookSales;
 use App\Livewire\Agents\SalesByStatus;
+use App\Livewire\Dealer\DealerDashboard;
 use App\Livewire\Dealer\DealersByActivityStatus;
 use App\Livewire\Dealer\DealersByStatus;
 use App\Livewire\Dealer\DealerShow;
@@ -66,15 +67,15 @@ Route::middleware('auth')->group(function () {
     // dealer routes
     Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
     Route::get('dealers/show/{orgID}', DealerShow::class)->name('dealers.show');
+    Route::get('dealerDashboard', DealerDashboard::class)->name('dealerDashboard');
 
-    //Organization Routes
+    //admin Routes
     Route::get('/admin/manageorganizations', ManageOrganizations::class)->name('manageorganizations');
     // Agents Routes
     Route::get('agentDashboard',AgentDashboard::class)->name('agentDashboard');
 
 
     Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');
-    Route::get('agentsIndex', AddAgent::class)->name('agentsIndex');
     Route::get('bookSales', BookSales::class)->name('bookSales');
     Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
     Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');

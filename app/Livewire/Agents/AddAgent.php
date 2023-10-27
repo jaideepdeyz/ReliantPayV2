@@ -23,9 +23,21 @@ class AddAgent extends Component
 
     public function addAgent()
     {
-
-
         $this->dispatch('showModal', ['alias' => 'modals.add-user-modal', 'params' => ['orgID' => auth()->user()->organization_id]]);
+    }
+
+    public function activateDeactivate($id)
+    {
+        $user = User::find($id);
+        if($user->is_active == 'Yes')
+        {
+             $user->update(['is_active' => 'No']);
+            $this->dispatch('message', ['heading' => 'success', 'text' => 'Agent deactivated']);
+        }else{
+            $user->update(['is_active' => 'Yes']);
+            $this->dispatch('message', ['heading' => 'success', 'text' => 'Agent deactivated']);
+
+        }
     }
 
     public function render()

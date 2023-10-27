@@ -25,7 +25,7 @@
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
-
+    <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
     @vite(['resources/js/app.js'])
     @livewireStyles
 </head>

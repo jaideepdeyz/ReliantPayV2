@@ -95,10 +95,13 @@ class AdminActions extends Component
             DB::beginTransaction();
             $this->status = StatusEnum::INACTIVE;
             $this->remarks = 'Deactivated by Admin';
-            $user = User::find($this->org->user_id);
-            $user->update([
-                'is_active' => 'No',
-            ]);
+            $users = User::where('organization_id', $this->org->id)->get();
+            foreach($users as $user)
+            {
+                $user->update([
+                    'is_active' => 'No',
+                ]);
+            }
             $this->transactionLog();
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts deactivated']);
@@ -116,10 +119,13 @@ class AdminActions extends Component
             DB::beginTransaction();
             $this->status = StatusEnum::ACTIVE;
             $this->remarks = 'Activated by Admin';
-            $user = User::find($this->org->user_id);
-            $user->update([
-                'is_active' => 'Yes',
-            ]);
+            $users = User::where('organization_id', $this->org->id)->get();
+            foreach($users as $user)
+            {
+                $user->update([
+                    'is_active' => 'Yes',
+                ]);
+            }
             $this->transactionLog();
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts activated']);
@@ -128,8 +134,8 @@ class AdminActions extends Component
             DB::rollback();
             dd($e);
         }
-
     }
+
     public function transactionLog()
     {
             TransactionLog::create([

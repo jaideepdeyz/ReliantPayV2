@@ -176,11 +176,12 @@
 
                                                                 <!-- item-->
 
-                                                                <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                    data-bs-target="#deleteCountries"
-                                                                    wire:click="deleteCountriescomp({{ $d->id }})"
+                                                                <a href="javascript:void(0);"
+                                                                    wire:click="activateDeactivate({{ $d->id }})"
                                                                     class="btn">
-                                                                    <i class="fas fa-trash text-danger"></i> Delete
+                                                                    <i class="fas fa-trash text-danger"></i>
+                                                                    {{ $d->user->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}
+
                                                                 </a>
                                                             </div>
                                                         </div>
