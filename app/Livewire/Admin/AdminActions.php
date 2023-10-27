@@ -8,6 +8,7 @@ use App\Models\OrganizationServiceMap;
 use App\Models\RegistrationUpload;
 use App\Models\TransactionLog;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -54,6 +55,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
+            session()->flash('message', ['heading' => 'success', 'text' => 'Organization Approved']);
             return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
@@ -79,6 +81,7 @@ class AdminActions extends Component
                 'is_approved' => 'No',
             ]);
             DB::commit();
+            session()->flash('message', ['heading' => 'success', 'text' => 'Organization rejected']);
             return redirect()->route('manageorganizations');
         }catch(\Exception $e){
             DB::rollback();
@@ -98,6 +101,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
+            session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts deactivated']);
             return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
@@ -118,6 +122,7 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
+            session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts activated']);
             return redirect()->route('manageorganizations');
         } catch (\Exception $e) {
             DB::rollback();
