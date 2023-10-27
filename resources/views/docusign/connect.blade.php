@@ -24,6 +24,7 @@
       <div class="card-body">
         <h5 class="card-title">Authorize Card Charge for Booking</h5>
         <p class="card-text">Click the button below to connect your appication with docusign</p>
+        <a href="{{route('docusign.sign')}}" class="btn btn-primary">Click to sign document</a>
         @if ($message = Session::get('success'))
           <a href="{{route('docusign.sign')}}" class="btn btn-primary">Click to sign document</a>
         @else

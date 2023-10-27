@@ -22,6 +22,7 @@ use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\OrganizationsController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\JwtDocuSignController;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Agents\AgentDashboard;
 
@@ -46,6 +47,9 @@ Route::get('startSigning/{appID}',[DocusignController::class, 'startSigning'])->
 Route::get('connect-docusign',[DocusignController::class, 'connectDocusign'])->name('connect.docusign');
 Route::get('docusign/callback',[DocusignController::class,'callback'])->name('docusignCallback');
 Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
+// jwt docusign routes
+Route::get('/contract',[JwtDocuSignController::class,'index'])->name('contract');
+Route::post('/contract',[JwtDocuSignController::class,'send']);
 
 // page routes
 Route::view('about-us', 'pages.about-us')->name('about-us');

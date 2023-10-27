@@ -108,14 +108,18 @@ class DocusignController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         $post = array(
-            'grant_type' => 'authorization_code',
-            'code' => $code,
+            // 'grant_type' => 'authorization_code',
+            // 'code' => $code,
+            'grant_type' => 'client_credentials',
+            'scope' => 'signature',
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
         );
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
         $headers = array();
         $headers[] = 'Cache-Control: no-cache';
-        $headers[] = "authorization: $integrator_and_secret_key";
+        $headers[] = "Authorization: $integrator_and_secret_key";
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -146,7 +150,7 @@ class DocusignController extends Controller
             # Exceptions will be caught by the calling function
 
             $api_client = new \DocuSign\eSign\client\ApiClient($this->config);
-            $envelope_api = new \DocuSign\eSign\Api\EnvelopesApi($api_client);
+            // $envelope_api = new \DocuSign\eSign\Api\EnvelopesApi($api_client);
             $results = $envelope_api->createEnvelope($args['account_id'], $envelope_definition);
             $envelope_id = $results->getEnvelopeId();
 
@@ -158,7 +162,8 @@ class DocusignController extends Controller
                 'client_user_id' => $envelope_args['signer_client_id'],
                 'recipient_id' => '2',
                 'return_url' => $envelope_args['ds_return_url'],
-                'user_name' => 'shaiv', 'email' => 'mozhui.lungdsuo@gmail.com'
+                'user_name' => 'shaiv', 
+                'email' => 'mozhui.lungdsuo@gmail.com'
             ]);
 
             $results = $envelope_api->createRecipientView($args['account_id'], $envelope_id, $recipient_view_request);
@@ -244,11 +249,21 @@ class DocusignController extends Controller
     {
         $this->config = new Configuration();
         $this->config->setHost($this->args['base_path']);
-        $this->config->addDefaultHeader('Authorization', 'Bearer ' . $this->args['ds_access_token']);
-        $this->apiClient = new ApiClient($this->config);
+        // $this->config->addDefaultHeader('Authorization', 'Bearer ' . $this->args['ds_access_token']);
+        $this->config->addDefaultHeader('X-DocuSign-Authentication', $this->getAuthHeader());
+        $apiClient = new ApiClient($this->config);
 
-        return new EnvelopesApi($this->apiClient);
+        return new EnvelopesApi($apiClient);
     }
+    protected function getAuthHeader()
+{
+    Log::info(env('DOCUSIGN_CLIENT_ID'));
+    return json_encode([
+        'Username' => 'yangeruzi@gmail.com',
+        'Password' => 'Yngerlkr1!',
+        'IntegratorKey' => env('DOCUSIGN_CLIENT_ID')
+    ]);
+}
 
     /**
      * Get specific template arguments

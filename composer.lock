@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aeb7463f1565f6a49e33a0234c334eb4",
+    "content-hash": "3fed204508f3877fa5e4fafa4075fe4b",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -439,6 +439,69 @@
                 "source": "https://github.com/docusign/docusign-esign-php-client/tree/v6.17.0"
             },
             "time": "2023-09-05T16:09:45+00:00"
+        },
+        {
+            "name": "docusign/esign-laravel",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/docusign/docusign-esign-php-laravel.git",
+                "reference": "f78410bb1efcb3bb4ed87b1229eac0b7db7a1cb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/docusign/docusign-esign-php-laravel/zipball/f78410bb1efcb3bb4ed87b1229eac0b7db7a1cb2",
+                "reference": "f78410bb1efcb3bb4ed87b1229eac0b7db7a1cb2",
+                "shasum": ""
+            },
+            "require": {
+                "docusign/esign-client": "^6.1.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^6.2 || ^7.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.12",
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "~2.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DocuSign\\eSign\\ESignServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DocuSign\\eSign\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Swagger and contributors",
+                    "homepage": "https://github.com/swagger-api/swagger-codegen"
+                }
+            ],
+            "homepage": "http://swagger.io",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ],
+            "support": {
+                "issues": "https://github.com/docusign/docusign-esign-php-laravel/issues",
+                "source": "https://github.com/docusign/docusign-esign-php-laravel/tree/v1.1.0"
+            },
+            "time": "2023-04-18T16:51:01+00:00"
         },
         {
             "name": "dompdf/dompdf",
