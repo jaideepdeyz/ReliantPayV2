@@ -48,8 +48,8 @@ Route::get('connect-docusign',[DocusignController::class, 'connectDocusign'])->n
 Route::get('docusign/callback',[DocusignController::class,'callback'])->name('docusignCallback');
 Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
 // jwt docusign routes
-Route::get('/contract',[JwtDocuSignController::class,'index'])->name('contract');
-Route::post('/contract',[JwtDocuSignController::class,'send']);
+Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
+
 
 // page routes
 Route::view('about-us', 'pages.about-us')->name('about-us');

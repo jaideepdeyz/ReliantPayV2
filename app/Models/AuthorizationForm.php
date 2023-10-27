@@ -9,4 +9,8 @@ class AuthorizationForm extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function saleBooking()
+    {
+        return $this->hasOne(SaleBooking::class, 'id', 'app_id');
+    }
 }

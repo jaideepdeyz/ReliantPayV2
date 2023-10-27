@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
                 Booking Summary
-                <span class="float-right"> <a href="{{route('sendAuthorizationMail', $bookingDetails->id)}}" class="btn btn-sm btn-primary">Send Authorization Link</a></span>
+                <span class="float-right"> <a href="{{route('authorizebooking', $bookingDetails->id)}}" class="btn btn-sm btn-primary">Send Authorization Link</a></span>
             </h5>
 
             <div class="card">
@@ -153,7 +153,7 @@
                         </table>
                     </div>
 
-                    <a href="{{route('sendAuthorizationMail', $bookingDetails->id)}}" class="btn btn-sm btn-success">Send Authorization Link</a>
+                    <a href="{{route('authorizebooking', $bookingDetails->id)}}"class="btn btn-sm btn-success">Send Authorization Link</a>
                 </div>
             </div>
         </div>
