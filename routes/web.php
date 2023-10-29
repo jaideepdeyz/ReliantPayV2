@@ -54,7 +54,9 @@ Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooki
 Route::get('zoho',[ZohoSignController::class, 'index'])->name('zoho');
 Route::get('zoho/signin',[ZohoSignController::class, 'signin'])->name('zoho.signin');
 Route::get('zoho/callback',[ZohoSignController::class,'callback'])->name('zohoCallback');
-Route::get('sendAuthorizationLetter',[ZohoSignController::class,'sendAuthorizationLetter'])->name('sendAuthorizationLetter');
+Route::get('sendAuthorizationLetter/{id}',[ZohoSignController::class,'sendAuthorizationLetter'])->name('sendAuthorizationLetter');
+// sendForSigning
+Route::get('sendForSigning/{id}',[ZohoSignController::class,'sendForSigning'])->name('sendForSigning');
 
 
 
