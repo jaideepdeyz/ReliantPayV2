@@ -50,13 +50,8 @@ Route::get('docusign/callback',[DocusignController::class,'callback'])->name('do
 Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
 // jwt docusign routes
 Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
-// zoho routes
-Route::get('zoho',[ZohoSignController::class, 'index'])->name('zoho');
-Route::get('zoho/signin',[ZohoSignController::class, 'signin'])->name('zoho.signin');
-Route::get('zoho/callback',[ZohoSignController::class,'callback'])->name('zohoCallback');
-Route::get('sendAuthorizationLetter/{id}',[ZohoSignController::class,'sendAuthorizationLetter'])->name('sendAuthorizationLetter');
-// sendForSigning
-Route::get('sendForSigning/{id}',[ZohoSignController::class,'sendForSigning'])->name('sendForSigning');
+// Zoho routes
+Route::get('authorizeAndSend/{id}',[ZohoSignController::class,'authorizeAndSend'])->name('authorizeAndSend');
 
 
 
