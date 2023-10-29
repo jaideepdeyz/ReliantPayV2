@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\OrganizationsController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
+use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Agents\AgentDashboard;
 
@@ -49,6 +50,11 @@ Route::get('docusign/callback',[DocusignController::class,'callback'])->name('do
 Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
 // jwt docusign routes
 Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
+// zoho routes
+Route::get('zoho',[ZohoSignController::class, 'index'])->name('zoho');
+Route::get('zoho/signin',[ZohoSignController::class, 'signin'])->name('zoho.signin');
+Route::get('zoho/callback',[ZohoSignController::class,'callback'])->name('zohoCallback');
+
 
 
 // page routes

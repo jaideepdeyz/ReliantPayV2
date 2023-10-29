@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fed204508f3877fa5e4fafa4075fe4b",
+    "content-hash": "b10afacf2a4a98a46750210c0002113a",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -6283,6 +6283,55 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zoho-sign/php-sdk",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zoho/zsign-php-sdk.git",
+                "reference": "4dd0fd7db5d5900aef1f3d0ac49d8518687fc434"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zoho/zsign-php-sdk/zipball/4dd0fd7db5d5900aef1f3d0ac49d8518687fc434",
+                "reference": "4dd0fd7db5d5900aef1f3d0ac49d8518687fc434",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "zsign\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Zoho Sign",
+                    "homepage": "http://zoho.com/sign",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Zoho Sign's v1 api wrapper SDK in PHP",
+            "homepage": "https://zoho.com.sign",
+            "keywords": [
+                "Zoho",
+                "Zoho Sign PHP SDK",
+                "Zoho Sign PHP examples",
+                "Zoho Sign SDK",
+                "digital signature",
+                "sign"
+            ],
+            "support": {
+                "docs": "https://www.zoho.com/sign/api/",
+                "email": "support@zohosign.com",
+                "issues": "https://github.com/zoho/zsign-php-sdk/issues",
+                "source": "https://github.com/zoho/zsign-php-sdk/tree/v1.0.3"
+            },
+            "time": "2023-06-21T07:53:32+00:00"
         }
     ],
     "packages-dev": [
