@@ -30,6 +30,7 @@ class ZohoTokenService{
             }
             return auth()->user()->zohoAccessToken->access_token;
         }
+        return redirect()->route('zoho');
     }
   
 }

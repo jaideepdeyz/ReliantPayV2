@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SaleBooking;
 use App\Models\ZohoAccessToken;
+use App\Service\ZohoTokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +12,12 @@ use zsign\OAuth;
 
 class ZohoSignController extends Controller
 {
+    protected $zohoTokenService;
+    public function __construct(ZohoTokenService $zohoTokenService)
+    {
+        $this->zohoTokenService = $zohoTokenService;
+    }
+    
     public function index()
     {
         return view('zoho.signin');
@@ -89,4 +96,27 @@ class ZohoSignController extends Controller
             $token->save();
         }
     }
+    public function sendAuthorizationLetter(){
+        // $saleBooking=SaleBooking::find($id);
+        $token=$this->zohoTokenService->checkTokenValidityAndReturnAccessToken();
+        $url=env('ZOHO_SIGN_BASE_URL').'/api/v1/requesttypes';
+        $header=[
+            'Authorization'=>'Zoho-oauthtoken '.$token,
+        ];
+        Log::info($header);
+        // $response=Http::withHeaders($header)->get($url);
+        // $response=json_decode($response->body(),true);
+        $bodydata=[
+            'request_type_name'=>'Authorization Letter',
+            'request_type_description'=>'Authorization Letter',
+           
+        ];
+       $response= Http::withHeaders($header)->get($url);
+       Log::info($response->status());
+        Log::info($response);
+
+
+
+    }
+
 }
