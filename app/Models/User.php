@@ -56,10 +56,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransactionLog::class, 'user_id', 'id');
     }
-    public function zohoAccessToken()
-    {
-        return $this->hasOne(ZohoAccessToken::class, 'user_id', 'id');
-    }
+  
 
 
 }
