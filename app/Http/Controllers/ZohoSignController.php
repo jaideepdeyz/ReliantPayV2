@@ -19,7 +19,7 @@ class ZohoSignController extends Controller
     {
         if(auth()->user()->zohoAccessToken){
             if(auth()->user()->zohoAccessToken->expires_in > time()){
-                $url='https://accounts.zoho.in/oauth/v2/token?';
+                $url=env('ZOHO_BASE_URL').'/oauth/v2/token?';
                 $params=[
                     'refresh_token'=>auth()->user()->zohoAccessToken->refresh_token,
                     'client_id'=>env('ZOHO_CLIENT_ID'),
@@ -36,7 +36,7 @@ class ZohoSignController extends Controller
                 return redirect()->route('zoho');
             }
         }
-        $url = 'https://accounts.zoho.in/oauth/v2/auth?';
+        $url = env('ZOHO_BASE_URL').'/oauth/v2/auth?';
         $params = [
             'scope' => 'ZohoSign.documents.CREATE,ZohoSign.documents.READ,ZohoSign.documents.UPDATE,ZohoSign.documents.DELETE,ZohoSign.documents.all',
             'client_id' => env('ZOHO_CLIENT_ID'),
@@ -53,7 +53,7 @@ class ZohoSignController extends Controller
     {
         if ($request->has('code')) {
             $code = $request->code;
-            $url = 'https://accounts.zoho.in/oauth/v2/token?';
+            $url = env('ZOHO_BASE_URL').'/oauth/v2/token?';
             $params = [
                 'code' => $code,
                 'client_id' => env('ZOHO_CLIENT_ID'),
