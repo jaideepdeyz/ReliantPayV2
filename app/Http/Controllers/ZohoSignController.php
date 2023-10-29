@@ -39,7 +39,7 @@ class ZohoSignController extends Controller
                 ];
                 $url .= http_build_query($params);
                 $response = Http::post($url);
-              
+
                 $response = json_decode($response->body(), true);
                 $access_token = $response['access_token'];
                 $expires_in = $response['expires_in'] + time();
@@ -124,40 +124,7 @@ class ZohoSignController extends Controller
                         "signing_order" => 1,
                         "verify_recipient" => true,
                         "verification_type" => "EMAIL",
-                        "fields" => [
-                            [
-                                "field_id" => "50581000000000177",
-                                "field_type_name" => "Signature",
-                                "field_category" => "image",
-                                "field_label" => "Signature",
-                                "is_mandatory" => true,
-                                "page_no" => 1,
-                              
-                                "field_name" => "Signature",
-                                "y_coord" => 3,
-                              
-                                "abs_width" => 22,
-                                "description_tooltip" => "",
-                                "x_coord" => 42,
-                                "abs_height" => 2
-                            ],
-                            [
-                                'field_id' => '50581000000000185',
-                                'field_type_name' => 'Email',
-                                'field_category' => 'textfield',
-                                'field_label' => 'Email',
-                                'is_mandatory' => true,
-                                'page_no' => 1,
-                                'field_name' => 'Email',
-                                'y_coord' => 30,
-                                
-                                'abs_width' => 22,
-                                'description_tooltip' => '',
-                                'x_coord' => 42,
-                                'abs_height' => 2
-                            ]
-
-                        ],
+                       
 
                     ]
                 ],
@@ -202,7 +169,7 @@ class ZohoSignController extends Controller
             Log::info($http_code);
             $response = json_decode($response, true);
             if (isset($response['code'])) {
-               Log::error($response['message']);
+                Log::error($response['message']);
             }
             Log::info($response);
         }
@@ -211,67 +178,45 @@ class ZohoSignController extends Controller
     {
         $url = env('ZOHO_SIGN_BASE_URL') . '/api/v1/requests/' . $id . '/submit';
         $token = env('ZOHO_DEV_ACCESS_TOKEN');
+       
         $data = [
-            "requests" => [
-                //  "request_name" => "Authorization Letter",
-                "actions" => [
+            'requests' => [
+                'actions' => [
                     [
+                        'verify_recipient' => false,
+                        'action_id' => '50581000000028066',
                         'action_type' => 'SIGN',
-                        "action_id" => '50581000000031056',
-                        "verify_recipient" => false,
-                        "private_notes" => "Please sign the document to authorize the booking",
-                        "signing_order" => 0,
-                        // "fields" => [
-                          
-                        //     [
-                        //         "field_id" => "50581000000000177",
-                        //         "field_type_name" => "Signature",
-                        //         "field_category" => "image",
-                        //         "field_label" => "Signature",
-                        //         "is_mandatory" => true,
-                        //         "page_no" => 1,
-                        //         "document_id" => '50581000000031040',
-                        //         "field_name" => "Signature",
-                        //         "y_coord" => 50,
-                        //         "action_id" => "50581000000031056",
-                        //         "abs_width" => 22,
-                        //         "description_tooltip" => "",
-                        //         "x_coord" => 42,
-                        //         "abs_height" => 2
-                        //     ],
-                        //     [
-                        //         'field_id' => '50581000000000185',
-                        //         'field_type_name' => 'Email',
-                        //         'field_category' => 'textfield',
-                        //         'field_label' => 'Email',
-                        //         'is_mandatory' => true,
-                        //         'page_no' => 1,
-                        //         "text_property"=> [
-                        //             "is_italic"=> false,
-                        //             "is_underline"=> false,
-                        //             "font_color"=> "000000",
-                        //             "font_size"=> 11,
-                        //             "is_read_only"=> false,
-                        //             "is_bold"=> false,
-                        //             "font"=> "Arial"
-                        //         ],
-                        //         'document_id' => '50581000000031056',
-                        //         'field_name' => 'Email',
-                        //         'y_coord' => 90,
-                        //         'action_id' => '50581000000031028',
-                        //         'abs_width' => 22,
-                        //         'description_tooltip' => '',
-                        //         'x_coord' => 42,
-                        //         'abs_height' => 2
-                        //     ]
-                          
-                        // ],
-
+                        'private_notes' => 'Sign the doc',
+                        'signing_order' => 0,
+                        'fields' => [
+                            [
+                                'field_type_name' => 'Email',
+                                'text_property' => [
+                                    'font' => 'Roboto',
+                                    'font_size' => 11,
+                                    'font_color' => '000000',
+                                    'max_field_length' => 100,
+                                    'is_bold' => false,
+                                    'is_italic' => false
+                                ],
+                                'field_category' => 'textfield',
+                                'field_label' => 'Email',
+                                'is_mandatory' => true,
+                                'page_no' => 0,
+                                'document_id' => '50581000000028050',
+                                'field_name' => 'Email',
+                                'y_coord' => 51,
+                                'action_id' => '50581000000028066',
+                                'abs_width' => 16,
+                                'x_coord' => 53,
+                                'abs_height' => 2
+                            ]
+                        ]
                     ]
                 ]
             ]
         ];
-        Log::info(json_encode($data));
+      
         $postData = [
             'data' => json_encode($data)
         ];
