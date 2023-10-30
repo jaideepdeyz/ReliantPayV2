@@ -330,7 +330,14 @@
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
     <x-toast-session />
-
+    <script>
+        function closeModal(id) {
+            console.log(id);
+            let modalsElement = document.getElementById(id);
+            let modal = bootstrap.Modal.getInstance(modalsElement);
+            modal.hide();
+        }
+    </script>
     <livewire:modals />
     @livewireScripts
 </body>

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" x:data=''>
     <div class="col-md-12 mt-3">
         <div class="card h-100">
             <div class="card-header">
@@ -83,8 +83,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="newBookingModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
-        wire:ignore.self>
+    <div class="modal" id="newBookingModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
+        wire:ignore.self x-on:close-modal.window='closeModal("newBookingModal")'>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,15 +142,14 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
         wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <h1>Alert!</h1>
+                    <i class="dripicons-warning h1 text-warning"></i>
                     <p>Are you sure you want to delete this booking?</p>
-                    <button class="btn btn-primary text-uppercase" wire:click="deleteSaleBooking()"
+                    <button class="btn btn-warning text-uppercase" wire:click="deleteSaleBooking()"
                         data-bs-dismiss="modal">Yes delete</button>
                 </div>
             </div>

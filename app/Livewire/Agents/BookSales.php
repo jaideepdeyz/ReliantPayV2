@@ -56,6 +56,9 @@ class BookSales extends Component
 
             //creating entry in Flight, Passengers and Payments table
             DB::commit();
+            $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email']);
+            $this->dispatch('close-modal');
+            $this->dispatch('message', heading:'success',text:'Booking Created')->to(AgentDashboard::class);
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
