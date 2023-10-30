@@ -152,7 +152,7 @@ class ZohoSignController extends Controller
                     $completed_request_id = $data_json["requests"]["request_id"];
                     // $directory = "zoho-sign/$completed_request_id";
                     // Storage::makeDirectory($directory);
-                    $path = "app/public/Signed/".$completed_request_id.".pdf";
+                    $path = "app/public/Signed/";
                     ZohoSign::setDownloadPath(storage_path($path));
 
                     ZohoSign::downloadRequest($completed_request_id);
