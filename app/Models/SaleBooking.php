@@ -37,4 +37,9 @@ class SaleBooking extends Model
         return $this->hasMany(Passenger::class, 'app_id', 'id');
     }
 
+    public function authorizationForm()
+    {
+        return $this->hasOne(AuthorizationForm::class, 'app_id', 'id');
+    }
+
 }

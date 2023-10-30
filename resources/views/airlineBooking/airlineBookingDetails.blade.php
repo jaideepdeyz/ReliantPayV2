@@ -108,6 +108,13 @@
             </div>
         </div>
 
+        @if($bookingDetails->authorizationForm)
+        <div class="col-md-12">
+            <a href="{{Storage::Url($bookingDetails->authorizationForm->signed_document)}}" target="_blank">Signed Authorization Form</a>
+            <a href="{{Storage::Url($bookingDetails->authorizationForm->completion_certificate)}}" target="_blank">Completion Certificate</a>
+        </div>
+        @endif
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
