@@ -158,10 +158,14 @@ class ZohoSignController extends Controller
                     ZohoSign::downloadRequest($completed_request_id);
                     ZohoSign::downloadCompletionCertificate($completed_request_id);
                     $authForm = AuthorizationForm::where('request_id', $completed_request_id)->first();
-                    $authForm->update([
-                        'signed_document' => $path,
-                    ]);
+                    ZohoSign::getRequest($completed_request_id);
+
                     $saleBooking = SaleBooking::find($authForm->app_id);
+
+                    $authForm->update([
+                        'signed_document' => $path.'Authorization Letter for ' . $saleBooking->customer_name,
+                        'completion_certificate' => $path.'completion certificate-Authorization Letter for ' . $saleBooking->customer_name,
+                    ]);
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,
                     ]);

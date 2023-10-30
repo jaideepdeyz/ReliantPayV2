@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('app_id')->nullable();
             $table->string('unsigned_document')->nullable();
             $table->string('signed_document')->nullable();
+            $table->string('completion_certificate')->nullable();
             $table->string('envelope_id')->nullable();
             $table->string('account_id')->nullable();
             $table->string('document_id')->nullable();
