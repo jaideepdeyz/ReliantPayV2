@@ -52,7 +52,7 @@ Route::get('sign-document',[DocusignController::class,'signDocument'])->name('do
 Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
 // Zoho routes
 Route::get('authorizeAndSend/{id}',[ZohoSignController::class,'authorizeAndSend'])->name('authorizeAndSend');
-
+Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');
 
 
 // page routes

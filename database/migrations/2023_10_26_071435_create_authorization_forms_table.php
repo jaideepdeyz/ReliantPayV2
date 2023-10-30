@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('envelope_id')->nullable();
             $table->string('account_id')->nullable();
             $table->string('document_id')->nullable();
+            $table->string('request_id')->nullable();
             $table->longText('ds_access_token')->nullable();
             $table->timestamps();
         });

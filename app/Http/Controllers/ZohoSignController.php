@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusEnum;
+use App\Models\AuthorizationForm;
 use App\Models\SaleBooking;
 use App\Models\ZohoAccessToken;
 use App\Service\ZohoTokenService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use CURLFile;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -36,12 +39,12 @@ class ZohoSignController extends Controller
              * TODO : check if the document is already sent to customer
              * if yes then redirect back with error message
              * or give option to resend the document
-             * 
-             * 
+             *
+             *
              */
 
 
-             
+
             $user = new OAuth([
                 OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
                 OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
@@ -64,7 +67,7 @@ class ZohoSignController extends Controller
             $reqObject->addAction($partner);
             $reqObject->setExpirationDays(1);
             $pdf = Pdf::loadView('pdf.sample');
-            $path = storage_path('app/public/1.pdf');
+            $path = storage_path('app/public/Unsigned/'.$saleBooking->id.'.pdf');
             $pdf->save($path);
             $files = [
                 new CURLFile($path)
@@ -90,21 +93,96 @@ class ZohoSignController extends Controller
             $sfs_resp    = ZohoSign::submitForSignature($draftJSON);
             Log::info($sfs_resp->getRequestId());
             Log::info($sfs_resp->getRequestStatus());
-            /**
-             * TODO : save request id and request status in sale booking table or somewhere else
-             * maybe in a new table.
-             * 
-             *  
-             */
-            
-            return redirect()->back()->with('success', 'Document sent successfully');
+
+            $authForm = AuthorizationForm::create([
+                'app_id' => $saleBooking->id,
+                'unsigned_document' => $path,
+                'request_id' => $sfs_resp->getRequestId(),
+                'document_id' => $draftJSON->getDocumentIds()[0]->getDocumentId(),
+            ]);
+
+            $saleBooking->update([
+                'app_status' => StatusEnum::PENDING->value,
+            ]);
+
+            return redirect()->route('dashboard');
         } catch (SignException $e) {
             Log::info($e);
             return redirect()->back()->with('error', $e);
-        
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function zohoWebhook(Request $request)
+    {
+        try{
+
+            /*********
+                STEP 1 : Set user credentials
+            **********/
+
+            $user = new OAuth([
+                OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
+                OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
+                OAuth::DC => 'in',
+                // OAuth::ACCESS_TOKEN => env('ZOHO_DEV_ACCESS_TOKEN'),
+                OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
+            ]);
+
+            ZohoSign::setCurrentUser( $user );
+
+            /*********
+            STEP 2 : Download document
+            **********/
+
+            $postBody = file_get_contents("php://input");
+            if( $postBody == "" ){
+                throw new Exception('post contents are empty ');
+            }
+            $data_json = json_decode( $postBody, true );
+
+            if( isset( $data_json["notifications"] ) ){
+                if( $data_json["notifications"]["operation_type"]=="RequestCompleted" ){
+
+                    $completed_request_id = $data_json["requests"]["request_id"];
+
+                    $completed_request_id = $data_json["requests"]["request_id"];
+                    // $directory = "zoho-sign/$completed_request_id";
+                    // Storage::makeDirectory($directory);
+                    $path = "app/public/Signed/".$completed_request_id.".pdf";
+                    ZohoSign::setDownloadPath(storage_path($path));
+
+                    ZohoSign::downloadRequest($completed_request_id);
+                    ZohoSign::downloadCompletionCertificate($completed_request_id);
+                    $authForm = AuthorizationForm::where('request_id', $completed_request_id)->first();
+                    $authForm->update([
+                        'signed_document' => $path,
+                    ]);
+                    $saleBooking = SaleBooking::find($authForm->app_id);
+                    $saleBooking->update([
+                        'app_status' => StatusEnum::AUTHORIZED->value,
+                    ]);
+
+                }else{
+                    // webhook for someother action
+                    throw new Exception("Error Processing Request - 2", 2);
+                }
+            }else{
+                // wrong json,  not of webooks
+                throw new Exception("Error Processing Request - 1 : $postBody", 1);
+
+            }
+
+
+        }catch( SignException $signEx ){
+            // log it
+            Log::info($signEx);
+            // echo "SIGN EXCEPTION : ".$signEx;
+        }catch( Exception $ex ){
+            Log::info($ex->getMessage());
         }
     }
 }
