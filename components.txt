@@ -1,0 +1,4 @@
+$this->dispatch('close-modal');
+$this->dispatch('message', heading:'success',text:'Booking Created')->to(AgentDashboard::class);
+
+x-on:close-modal.window='closeModal("newBookingModal")'

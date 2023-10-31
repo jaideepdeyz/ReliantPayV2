@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mt-4">
     <div class="col-md-12">
         <form wire:submit="saveBillingDetails">
             <div class="col-md-12">
@@ -71,7 +71,8 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="cc_expiration_date" class="form-label">Card Expiry Date</label>
-                                <input type="text" class="form-control @error('cc_expiration_date') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control @error('cc_expiration_date') is-invalid @enderror"
                                     wire:model="cc_expiration_date">
                                 @error('cc_expiration_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -82,8 +83,7 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="cc_cvc" class="form-label">CVV:</label>
-                                <input class="form-control @error('cc_cvc') is-invalid @enderror"
-                                    wire:model="cc_cvc">
+                                <input class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc">
                                 @error('cc_cvc')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -109,21 +109,19 @@
 
                             <div class="mb-3 col-md-6">
                                 <label for="primary_passenger_id_doc" class="form-label">Primary Passenger ID</label>
-                                <input type="file" id="primary_passenger_id_doc"
-                                    name="primary_passenger_id_doc" class="form-control"
-                                    wire:model="primary_passenger_id_doc">
+                                <input type="file" id="primary_passenger_id_doc" name="primary_passenger_id_doc"
+                                    class="form-control" wire:model="primary_passenger_id_doc">
                                 <span class="text-danger"> @error('primary_passenger_id_doc')
                                         {{ $message }}
                                     @enderror </span>
                             </div>
 
                             <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                                <button type="button" class="btn w-sm btn-danger waves-effect waves-light" wire:click="previousStep">Back</button>
-                                <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Next</button>
+                                <button type="button" class="btn w-sm btn-danger waves-effect waves-light"
+                                    wire:click="previousStep">Back</button>
+                                <button type="submit"
+                                    class="btn w-sm btn-success waves-effect waves-light">Next</button>
                             </div>
-
-                        </div>
-
                         </div>
                     </div>
                 </div>

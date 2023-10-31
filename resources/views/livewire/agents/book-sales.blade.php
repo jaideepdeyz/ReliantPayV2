@@ -68,11 +68,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary"
+                                        <button class="btn btn-sm btn-primary mb-1 "
                                             wire:click="viewBooking({{ $booking->id }})">Proceed</button>
                                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#alertModal"
-                                            wire:click='setId({{ $booking->id }})'>Delete</button>
+                                            wire:click='selectId({{ $booking->id }})'>Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -155,5 +155,5 @@
             </div>
         </div>
     </div>
-
+    <x-toast-livewire />
 </div>

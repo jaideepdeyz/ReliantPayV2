@@ -1,4 +1,4 @@
-<div class="row" wire:poll.keep-alive>
+<div class="row mb-4" wire:poll.keep-alive>
     <div class="col-12">
         <div class="page-title-box">
             <div class="page-title-right">
@@ -101,8 +101,9 @@
                                     <td>{{ $passenger->gender }}</td>
                                     <td>{{ $passenger->relationship_to_card_holder }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-danger"
-                                            wire:click="deletePassenger({{ $passenger->id }})">Delete</button>
+                                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#alertModal"
+                                            wire:click='selectId({{ $passenger->id }})'>Remove</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -121,4 +122,18 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
+        wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <i class="dripicons-warning h1 text-warning"></i>
+                    <p>Are you sure you want to remove this passenger?</p>
+                    <button class="btn btn-warning text-uppercase" wire:click="deletePassenger()"
+                        data-bs-dismiss="modal" type="button">Yes remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <x-toast-livewire />
 </div>

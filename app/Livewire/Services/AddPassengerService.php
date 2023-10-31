@@ -42,6 +42,7 @@ class AddPassengerService extends Component
                 'relationship_to_card_holder' => $this->relationship_to_card_holder,
             ]);
             DB::commit();
+            $this->dispatch('message', heading:'success',text:'Passenger added');
             $this->reset(['full_name','gender', 'dob', 'relationship_to_card_holder']);
         } catch (\Exception $e) {
             DB::rollback();
@@ -49,13 +50,13 @@ class AddPassengerService extends Component
         }
     }
 
-    public function deletePassenger($passengerID)
+    public function deletePassenger()
     {
         try {
             DB::beginTransaction();
-            $this->passengerID = $passengerID;
             Passenger::find($this->passengerID)->delete();
             DB::commit();
+            $this->dispatch('message', heading:'success',text:'Passenger removed');
             $this->reset('passengerID');
         } catch (\Exception $e) {
             DB::rollback();
@@ -63,8 +64,18 @@ class AddPassengerService extends Component
         }
     }
 
+    public function selectId($id)
+    {
+        $this->passengerID = $id;
+    }
+
     public function nextStep()
     {
+        $passengerCheck = Passenger::where('app_id', $this->appID)->get();
+        if($passengerCheck->count() < 1){
+            $this->dispatch('message', heading:'error',text:'Please add atleast one passenger');
+            return;
+        }
         return redirect()->route('billingDetails', ['appID' => $this->appID]);
     }
 
@@ -75,7 +86,6 @@ class AddPassengerService extends Component
 
     public function render()
     {
-        // $this->reset();
         $passengers = Passenger::where('app_id', $this->appID)->get();
         return view('livewire.services.add-passenger-service',[
             'passengers' => $passengers,

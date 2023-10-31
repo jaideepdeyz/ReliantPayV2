@@ -58,7 +58,7 @@ class BookSales extends Component
             DB::commit();
             $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email']);
             $this->dispatch('close-modal');
-            $this->dispatch('message', heading:'success',text:'Booking Created')->to(AgentDashboard::class);
+            $this->dispatch('message', heading:'success',text:'Booking Created')->self();
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
@@ -67,7 +67,7 @@ class BookSales extends Component
 
     }
 
-    public function setId($id)
+    public function selectId($id)
     {
         $this->selectedID = $id;
     }
@@ -80,10 +80,8 @@ class BookSales extends Component
         {
             case ServiceEnum::FLIGHTS->value:
                 return redirect()->route('flightBooking', ['appID' => $bookingID]);
-                break;
             default:
-                    return redirect()->back();
-                    break;
+                return redirect()->back();
         }
     }
 
