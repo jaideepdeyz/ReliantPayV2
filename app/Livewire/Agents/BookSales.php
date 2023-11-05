@@ -130,10 +130,12 @@ class BookSales extends Component
         $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)
         ->when($this->search, function($query){
             $query->where('id', 'like', '%'.$this->search.'%');
-        })->orWhere('customer_name', 'like', '%'.$this->search.'%')
+        })
+        // ->where('app_status', '!=', StatusEnum::AUTHORIZED->value)
+        ->orWhere('customer_name', 'like', '%'.$this->search.'%')
         ->orWhere('customer_email', 'like', '%'.$this->search.'%')
         ->orWhere('app_status', 'like', '%'.$this->search.'%')
         ->orderBy('created_at', 'DESC')->paginate(10);
-        return view('livewire.agents.book-sales', compact('services', 'bookedSales'));
+        return view('livewire.agents.book-sales', compact('services', 'bookedSales'))->layout('layouts.dashboard-layout');
     }
 }

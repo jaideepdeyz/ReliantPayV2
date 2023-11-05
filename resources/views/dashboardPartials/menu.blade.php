@@ -9,6 +9,34 @@
             <span class="menu-text"> Dashboard </span>
         </a>
     </li>
+    @if(Auth::User()->role == RoleEnum::AGENT->value)
+    <li class="menu-item">
+        <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link">
+            <span class="menu-icon"><i class="fas fa-user"></i></span>
+            <span class="menu-text"> Book Sale </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="menuIcons">
+            <ul class="sub-menu">
+                <li class="menu-item">
+                    <a href="{{route('agentsIndex')}}" class="menu-link">
+                        <span class="menu-text">New Sale </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <span class="menu-text">All Bookings </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <span class="menu-text">Authorized Bookings </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    @endif
     @if(Auth::User()->is_approved == 'Yes')
         @if(Auth::User()->role == RoleEnum::DEALER->value)
         <li class="menu-item">

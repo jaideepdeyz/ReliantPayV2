@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
     //admin Routes
     Route::get('/admin/manageorganizations', ManageOrganizations::class)->name('manageorganizations');
     // Agents Routes
-    Route::get('agentDashboard',AgentDashboard::class)->name('agentDashboard');
+    Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');
 
 
     Route::get('dealersByActivityStatus/{status}', DealersByActivityStatus::class)->name('dealersByActivityStatus');

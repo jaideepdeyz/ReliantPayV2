@@ -53,11 +53,11 @@
                             <span class="menu-text">Dashboard </span>
                         </a>
                     </li>
-                    @if (Auth::user()->role == 'Admin')
+                    @if (Auth::user()->role == RoleEnum::ADMIN->value)
                         <x-admin-menu />
-                    @elseif (Auth::user()->role == 'Dealer')
+                    @elseif (Auth::user()->role == RoleEnum::DEALER->value)
                         <x-dealer-menu />
-                    @elseif (Auth::user()->role == 'Agent')
+                    @elseif (Auth::user()->role == RoleEnum::AGENT->value)
                         <x-agent-menu />
                     @endif
                 </ul>
@@ -321,6 +321,16 @@
     <!-- Vendor js -->
     <script src="{{ asset('auth/js/vendor.min.js') }}"></script>
 
+    <!-- App js -->
+    <script src="{{asset('auth/js/app.min.js') }}"></script>
+
+    <!-- Plugins js-->
+    <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js')}}"></script>
+    <script src="{{ asset('auth/libs/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+
+    <!-- Dashboar 1 init js-->
+    <script src="{{asset('auth/js/pages/dashboard-1.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('auth/js/app.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>

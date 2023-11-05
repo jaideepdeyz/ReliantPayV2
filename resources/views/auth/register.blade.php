@@ -8,7 +8,7 @@
                         <!-- Logo -->
                         <div class="auth-brand text-center text-lg-start">
                             <div class="auth-brand">
-                                <a href="index.html" class="logo logo-dark text-center">
+                                <a href="{{url('/')}}" class="logo logo-dark text-center">
                                     <span class="logo-lg">
                                         <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
                                             alt="">

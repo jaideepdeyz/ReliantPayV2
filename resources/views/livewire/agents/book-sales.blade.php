@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h5 class="d-inline header-title mb-0">Latest Bookings</h5>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
-                    class="btn btn-danger btn-sm float-right"><i class="fas fa-plus"></i> Create new
+                    class="btn btn-blue btn-sm float-right"><i class="fas fa-plus"></i> Create new
                     Booking</button>
             </div>
             <div class="card-body">
@@ -68,7 +68,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary mb-1 "
+                                        <button class="btn btn-sm btn-primary"
                                             wire:click="viewBooking({{ $booking->id }})">Proceed</button>
                                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#alertModal"
