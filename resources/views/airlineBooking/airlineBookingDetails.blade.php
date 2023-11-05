@@ -156,7 +156,7 @@
                     </div>
 
                     @if(!$bookingDetails->authorizationForm)
-                    <a href="{{route('authorizeAndSend', $bookingDetails->id)}}"class="btn btn-sm btn-success">Send Authorization Link</a>
+                    <a href="{{route('authorizeAndSend', $bookingDetails->id)}}"class="btn btn-sm btn-success text-dark">Send Authorization Link</a>
                     @endif
                 </div>
             </div>

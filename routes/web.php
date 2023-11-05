@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
     Route::get('dealers/show/{orgID}', DealerShow::class)->name('dealers.show');
     Route::get('dealerDashboard', DealerDashboard::class)->name('dealerDashboard');
+    Route::get('addAgent', AddAgent::class)->name('addAgent');
 
     //admin Routes
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');

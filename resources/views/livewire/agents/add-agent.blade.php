@@ -1,4 +1,17 @@
 <div class="row">
+    <!-- start page title -->
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
+                    <li class="breadcrumb-item active">Dealer Dashboard</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Dealer Dashboard</h4>
+        </div>
+    </div>
+    <!-- end page title -->
     <div class="col-md-12">
         <div class="card">
             <div class="card-header pb-1">

@@ -63,7 +63,7 @@
                             <div class="mb-3 col-md-4">
                                 <label for="cc_number" class="form-label">Credit Card Number</label>
                                 <input type="text" class="form-control @error('cc_number') is-invalid @enderror"
-                                    wire:model="cc_number">
+                                    wire:model="cc_number" minlength="16" maxlength="16">
                                 @error('cc_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
