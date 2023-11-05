@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RoleEnum;
+use App\Enums\StatusEnum;
+use App\Models\SaleBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +14,9 @@ class HomeController extends Controller
     {
         switch(Auth::User()->role){
             case RoleEnum::ADMIN->value:
-                return view('admin.adminDashboard');
+                $authorizations = SaleBooking::where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();
+                $bookings = SaleBooking::where('app_status', '!=', StatusEnum::DRAFT->value)->latest()->take(5)->get();
+                return view('admin.adminDashboard', compact('authorizations', 'bookings'));
                 break;
             case RoleEnum::DEALER->value:
                     return redirect()->route('dealerDashboard');

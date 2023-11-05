@@ -167,7 +167,7 @@
         </div>
     </section>
     <!--Services section-->
-    <section class="service-section">
+    <section class="service-section" id="servicesSection">
         <div class="container">
             <div class="row position-relative justify-content-center">
                 <div class="service-content">
@@ -272,7 +272,7 @@
         </div>
     </section>
     <!-- manage -->
-    <section class="manage-section" style="background:#f2f2f2">
+    <section class="manage-section" style="background:#f2f2f2" id="benefitSection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">

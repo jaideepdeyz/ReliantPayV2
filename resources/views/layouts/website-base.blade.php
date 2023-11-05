@@ -101,7 +101,7 @@
                             <a class="nav-link" href="{{route('about-us')}}">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="{{url('/#servicesSection')}}" class="scroll-to">Services</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('contact-us')}}">Contact Us</a>
@@ -167,17 +167,17 @@
                             <h4 class="heading">Important Link</h4>
                             <hr class="line">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="./index.html" class=" text-size-16 text text-decoration-none">Home</a>
+                                <li><a href="{{url('/')}}" class=" text-size-16 text text-decoration-none">Home</a>
                                 </li>
-                                <li><a href="./about.html" class=" text-size-16 text text-decoration-none">About
+                                <li><a href="{{route('about-us')}}" class=" text-size-16 text text-decoration-none">About
                                         Us</a></li>
-                                <li><a href="./service.html"
+                                <li><a href="{{url('/#servicesSection')}}"
                                         class=" text-size-16 text text-decoration-none">Services</a></li>
-                                <li><a href="./contact.html"
+                                <li><a href="{{route('contact-us')}}"
                                         class=" text-size-16 text text-decoration-none">Contact</a></li>
-                                <li><a href="./pricing.html"
+                                <li><a href="#"
                                         class=" text-size-16 text text-decoration-none">Pricing</a></li>
-                                <li><a href="./faq.html" class=" text-size-16 text text-decoration-none">FAQ</a></li>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">FAQ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -186,18 +186,16 @@
                             <h4 class="heading">Support</h4>
                             <hr class="line">
                             <ul class="list-unstyled mb-0">
-                                <li><a href="./contact.html"
+                                <li><a href="{{route('contact-us')}}"
                                         class=" text-size-16 text text-decoration-none">Support</a></li>
-                                <li><a href="./pricing.html" class=" text-size-16 text text-decoration-none">Plan</a>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">Plan</a>
                                 </li>
-                                <li><a href="./service.html"
+                                <li><a href="{{url('/#benefitSection')}}"
                                         class=" text-size-16 text text-decoration-none">Benefits</a></li>
-                                <li><a href="./team.html"
+                                <li><a href="#"
                                         class=" text-size-16 text text-decoration-none">Testimonial</a></li>
-                                <li><a href="./comingsoon.html" class=" text-size-16 text text-decoration-none">Coming
+                                <li><a href="#servicesSection" class=" text-size-16 text text-decoration-none">Coming
                                         Soon</a></li>
-                                <li><a href="./team.html" class=" text-size-16 text text-decoration-none">Members</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
