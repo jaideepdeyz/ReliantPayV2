@@ -333,7 +333,7 @@
     <script src="{{asset('auth/js/pages/dashboard-1.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('auth/js/app.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script> --}}
 
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
