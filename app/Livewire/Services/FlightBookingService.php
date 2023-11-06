@@ -53,6 +53,8 @@ class FlightBookingService extends Component
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
+            $this->updatedDepartureCountry($this->departureCountry);
+            $this->updatedDestinationCountry($this->departureCountry);
         }
 
     }

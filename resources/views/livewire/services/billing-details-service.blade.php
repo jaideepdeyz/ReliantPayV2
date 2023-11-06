@@ -1,4 +1,17 @@
 <div class="row mt-4">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
+                    <li class="breadcrumb-item">Agent Dashboard</li>
+                    <li class="breadcrumb-item">Flight Booking</li>
+                    <li class="breadcrumb-item active">Billing Details</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Billing Details</h4>
+        </div>
+    </div>
     <div class="col-md-12">
         <form wire:submit="saveBillingDetails">
             <div class="col-md-12">
