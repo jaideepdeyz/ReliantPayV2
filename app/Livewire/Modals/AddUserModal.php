@@ -3,6 +3,7 @@
 namespace App\Livewire\Modals;
 
 use App\Enums\RoleEnum;
+use App\Livewire\Agents\AddAgent;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,7 @@ class AddUserModal extends Component
             DB::commit();
             $this->dispatch('hideModal');
             $this->dispatch('updatedAgent');
+            $this->dispatch('message', heading:'success',text:'Agent added successfully')->to(AddAgent::class);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
