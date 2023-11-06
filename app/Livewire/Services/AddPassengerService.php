@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Session;
 
 class AddPassengerService extends Component
 {
@@ -76,6 +77,7 @@ class AddPassengerService extends Component
             $this->dispatch('message', heading:'error',text:'Please add atleast one passenger');
             return;
         }
+        Session::flash('message', ['heading'=>'success','text'=>'Passenger Details Saved Successfully']);
         return redirect()->route('billingDetails', ['appID' => $this->appID]);
     }
 

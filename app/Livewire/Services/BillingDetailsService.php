@@ -6,6 +6,7 @@ use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Session;
 
 class BillingDetailsService extends Component
 {
@@ -93,6 +94,7 @@ class BillingDetailsService extends Component
             }
 
             DB::commit();
+            Session::flash('message', ['heading'=>'success','text'=>'Billing Details Saved Successfully']);
             return redirect()->route('airlineBooking.show', $this->appID);
         } catch (\Exception $e) {
             DB::rollback();

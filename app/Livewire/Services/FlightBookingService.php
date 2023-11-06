@@ -5,13 +5,10 @@ namespace App\Livewire\Services;
 use App\Models\Airport;
 use App\Models\Country;
 use App\Models\FlightBooking;
-use App\Models\Passenger;
-use App\Models\Payment;
 use App\Models\SaleBooking;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Session;
 
 class FlightBookingService extends Component
 {
@@ -105,6 +102,7 @@ class FlightBookingService extends Component
                 ]
             );
             DB::commit();
+            Session::flash('message', ['heading'=>'success','text'=>'Flight Booking Details Saved Successfully']);
             return redirect()->route('addPassengers', ['appID' => $this->appID]);
         } catch (\Exception $e) {
             DB::rollback();
