@@ -1,76 +1,5 @@
 <x-guest-base>
-    <div class="auth-fluid" x-data="{
-        password: '',
-        confirm_password: '',
-        otp_requested: false,
-        otp_verified: false,
-        resend_otp_count: 0,
-        show_resend_otp: false,
-        resend_otp_timer: null,
-        requestOtp() {
-            var phone_number = document.getElementById('phone_number').value;
-            if (phone_number == '') {
-                alert('Please enter your mobile number');
-                return false;
-            }
-            axios.post('/api/sendOtp', {
-                phone_number: phone_number
-    
-            }).then(response => {
-                if (response.status == 200) {
-                    this.otp_requested = true;
-                    alert(response.data.message);
-                } else {
-                    alert(response.data.message);
-                }
-            }).catch(error => {
-                alert(error.response.data.message);
-            });
-            if (this.resend_otp_count < 1) {
-                this.resendOtpTimer();
-            }
-        },
-        resendOtp() {
-            if (this.resend_otp_count < 1) {
-                this.resend_otp_count++;
-                this.requestOtp();
-            } else {
-                alert('You can resend OTP only once');
-            }
-        },
-        verifyOtp() {
-            var phone_number = document.getElementById('phone_number').value;
-            var otp = document.getElementById('otp').value;
-            if (otp == '') {
-                alert('Please enter your otp');
-                return false;
-            }
-            axios.post('/api/verifyOtp', {
-                phone_number: phone_number,
-                otp: otp
-    
-            }).then(response => {
-                if (response.status == 200) {
-                    this.otp_verified = true;
-                    alert(response.data.message);
-                } else {
-                    alert(response.data.message);
-                }
-            }).catch(error => {
-                alert(error.response.data.message);
-            });
-        },
-        resendOtpTimer() {
-            this.resend_otp_timer = 10;
-            var timer = setInterval(() => {
-                this.resend_otp_timer--;
-                if (this.resend_otp_timer == 0) {
-                    clearInterval(timer);
-                    this.show_resend_otp = true;
-                }
-            }, 1000);
-        }
-    }">
+    <div class="auth-fluid" x-data="register">
         <!--Auth fluid left content -->
         <div class="auth-fluid-form-box">
             <div class="align-items-center d-flex h-100">
@@ -225,3 +154,79 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </x-guest-base>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('register', () => ({
+            password: '',
+            confirm_password: '',
+            otp_requested: false,
+            otp_verified: false,
+            resend_otp_count: 0,
+            show_resend_otp: false,
+            resend_otp_timer: null,
+            requestOtp() {
+                var phone_number = document.getElementById('phone_number').value;
+                if (phone_number == '') {
+                    alert('Please enter your mobile number');
+                    return false;
+                }
+                axios.post('/api/sendOtp', {
+                    phone_number: phone_number
+
+                }).then(response => {
+                    if (response.status == 200) {
+                        this.otp_requested = true;
+                        alert(response.data.message);
+                    } else {
+                        alert(response.data.message);
+                    }
+                }).catch(error => {
+                    alert(error.response.data.message);
+                });
+                if (this.resend_otp_count < 1) {
+                    this.resendOtpTimer();
+                }
+            },
+            resendOtp() {
+                if (this.resend_otp_count < 1) {
+                    this.resend_otp_count++;
+                    this.requestOtp();
+                } else {
+                    alert('You can resend OTP only once');
+                }
+            },
+            verifyOtp() {
+                var phone_number = document.getElementById('phone_number').value;
+                var otp = document.getElementById('otp').value;
+                if (otp == '') {
+                    alert('Please enter your otp');
+                    return false;
+                }
+                axios.post('/api/verifyOtp', {
+                    phone_number: phone_number,
+                    otp: otp
+
+                }).then(response => {
+                    if (response.status == 200) {
+                        this.otp_verified = true;
+                        alert(response.data.message);
+                    } else {
+                        alert(response.data.message);
+                    }
+                }).catch(error => {
+                    alert(error.response.data.message);
+                });
+            },
+            resendOtpTimer() {
+                this.resend_otp_timer = 10;
+                var timer = setInterval(() => {
+                    this.resend_otp_timer--;
+                    if (this.resend_otp_timer == 0) {
+                        clearInterval(timer);
+                        this.show_resend_otp = true;
+                    }
+                }, 1000);
+            }
+        }))
+    })
+</script>
