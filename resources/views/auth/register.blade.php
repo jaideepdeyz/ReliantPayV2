@@ -34,7 +34,7 @@
             if (this.resend_otp_count < 1) {
                 this.resend_otp_count++;
                 this.requestOtp();
-            }else{
+            } else {
                 alert('You can resend OTP only once');
             }
         },
@@ -183,7 +183,7 @@
                                 x-show="show_resend_otp">Resend
                                 OTP</button>
 
-                            <span x-show="resend_otp_timer"
+                            <span class="d-block mt-2" x-show="resend_otp_timer"
                                 x-text="'You can resend OTP in '+resend_otp_timer+' seconds'"></span>
                         </div>
 

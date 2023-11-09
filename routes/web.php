@@ -42,6 +42,7 @@ use App\Livewire\Agents\AuthorizedBookings;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
 
 //docusign routes
 Route::get('docusign',[DocusignController::class, 'index'])->name('docusign');

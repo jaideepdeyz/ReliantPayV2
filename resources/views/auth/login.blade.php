@@ -17,17 +17,15 @@
                     <!-- Logo -->
                     <div class="auth-brand text-center text-lg-start">
                         <div class="auth-brand">
-                            <a href="{{url('/')}}" class="logo logo-dark text-center">
+                            <a href="{{ url('/') }}" class="logo logo-dark text-center">
                                 <span class="logo-lg">
-                                    <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
-                                        alt="">
+                                    <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light text-center">
                                 <span class="logo-lg">
-                                    <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
-                                        alt="">
+                                    <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="">
                                 </span>
                             </a>
                         </div>
@@ -80,6 +78,7 @@
 
 
                         </div>
+                        <x-captcha />
 
                         <div class="mb-3">
                             <div class="form-check">
@@ -106,4 +105,16 @@
         </div>
         <!-- end auth-fluid-form-box-->
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        $('#reload').click(function() {
+            $.ajax({
+                type: 'GET',
+                url: 'reload-captcha',
+                success: function(data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
+    </script>
 </x-guest-base>

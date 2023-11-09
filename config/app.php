@@ -189,6 +189,7 @@ return [
         'StatusEnum' => App\Enums\StatusEnum::class,
         'TravelCategoryEnum' => App\Enums\TravelCategoryEnum::class,
         'ServiceEnum' => App\Enums\ServiceEnum::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ])->toArray(),
 
 ];
