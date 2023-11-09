@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('organization_id')->nullable();
             $table->string('is_active')->nullable();
             $table->string('is_approved')->nullable();
+            $table->string('phone_number', 20)->nullable();
+            $table->string('country_code', 5)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

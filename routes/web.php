@@ -98,5 +98,7 @@ Route::middleware('auth')->group(function () {
 
 
 });
+// OTP routes
+
 
 require __DIR__.'/auth.php';

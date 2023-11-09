@@ -25,6 +25,8 @@ class User extends Authenticatable
         'organization_id',
         'is_active',
         'is_approved',
+        'phone_number',
+        'country_code',
     ];
 
     /**
