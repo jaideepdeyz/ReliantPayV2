@@ -32,12 +32,19 @@ class OtpController extends Controller
             // $otp = rand(100000, 999999);
             $otp = 123456;
             $message = "Your OTP is: $otp";
-            $otpModel = Otp::create([
-                'phone_number' => $request->phone_number,
-                'otp' => $otp,
-                'expiration_time' => now()->addMinutes(5),
-                'country_code' => '+91'
-            ]);
+            $otpModel = Otp::where('phone_number', $request->phone_number)->where('is_verified', false)->first();
+            if ($otpModel) {
+                $otpModel->otp = $otp;
+                $otpModel->expiration_time = now()->addMinutes(5);
+                $otpModel->save();
+            } else {
+                Otp::create([
+                    'phone_number' => $request->phone_number,
+                    'otp' => $otp,
+                    'expiration_time' => now()->addMinutes(5),
+                    'country_code' => '+91'
+                ]);
+            }
 
             // $this->sendSMS($request->country_code . $request->phone_number, $message);
 
