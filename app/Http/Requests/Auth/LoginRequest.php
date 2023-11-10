@@ -39,8 +39,8 @@ class LoginRequest extends FormRequest
             'email.required' => 'Email is required',
             'email.email' => 'Email is invalid',
             'password.required' => 'Password is required',
-            'captcha.required' => 'Captcha is required',
-            'captcha.captcha' => 'Captcha is invalid'
+            // 'captcha.required' => 'Captcha is required',
+            // 'captcha.captcha' => 'Captcha is invalid'
         ];
     }
     /**
