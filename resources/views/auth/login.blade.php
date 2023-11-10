@@ -78,7 +78,7 @@
 
 
                         </div>
-                        <x-captcha />
+                        {{-- <x-captcha /> --}}
 
                         <div class="mb-3">
                             <div class="form-check">

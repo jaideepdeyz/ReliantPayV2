@@ -4,9 +4,9 @@
         id="reload" class="btn btn-danger" style="background: rgb(27, 29, 29)">
         ↻
     </button>
-    {{-- <div class="captcha d-inline">
+    <div class="captcha d-inline">
         <span>{!! captcha_img('flat') !!}</span>
-    </div> --}}
+    </div>
 
 </div>
 <div class="form-group last mb-3">
