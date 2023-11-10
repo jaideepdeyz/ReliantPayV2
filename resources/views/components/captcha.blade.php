@@ -5,7 +5,7 @@
         ↻
     </button>
     <div class="captcha d-inline">
-        <span>{!! captcha_img('flat') !!}
+        <span>{!! captcha_img('flat') !!}</span>
     </div>
 
 </div>
