@@ -10,6 +10,7 @@ enum StatusEnum: string
     case ACTIVE = 'Activated'; // user login activated
     case DRAFT = 'Draft'; // new sale booking initiated
     case PENDING = 'Pending'; // sale authorization pending
+    case SENT_FOR_AUTH='Sent for Authorization'; // sale sent for authorization
     case AUTHORIZED = 'Authorized'; // sales authorized
     case FAILED = 'Failed'; // Sales Failed after a certain period of time
     case CHARGEBACK = 'Chargeback'; // Sales Cahrgedback by customer

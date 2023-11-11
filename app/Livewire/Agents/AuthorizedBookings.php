@@ -20,7 +20,7 @@ class AuthorizedBookings extends Component
 
     public function render()
     {
-        $sales = SaleBooking::where('agent_id', auth()->user()->id)->where('app_status', StatusEnum::AUTHORIZED)->paginate(10);
+        $sales = SaleBooking::where('agent_id', auth()->user()->id)->whereIn('app_status', [StatusEnum::AUTHORIZED->value, StatusEnum::SENT_FOR_AUTH->value])->latest()->paginate(10);
         return view('livewire.agents.authorized-bookings', compact('sales'))->layout('layouts.dashboard-layout');
     }
 }

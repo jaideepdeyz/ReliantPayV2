@@ -90,7 +90,7 @@ class JwtDocuSignController extends Controller
                 'document_id' => '1',
             ]);
             $sale = SaleBooking::find($id);
-            $sale->app_status = StatusEnum::AUTHORIZED->value;
+            $sale->app_status = StatusEnum::SENT_FOR_AUTH->value;
             $sale->save();
             DB::commit();
         } catch (\Throwable $th) {

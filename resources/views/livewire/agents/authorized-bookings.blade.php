@@ -67,7 +67,7 @@
                                     <td>{{ $booking->customer_name }}</td>
                                     <td>{{ $booking->customer_phone }}</td>
                                     <td>{{ $booking->customer_email }}</td>
-                                    <td><span class="badge badge-soft-success text-dark">Authorized</span></td>
+                                    <td>{{ $booking->app_status }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-blue" wire:click="showDetails('{{$booking->id}}')">View</button>
                                         {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
