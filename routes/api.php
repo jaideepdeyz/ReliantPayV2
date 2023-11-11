@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MiscApiController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('sendOtp', [OtpController::class, 'sendOtp'])->name('sendOtp');
 Route::post('verifyOtp', [OtpController::class, 'verifyOtp'])->name('verifyOtp');
+Route::get('getAirportsByCountry', [MiscApiController::class, 'getAirportsByCountry'])->name('getAirportsByCountry');

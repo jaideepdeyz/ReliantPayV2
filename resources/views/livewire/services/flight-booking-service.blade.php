@@ -36,7 +36,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="departureCountry" class="form-label">Departure Country</label>
                                     <select class="form-control @error('departureCountry') is-invalid @enderror"
-                                        wire:model.live="departureCountry">
+                                        wire:model.live="departureCountry" id="departureCountry">
                                         <option value="">Select Departure Country</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->code }}">{{ $country->name }}</option>
@@ -46,16 +46,18 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col-md-6">
                                     <label for="departure_location" class="form-label">Departure Aiport</label>
                                     <select class="form-control @error('departure_location') is-invalid @enderror"
-                                        wire:model="departure_location">
+                                        wire:model.live="departure_location" id="departure_location">
                                         <option value="">Select Departure Airport</option>
                                         @foreach ($airports as $airport)
                                             <option value="{{ $airport->id }}">{{ $airport->name }}</option>
                                         @endforeach
                                     </select>
+
+                                    {{-- {{ $airports->links() }} --}}
+
                                     @error('departure_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -64,7 +66,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="destinationCountry" class="form-label">Destination Country</label>
                                     <select class="form-control @error('destinationCountry') is-invalid @enderror"
-                                        wire:model.live="destinationCountry">
+                                        wire:model.live="destinationCountry" id="destinationCountry">
                                         <option value="">Select Destination Country</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->code }}">{{ $country->name }}</option>
@@ -78,7 +80,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="destination_location" class="form-label">Destination Aiport</label>
                                     <select class="form-control @error('destination_location') is-invalid @enderror"
-                                        wire:model="destination_location">
+                                        wire:model="destination_location" id="destination_location">
                                         <option value="">Select Destination Airport</option>
                                         @foreach ($destinationAirports as $airport)
                                             <option value="{{ $airport->id }}">{{ $airport->name }}</option>
@@ -164,4 +166,6 @@
 
         </form>
     </div>
+ 
+
 </div>

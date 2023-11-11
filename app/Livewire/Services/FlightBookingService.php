@@ -7,15 +7,20 @@ use App\Models\Country;
 use App\Models\FlightBooking;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Session;
+use Livewire\Attributes\Reactive;
+use Livewire\WithPagination;
 
 class FlightBookingService extends Component
 {
+    use WithPagination;
     public $appID;
+   
     public $departureCountry;
     public $destinationCountry;
-    public $airports = [];
+    public $airports= [];
     public $destinationAirports = [];
     public $isRoundTrip = 'No';
 
@@ -53,8 +58,10 @@ class FlightBookingService extends Component
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
-            $this->updatedDepartureCountry($this->departureCountry);
-            $this->updatedDestinationCountry($this->departureCountry);
+            $this->airports = Airport::where('iso_country', $this->departureCountry)->get();
+            $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->get();
+            // $this->updatedDepartureCountry($this->departureCountry);
+            // $this->updatedDestinationCountry($this->departureCountry);
         }
 
     }
@@ -74,12 +81,15 @@ class FlightBookingService extends Component
     public function updatedDepartureCountry($value)
     {
         $this->departureCountry = $value;
+        $this->departure_location = null;
         $this->airports = Airport::where('iso_country', $this->departureCountry)->get();
+      
     }
 
     public function updatedDestinationCountry($value)
     {
         $this->destinationCountry = $value;
+        $this->destination_location = null;
         $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->get();
     }
 

@@ -322,15 +322,15 @@
     <script src="{{ asset('auth/js/vendor.min.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{asset('auth/js/app.min.js') }}"></script>
+    <script src="{{ asset('auth/js/app.min.js') }}"></script>
 
     <!-- Plugins js-->
-    <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js')}}"></script>
-    <script src="{{ asset('auth/libs/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+    <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('auth/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
 
     <!-- Dashboar 1 init js-->
-    <script src="{{asset('auth/js/pages/dashboard-1.init.js') }}"></script>
+    <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('auth/js/app.min.js') }}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script> --}}
@@ -339,7 +339,10 @@
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
-    <x-toast-session />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
     <script>
         function closeModal(id) {
             console.log(id);
@@ -348,6 +351,7 @@
             modal.hide();
         }
     </script>
+    <x-toast-session />
     <livewire:modals />
     @livewireScripts
 </body>
