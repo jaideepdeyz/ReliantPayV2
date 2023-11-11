@@ -58,8 +58,8 @@ class FlightBookingService extends Component
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
-            $this->airports = Airport::where('iso_country', $this->departureCountry)->get();
-            $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->get();
+            $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
+            $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
             // $this->updatedDepartureCountry($this->departureCountry);
             // $this->updatedDestinationCountry($this->departureCountry);
         }
@@ -82,15 +82,14 @@ class FlightBookingService extends Component
     {
         $this->departureCountry = $value;
         $this->departure_location = null;
-        $this->airports = Airport::where('iso_country', $this->departureCountry)->get();
-      
+        $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
     }
 
     public function updatedDestinationCountry($value)
     {
         $this->destinationCountry = $value;
         $this->destination_location = null;
-        $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->get();
+        $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
     }
 
     public function storeFlightBooking()
