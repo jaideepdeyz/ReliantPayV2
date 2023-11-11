@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-12">
             <h5 class="bg-light p-2 mt-0 mb-4">
-                <a href="{{ route('authorizeAndSend', $bookingDetails->id) }}" class="btn btn-success"><i
+                <a href="{{ route('authorizebooking', $bookingDetails->id) }}" class="btn btn-success"><i
                         class="ri-mail-send-line font-13"></i> Send
                     Authorization Link</a>
             </h5>
@@ -171,7 +171,7 @@
                     </div>
 
                     @if (!$bookingDetails->authorizationForm)
-                        <a href="{{ route('authorizeAndSend', $bookingDetails->id) }}"class="btn btn-success"><i
+                        <a href="{{ route('authorizebooking', $bookingDetails->id) }}"class="btn btn-success"><i
                                 class="ri-mail-send-line font-13"></i> Send
                             Authorization Link</a>
                     @endif
