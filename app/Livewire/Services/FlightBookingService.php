@@ -120,7 +120,7 @@ class FlightBookingService extends Component
 
     public function render()
     {
-        $countries = Country::orderByRaw("FIELD(code, 'IN','MX','US') DESC,name ASC")->get();
+        $countries = Country::orderByRaw("FIELD(code,'MX','CA','US') DESC,name ASC")->get();
         $bookingDetails = SaleBooking::find($this->appID);
 
         return view('livewire.services.flight-booking-service', compact('countries', 'bookingDetails'))->layout('layouts.dashboard-layout');
