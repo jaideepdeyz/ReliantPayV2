@@ -17,10 +17,10 @@ class FlightBookingService extends Component
 {
     use WithPagination;
     public $appID;
-   
+
     public $departureCountry;
     public $destinationCountry;
-    public $airports= [];
+    public $airports = [];
     public $destinationAirports = [];
     public $isRoundTrip = 'No';
 
@@ -45,8 +45,7 @@ class FlightBookingService extends Component
     {
         $this->appID = $appID;
         $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
-        if($flightBooking)
-        {
+        if ($flightBooking) {
             $this->airline_name = $flightBooking->airline_name;
             $this->confirmation_number = $flightBooking->confirmation_number;
             $this->departureCountry = $flightBooking->departure_country;
@@ -58,22 +57,20 @@ class FlightBookingService extends Component
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
-            $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
+            $this->airports = Airport::where('iso_country', $this->departureCountry)
+                ->select('name', 'id')
+                ->get();
             $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
             // $this->updatedDepartureCountry($this->departureCountry);
             // $this->updatedDestinationCountry($this->departureCountry);
         }
-
     }
 
     public function updatedTripType($value)
     {
-        if($value == 'One Way')
-        {
+        if ($value == 'One Way') {
             $this->isRoundTrip = 'No';
-        }
-        else
-        {
+        } else {
             $this->isRoundTrip = 'Yes';
         }
     }
@@ -113,7 +110,7 @@ class FlightBookingService extends Component
                 ]
             );
             DB::commit();
-            Session::flash('message', ['heading'=>'success','text'=>'Flight Booking Details Saved Successfully']);
+            Session::flash('message', ['heading' => 'success', 'text' => 'Flight Booking Details Saved Successfully']);
             return redirect()->route('addPassengers', ['appID' => $this->appID]);
         } catch (\Exception $e) {
             DB::rollback();
@@ -123,7 +120,7 @@ class FlightBookingService extends Component
 
     public function render()
     {
-        $countries = Country::orderBy('name', 'ASC')->get();
+        $countries = Country::orderByRaw("FIELD(code, 'IN','MX','US') DESC,name ASC")->get();
         $bookingDetails = SaleBooking::find($this->appID);
 
         return view('livewire.services.flight-booking-service', compact('countries', 'bookingDetails'))->layout('layouts.dashboard-layout');
