@@ -8,6 +8,7 @@ use App\Models\FlightBooking;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Session;
 use Livewire\Attributes\Reactive;
@@ -40,6 +41,20 @@ class FlightBookingService extends Component
     public $gender;
     public $dob;
     public $relationship_to_card_holder;
+
+    public $departureAirport;
+
+    #[On('dep-airport')]
+    public function depAirport($airport)
+    {
+        $this->departureAirport->push($airport);
+    }
+
+    #[On('dest-airport')]
+    public function destAirport($airport)
+    {
+        $this->destinationAirport->push($airport);
+    }
 
     public function mount($appID)
     {
@@ -79,7 +94,8 @@ class FlightBookingService extends Component
     {
         $this->departureCountry = $value;
         $this->departure_location = null;
-        $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
+        // $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
+        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->departureCountry]]);
     }
 
     public function updatedDestinationCountry($value)
