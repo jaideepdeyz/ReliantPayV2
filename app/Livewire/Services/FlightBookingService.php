@@ -45,15 +45,15 @@ class FlightBookingService extends Component
     public $departureAirport;
 
     #[On('dep-airport')]
-    public function depAirport($airport)
+    public function depAirport($depAirport)
     {
-        $this->departureAirport->push($airport);
+        $this->departure_location->push($depAirport);
     }
 
     #[On('dest-airport')]
-    public function destAirport($airport)
+    public function destAirport($destAirport)
     {
-        $this->destinationAirport->push($airport);
+        $this->destination_location->push($destAirport);
     }
 
     public function mount($appID)
@@ -102,7 +102,8 @@ class FlightBookingService extends Component
     {
         $this->destinationCountry = $value;
         $this->destination_location = null;
-        $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
+        // $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
+        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry]]);
     }
 
     public function storeFlightBooking()
