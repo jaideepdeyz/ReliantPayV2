@@ -43,17 +43,22 @@ class FlightBookingService extends Component
     public $relationship_to_card_holder;
 
     public $departureAirport;
+    public $destinationAirport;
 
-    #[On('dep-airport')]
-    public function depAirport($depAirport)
+    #[On('depAirport')]
+    public function depAirport($airportID)
     {
-        $this->departure_location->push($depAirport);
+        $this->departure_location = $airportID;
+        $airport = Airport::find($airportID);
+        $this->departureAirport = $airport->name;
     }
 
-    #[On('dest-airport')]
-    public function destAirport($destAirport)
+    #[On('destAirport')]
+    public function destAirport($airportID)
     {
-        $this->destination_location->push($destAirport);
+        $this->destination_location = $airportID;
+        $airport = Airport::find($airportID);
+        $this->destinationAirport = $airport->name;
     }
 
     public function mount($appID)
@@ -95,7 +100,7 @@ class FlightBookingService extends Component
         $this->departureCountry = $value;
         $this->departure_location = null;
         // $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
-        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->departureCountry]]);
+        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->departureCountry, 'type' => 'Departure']]);
     }
 
     public function updatedDestinationCountry($value)
@@ -103,7 +108,7 @@ class FlightBookingService extends Component
         $this->destinationCountry = $value;
         $this->destination_location = null;
         // $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
-        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry]]);
+        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry, 'type' => 'Destination']]);
     }
 
     public function storeFlightBooking()

@@ -48,16 +48,7 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="departure_location" class="form-label">Departure Aiport</label>
-                                    <select class="form-control @error('departure_location') is-invalid @enderror"
-                                        wire:model="departure_location" id="departure_location">
-                                        <option value="">Select Departure Airport</option>
-                                        @foreach ($airports as $airport)
-                                            <option value="{{ $airport->id }}">{{ $airport->name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    {{-- {{ $airports->links() }} --}}
-
+                                    <input type="text" wire:model="departureAirport" class="form-control" readonly>
                                     @error('departure_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -79,13 +70,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="destination_location" class="form-label">Destination Aiport</label>
-                                    <select class="form-control @error('destination_location') is-invalid @enderror"
-                                        wire:model="destination_location" id="destination_location">
-                                        <option value="">Select Destination Airport</option>
-                                        @foreach ($destinationAirports as $airport)
-                                            <option value="{{ $airport->id }}">{{ $airport->name }}</option>
-                                        @endforeach
-                                    </select>
+                                   <input type="text" wire:model="destinationAirport" class="form-control" readonly>
                                     @error('destination_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -166,7 +151,7 @@
 
         </form>
     </div>
-   
- 
+
+
 
 </div>
