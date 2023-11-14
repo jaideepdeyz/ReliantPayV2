@@ -21,6 +21,9 @@ class FlightBookingService extends Component
 
     public $departureCountry;
     public $destinationCountry;
+    public $departure_country_name;
+    public $destination_country_name;
+    
     public $airports = [];
     public $destinationAirports = [];
     public $isRoundTrip = 'No';
@@ -61,6 +64,25 @@ class FlightBookingService extends Component
         $airport = Airport::find($airportID);
         $this->destinationAirport = $airport->name;
     }
+    #[On('depCountry')]
+    public function depCountry($code)
+    {
+        $this->departureCountry = $code;
+        $country = Country::where('code', $code)->first();
+        $this->departure_country_name = $country->name;
+        $this->departure_location = null;
+        $this->departureAirport = null;
+
+    }
+    #[On('destCountry')]
+    public function destCountry($code)
+    {
+        $this->destinationCountry = $code;
+        $country = Country::where('code', $code)->first();
+        $this->destination_country_name = $country->name;
+        $this->destination_location = null;
+        $this->destinationAirport = null;
+    }
 
     public function mount($appID)
     {
@@ -78,10 +100,15 @@ class FlightBookingService extends Component
             $this->return_date = $flightBooking->return_date;
             $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
-            $this->airports = Airport::where('iso_country', $this->departureCountry)
-                ->select('name', 'id')
-                ->get();
-            $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
+            $this->departure_country_name = Country::where('code', $this->departureCountry)->first()->name;
+            $this->destination_country_name = Country::where('code', $this->destinationCountry)->first()->name;
+            $this->departureAirport = Airport::find($this->departure_location)->name;
+            $this->destinationAirport = Airport::find($this->destination_location)->name;
+
+            // $this->airports = Airport::where('iso_country', $this->departureCountry)
+            //     ->select('name', 'id')
+            //     ->get();
+            // $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
             // $this->updatedDepartureCountry($this->departureCountry);
             // $this->updatedDestinationCountry($this->departureCountry);
         }
@@ -96,21 +123,8 @@ class FlightBookingService extends Component
         }
     }
 
-    public function updatedDepartureCountry($value)
-    {
-        $this->departureCountry = $value;
-        $this->departure_location = null;
-        // $this->airports = Airport::where('iso_country', $this->departureCountry)->select('name', 'id')->get();
-        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->departureCountry, 'type' => 'Departure']]);
-    }
-
-    public function updatedDestinationCountry($value)
-    {
-        $this->destinationCountry = $value;
-        $this->destination_location = null;
-        // $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
-        $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry, 'type' => 'Destination']]);
-    }
+  
+ 
 
     public function storeFlightBooking()
     {
@@ -140,12 +154,33 @@ class FlightBookingService extends Component
             dd($e->getMessage());
         }
     }
+   
+    public function getDepartureAirports()
+    {
+        if ($this->departureCountry) {
+            $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->departureCountry, 'type' => 'Departure']]);
+        } else {
+            Session::flash('message', ['heading' => 'error', 'text' => 'Please select Departure Country']);
+            return;
+        }
+    }
+    public function getDestinationAirports(){
+        if ($this->destinationCountry) {
+            $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry, 'type' => 'Destination']]);
+        } else {
+            Session::flash('message', ['heading' => 'error', 'text' => 'Please select Destination Country']);
+            return;
+        }
+    }
+    public function getCountries($type){
+        $this->dispatch('showModal', ['alias' => 'modals.country-selection', 'params' => ['type' => $type]]);
+    }
 
     public function render()
     {
-        $countries = Country::orderByRaw("FIELD(code,'MX','CA','US') DESC,name ASC")->get();
+        // $countries = Country::orderByRaw("FIELD(code,'MX','CA','US') DESC,name ASC")->get();
         $bookingDetails = SaleBooking::find($this->appID);
 
-        return view('livewire.services.flight-booking-service', compact('countries', 'bookingDetails'))->layout('layouts.dashboard-layout');
+        return view('livewire.services.flight-booking-service', compact('bookingDetails'))->layout('layouts.dashboard-layout');
     }
 }

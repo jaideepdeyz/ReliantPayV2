@@ -35,20 +35,21 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="departureCountry" class="form-label">Departure Country</label>
-                                    <select class="form-control @error('departureCountry') is-invalid @enderror"
+                                    {{-- <select class="form-control @error('departureCountry') is-invalid @enderror"
                                         wire:model.live="departureCountry" id="departureCountry" wire::searchable="true">
                                         <option value="">Select Departure Country</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->code }}">{{ $country->name }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
+                                    <input type="text" wire:model="departure_country_name" class="form-control pe-auto" wire:click="getCountries('Departure')" readonly style="cursor: pointer;">
                                     @error('departureCountry')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-6" >
                                     <label for="departure_location" class="form-label">Departure Aiport</label>
-                                    <input type="text" wire:model="departureAirport" class="form-control" readonly>
+                                    <input type="text" wire:model="departureAirport" class="form-control pe-auto" wire:click="getDepartureAirports" readonly style="cursor: pointer;">
                                     @error('departure_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -56,13 +57,14 @@
 
                                 <div class="mb-3 col-md-6" >
                                     <label for="destinationCountry" class="form-label">Destination Country</label>
-                                    <select class="form-control @error('destinationCountry') is-invalid @enderror"
-                                        wire:model.live="destinationCountry" id="destinationCountry">
+                                    {{-- <select class="form-control @error('destinationCountry') is-invalid @enderror"
+                                        wire:model.live="destinationCountry" id="destinationCountry" wire::searchable="true">
                                         <option value="">Select Destination Country</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->code }}">{{ $country->name }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
+                                    <input type="text" wire:model="destination_country_name" class="form-control pe-auto" wire:click="getCountries('Destination')" readonly style="cursor: pointer;">
                                     @error('destinationCountry')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -70,7 +72,7 @@
 
                                 <div class="mb-3 col-md-6">
                                     <label for="destination_location" class="form-label">Destination Aiport</label>
-                                   <input type="text" wire:model="destinationAirport" class="form-control" readonly>
+                                   <input type="text" wire:model="destinationAirport" class="form-control" wire:click="getDestinationAirports" readonly style="cursor: pointer;">
                                     @error('destination_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -151,6 +153,7 @@
 
         </form>
     </div>
+   
 
 
 
