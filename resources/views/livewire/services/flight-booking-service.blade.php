@@ -36,7 +36,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="departureCountry" class="form-label">Departure Country</label>
                                     <select class="form-control @error('departureCountry') is-invalid @enderror"
-                                        wire:model.live="departureCountry" id="departureCountry">
+                                        wire:model.live="departureCountry" id="departureCountry" wire::searchable="true">
                                         <option value="">Select Departure Country</option>
                                         @foreach ($countries as $country)
                                             <option value="{{ $country->code }}">{{ $country->name }}</option>

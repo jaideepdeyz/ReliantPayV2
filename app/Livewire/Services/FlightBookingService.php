@@ -44,6 +44,7 @@ class FlightBookingService extends Component
 
     public $departureAirport;
     public $destinationAirport;
+    public $searchCountry;
 
     #[On('depAirport')]
     public function depAirport($airportID)

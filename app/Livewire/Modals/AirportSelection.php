@@ -4,12 +4,17 @@ namespace App\Livewire\Modals;
 
 use App\Models\Airport;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AirportSelection extends Component
 {
     public $countryID;
     public $type;
     public $search;
+
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
 
     public function mount($countryID, $type)
     {
@@ -35,7 +40,7 @@ class AirportSelection extends Component
             $query->where('name', 'like', '%'.$this->search.'%');
         })
         ->where('iso_country', $this->countryID)
-        ->paginate(10);
+        ->paginate(5);
         return view('livewire.modals.airport-selection', compact('airports'));
     }
 }
