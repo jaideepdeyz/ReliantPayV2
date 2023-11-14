@@ -16,6 +16,7 @@
         "livewire/livewire": "^3.0",
         "mews/captcha": "^3.3",
         "mozhuilungdsuo/livewire-bootstrap-modal": "^1.0",
+        "twilio/sdk": "^7.12",
         "zoho-sign/php-sdk": "^1.0"
     },
     "require-dev": {
