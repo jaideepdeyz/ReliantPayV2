@@ -85,7 +85,7 @@ class JwtDocuSignController extends Controller
             AuthorizationForm::create([
                 'app_id' => $id,
                 'envelope_id' => $envelope_id,
-                'signed_document' => 'public/pdf/sample.pdf',
+                'unsigned_document' => 'public/pdf/sample.pdf',
                 'account_id' => $accountInfo[0]->getAccountId(),
                 'document_id' => '1',
             ]);
@@ -180,5 +180,44 @@ class JwtDocuSignController extends Controller
             throw $th;
         }
         return $accessToken;
+    }
+    public function checkAuthorizationForm($appId){
+        $apiClient = new ApiClient();
+        $apiClient->getOAuth()->setOAuthBasePath(env('DS_AUTH_SERVER'));
+        try {
+            $accessToken = $this->getToken($apiClient);
+        } catch (\Throwable $th) {
+            if (strpos($th->getMessage(), 'consent_required') !== false) {
+                $authorizationUrl = 'https://' . env('DS_AUTH_SERVER') . '/oauth/auth?' . http_build_query([
+                    'scope' => 'signature impersonation',
+                    'redirect_uri' => route('dashboard'),
+                    'client_id' => env('DOCUSIGN_CLIENT_ID'),
+                    'response_type' => 'code'
+
+                ], '', '&', PHP_QUERY_RFC3986);
+
+                return redirect($authorizationUrl);
+            }
+
+            return back()->withError($th->getMessage())->withInput();
+        }
+        $userInfo = $apiClient->getUserInfo($accessToken);
+        $accountInfo = $userInfo[0]->getAccounts();
+        $apiClient->getConfig()->setHost($accountInfo[0]->getBaseUri() . env('DS_ESIGN_URI_SUFFIX'));
+        $app=AuthorizationForm::where('app_id',$appId)->first();
+        $envelopeApi = new EnvelopesApi($apiClient);
+        $result=$envelopeApi->getEnvelope($app->account_id, $app->envelope_id);
+        if($result['status']!='completed'){
+            return redirect()->back();
+        }
+        $temp_file=$envelopeApi->getDocument($app->account_id,$app->document_id,$app->envelope_id);
+        $file_path=storage_path('app/public/pdf/'.$appId.'.pdf');
+        file_put_contents($file_path,file_get_contents($temp_file->getPathname()));
+        $app->unsigned_document='public/pdf/'.$appId.'.pdf';
+        $app->save();
+        $sale = SaleBooking::find($appId);
+        $sale->app_status = StatusEnum::AUTHORIZED->value;
+        $sale->save();
+        return redirect()->back();
     }
 }

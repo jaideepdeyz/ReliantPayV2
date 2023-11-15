@@ -52,6 +52,7 @@ Route::get('docusign/callback',[DocusignController::class,'callback'])->name('do
 Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
 // jwt docusign routes
 Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
+Route::get('checkAuthorizationForm/{appId}',[JwtDocuSignController::class,'checkAuthorizationForm'])->name('checkAuthorizationForm');
 // Zoho routes
 Route::get('authorizeAndSend/{id}',[ZohoSignController::class,'authorizeAndSend'])->name('authorizeAndSend');
 Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');

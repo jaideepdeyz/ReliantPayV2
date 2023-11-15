@@ -77,6 +77,9 @@
                                             <span class="badge badge-outline-secondary">Authorization Pending</span>
                                         @elseif($booking->app_status == StatusEnum::AUTHORIZED->value)
                                             <span class="badge badge-outline-success">Authorized</span>
+                                        @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            <span
+                                                class="badge badge-outline-success">{{ StatusEnum::SENT_FOR_AUTH->value }}</span>
                                         @endif
                                     </td>
                                     <td>
@@ -85,6 +88,8 @@
                                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#alertModal"
                                             wire:click='selectId({{ $booking->id }})'>Delete</button>
+                                        <a class="btn btn-sm btn-sucess"
+                                            href="{{ route('checkAuthorizationForm', $booking->id) }}">Check Status</a>
                                     </td>
                                 </tr>
                             @endforeach
