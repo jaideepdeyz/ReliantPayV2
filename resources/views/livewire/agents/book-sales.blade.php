@@ -88,8 +88,11 @@
                                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#alertModal"
                                             wire:click='selectId({{ $booking->id }})'>Delete</button>
-                                        <a class="btn btn-sm btn-sucess"
-                                            href="{{ route('checkAuthorizationForm', $booking->id) }}">Check Status</a>
+                                        @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            <a class="btn btn-sm btn-success"
+                                                href="{{ route('checkAuthorizationForm', $booking->id) }}">Check
+                                                Status</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
