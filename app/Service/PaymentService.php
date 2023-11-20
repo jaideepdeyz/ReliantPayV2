@@ -14,7 +14,7 @@ class PaymentService
 
     public function __construct()
     {
-        $this->api_key = '2F822Rw39fx762MaV7Yy86jXGTC7sCDy';
+        $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
         $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
     }
     public function stepOnePay()
@@ -44,8 +44,8 @@ class PaymentService
             'address2' => 'Suite 101'
         ];
         $sale = [
-            'api_key' => $this->api_key,
-            'redirect_url' => 'http://localhost:8000/payment/step-two',
+            'api-key' => $this->api_key,
+            'redirect-url' => 'http://localhost:8000/payment/step-two',
             'amount' => '100.00',
             'ip-address' => '127.0.0.1',
             'currency' => 'USD',
@@ -60,6 +60,7 @@ class PaymentService
 
         ];
         $dataVO = ArrayToXml::convert($sale, 'sale');
+       
         $response = Http::send('POST', $this->post_url, [
             'Content-Type' => 'application/xml',
             'Accept' => 'application/xml',
