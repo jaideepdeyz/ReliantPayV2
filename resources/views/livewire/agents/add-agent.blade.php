@@ -21,10 +21,10 @@
                 </span>
             </div>
             <div class="card-body">
-                <h5 class="text-danger">Default Password for new agents added is "Agent@123#"</h5>
+
                 <div class="table-responsive">
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -46,10 +46,10 @@
                                                     class="mdi mdi-dots-horizontal"></i></a>
                                             <div class="dropdown-menu dropdown-menu-end" style="">
                                                 <a class="dropdown-item" href="#"><i
-                                                        class="mdi mdi-pencil me-2 text-muted vertical-middle"></i>Edit</a>
+                                                        class="mdi mdi-pencil me-2 text-primary vertical-middle"></i>Edit</a>
                                                 <a class="dropdown-item" href="#"
                                                     wire:click='activateDeactivate({{ $agent->id }})'><i
-                                                        class="mdi mdi-download me-2 text-muted vertical-middle"></i>{{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}</a>
+                                                        class="mdi mdi-download me-2 text-danger vertical-middle"></i>{{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}</a>
                                             </div>
                                         </div>
 

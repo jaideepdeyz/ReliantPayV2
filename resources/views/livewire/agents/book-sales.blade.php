@@ -51,7 +51,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>Sale ID</th>
                                 <th>Service</th>

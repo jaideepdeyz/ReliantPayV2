@@ -4,9 +4,15 @@
         <button type="button" class="btn-close" wire:click="$dispatch('hideModal')" aria-label="Close"></button>
     </div>
     <div class="modal-body">
+        <h4 class="badge bg-danger text-light p-2" style="font-size:14px">Default Password for new agents
+            added
+            is "Agent@123#"
+        </h4>
         <form wire:submit="addAgent">
+
             <div class="row">
                 <div class="col-md-12 form-group">
+
                     <label for="name">Agent Name</label>
                     <input type="text" wire:model="name" class="form-control mb-3">
                 </div>
@@ -14,6 +20,7 @@
                     <label for="name">Agent Email</label>
                     <input type="email" wire:model="email" class="form-control mb-3">
                 </div>
+
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-sm btn-primary">Add Agent</button>
                 </div>
