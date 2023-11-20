@@ -39,10 +39,20 @@
                                     <td>{{ $agent->email }}</td>
                                     <td>{{ $agent->is_active }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary">Edit</button>
-                                        <button
-                                            class="btn btn-sm {{ $agent->is_active == 'Yes' ? 'btn-danger' : 'btn-info' }}"
-                                            wire:click='activateDeactivate({{ $agent->id }})'>{{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}</button>
+                                        <div class="btn-group dropdown">
+                                            <a href="javascript: void(0);"
+                                                class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs"
+                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                    class="mdi mdi-dots-horizontal"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                                <a class="dropdown-item" href="#"><i
+                                                        class="mdi mdi-pencil me-2 text-muted vertical-middle"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"
+                                                    wire:click='activateDeactivate({{ $agent->id }})'><i
+                                                        class="mdi mdi-download me-2 text-muted vertical-middle"></i>{{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate' }}</a>
+                                            </div>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -83,16 +83,28 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary"
-                                            wire:click="viewBooking({{ $booking->id }})">Proceed</button>
-                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#alertModal"
-                                            wire:click='selectId({{ $booking->id }})'>Delete</button>
-                                        @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                            <a class="btn btn-sm btn-success"
-                                                href="{{ route('checkAuthorizationForm', $booking->id) }}">Check
-                                                Status</a>
-                                        @endif
+                                        <div class="btn-group dropdown">
+                                            <a href="javascript: void(0);"
+                                                class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs"
+                                                data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                    class="mdi mdi-dots-horizontal"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                                <a class="dropdown-item" href="#"
+                                                    wire:click="viewBooking({{ $booking->id }})"><i
+                                                        class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Proceed</a>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#alertModal"
+                                                    wire:click='selectId({{ $booking->id }})'><i
+                                                        class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
+                                                @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('checkAuthorizationForm', $booking->id) }}"><i
+                                                            class="mdi mdi-delete me-2 text-muted vertical-middle"></i>Check
+                                                        Status</a>
+                                                @endif
+
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
