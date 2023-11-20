@@ -17,7 +17,7 @@
             <div class="card-header pb-1">
                 <h5 class="d-inline header-title mb-0">Agents of {{ Auth::User()->organization->business_name }}</h5>
                 <span class="float-right">
-                    <button class="btn btn-sm btn-primary" wire:click="addAgent"><i
+                    <button class="btn btn-primary" wire:click="addAgent"><i
                             class="mdi mdi-account-multiple-outline"></i> Add Agent</button>
                 </span>
             </div>
