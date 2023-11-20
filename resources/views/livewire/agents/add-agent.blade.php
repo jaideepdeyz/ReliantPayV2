@@ -17,7 +17,8 @@
             <div class="card-header pb-1">
                 <h5 class="d-inline header-title mb-0">Agents of {{ Auth::User()->organization->business_name }}</h5>
                 <span class="float-right">
-                    <button class="btn btn-sm btn-primary" wire:click="addAgent">Add Agent</button>
+                    <button class="btn btn-sm btn-primary" wire:click="addAgent"><i
+                            class="mdi mdi-account-multiple-outline"></i> Add Agent</button>
                 </span>
             </div>
             <div class="card-body">
@@ -37,7 +38,11 @@
                                 <tr>
                                     <td>{{ $agent->name }}</td>
                                     <td>{{ $agent->email }}</td>
-                                    <td>{{ $agent->is_active }}</td>
+                                    <td>
+                                        <span
+                                            class="badge {{ $agent->is_active == 'Yes' ? 'bg-success' : 'bg-danger' }} badge-lg d-block">{{ $agent->is_active }}</span>
+
+                                    </td>
                                     <td>
                                         <div class="btn-group dropdown">
                                             <a href="javascript: void(0);"
