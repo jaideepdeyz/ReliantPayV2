@@ -28,6 +28,7 @@ class PaymentController extends Controller
             } else {
                 throw new \Exception($gwResponse->responsetext);
             }
+            
         } catch (\Exception $e) {
             dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
