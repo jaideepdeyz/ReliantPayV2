@@ -48,7 +48,7 @@ class PaymentService
         ];
         $sale = [
             'api-key' => $this->api_key,
-            'redirect-url' => 'https://reliantpay.com/payment/stepThreePay',
+            'redirect-url' => 'https://reliant.yellowberry.in/payment/stepThreePay',
             'amount' => '100.00',
             'ip-address' => '127.0.0.1',
             'currency' => 'USD',
