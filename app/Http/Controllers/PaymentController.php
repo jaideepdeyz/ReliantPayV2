@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusEnum;
+use App\Models\SaleBooking;
 use App\Service\PaymentService;
 use Illuminate\Http\Request;
 use Xml;
@@ -13,19 +15,21 @@ class PaymentController extends Controller
     {
         $this->paymentService = $paymentService;
     }
-    public function stepOnePay()
+    public function stepOnePay($id)
     {
         try {
-            $response = $this->paymentService->stepOnePay();
+            $response = $this->paymentService->stepOnePay($id);
+            $salebooking=SaleBooking::find($id);
             $gwResponse = Xml::decode($response);
 
             if ($gwResponse['result'] == "1") {
                 $formUrl = $gwResponse['form-url'];
-                return view('payment.make-payment', compact('formUrl'));
+                return view('payment.make-payment', compact('formUrl', 'salebooking'));
             } else {
                 throw new \Exception($gwResponse->responsetext);
             }
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -34,6 +38,14 @@ class PaymentController extends Controller
         try {
             $response = $this->paymentService->stepThreePay($request['token-id']);
             $gwResponse =Xml::decode($response);
+            if($gwResponse['result'] == "1"){
+                $salebooking=SaleBooking::find($request['order-id']);
+               
+                $salebooking->update([
+                    'app_status' => StatusEnum::PAYMENT_DONE,
+                ]);
+            }
+               
             return view('payment.payment-response', compact('gwResponse', 'response'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

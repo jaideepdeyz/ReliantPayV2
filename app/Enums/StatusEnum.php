@@ -15,6 +15,7 @@ enum StatusEnum: string
     case FAILED = 'Failed'; // Sales Failed after a certain period of time
     case CHARGEBACK = 'Chargeback'; // Sales Cahrgedback by customer
     case DELETED = 'Deleted'; // Sales Cahrgedback by customer
+    case PAYMENT_DONE = 'Payment Done'; 
 
 
 }

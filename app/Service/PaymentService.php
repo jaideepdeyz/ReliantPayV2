@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Models\SaleBooking;
 use Bmatovu\LaravelXml\Support\ArrayToXml;
 use Exception;
 use Illuminate\Support\Facades\Http;
@@ -9,51 +10,57 @@ use Illuminate\Support\Facades\Log;
 
 class PaymentService
 {
-    public $api_key;
-    public $post_url;
+    protected $api_key;
+    protected $post_url;
+    protected $redirect_url;
+
 
 
     public function __construct()
     {
-        // $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
+        // TODO : get these from .env later
+        //  $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
         $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
-         $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
-        //  $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
+        $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
+        $this->redirect_url = 'https://reliant.yellowberry.in/payment/stepThreePay';
+        // $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
     }
-    public function stepOnePay()
+    public function stepOnePay($id)
     {
+        $salebooking = SaleBooking::find($id);
+
 
         $billing = [
-            'first-name' => 'John',
-            'last-name' => 'Doe',
-            'address1' => '123 Main St.',
+            'first-name' => $salebooking->payment->cc_name,
+            'last-name' => $salebooking->payment->cc_name,
+            'address1' => $salebooking->payment->cc_billing_address,
             'city' => 'Los Angeles',
             'state' => 'CA',
             'postal' => '90001',
             'country' => 'US',
-            'phone' => '555-555-5555',
-            'email' => 'abc@gmail.com'
+            'phone' => $salebooking->payment->cc_phone,
+            'email' => $salebooking->payment->cc_email,
         ];
         $shipping = [
-            'first-name' => 'John',
-            'last-name' => 'Doe',
-            'address1' => '123 Main St.',
+            'first-name' => $salebooking->payment->cc_name,
+            'last-name' => $salebooking->payment->cc_name,
+            'address1' => $salebooking->payment->cc_billing_address,
             'city' => 'Los Angeles',
             'state' => 'CA',
             'postal' => '90001',
             'country' => 'US',
-            'phone' => '555-555-5555',
+            'phone' => $salebooking->payment->cc_phone,
             'company' => 'ABC Company',
             'address2' => 'Suite 101'
         ];
         $sale = [
             'api-key' => $this->api_key,
-            'redirect-url' => 'https://reliant.yellowberry.in/payment/stepThreePay',
-            'amount' => '100.00',
+            'redirect-url' => $this->redirect_url,
+            'amount' => $salebooking->payment->amount_charged,
             'ip-address' => '127.0.0.1',
             'currency' => 'USD',
-            'order-id' => rand(1, 1000),
-            'po-number' => rand(1, 1000),
+            'order-id' => $salebooking->id,
+            'po-number' => $salebooking->authorizationForm->id,
             'tax-amount' => '0.00',
             'shipping-amount' => '0.00',
             'billing' => $billing,
