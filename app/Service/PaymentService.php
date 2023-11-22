@@ -28,8 +28,7 @@ class PaymentService
     public function stepOnePay($id)
     {
         $salebooking = SaleBooking::find($id);
-
-
+        $order_id = rand(100000, 999999);
         $billing = [
             'first-name' => $salebooking->payment->cc_name,
             'last-name' => $salebooking->payment->cc_name,
@@ -59,7 +58,7 @@ class PaymentService
             'amount' => $salebooking->payment->amount_charged,
             'ip-address' => '127.0.0.1',
             'currency' => 'USD',
-            'order-id' => $salebooking->id,
+            'order-id' => $order_id,
             'po-number' => $salebooking->authorizationForm->id,
             'tax-amount' => '0.00',
             'shipping-amount' => '0.00',
@@ -67,6 +66,9 @@ class PaymentService
             'shipping' => $shipping
 
         ];
+        $salebooking->update([
+            'order_id' => $order_id,
+        ]);
         $dataVO = ArrayToXml::convert($sale, 'sale');
         $response = $this->sendXMLviaCurl($dataVO, $this->post_url);
         return $response;

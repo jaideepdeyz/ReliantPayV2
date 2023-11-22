@@ -39,8 +39,7 @@ class PaymentController extends Controller
             $response = $this->paymentService->stepThreePay($request['token-id']);
             $gwResponse =Xml::decode($response);
             if($gwResponse['result'] == "1"){
-                $salebooking=SaleBooking::find($request['order-id']);
-               
+                $salebooking=SaleBooking::where('order_id',$gwResponse['order-id'])->first();
                 $salebooking->update([
                     'app_status' => StatusEnum::PAYMENT_DONE,
                 ]);
