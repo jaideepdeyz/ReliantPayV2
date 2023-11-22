@@ -28,7 +28,7 @@ class PaymentService
     public function stepOnePay($id)
     {
         $salebooking = SaleBooking::find($id);
-        $order_id = rand(100000, 999999);
+        $order_id = time();
         $billing = [
             'first-name' => $salebooking->payment->cc_name,
             'last-name' => $salebooking->payment->cc_name,

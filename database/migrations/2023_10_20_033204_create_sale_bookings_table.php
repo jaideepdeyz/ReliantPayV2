@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('customer_phone')->nullable();
             $table->string('customer_email')->nullable();
             $table->string('app_status')->nullable();
+            $table->string('order_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
