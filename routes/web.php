@@ -45,16 +45,16 @@ Route::get('/', function () {
 Route::get('reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
 
 //docusign routes
-Route::get('docusign',[DocusignController::class, 'index'])->name('docusign');
-Route::get('startSigning/{appID}',[DocusignController::class, 'startSigning'])->name('startSigning');
-Route::get('connect-docusign',[DocusignController::class, 'connectDocusign'])->name('connect.docusign');
-Route::get('docusign/callback',[DocusignController::class,'callback'])->name('docusignCallback');
-Route::get('sign-document',[DocusignController::class,'signDocument'])->name('docusign.sign');
+Route::get('docusign', [DocusignController::class, 'index'])->name('docusign');
+Route::get('startSigning/{appID}', [DocusignController::class, 'startSigning'])->name('startSigning');
+Route::get('connect-docusign', [DocusignController::class, 'connectDocusign'])->name('connect.docusign');
+Route::get('docusign/callback', [DocusignController::class, 'callback'])->name('docusignCallback');
+Route::get('sign-document', [DocusignController::class, 'signDocument'])->name('docusign.sign');
 // jwt docusign routes
-Route::get('authorizebooking/{id}',[JwtDocuSignController::class,'authorizebooking'])->name('authorizebooking');
-Route::get('checkAuthorizationForm/{appId}',[JwtDocuSignController::class,'checkAuthorizationForm'])->name('checkAuthorizationForm');
+Route::get('authorizebooking/{id}', [JwtDocuSignController::class, 'authorizebooking'])->name('authorizebooking');
+Route::get('checkAuthorizationForm/{appId}', [JwtDocuSignController::class, 'checkAuthorizationForm'])->name('checkAuthorizationForm');
 // Zoho routes
-Route::get('authorizeAndSend/{id}',[ZohoSignController::class,'authorizeAndSend'])->name('authorizeAndSend');
+Route::get('authorizeAndSend/{id}', [ZohoSignController::class, 'authorizeAndSend'])->name('authorizeAndSend');
 Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');
 
 
@@ -62,7 +62,7 @@ Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zo
 Route::view('about-us', 'pages.about-us')->name('about-us');
 Route::view('contact-us', 'pages.contact-us')->name('contact-us');
 
-Route::middleware(['auth', 'verified','registrationCheck'])->group(function () {
+Route::middleware(['auth', 'verified', 'registrationCheck'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'redirector'])->name('dashboard');
 });
 
@@ -97,10 +97,11 @@ Route::middleware('auth')->group(function () {
 
     // Email routes
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
-
-
+    // payment routes
+    Route::get('payment/stepOnePay', [App\Http\Controllers\PaymentController::class, 'stepOnePay'])->name('payment.stepOnePay');
+    Route::post('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
 });
 // OTP routes
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
