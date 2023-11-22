@@ -24,7 +24,7 @@
                     </div>
             @endswitch
             {{-- XML response --}}
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h3>XML Response</h3>
                 </div>
@@ -35,7 +35,7 @@
                         </code>
                     </pre>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
 
