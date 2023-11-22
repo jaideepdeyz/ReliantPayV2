@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'zohoWebhook',
         '/zohoWebhook',
+        'payment/stepThreePay',
+        '/payment/stepThreePay',
     ];
 }
