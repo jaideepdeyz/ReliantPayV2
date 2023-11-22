@@ -76,10 +76,11 @@
                                         @elseif($booking->app_status == StatusEnum::PENDING->value)
                                             <span class="badge badge-outline-secondary">Authorization Pending</span>
                                         @elseif($booking->app_status == StatusEnum::AUTHORIZED->value)
-                                            <span class="badge badge-outline-success">Authorized</span>
+                                            <span class="badge badge-outline-info">Authorized</span>
+                                        @elseif($booking->app_status == StatusEnum::PAYMENT_DONE->value)
+                                            <span class="badge badge-outline-success">Payment Done</span>
                                         @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                            <span
-                                                class="badge badge-outline-success">{{ StatusEnum::SENT_FOR_AUTH->value }}</span>
+                                            <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value }}</span>
                                         @endif
                                     </td>
                                     <td>
