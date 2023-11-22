@@ -15,10 +15,10 @@ class PaymentService
 
     public function __construct()
     {
-        $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
-        // $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
-        // $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
-        $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
+        // $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
+        $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
+        $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
+        // $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
     }
     public function stepOnePay()
     {
