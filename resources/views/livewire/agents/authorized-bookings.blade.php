@@ -69,10 +69,12 @@
                                     <td>{{ $booking->customer_email }}</td>
                                     <td>{{ $booking->app_status }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-blue" wire:click="showDetails('{{$booking->id}}')">View</button>
-                                        {{-- <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#alertModal"
-                                            wire:click='selectId({{ $booking->id }})'>Delete</button> --}}
+                                        <button class="btn btn-sm btn-blue"
+                                            wire:click="showDetails('{{ $booking->id }}')">View</button>
+                                        @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
+                                            <button class="btn btn-sm btn-danger"
+                                                href={{ route('payment/stepOnePay', $booking->id) }}>Charge Card</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,5 +85,5 @@
             </div>
         </div>
     </div>
-   
+
 </div>
