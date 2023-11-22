@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Payment Response</h1>
-            @switch()
-                @case($gwResponse['result'] == 1)
+            @switch($gwResponse['result'])
+                @case(1)
                     <div class="alert alert-success">
                         <h3>Payment Success</h3>
                         <p>Payment has been successfully processed.</p>
                     </div>
                 @break
 
-                @case($gwResponse['result'] == 2)
+                @case(2)
                     <div class="alert alert-danger">
                         <h3>Payment was declined</h3>
                         <p> Decline Description : {{ $gwResponse['result-text'] }}
