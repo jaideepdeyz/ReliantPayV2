@@ -210,6 +210,7 @@ class JwtDocuSignController extends Controller
             $app = AuthorizationForm::where('app_id', $appId)->first();
             $envelopeApi = new EnvelopesApi($apiClient);
             $result = $envelopeApi->getEnvelope($app->account_id, $app->envelope_id);
+            Log::info($result);
             if ($result['status'] != 'completed') {
                 return redirect()->back();
             }
