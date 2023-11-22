@@ -210,13 +210,12 @@ class JwtDocuSignController extends Controller
             $app = AuthorizationForm::where('app_id', $appId)->first();
             $envelopeApi = new EnvelopesApi($apiClient);
             $result = $envelopeApi->getEnvelope($app->account_id, $app->envelope_id);
-            Log::info($result);
             if ($result['status'] != 'completed') {
                 return redirect()->back();
             }
             $temp_file = $envelopeApi->getDocument($app->account_id, $app->document_id, $app->envelope_id);
             $file_path = storage_path('app/public/pdf/' . $appId . '.pdf');
-            Log::info($temp_file->getPathname());
+           
             file_put_contents($file_path, file_get_contents($temp_file->getPathname()));
             $app->signed_document = 'public/pdf/' . $appId . '.pdf';
             $app->save();
