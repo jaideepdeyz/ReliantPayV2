@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
     // payment routes
     Route::get('payment/stepOnePay', [App\Http\Controllers\PaymentController::class, 'stepOnePay'])->name('payment.stepOnePay');
-    Route::post('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
+    Route::get('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
 });
 // OTP routes
 
