@@ -181,7 +181,8 @@ class JwtDocuSignController extends Controller
         }
         return $accessToken;
     }
-    public function checkAuthorizationForm($appId){
+    public function checkAuthorizationForm($appId)
+    {
         $apiClient = new ApiClient();
         $apiClient->getOAuth()->setOAuthBasePath(env('DS_AUTH_SERVER'));
         try {
@@ -202,23 +203,29 @@ class JwtDocuSignController extends Controller
 
             return back()->withError($th->getMessage())->withInput();
         }
-        $userInfo = $apiClient->getUserInfo($accessToken);
-        $accountInfo = $userInfo[0]->getAccounts();
-        $apiClient->getConfig()->setHost($accountInfo[0]->getBaseUri() . env('DS_ESIGN_URI_SUFFIX'));
-        $app=AuthorizationForm::where('app_id',$appId)->first();
-        $envelopeApi = new EnvelopesApi($apiClient);
-        $result=$envelopeApi->getEnvelope($app->account_id, $app->envelope_id);
-        if($result['status']!='completed'){
+        try {
+            $userInfo = $apiClient->getUserInfo($accessToken);
+            $accountInfo = $userInfo[0]->getAccounts();
+            $apiClient->getConfig()->setHost($accountInfo[0]->getBaseUri() . env('DS_ESIGN_URI_SUFFIX'));
+            $app = AuthorizationForm::where('app_id', $appId)->first();
+            $envelopeApi = new EnvelopesApi($apiClient);
+            $result = $envelopeApi->getEnvelope($app->account_id, $app->envelope_id);
+            if ($result['status'] != 'completed') {
+                return redirect()->back();
+            }
+            $temp_file = $envelopeApi->getDocument($app->account_id, $app->document_id, $app->envelope_id);
+            $file_path = storage_path('app/public/pdf/' . $appId . '.pdf');
+            file_put_contents($file_path, file_get_contents($temp_file->getPathname()));
+            $app->signed_document = 'public/pdf/' . $appId . '.pdf';
+            $app->save();
+            $sale = SaleBooking::find($appId);
+            $sale->app_status = StatusEnum::AUTHORIZED->value;
+            $sale->save();
             return redirect()->back();
+        } catch (\Exception $th) {
+            Log::info($th->getMessage());
+            return redirect()->back();
+            // return redirect()->back()->withError($th->getMessage())->withInput();
         }
-        $temp_file=$envelopeApi->getDocument($app->account_id,$app->document_id,$app->envelope_id);
-        $file_path=storage_path('app/public/pdf/'.$appId.'.pdf');
-        file_put_contents($file_path,file_get_contents($temp_file->getPathname()));
-        $app->signed_document='public/pdf/'.$appId.'.pdf';
-        $app->save();
-        $sale = SaleBooking::find($appId);
-        $sale->app_status = StatusEnum::AUTHORIZED->value;
-        $sale->save();
-        return redirect()->back();
     }
 }
