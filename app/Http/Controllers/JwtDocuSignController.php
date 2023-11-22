@@ -198,6 +198,7 @@ class JwtDocuSignController extends Controller
 
                 return redirect($authorizationUrl);
             }
+            Log::info($th->getMessage());
 
             return back()->withError($th->getMessage())->withInput();
         }
