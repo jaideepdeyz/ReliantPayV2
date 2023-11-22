@@ -215,6 +215,7 @@ class JwtDocuSignController extends Controller
             }
             $temp_file = $envelopeApi->getDocument($app->account_id, $app->document_id, $app->envelope_id);
             $file_path = storage_path('app/public/pdf/' . $appId . '.pdf');
+            Log::info($temp_file->getPathname());
             file_put_contents($file_path, file_get_contents($temp_file->getPathname()));
             $app->signed_document = 'public/pdf/' . $appId . '.pdf';
             $app->save();
