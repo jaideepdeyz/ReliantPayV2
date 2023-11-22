@@ -6,7 +6,7 @@
                 <div class="form-group mt-2">
                     <label for="name">Card Number</label>
                     <input type="text" name="billing-cc-number" id="billing-cc-number" class="form-control"
-                        placeholder="Enter card Number" minlength="16" maxlength="16"  value="{{$salebooking->payment->cc_number}}" required readonly>
+                        placeholder="Enter card Number" minlength="16" maxlength="16"  value="{{$salebooking->payment->cc_number}}" required >
                 </div>
                 <div class="form-group mt-2">
 
