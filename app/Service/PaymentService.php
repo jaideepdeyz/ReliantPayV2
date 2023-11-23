@@ -103,7 +103,7 @@ class PaymentService
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xmlString);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         // This should be unset in production use. With it on, it forces the ssl cert to be valid
-        // fuck the world world . https://en.wikipedia.org/wiki/Who_Controls_the_Internet%3F
+        // fuck the world world . https://en.wikipedia.org/wiki/Who_Controls_the_Internet%3F 🙆‍♂️🙆‍♂️🙆‍♂️🙆‍♂️🙆‍♂️🙆‍♂️
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         if (!($data = curl_exec($ch))) {
             throw new Exception(" CURL ERROR :" . curl_error($ch));
