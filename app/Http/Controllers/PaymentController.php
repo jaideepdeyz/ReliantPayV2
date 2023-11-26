@@ -55,7 +55,7 @@ class PaymentController extends Controller
     {
 
         $base64EncodedId = base64_encode($id);
-        $url = route('payment-link', $base64EncodedId);
+        $url = route('paymentLink', $base64EncodedId);
         Session::flash('generatedpaymenturl', 'Payment link generated successfully');
         return redirect()->back()->with('generatedpaymenturl', $url);
         
