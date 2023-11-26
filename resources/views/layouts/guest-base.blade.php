@@ -43,7 +43,7 @@
     <!-- scripts js -->
 
 
-    {{-- @stack('scripts')
+    @stack('scripts')
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <!-- Authentication js -->
@@ -52,7 +52,7 @@
             window.addEventListener('swal', function(e) {
 			Swal.fire(e.detail);
 		});
-	    </script> --}}
+	    </script>
 </body>
 
 </html>
