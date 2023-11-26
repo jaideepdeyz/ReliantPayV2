@@ -87,5 +87,5 @@
 
         </div>
     </div>
-    <script></script>
+    
 </x-guest-base>
