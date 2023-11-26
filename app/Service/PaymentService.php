@@ -13,6 +13,7 @@ class PaymentService
     protected $api_key;
     protected $post_url;
     protected $redirect_url;
+    protected $tokenizationKey;
 
 
 
@@ -24,6 +25,7 @@ class PaymentService
         $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
         $this->redirect_url = 'https://reliant.yellowberry.in/payment/stepThreePay';
         // $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
+        $this->tokenizationKey= 'YjdVSz-jg23c4-45a5qu-rqMhWD';
     }
     public function stepOnePay($id)
     {
