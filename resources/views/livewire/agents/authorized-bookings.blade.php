@@ -73,7 +73,7 @@
                                             wire:click="showDetails('{{ $booking->id }}')">View</button>
                                         @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
                                             <a class="btn btn-sm btn-danger"
-                                                href={{ route('payment.stepOnePay', $booking->id) }}>Charge Card</a>
+                                                href={{ route('payment.generatePaymentLink', $booking->id) }}>Generate Payment Link</a>
                                         @endif
                                     </td>
                                 </tr>

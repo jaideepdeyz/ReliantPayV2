@@ -27,6 +27,7 @@ use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
+use App\Livewire\Payment\MakePayment;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,8 +101,10 @@ Route::middleware('auth')->group(function () {
     // payment routes
     Route::get('payment/stepOnePay/{id}', [App\Http\Controllers\PaymentController::class, 'stepOnePay'])->name('payment.stepOnePay');
     Route::get('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
+    Route::get('payment/generatePaymentLink/{id}', [App\Http\Controllers\PaymentController::class, 'generatePaymentLink'])->name('payment.generatePaymentLink');
 });
-// OTP routes
-
+// payment Link routes
+Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');
+Route::post('makePaymentLinkPayment',[App\Http\Controllers\PaymentController::class, 'makePaymentLinkPayment'])->name('makePaymentLinkPayment');
 
 require __DIR__ . '/auth.php';

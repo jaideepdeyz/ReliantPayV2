@@ -6,6 +6,7 @@ use App\Enums\StatusEnum;
 use App\Models\SaleBooking;
 use App\Service\PaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Xml;
 
 class PaymentController extends Controller
@@ -19,7 +20,7 @@ class PaymentController extends Controller
     {
         try {
             $response = $this->paymentService->stepOnePay($id);
-            $salebooking=SaleBooking::find($id);
+            $salebooking = SaleBooking::find($id);
             $gwResponse = Xml::decode($response);
 
             if ($gwResponse['result'] == "1") {
@@ -28,7 +29,6 @@ class PaymentController extends Controller
             } else {
                 throw new \Exception($gwResponse->responsetext);
             }
-            
         } catch (\Exception $e) {
             dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
@@ -38,17 +38,48 @@ class PaymentController extends Controller
     {
         try {
             $response = $this->paymentService->stepThreePay($request['token-id']);
-            $gwResponse =Xml::decode($response);
-            if($gwResponse['result'] == "1"){
-                $salebooking=SaleBooking::where('order_id',$gwResponse['order-id'])->first();
+            $gwResponse = Xml::decode($response);
+            if ($gwResponse['result'] == "1") {
+                $salebooking = SaleBooking::where('order_id', $gwResponse['order-id'])->first();
                 $salebooking->update([
                     'app_status' => StatusEnum::PAYMENT_DONE,
                 ]);
             }
-               
+
             return view('payment.payment-response', compact('gwResponse', 'response'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+    public function generatePaymentLink($id)
+    {
+
+        $base64EncodedId = base64_encode($id);
+        $url = route('payment-link', $base64EncodedId);
+        Session::flash('generatedpaymenturl', 'Payment link generated successfully');
+        return redirect()->back()->with('generatedpaymenturl', $url);
+        
+    }
+    public function paymentLink($id)
+    {
+        $decodedId = base64_decode($id);
+        $salebooking = SaleBooking::find($decodedId);
+        return view('payment.payment-link', compact('salebooking','decodedId'));
+    }
+    public function makePaymentLinkPayment(Request $request)
+    {
+        $_token=$request['_token'];
+        $decodedId = $request['decodedId'];
+        $payment_token=$request['payment_token'];
+        $response=$this->paymentService->payUsingTransactApi($payment_token,$decodedId);
+        if($response['response']==1){
+            $salebooking = SaleBooking::where('order_id', $response['orderid'])->first();
+            $salebooking->update([
+                'app_status' => StatusEnum::PAYMENT_DONE,
+            ]);
+            return view('payment.payment-link-response', compact('response'));
+        }else{
+            return redirect()->back()->with('error', $response['responsetext']);
         }
     }
 }

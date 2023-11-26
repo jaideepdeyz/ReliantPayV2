@@ -355,5 +355,11 @@
     <livewire:modals />
     @livewireScripts
 </body>
+<script>
+ 
+    @if(Session::has('generatedpaymenturl'))
+        alert("{{ Session::get('generatedpaymenturl') }}");
+    @endif
+</script>
 
 </html>
