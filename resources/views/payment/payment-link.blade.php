@@ -2,10 +2,14 @@
 
     <script src="https://secure.nationalprocessinggateway.com/token/Collect.js"
         data-tokenization-key="YjdVSz-jg23c4-45a5qu-rqMhWD"
+        data-country="US"
+        data-currency="USD"
+        data-price="{{ $salebooking->payment->amount_charged }}"
         data-variant="inline"
+        data-style-sniffer="true"
         data-field-ccnumber-placeholder='000 0000 0000 0000' 
-        data-field-ccexp-placeholder='10/29'
-        data-field-cvv-placeholder='123'
+        data-field-ccexp-placeholder='MM/YY'
+        data-field-cvv-placeholder='***'
         data-fields-available-callback="(function() {
                         document.getElementById('loading').style.display = 'none';
                         document.getElementById('payment-form').style.visibility = 'visible';
@@ -69,6 +73,8 @@
                             <div id="cvv"></div>
                         </div>
                     </div>
+                   
+                   
                     <div class="mt-3 d-grid">
                         <button class="btn btn-primary waves-effect waves-light" type="submit" id="payButton">Make
                             Payment</button>
