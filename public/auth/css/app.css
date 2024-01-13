@@ -465,8 +465,8 @@ html[data-bs-theme=dark] #light-dark-mode .ri-moon-line::before {
   -webkit-transition: var(--ct-menu-transition);
   transition: var(--ct-menu-transition);
   background: var(--ct-menu-bg);
-  -webkit-box-shadow: var(--ct-box-shadow);
-          box-shadow: var(--ct-box-shadow);
+  -webkit-box-shadow: var(--ct-box-shadow-sm);
+          box-shadow: var(--ct-box-shadow-sm);
   border-left: var(--ct-theme-border-width) solid var(--ct-border-color);
 }
 
