@@ -51,7 +51,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
-                        <thead class="table-dark">
+                        <thead>
                             <tr>
                                 <th>Sale ID</th>
                                 <th>Service</th>
@@ -80,7 +80,8 @@
                                         @elseif($booking->app_status == StatusEnum::PAYMENT_DONE->value)
                                             <span class="badge badge-outline-success">Payment Done</span>
                                         @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                            <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value }}</span>
+                                            <span
+                                                class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value }}</span>
                                         @endif
                                     </td>
                                     <td>

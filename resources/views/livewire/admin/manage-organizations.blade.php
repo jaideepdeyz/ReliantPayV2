@@ -38,12 +38,14 @@
                     <div class="row mb-3">
                         <div class="row mt-3 d-flex justify-content-between">
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Search</label>
-                                    <input wire:model.live.debounce.300ms="search" class="form-control"
-                                        placeholder="search" value="search">
-                                </div>
+                            <div class="col-md-3">
+                                <form class="search-bar form-block mt-3">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control"
+                                            wire:model.live.debounce.300ms="search" placeholder="Search...">
+                                        <span class="mdi mdi-magnify"></span>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="col-md-2">
