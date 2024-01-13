@@ -39,7 +39,7 @@
                 <a href="#">
                     <span>
                         <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="Reliant Pay"
-                            class="img-fluid">
+                            class="img-fluid" style="max-height:90px;">
                     </span>
                 </a>
             </div>

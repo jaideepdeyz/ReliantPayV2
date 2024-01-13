@@ -67,36 +67,33 @@
                     <div class="row mb-3">
                         @if ($dealers->count() > 0)
                             <div class="flex">
-                                <table class="table table-hover table-borderless wrap table-fixed">
-                                    <thead class="table-light">
+                                <table class="table table-hover table-striped table-borderless wrap table-fixed">
+                                    <thead>
                                         <tr>
-
-                                            <th class="col-md-1">SL</th>
-
 
                                             @include('livewire.util.datatable-sortable-th', [
                                                 'name' => 'name',
-                                                'displayName' => 'NAME',
+                                                'displayName' => 'Name',
                                                 'width' => 2,
                                             ])
 
                                             @include('livewire.util.datatable-sortable-th', [
                                                 'name' => 'email',
-                                                'displayName' => 'EMAIL',
+                                                'displayName' => 'Email',
                                                 'width' => 1,
                                             ])
 
-                                            <th class="col-md-1" style="text-align:center;">PHONE</th>
+                                            <th class="col-md-1">Phone</th>
 
-                                            <th class="col-md-2" style="text-align:center;">ADDRESS</th>
+                                            <th class="col-md-2">Address</th>
 
                                             @include('livewire.util.datatable-sortable-th', [
                                                 'name' => 'status',
-                                                'displayName' => 'STATUS',
+                                                'displayName' => 'Status',
                                                 'width' => 1,
                                             ])
 
-                                            <th class="col-md-1" style="text-align:center;">ACTION</th>
+                                            <th class="col-md-1">Action</th>
                                         </tr>
                                     </thead>
 
@@ -106,15 +103,11 @@
 
                                         @foreach ($dealers as $d)
                                             <tr wire:key={{ $d->id }}>
-
-                                                <td>
-                                                    {{ $loop->iteration }}
-                                                </td>
-
-                                                <td>
+                                                <td class="table-user">
+                                                    <img src="{{ asset('auth/images/users/user-3.jpg') }}"
+                                                        alt="table-user" class="me-2 rounded-circle">
                                                     {{ $d->business_name }}
                                                 </td>
-
                                                 <td>
                                                     {{ $d->business_email }}
                                                 </td>
