@@ -246,3 +246,11 @@
       );
 
 print($message->sid);
+
+
+# TODO FOR SENDING SMS
+- Validate phone number of dealer during sign up
+- Payment successful 
+- Booking successful
+## POST TODO SMS
+- Trip reminder
