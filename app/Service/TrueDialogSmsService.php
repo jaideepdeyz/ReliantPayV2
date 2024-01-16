@@ -19,7 +19,10 @@ class TrueDialogSmsService{
     }
 
     public function sendSms($to, $message)
-    {
+    {       
+        if(substr($to,0,1)!='+'){
+            throw new \Exception('Phone number must begin with + sign');
+        }
 
         $http=Http::withBasicAuth($this->apiKey,$this->apiSecret)->post($this->apiUrl.'/account/'.$this->accountId.'/action-pushCampaign',[
             'channels'=>[
