@@ -58,83 +58,43 @@ class FlightBookingService extends Component
     public $departureAirports = [];
     public $destinationAirports = [];
 
-    public function updatedQuery()
-    {
-        if($this->query == '')
-        {
-            $this->airlines = [];
-        } else {
-            $this->airlines = Airline::where('name', 'like', '%'.$this->query.'%')->get();
-        }
-    }
-
-    public function updatedDepartureQuery()
-    {
-        if($this->departureQuery == '')
-        {
-            $this->departureAirports = [];
-        } else {
-            $this->departureAirports = Airport::where('name', 'like', '%'.$this->departureQuery.'%')
-            ->orWhere('code', 'like', '%'.$this->departureQuery.'%')
-            ->get();
-        }
-    }
-
-    public function updatedDestinationQuery()
-    {
-        if($this->destinationQuery == '')
-        {
-            $this->destinationAirports = [];
-        } else {
-            $this->destinationAirports = Airport::where('name', 'like', '%'.$this->destinationQuery.'%')
-            ->orWhere('code', 'like', '%'.$this->destinationQuery.'%')
-            ->get();
-        }
-    }
-
-    public function setAirline($airlineName)
-    {
-        // dd($airlineName);
-        $this->airline_name = $airlineName;
-        $this->query = $airlineName;
-        $this->airlines = [];
-    }
 
 
-    #[On('depAirport')]
-    public function depAirport($airportID)
-    {
-        $this->departure_location = $airportID;
-        $airport = Airport::find($airportID);
-        $this->departureAirport = $airport->name;
-    }
 
-    #[On('destAirport')]
-    public function destAirport($airportID)
-    {
-        $this->destination_location = $airportID;
-        $airport = Airport::find($airportID);
-        $this->destinationAirport = $airport->name;
-    }
-    #[On('depCountry')]
-    public function depCountry($code)
-    {
-        $this->departureCountry = $code;
-        $country = Country::where('code', $code)->first();
-        $this->departure_country_name = $country->name;
-        $this->departure_location = null;
-        $this->departureAirport = null;
+    // #[On('depAirport')]
+    // public function depAirport($airportID)
+    // {
+    //     $this->departure_location = $airportID;
+    //     $airport = Airport::find($airportID);
+    //     $this->departureAirport = $airport->name;
+    // }
 
-    }
-    #[On('destCountry')]
-    public function destCountry($code)
-    {
-        $this->destinationCountry = $code;
-        $country = Country::where('code', $code)->first();
-        $this->destination_country_name = $country->name;
-        $this->destination_location = null;
-        $this->destinationAirport = null;
-    }
+    // #[On('destAirport')]
+    // public function destAirport($airportID)
+    // {
+    //     $this->destination_location = $airportID;
+    //     $airport = Airport::find($airportID);
+    //     $this->destinationAirport = $airport->name;
+    // }
+    // #[On('depCountry')]
+    // public function depCountry($code)
+    // {
+    //     $this->departureCountry = $code;
+    //     $country = Country::where('code', $code)->first();
+    //     $this->departure_country_name = $country->name;
+    //     $this->departure_location = null;
+    //     $this->departureAirport = null;
+
+    // }
+    // #[On('destCountry')]
+    // public function destCountry($code)
+    // {
+    //     $this->destinationCountry = $code;
+    //     $country = Country::where('code', $code)->first();
+    //     $this->destination_country_name = $country->name;
+    //     $this->destination_location = null;
+    //     $this->destinationAirport = null;
+    // }
 
     public function mount($appID)
     {
@@ -157,12 +117,6 @@ class FlightBookingService extends Component
             $this->departureAirport = Airport::find($this->departure_location)->name;
             $this->destinationAirport = Airport::find($this->destination_location)->name;
 
-            // $this->airports = Airport::where('iso_country', $this->departureCountry)
-            //     ->select('name', 'id')
-            //     ->get();
-            // $this->destinationAirports = Airport::where('iso_country', $this->destinationCountry)->select('name', 'id')->get();
-            // $this->updatedDepartureCountry($this->departureCountry);
-            // $this->updatedDestinationCountry($this->departureCountry);
         }
     }
 
@@ -173,6 +127,68 @@ class FlightBookingService extends Component
         } else {
             $this->isRoundTrip = 'Yes';
         }
+    }
+
+    public function updatedQuery()
+    {
+        if($this->query == '')
+        {
+            $this->airlines = [];
+        } else {
+            $this->airlines = Airline::where('name', 'like', '%'.$this->query.'%')->get();
+        }
+    }
+
+    public function updatedDepartureQuery()
+    {
+        if($this->departureQuery == '')
+        {
+            $this->departureAirports = [];
+        } else {
+            $this->departureAirports = Airport::where('code', 'like', '%'.$this->departureQuery.'%')
+            ->orWhere('city', 'like', '%'.$this->departureQuery.'%')
+            ->orWhere('name', 'like', '%'.$this->departureQuery.'%')
+            ->get();
+        }
+    }
+
+    public function updatedDestinationQuery()
+    {
+        if($this->destinationQuery == '')
+        {
+            $this->destinationAirports = [];
+        } else {
+            $this->destinationAirports = Airport::where('code', 'like', '%'.$this->destinationQuery.'%')
+            ->orWhere('city', 'like', '%'.$this->destinationQuery.'%')
+            ->orWhere('name', 'like', '%'.$this->destinationQuery.'%')
+            ->get();
+        }
+    }
+
+    public function setAirline($airlineName)
+    {
+        // dd($airlineName);
+        $this->airline_name = $airlineName;
+        $this->query = $airlineName;
+        $this->airlines = [];
+    }
+
+    public function setDepartureAirport($airportName)
+    {
+        $airport = Airport::find($airportName);
+        $this->departure_location = $airportName;
+        $this->departureCountry = $airport->country;
+        $this->departureQuery = $airport->name;
+        $this->departureAirports = [];
+    }
+
+    public function setDestinationAirport($airportName)
+    {
+        $airport = Airport::find($airportName);
+        $this->destination_location = $airportName;
+        $this->destinationCountry = $airport->country;
+        $this->destinationQuery = $airport->name;
+        $this->destinationAirports = [];
     }
 
 

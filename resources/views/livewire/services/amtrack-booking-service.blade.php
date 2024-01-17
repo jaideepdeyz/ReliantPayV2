@@ -9,7 +9,7 @@
                     <li class="breadcrumb-item active">Flight Booking</li>
                 </ol>
             </div>
-            <h4 class="page-title">Flight Booking</h4>
+            <h4 class="page-title">Amtrack Booking</h4>
         </div>
     </div>
     <!-- end page title -->
@@ -21,7 +21,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                                Step 2/5: Details for Flight Booking
+                                Step 2/5: Details for Amtrack Booking
                             </h5>
                             <div class="row">
                                 {{-- <div class="mb-3 col-md-12">
@@ -38,15 +38,14 @@
 
                                 {{-- testing livewire searchable dropdown --}}
 
-                                <div class="mb-3 col-md-12">
+                                <div class="mb-3 col-md-6">
                                     <div>
-                                        <label for="airline_name" class="form-label">Airline Name</label>
-                                        <input type="text" class="form-input form-control" placeholder="Search Airlines .." wire:model.live="query" required>
+                                        <label for="departure_location" class="form-label">Departure Station</label>
+                                        <input type="text" class="form-input form-control" placeholder="Search Stations .." wire:model.live="departureQuery" required>
                                         <div class="px-3" style="background:#fefdfd;">
-                                            @foreach($airlines as $airline)
-                                                <a href="#" class="d-block my-1" wire:click="setAirline('{{$airline->name}}')">
-                                                    <img src="{{$airline->logo}}" alt="logo" width="45" height="45">
-                                                    {{$airline->name}}
+                                            @foreach($departureStations as $depStation)
+                                                <a href="#" class="d-block my-1" wire:click="setDepartureAirport('{{$depStation->id}}')">
+                                                    {{$depStation->code}} | {{$depStation->name}}
                                                 </a><hr>
                                             @endforeach
                                         </div>
@@ -55,44 +54,17 @@
 
                                 <div class="mb-3 col-md-6">
                                     <div>
-                                        <label for="departure_location" class="form-label">Departure Airport</label>
-                                        <input type="text" class="form-input form-control" placeholder="Search Airports .." wire:model.live="departureQuery" required>
+                                        <label for="destination_location" class="form-label">Destination Station</label>
+                                        <input type="text" class="form-input form-control" placeholder="Search Stations .." wire:model.live="destinationQuery" required>
                                         <div class="px-3" style="background:#fefdfd;">
-                                            @foreach($departureAirports as $depAirport)
-                                                <a href="#" class="d-block my-1" wire:click="setDepartureAirport('{{$depAirport->id}}')">
-                                                    {{$depAirport->code}} | {{$depAirport->name}}
+                                            @foreach($destinationStations as $destStation)
+                                                <a href="#" class="d-block my-1" wire:click="setDestinationAirport('{{$destStation->id}}')">
+                                                    {{$destStation->code}} | {{$destStation->name}}
                                                 </a><hr>
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <div>
-                                        <label for="destination_location" class="form-label">Destination Airport</label>
-                                        <input type="text" class="form-input form-control" placeholder="Search Airports .." wire:model.live="destinationQuery" required>
-                                        <div class="px-3" style="background:#fefdfd;">
-                                            @foreach($destinationAirports as $destAirport)
-                                                <a href="#" class="d-block my-1" wire:click="setDestinationAirport('{{$destAirport->id}}')">
-                                                    {{$destAirport->code}} | {{$destAirport->name}}
-                                                </a><hr>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- testing end  --}}
-
-
-
-
-                                {{-- <div class="mb-3 col-md-6">
-                                    <label for="destination_location" class="form-label">Destination Aiport</label>
-                                   <input type="text" wire:model="destinationAirport" class="form-control" wire:click="getDestinationAirports" readonly style="cursor: pointer;">
-                                    @error('destination_location')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div> --}}
 
                                 <div class="mb-3 col-md-6">
                                     <label for="tripType" class="form-label">One Way or Round Trip ?</label>
@@ -137,7 +109,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-4">
+                                {{-- <div class="mb-3 col-md-4">
                                     <label for="no_days_hotel_car" class="form-label">No. of days (Hotel / Car)</label>
                                     <input type="text"
                                         class="form-control @error('no_days_hotel_car') is-invalid @enderror"
@@ -145,7 +117,7 @@
                                     @error('no_days_hotel_car')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="mb-3 col-md-12">
                                     <label for="comments" class="form-label">Comments</label>

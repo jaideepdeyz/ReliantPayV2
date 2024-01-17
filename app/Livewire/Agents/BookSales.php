@@ -54,7 +54,6 @@ class BookSales extends Component
             $this->remarks = 'New Sale Added';
             $this->transactionLog();
 
-            //creating entry in Flight, Passengers and Payments table
             DB::commit();
             $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email']);
             $this->dispatch('close-modal');
@@ -80,6 +79,8 @@ class BookSales extends Component
         {
             case ServiceEnum::FLIGHTS->value:
                 return redirect()->route('flightBooking', ['appID' => $bookingID]);
+            case ServiceEnum::AMTRAK->value:
+                return redirect()->route('amtrackBooking', ['appID' => $bookingID]);
             default:
                 return redirect()->back();
         }

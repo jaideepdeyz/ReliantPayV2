@@ -1,6 +1,6 @@
 <li class="menu-item">
     <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link">
-        <span class="menu-icon"><i class="fas fa-plane"></i></span>
+        <span class="menu-icon"><i class="fas fa-money-check"></i></span>
 
         <span class="menu-text">Sales </span>
         <span class="menu-arrow"></span>
