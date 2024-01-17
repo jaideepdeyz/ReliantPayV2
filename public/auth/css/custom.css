@@ -30,3 +30,8 @@
     border-bottom:1px solid #dee2e6;
     color:black
 }
+
+button svg{
+    vertical-align: baseline !important;
+    margin-right:8px;
+}

@@ -20,69 +20,83 @@
                 </h5>
                 <form wire:submit="storePassenger">
                     <div class="row">
-                        <div class="mb-3 col-md-3">
-                            <label for="full_name" class="form-label">Passenger's Name</label>
-                            <input type="text" class="form-control @error('full_name') is-invalid @enderror"
-                                wire:model="full_name">
-                            @error('full_name')
+                        <div class="col-md-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control @error('full_name') is-invalid @enderror"
+                                    wire:model="full_name" placeholder="Passenger Name">
+                                <label for="full_name" class="form-label">Passenger's Name</label>
+                                @error('full_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
-                        <div class="mb-3 col-md-3">
-                            <label for="gender" class="form-label">Gender</label>
-                            <select class="form-control @error('gender') is-invalid @enderror" wire:model="gender">
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            @error('gender')
+                        <div class="col-md-3">
+                            <div class="form-floating">
+                                <select class="form-select @error('gender') is-invalid @enderror" wire:model="gender"
+                                    placeholder="Gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <label for="gender" class="form-label">Gender</label>
+                                @error('gender')
                                 <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 col-md-3">
-                            <label for="dob" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control @error('dob') is-invalid @enderror"
-                                wire:model="dob">
-                            @error('dob')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="mb-3 col-md-3">
-                            <label for="relationship_to_card_holder" class="form-label">Relationship to Card Holder
-                                ?</label>
-                            <select class="form-control @error('relationship_to_card_holder') is-invalid @enderror"
-                                wire:model="relationship_to_card_holder">
-                                <option value="">Select Option</option>
-                                <option value="Card Holder">Card Holder</option>
-                                <option value="Husband">Husband</option>
-                                <option value="Wife">Wife</option>
-                                <option value="Son">Son</option>
-                                <option value="Daughter">Daughter</option>
-                                <option value="Uncle">Uncle</option>
-                                <option value="Aunt">Aunt</option>
-                                <option value="Colleague">Colleague</option>
-                            </select>
-                            @error('relationship_to_card_holder')
+                        <div class="col-md-3">
+                            <div class="form-floating">
+                                <input type="date" class="form-control @error('dob') is-invalid @enderror"
+                                    wire:model="dob" placeholder="Date of Birth">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                @error('dob')
                                 <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                            <button type="submit" class="btn w-sm btn-success waves-effect waves-danger">Add
-                                Passenger</button>
+                        <div class="col-md-3">
+                            <div class="form-floating">
+                                <select class="form-select @error('relationship_to_card_holder') is-invalid @enderror"
+                                    wire:model="relationship_to_card_holder">
+                                    <option value="">Select Option</option>
+                                    <option value="Card Holder">Card Holder</option>
+                                    <option value="Husband">Husband</option>
+                                    <option value="Wife">Wife</option>
+                                    <option value="Son">Son</option>
+                                    <option value="Daughter">Daughter</option>
+                                    <option value="Uncle">Uncle</option>
+                                    <option value="Aunt">Aunt</option>
+                                    <option value="Colleague">Colleague</option>
+                                </select>
+                                <label for="relationship_to_card_holder" class="form-label">Relationship to Card
+                                    Holder
+                                    ?</label>
+                                @error('relationship_to_card_holder')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mb-3 mt-3 col-md-12 action-buttons d-flex justify-content-between">
+                            <button type="submit" class="btn w-sm btn-blue waves-effect waves-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                    class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                </svg> Add Passenger</button>
                         </div>
                     </div>
                 </form>
 
                 <div class="table-responsive mt-2">
-                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
+                    <h5 class="text-uppercase p-2 mt-0 mb-2">
                         Passengers Added
                     </h5>
-                    <table class="table table-sm table-striped table-bordered">
-                        <thead>
+                    <table class="table table-sm table-striped">
+                        <thead class="table-light">
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
@@ -94,18 +108,18 @@
                         </thead>
                         <tbody>
                             @foreach ($passengers as $passenger)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $passenger->full_name }}</td>
-                                    <td>{{ $passenger->dob }}</td>
-                                    <td>{{ $passenger->gender }}</td>
-                                    <td>{{ $passenger->relationship_to_card_holder }}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#alertModal"
-                                            wire:click='selectId({{ $passenger->id }})'>Remove</button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $passenger->full_name }}</td>
+                                <td>{{ $passenger->dob }}</td>
+                                <td>{{ $passenger->gender }}</td>
+                                <td>{{ $passenger->relationship_to_card_holder }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#alertModal"
+                                        wire:click='selectId({{ $passenger->id }})'>Remove</button>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

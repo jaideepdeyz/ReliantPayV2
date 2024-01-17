@@ -70,7 +70,7 @@
                                             <a href="#" class="d-block dropdown-links"
                                                 wire:click="setDepartureAirport('{{$depAirport->id}}')">
                                                 <span class="country-code">{{$depAirport->code}}</span>
-                                                {{$depAirport->name}}
+                                                &nbsp;&nbsp;{{$depAirport->name}}
                                             </a>
                                             @endforeach
                                         </div>
@@ -90,7 +90,7 @@
                                             <a href="#" class="d-block dropdown-links"
                                                 wire:click="setDestinationAirport('{{$destAirport->id}}')">
                                                 <span class="country-code">{{$destAirport->code}}</span>
-                                                {{$destAirport->name}}
+                                                &nbsp;&nbsp;{{$destAirport->name}}
                                             </a>
                                             @endforeach
                                         </div>

@@ -24,7 +24,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,947</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Total Revenue</p>
+                            <p class="text-muted mb-1 text-truncate">Revenue</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -44,7 +44,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Today's Sales</p>
+                            <p class="text-muted mb-1 text-truncate">Registrations</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -64,7 +64,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">0.58</span>%</h3>
-                            <p class="text-muted mb-1 text-truncate">Bookings</p>
+                            <p class="text-muted mb-1 text-truncate">Enrollment</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -84,7 +84,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">78.41</span>k</h3>
-                            <p class="text-muted mb-1 text-truncate">Agents</p>
+                            <p class="text-muted mb-1 text-truncate">Site Visits</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -97,7 +97,8 @@
             <div class="card h-100">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -170,7 +171,8 @@
             <div class="card h-100">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -201,18 +203,22 @@
                                 @foreach($authorizations as $authorization)
                                 <tr>
                                     <td style="width: 36px;">
-                                        <img src="{{asset('auth/images/users/user-1.jpg') }}" alt="contact-img" title="contact-img" class="rounded-circle avatar-sm" />
+                                        <img src="{{asset('auth/images/users/user-1.jpg') }}" alt="contact-img"
+                                            title="contact-img" class="rounded-circle avatar-sm" />
                                     </td>
                                     <td>
                                         <h5 class="m-0 fw-normal">{{$authorization->customer_name}}</h5>
-                                        <p class="mb-0 text-muted"><small>Authorization Date: {{$authorization->updated_at}}</small></p>
+                                        <p class="mb-0 text-muted"><small>Authorization Date:
+                                                {{$authorization->updated_at}}</small></p>
                                     </td>
                                     <td>{{$authorization->id}}</td>
                                     <td>{{$authorization->customer_phone}}</td>
                                     <td>{{$authorization->customer_email}}</td>
                                     <td>
-                                        <a href="javascript: void(0);" class="btn btn-xs btn-light"><i class="mdi mdi-plus"></i></a>
-                                        <a href="javascript: void(0);" class="btn btn-xs btn-danger"><i class="mdi mdi-minus"></i></a>
+                                        <a href="javascript: void(0);" class="btn btn-xs btn-light"><i
+                                                class="mdi mdi-plus"></i></a>
+                                        <a href="javascript: void(0);" class="btn btn-xs btn-danger"><i
+                                                class="mdi mdi-minus"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -228,7 +234,8 @@
             <div class="card h-100">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -258,26 +265,31 @@
                             <tbody>
                                 @foreach($bookings as $booking)
                                 <tr>
-                                    <td><h5 class="m-0 fw-normal">{{$booking->customer_name}}</h5></td>
+                                    <td>
+                                        <h5 class="m-0 fw-normal">{{$booking->customer_name}}</h5>
+                                    </td>
                                     <td>{{$booking->customer_phone}}</td>
                                     <td>{{$booking->customer_email}}</td>
                                     <td>
                                         @switch($booking->app_status)
-                                            @case(StatusEnum::DRAFT->value)
-                                                <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
-                                                @break
-                                            @case(StatusEnum::PENDING->value)
-                                                <span class="badge bg-soft-blue text-blue">{{$booking->app_status}}</span>
-                                                @break
-                                            @case(StatusEnum::AUTHORIZED->value)
-                                                <span class="badge bg-soft-success text-dark">{{$booking->app_status}}</span>
-                                                @break
-                                            @default
-                                            <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
+                                        @case(StatusEnum::DRAFT->value)
+                                        <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
+                                        @break
+                                        @case(StatusEnum::PENDING->value)
+                                        <span class="badge bg-soft-blue text-blue">{{$booking->app_status}}</span>
+                                        @break
+                                        @case(StatusEnum::AUTHORIZED->value)
+                                        <span class="badge bg-soft-success text-dark">{{$booking->app_status}}</span>
+                                        @break
+                                        @default
+                                        <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
                                         @endswitch
-                                        {{-- <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span> --}}
+                                        {{-- <span
+                                            class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
+                                        --}}
                                     </td>
-                                    <td><a href="javascript: void(0);" class="btn btn-xs btn-light"><i class="mdi mdi-pencil"></i></a></td>
+                                    <td><a href="javascript: void(0);" class="btn btn-xs btn-light"><i
+                                                class="mdi mdi-pencil"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

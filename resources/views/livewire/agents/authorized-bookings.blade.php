@@ -25,14 +25,12 @@
 
                     <div class="form-group col-md-3">
                         <label for="">Search by Customer's Name</label>
-                        <input type="text" wire:model.live="search" class="form-control"
-                            placeholder="Customer's Name">
+                        <input type="text" wire:model.live="search" class="form-control" placeholder="Customer's Name">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="">Search by Customer's Email</label>
-                        <input type="text" wire:model.live="search" class="form-control"
-                            placeholder="Customer's Email">
+                        <input type="text" wire:model.live="search" class="form-control" placeholder="Customer's Email">
                     </div>
 
                     <div class="form-group col-md-3">
@@ -48,7 +46,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Sale ID</th>
                                 <th>Service</th>
@@ -61,22 +59,22 @@
                         </thead>
                         <tbody>
                             @foreach ($sales as $booking)
-                                <tr>
-                                    <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->service->service_name }}</td>
-                                    <td>{{ $booking->customer_name }}</td>
-                                    <td>{{ $booking->customer_phone }}</td>
-                                    <td>{{ $booking->customer_email }}</td>
-                                    <td>{{ $booking->app_status }}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-blue"
-                                            wire:click="showDetails('{{ $booking->id }}')">View</button>
-                                        @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
-                                            <a class="btn btn-sm btn-danger"
-                                                href={{ route('payment.generatePaymentLink', $booking->id) }}>Generate Payment Link</a>
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $booking->id }}</td>
+                                <td>{{ $booking->service->service_name }}</td>
+                                <td>{{ $booking->customer_name }}</td>
+                                <td>{{ $booking->customer_phone }}</td>
+                                <td>{{ $booking->customer_email }}</td>
+                                <td>{{ $booking->app_status }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-blue"
+                                        wire:click="showDetails('{{ $booking->id }}')">View</button>
+                                    @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
+                                    <a class="btn btn-sm btn-danger" href={{ route('payment.generatePaymentLink',
+                                        $booking->id) }}>Generate Payment Link</a>
+                                    @endif
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
