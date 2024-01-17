@@ -125,17 +125,17 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                {{-- <div class="mb-3 col-md-6">
                                     <label for="confirmation_number" class="form-label">Confirmation #</label>
                                     <input class="form-control @error('confirmation_number') is-invalid @enderror"
                                         wire:model="confirmation_number">
                                     @error('confirmation_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
 
-                                <div class="mb-3 col-md-4">
+                                <div class="mb-3 col-md-2">
                                     <label for="departure_date" class="form-label">Departure Date</label>
                                     <input type="date"
                                         class="form-control @error('departure_date') is-invalid @enderror"
@@ -143,6 +143,28 @@
                                     @error('departure_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-4 form-group">
+                                    <label for="departure_time" class="form-label">Departure Time</label>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <select wire:model="departureHour" class="form-control @error('departureHour') is-invalid @enderror">
+                                                <option value="">HH</option>
+                                                @for ($i = 1; $i <= 24; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select wire:model="departureMinute" class="form-control @error('departureMinute') is-invalid @enderror">
+                                                <option value="">MM</option>
+                                                @for ($i = 1; $i <= 30; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4 @if ($isRoundTrip == 'No') d-none @endif">
@@ -154,7 +176,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-4">
+                                {{-- <div class="mb-3 col-md-4">
                                     <label for="no_days_hotel_car" class="form-label">No. of days (Hotel / Car)</label>
                                     <input type="text"
                                         class="form-control @error('no_days_hotel_car') is-invalid @enderror"
@@ -162,7 +184,7 @@
                                     @error('no_days_hotel_car')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="mb-3 col-md-12">
                                     <label for="comments" class="form-label">Comments</label>
@@ -175,7 +197,7 @@
 
                                 <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
                                     <button type="submit"
-                                        class="btn w-sm btn-success waves-effect waves-light">Next</button>
+                                        class="btn w-sm btn-success waves-effect waves-light px-4 py-2">Next</button>
                                 </div>
 
                             </div>

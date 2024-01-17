@@ -39,6 +39,8 @@ class FlightBookingService extends Component
     public $return_date;
     public $no_days_hotel_car;
     public $comments;
+    public $departureHour;
+    public $departureMinute;
 
     //passenger details
     public $full_name;
@@ -102,7 +104,7 @@ class FlightBookingService extends Component
         $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
         if ($flightBooking) {
             $this->airline_name = $flightBooking->airline_name;
-            $this->confirmation_number = $flightBooking->confirmation_number;
+            // $this->confirmation_number = $flightBooking->confirmation_number;
             $this->departureCountry = $flightBooking->departure_country;
             $this->departure_location = $flightBooking->departure_location;
             $this->departure_date = $flightBooking->departure_date;
@@ -110,12 +112,16 @@ class FlightBookingService extends Component
             $this->destinationCountry = $flightBooking->destination_country;
             $this->tripType = $flightBooking->oneway_or_roundtrip;
             $this->return_date = $flightBooking->return_date;
-            $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
+            // $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
-            $this->departure_country_name = Country::where('code', $this->departureCountry)->first()->name;
-            $this->destination_country_name = Country::where('code', $this->destinationCountry)->first()->name;
+            // $this->departure_country_name = Country::where('code', $this->departureCountry)->first()->name;
+            $this->departure_country_name = $flightBooking->departure_country;
+            // $this->destination_country_name = Country::where('code', $this->destinationCountry)->first()->name;
+            $this->destination_country_name = $flightBooking->destination_country;
             $this->departureAirport = Airport::find($this->departure_location)->name;
             $this->destinationAirport = Airport::find($this->destination_location)->name;
+            $this->departureHour = $flightBooking->departure_hour;
+            $this->departureMinute = $flightBooking->departure_minute;
 
         }
     }
@@ -202,7 +208,7 @@ class FlightBookingService extends Component
                 ['app_id' => $this->appID],
                 [
                     'airline_name' => $this->airline_name,
-                    'confirmation_number' => $this->confirmation_number,
+                    // 'confirmation_number' => $this->confirmation_number,
                     'departure_country' => $this->departureCountry,
                     'departure_location' => $this->departure_location,
                     'departure_date' => $this->departure_date,
@@ -210,8 +216,10 @@ class FlightBookingService extends Component
                     'destination_location' => $this->destination_location,
                     'oneway_or_roundtrip' => $this->tripType,
                     'return_date' => $this->return_date,
-                    'no_days_hotel_car' => $this->no_days_hotel_car,
+                    // 'no_days_hotel_car' => $this->no_days_hotel_car,
                     'comments' => $this->comments,
+                    'departure_hour' => $this->departureHour,
+                    'departure_minute' => $this->departureMinute,
                 ]
             );
             DB::commit();

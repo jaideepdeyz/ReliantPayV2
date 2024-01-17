@@ -79,14 +79,14 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-6">
+                                {{-- <div class="mb-3 col-md-6">
                                     <label for="confirmation_number" class="form-label">Confirmation #</label>
                                     <input class="form-control @error('confirmation_number') is-invalid @enderror"
                                         wire:model="confirmation_number">
                                     @error('confirmation_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
 
                                 <div class="mb-3 col-md-4">
