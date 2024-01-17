@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('departure_country')->nullable();
             $table->string('departure_location')->nullable();
             $table->date('departure_date')->nullable();
+            $table->string('departure_hour')->nullable();
+            $table->string('departure_minute')->nullable();
             $table->string('destination_country')->nullable();
             $table->string('destination_location')->nullable();
             $table->string('oneway_or_roundtrip')->nullable();
