@@ -3,10 +3,11 @@
 namespace App\Livewire\Services;
 
 use App\Models\Payment;
+use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
-use Session;
 
 class BillingDetailsService extends Component
 {
@@ -109,6 +110,9 @@ class BillingDetailsService extends Component
 
     public function render()
     {
-        return view('livewire.services.billing-details-service')->layout('layouts.dashboard-layout');
+        $saleBooking = SaleBooking::find($this->appID);
+        return view('livewire.services.billing-details-service', [
+            'saleBooking' => $saleBooking,
+        ])->layout('layouts.dashboard-layout');
     }
 }

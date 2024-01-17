@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
     Route::get('bookSales', BookSales::class)->name('bookSales');
     Route::get('salesByStatus/{status}', SalesByStatus::class)->name('salesByStatus');
     Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
-    Route::get('amtrackBooking/{appID}', AmtrackBookingService::class)->name('amtrackBooking');
+    Route::get('amtrakBooking/{appID}', AmtrackBookingService::class)->name('amtrakBooking');
     Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
     Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
 

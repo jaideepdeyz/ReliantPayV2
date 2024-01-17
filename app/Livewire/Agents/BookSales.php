@@ -63,7 +63,7 @@ class BookSales extends Component
                 case ServiceEnum::FLIGHTS->value:
                     return redirect()->route('flightBooking', ['appID' => $this->sale->id]);
                 case ServiceEnum::AMTRAK->value:
-                    return redirect()->route('amtrackBooking', ['appID' => $this->sale->id]);
+                    return redirect()->route('amtrakBooking', ['appID' => $this->sale->id]);
                 default:
                     return redirect()->back();
             }

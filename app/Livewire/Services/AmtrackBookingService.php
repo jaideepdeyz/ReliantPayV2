@@ -64,6 +64,8 @@ class AmtrackBookingService extends Component
             $this->destinationStation = TrainStation::find($this->destination_location)->name;
             $this->departureHour = $amtrakBooking->departure_hour;
             $this->departureMinute = $amtrakBooking->departure_minute;
+            $this->departureQuery = $amtrakBooking->departureStation->station_location;
+            $this->destinationQuery = $amtrakBooking->destinationStation->station_location;
 
         }
     }

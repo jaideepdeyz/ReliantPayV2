@@ -5,7 +5,7 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                     <li class="breadcrumb-item">Agent Dashboard</li>
-                    <li class="breadcrumb-item">Flight Booking</li>
+                    <li class="breadcrumb-item">{{$saleBooking->service->service_name}}</li>
                     <li class="breadcrumb-item active">Billing Details</li>
                 </ol>
             </div>

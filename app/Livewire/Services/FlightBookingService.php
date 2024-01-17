@@ -9,9 +9,9 @@ use App\Models\FlightBooking;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Session;
 use Livewire\Attributes\Reactive;
 use Livewire\WithPagination;
 

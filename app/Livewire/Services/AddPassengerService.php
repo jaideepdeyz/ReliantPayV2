@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Services;
 
+use App\Enums\ServiceEnum;
 use App\Models\Passenger;
 use App\Models\SaleBooking;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Session;
 
 class AddPassengerService extends Component
 {
@@ -18,10 +19,13 @@ class AddPassengerService extends Component
     public $dob;
     public $relationship_to_card_holder;
     public $passengerID;
+    public $saleBooking;
 
     public function mount($appID)
     {
         $this->appID = $appID;
+        $this->saleBooking = SaleBooking::find($this->appID);
+
     }
 
     public function storePassenger()
@@ -83,7 +87,18 @@ class AddPassengerService extends Component
 
     public function previousStep()
     {
-        return redirect()->route('flightBooking', ['appID' => $this->appID]);
+        switch($this->saleBooking->service->service_name)
+        {
+            case ServiceEnum::FLIGHTS->value:
+                return redirect()->route('flightBooking', ['appID' => $this->appID]);
+                break;
+            case ServiceEnum::AMTRAK->value:
+                return redirect()->route('amtrakBooking', ['appID' => $this->appID]);
+                break;
+            default:
+                return redirect()->back();
+                break;
+        }
     }
 
     public function render()
