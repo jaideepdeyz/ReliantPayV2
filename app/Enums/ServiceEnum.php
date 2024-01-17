@@ -6,5 +6,5 @@ enum ServiceEnum: string
     case FLIGHTS = 'Flight Booking';
     case HOTELS = 'Hotel Booking';
     case CAR_RENTALS = 'Car Rentals';
-    case AMTRAK = 'AMTRACK Booking';
+    case AMTRAK = 'AMTRAK Booking';
 }
