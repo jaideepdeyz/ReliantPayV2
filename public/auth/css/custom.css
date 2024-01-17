@@ -1,3 +1,32 @@
 .float-right{
     float:right !important;
 }
+
+.country-code{
+    background:#e3eff5;
+    padding:5px 15px;
+    border-radius:5px;
+    color: rgb(45, 45, 45);
+}
+
+.dropdownList{
+    position:relative;
+}
+.dropdown-container{
+    position:absolute;
+    top:65px;
+    left:0px;
+    width:100%;
+    z-index:999;
+    border:1px solid #dee2e6;
+    background:#fcfcfc;
+    padding:10px 0px
+}
+.dropdown-container .dropdown-links{
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+    border-bottom:1px solid #dee2e6;
+    color:black
+}
