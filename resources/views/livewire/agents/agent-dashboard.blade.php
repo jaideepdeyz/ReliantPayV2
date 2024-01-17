@@ -12,19 +12,19 @@
         </div>
     </div>
     <!-- end page title -->
-    <div class="col-md-6 col-xl-3">
-        <div class="widget-rounded-circle card">
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="widget-rounded-circle card dashboard-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
                         <div class="avatar-lg rounded-circle bg-primary border-primary border shadow">
-                            <i class="fe-heart font-22 avatar-title text-white"></i>
+                            <i class="bi bi-cash-coin font-22 avatar-title text-white"></i>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,947</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Revenue</p>
+                            <p class="text-muted mb-1 text-truncate">Revenue this month</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -32,19 +32,19 @@
         </div> <!-- end widget-rounded-circle-->
     </div> <!-- end col-->
 
-    <div class="col-md-6 col-xl-3">
-        <div class="widget-rounded-circle card">
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="widget-rounded-circle card dashboard-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
                         <div class="avatar-lg rounded-circle bg-success border-success border shadow">
-                            <i class="fe-shopping-cart font-22 avatar-title text-white"></i>
+                            <i class="bi bi-people font-22 avatar-title text-white"></i>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Registrations</p>
+                            <p class="text-muted mb-1 text-truncate">Customers</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -52,19 +52,19 @@
         </div> <!-- end widget-rounded-circle-->
     </div> <!-- end col-->
 
-    <div class="col-md-6 col-xl-3">
-        <div class="widget-rounded-circle card">
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="widget-rounded-circle card dashboard-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
                         <div class="avatar-lg rounded-circle bg-info border-info border shadow">
-                            <i class="fe-bar-chart-line- font-22 avatar-title text-white"></i>
+                            <i class="bi bi-cash-stack font-22 avatar-title text-white"></i>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">0.58</span>%</h3>
-                            <p class="text-muted mb-1 text-truncate">Enrollment</p>
+                            <p class="text-muted mb-1 text-truncate">Pending Payments</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -72,19 +72,19 @@
         </div> <!-- end widget-rounded-circle-->
     </div> <!-- end col-->
 
-    <div class="col-md-6 col-xl-3">
-        <div class="widget-rounded-circle card">
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="widget-rounded-circle card dashboard-card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
                         <div class="avatar-lg rounded-circle bg-warning border-warning border shadow">
-                            <i class="fe-eye font-22 avatar-title text-white"></i>
+                            <i class="bi bi-clock font-22 avatar-title text-white"></i>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">78.41</span>k</h3>
-                            <p class="text-muted mb-1 text-truncate">Site Visits</p>
+                            <p class="text-muted mb-1 text-truncate">Pending Authorisation</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -113,7 +113,7 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-0">Total Revenue</h4>
+                    <h4 class="header-title mb-0">Revenue (today)</h4>
 
                     <div class="widget-chart text-center" dir="ltr">
 
@@ -122,19 +122,19 @@
                         <h5 class="text-muted mt-0">Total sales made today</h5>
                         <h2>$178</h2>
 
-                        <p class="text-muted w-75 mx-auto sp-line-2">by Agent {{Auth::User()->name}}</p>
+                        {{-- <p class="text-muted w-75 mx-auto sp-line-2">by Agent {{Auth::User()->name}}</p> --}}
 
                         <div class="row mt-3">
                             <div class="col-4">
-                                <p class="text-muted font-15 mb-1 text-truncate">Target</p>
+                                <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
                                 <h4><i class="fe-arrow-down text-danger me-1"></i>$7.8k</h4>
                             </div>
                             <div class="col-4">
-                                <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+                                <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
                                 <h4><i class="fe-arrow-up text-success me-1"></i>$1.4k</h4>
                             </div>
                             <div class="col-4">
-                                <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+                                <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
                                 <h4><i class="fe-arrow-down text-danger me-1"></i>$15k</h4>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Latest Authorizations</h4>
+                    <h4 class="header-title mb-3">Top 5 customers by revenue</h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-hover table-nowrap table-centered m-0">

@@ -35,3 +35,14 @@ button svg{
     vertical-align: baseline !important;
     margin-right:8px;
 }
+
+.text-truncate{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:wrap;
+}
+
+.dashboard-card{
+    height: 100%;
+    margin-bottom:0px;
+}
