@@ -11,23 +11,18 @@
     <link href="{{ asset('auth/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- Theme Config Js -->
     <script src="{{ asset('auth/js/head.js') }}"></script>
     <!-- Bootstrap css -->
     <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
-
-    <!-- App css -->
     <link href="{{ asset('auth/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/css/custom.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Icons css -->
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-    @vite(['resources/js/app.js'])
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
-
-
+    @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
 
@@ -54,11 +49,11 @@
                         </a>
                     </li>
                     @if (Auth::user()->role == RoleEnum::ADMIN->value)
-                        <x-admin-menu />
+                    <x-admin-menu />
                     @elseif (Auth::user()->role == RoleEnum::DEALER->value)
-                        <x-dealer-menu />
+                    <x-dealer-menu />
                     @elseif (Auth::user()->role == RoleEnum::AGENT->value)
-                        <x-agent-menu />
+                    <x-agent-menu />
                     @endif
                 </ul>
                 <!--- End Menu -->
@@ -129,8 +124,7 @@
 
 
 
-                        <img src="{{ asset('auth/images/flags/flag-icons/IN.png') }}" class="me-0 me-sm-1"
-                            height="18">
+                        <img src="{{ asset('auth/images/flags/flag-icons/IN.png') }}" class="me-0 me-sm-1" height="18">
 
 
                         <li class="dropdown notification-list">
@@ -147,8 +141,7 @@
                                             <h6 class="m-0 font-16 fw-semibold"> Notification</h6>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="javascript: void(0);"
-                                                class="text-dark text-decoration-underline">
+                                            <a href="javascript: void(0);" class="text-dark text-decoration-underline">
                                                 <small>Clear All</small>
                                             </a>
                                         </div>
@@ -231,11 +224,11 @@
                                 aria-expanded="false">
 
                                 @if (isset(Auth::user()->image) && !empty(Auth::user()->image))
-                                    <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}"
-                                        alt="user-image" class="rounded-circle">
+                                <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}" alt="user-image"
+                                    class="rounded-circle">
                                 @else
-                                    <img src="{{ env('PROFILE_IMAGE_PATH_EMPTY') }}{{ Auth::user()->name }}"
-                                        alt="user-image" class="rounded-circle">
+                                <img src="{{ env('PROFILE_IMAGE_PATH_EMPTY') }}{{ Auth::user()->name }}"
+                                    alt="user-image" class="rounded-circle">
                                 @endif
 
 
@@ -299,8 +292,8 @@
                                 <div>
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> © Reliant Pay - <a href="https://reliantpay.com/"
-                                        target="_blank">Reliant Pay</a>
+                                    </script> © Reliant Pay - <a href="https://reliantpay.com/" target="_blank">Reliant
+                                        Pay</a>
                                 </div>
                             </div>
 
@@ -328,12 +321,7 @@
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('auth/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
-
-    <!-- Dashboar 1 init js-->
     <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script>
-    <!-- App js -->
-    <script src="{{ asset('auth/js/app.min.js') }}"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script> --}}
 
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
@@ -352,7 +340,8 @@
         }
     </script>
     <x-toast-session />
-    <livewire:modals />
+    {{--
+    <livewire:modals /> --}}
     @livewireScripts
 </body>
 <script>
