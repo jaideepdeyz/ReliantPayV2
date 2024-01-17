@@ -103,7 +103,11 @@ class FlightBookingService extends Component
         $this->appID = $appID;
         $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
         if ($flightBooking) {
+            // $this->airline_name = $flightBooking->airline_name;
+            $this->query = $flightBooking->airline_name;
             $this->airline_name = $flightBooking->airline_name;
+            $this->departureQuery = $flightBooking->departureAirport->name;
+            $this->destinationQuery = $flightBooking->destinationAirport->name;
             // $this->confirmation_number = $flightBooking->confirmation_number;
             $this->departureCountry = $flightBooking->departure_country;
             $this->departure_location = $flightBooking->departure_location;

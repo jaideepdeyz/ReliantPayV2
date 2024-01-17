@@ -21,42 +21,6 @@
                             Step 3/4: Billing Details
                         </h5>
                         <div class="row">
-                            <div class="mb-3 col-md-12">
-                                <label for="cc_name" class="form-label">Card Holder's Name</label>
-                                <input type="text" class="form-control @error('cc_name') is-invalid @enderror"
-                                    wire:model="cc_name">
-                                @error('cc_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-12">
-                                <label for="cc_phone" class="form-label">Card Holder's Phone</label>
-                                <input type="text" class="form-control @error('cc_phone') is-invalid @enderror"
-                                    wire:model="cc_phone">
-                                @error('cc_phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-12">
-                                <label for="cc_email" class="form-label">Card Holder's Email</label>
-                                <input type="text" class="form-control @error('cc_email') is-invalid @enderror"
-                                    wire:model="cc_email">
-                                @error('cc_email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-
-                            <div class="mb-3 col-md-4">
-                                <label for="cc_dob" class="form-label">Card Holder's Date of Birth</label>
-                                <input type="date" class="form-control @error('cc_dob') is-invalid @enderror"
-                                    wire:model="cc_dob">
-                                @error('cc_dob')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
 
                             <div class="mb-3 col-md-4">
                                 <label for="cc_type" class="form-label">Credit Card Type?</label>
@@ -102,8 +66,44 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-2">
-                                <label for="amount_charged" class="form-label">Amount Charged:</label>
+                            <div class="mb-3 col-md-6">
+                                <label for="cc_name" class="form-label">Card Holder's Name</label>
+                                <input type="text" class="form-control @error('cc_name') is-invalid @enderror"
+                                    wire:model="cc_name">
+                                @error('cc_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="cc_dob" class="form-label">Card Holder's Date of Birth</label>
+                                <input type="date" class="form-control @error('cc_dob') is-invalid @enderror"
+                                    wire:model="cc_dob">
+                                @error('cc_dob')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="cc_phone" class="form-label">Card Holder's Phone</label>
+                                <input type="text" class="form-control @error('cc_phone') is-invalid @enderror"
+                                    wire:model="cc_phone">
+                                @error('cc_phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="cc_email" class="form-label">Card Holder's Email</label>
+                                <input type="text" class="form-control @error('cc_email') is-invalid @enderror"
+                                    wire:model="cc_email">
+                                @error('cc_email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="amount_charged" class="form-label">Total Amount Charged:</label>
                                 <input class="form-control @error('amount_charged') is-invalid @enderror"
                                     wire:model="amount_charged">
                                 @error('amount_charged')
