@@ -111,7 +111,7 @@ class Registration extends Component
             $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
             $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
 
-            //storing transaction log 
+            //storing transaction log
             TransactionLog::create([
                 'organization_id' => $org->id,
                 'user_id' => auth()->user()->id,
@@ -194,15 +194,15 @@ class Registration extends Component
                 break;
             case 4:
                 $this->validate([
-                    'business_scan_signed_contract' => 'required|mimes:pdf',
-                    'business_scan_EIN' => 'required|mimes:pdf',
-                    'business_scan_PAN' => 'required|mimes:pdf',
-                    'business_scan_registration_document' => 'required|mimes:pdf',
-                    'business_scan_bank_statement' => 'required|mimes:pdf',
-                    'business_scan_utility_bills' => 'required|mimes:pdf',
-                    'business_scan_business_tax_returns' => 'required|mimes:pdf',
-                    'business_premises_external_pictures' => 'required|mimes:pdf',
-                    'business_premises_internal_pictures' => 'required|mimes:pdf'
+                    'business_scan_signed_contract' => 'required|mimes:pdf|max:5120',
+                    'business_scan_EIN' => 'required|mimes:pdf|max:5120',
+                    'business_scan_PAN' => 'required|mimes:pdf|max:5120',
+                    'business_scan_registration_document' => 'required|mimes:pdf|max:5120',
+                    'business_scan_bank_statement' => 'required|mimes:pdf|max:5120',
+                    'business_scan_utility_bills' => 'required|mimes:pdf|max:5120',
+                    'business_scan_business_tax_returns' => 'required|mimes:pdf|max:5120',
+                    'business_premises_external_pictures' => 'required|mimes:pdf|max:5120',
+                    'business_premises_internal_pictures' => 'required|mimes:pdf|max:5120'
                 ]);
                 $this->currentStep = $this->currentStep + 1;
                 $this->business_scan_signed_contract = $this->business_scan_signed_contract;
@@ -217,8 +217,8 @@ class Registration extends Component
                 $this->render();
                 break;
         }
-        
-        
+
+
     }
 
     public function decreaseStep()
@@ -231,6 +231,7 @@ class Registration extends Component
     public function render()
     {
         $services = ProductService::all();
-        return view('livewire.dealer.registration', compact('services'))->layout('layouts.guest-base');
+        // return view('livewire.dealer.registration', compact('services'))->layout('layouts.guest-base');
+        return view('livewire.dealer.registration', compact('services'))->layout('layouts.dashboard-layout');
     }
 }
