@@ -58,6 +58,15 @@ class BookSales extends Component
             $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email']);
             $this->dispatch('close-modal');
             $this->dispatch('message', heading:'success',text:'Booking Created')->self();
+            switch($this->sale->service->service_name)
+            {
+                case ServiceEnum::FLIGHTS->value:
+                    return redirect()->route('flightBooking', ['appID' => $this->sale->id]);
+                case ServiceEnum::AMTRAK->value:
+                    return redirect()->route('amtrackBooking', ['appID' => $this->sale->id]);
+                default:
+                    return redirect()->back();
+            }
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollback();
