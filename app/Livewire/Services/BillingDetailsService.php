@@ -3,6 +3,7 @@
 namespace App\Livewire\Services;
 
 use App\Enums\ServiceEnum;
+use App\Models\ChargeDetails;
 use App\Models\Payment;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
@@ -30,11 +31,22 @@ class BillingDetailsService extends Component
     public $primary_passenger_id_doc;
 
     public $saleBooking;
+    public $showIdUpload = 'No';
 
     public function mount($appID)
     {
         $this->appID = $appID;
         $this->saleBooking = SaleBooking::find($this->appID);
+        // charges calculation
+        $charges = ChargeDetails::where('app_id', $this->appID)->get();
+        $this->amount_charged = $charges->sum('amount');
+
+        // checking if ID is required
+        if($this->amount_charged >= 500)
+        {
+            $this->showIdUpload = 'Yes';
+        }
+
         $billingDetails = Payment::where('app_id', $this->appID)->first();
         if($billingDetails)
         {
@@ -50,8 +62,6 @@ class BillingDetailsService extends Component
             $this->amount_charged = $billingDetails->amount_charged;
             $this->billingComments = $billingDetails->comments;
         }
-
-
     }
 
     public function saveBillingDetails()
@@ -105,7 +115,7 @@ class BillingDetailsService extends Component
                 case ServiceEnum::FLIGHTS->value:
                     return redirect()->route('airlineBooking.show', $this->appID);
                 case ServiceEnum::AMTRAK->value:
-                    return redirect()->route('amtrakBooking.show', $this->appID);
+                    return redirect()->route('amtrakBookingDetails.show', $this->appID);
                 default:
                     return redirect()->back();
             }
@@ -118,7 +128,7 @@ class BillingDetailsService extends Component
 
     public function previousStep()
     {
-        return redirect()->route('addPassengers', ['appID' => $this->appID]);
+        return redirect()->route('addChargeDetails', ['appID' => $this->appID]);
     }
 
     public function render()

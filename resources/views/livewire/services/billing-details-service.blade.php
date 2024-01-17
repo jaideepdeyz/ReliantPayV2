@@ -23,7 +23,7 @@
                         <div class="row">
 
                             <div class="mb-3 col-md-4">
-                                <label for="cc_type" class="form-label">Credit Card Type?</label>
+                                <label for="cc_type" class="form-label">Credit Card Type? <span class="text-danger"><sup>*</sup></span></label>
                                 <select class="form-control @error('cc_type') is-invalid @enderror"
                                     wire:model="cc_type">
                                     <option value="">Select Option</option>
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="mb-3 col-md-4">
-                                <label for="cc_number" class="form-label">Credit Card Number</label>
+                                <label for="cc_number" class="form-label">Credit Card Number <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_number') is-invalid @enderror"
                                     wire:model="cc_number" minlength="16" maxlength="16">
                                 @error('cc_number')
@@ -47,10 +47,10 @@
                             </div>
 
                             <div class="mb-3 col-md-2">
-                                <label for="cc_expiration_date" class="form-label">Card Expiry Date</label>
+                                <label for="cc_expiration_date" class="form-label">Card Expiry Date  <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text"
                                     class="form-control @error('cc_expiration_date') is-invalid @enderror"
-                                    wire:model="cc_expiration_date">
+                                    wire:model="cc_expiration_date" placeholder="MM/YY">
                                 @error('cc_expiration_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -59,7 +59,7 @@
 
 
                             <div class="mb-3 col-md-2">
-                                <label for="cc_cvc" class="form-label">CVV:</label>
+                                <label for="cc_cvc" class="form-label">CVV: <span class="text-danger"><sup>*</sup></span></label>
                                 <input class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc">
                                 @error('cc_cvc')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="cc_name" class="form-label">Card Holder's Name</label>
+                                <label for="cc_name" class="form-label">Card Holder's Name <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_name') is-invalid @enderror"
                                     wire:model="cc_name">
                                 @error('cc_name')
@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="cc_dob" class="form-label">Card Holder's Date of Birth</label>
+                                <label for="cc_dob" class="form-label">Card Holder's Date of Birth <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="date" class="form-control @error('cc_dob') is-invalid @enderror"
                                     wire:model="cc_dob">
                                 @error('cc_dob')
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="cc_phone" class="form-label">Card Holder's Phone</label>
+                                <label for="cc_phone" class="form-label">Card Holder's Phone <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_phone') is-invalid @enderror"
                                     wire:model="cc_phone">
                                 @error('cc_phone')
@@ -94,7 +94,7 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="cc_email" class="form-label">Card Holder's Email</label>
+                                <label for="cc_email" class="form-label">Card Holder's Email <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_email') is-invalid @enderror"
                                     wire:model="cc_email">
                                 @error('cc_email')
@@ -103,9 +103,9 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="amount_charged" class="form-label">Total Amount Charged:</label>
+                                <label for="amount_charged" class="form-label">Total Amount Charged (in USD): <span class="text-danger"><sup>*</sup></span></label>
                                 <input class="form-control @error('amount_charged') is-invalid @enderror"
-                                    wire:model="amount_charged">
+                                    wire:model="amount_charged" readonly>
                                 @error('amount_charged')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -120,8 +120,8 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
-                                <label for="primary_passenger_id_doc" class="form-label">Primary Passenger ID</label>
+                            <div class="mb-3 col-md-6 @if($showIdUpload == 'No') d-none @endif">
+                                <label for="primary_passenger_id_doc" class="form-label">Primary Passenger ID <span class="text-danger">(mandatory for transactions above $500) <sup>*</sup></span> </label>
                                 <input type="file" id="primary_passenger_id_doc" name="primary_passenger_id_doc"
                                     class="form-control" wire:model="primary_passenger_id_doc">
                                 <span class="text-danger"> @error('primary_passenger_id_doc')
