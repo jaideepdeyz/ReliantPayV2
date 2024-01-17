@@ -1,4 +1,4 @@
-<div class="row" x:data=''>
+<div class="row mb-5" x:data=''>
     <!-- start page title -->
     <div class="col-12">
         <div class="page-title-box">
