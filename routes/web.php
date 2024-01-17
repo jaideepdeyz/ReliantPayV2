@@ -30,6 +30,7 @@ use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Services\AmtrackBookingService;
+use App\Livewire\Services\ChargeDetailService;
 use App\Models\AmtrakBooking;
 
 /*
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function () {
 
     // Route::resource('dealers', DealerController::class);
     Route::resource('airlineBooking', AirlineBookingController::class);
-    Route::resource('amtrakBooking', AmtrakBookingController::class);
+    Route::resource('amtrakBookingDetails', AmtrakBookingController::class);
 
     // dealer routes
     Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
@@ -99,6 +100,7 @@ Route::middleware('auth')->group(function () {
     Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
     Route::get('amtrakBooking/{appID}', AmtrackBookingService::class)->name('amtrakBooking');
     Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
+    Route::get('addChargeDetails/{appID}', ChargeDetailService::class)->name('addChargeDetails');
     Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
 
     // Email routes

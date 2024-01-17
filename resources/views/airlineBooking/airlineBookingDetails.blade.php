@@ -10,14 +10,14 @@
                         <li class="breadcrumb-item active">Booking Summary</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Booking Summary</h4>
+                <h4 class="page-title">AIRLINE Booking Summary</h4>
             </div>
         </div>
         <div class="col-md-12">
             <h5 class="bg-light p-2 mt-0 mb-4">
-                <a href="{{ route('authorizebooking', $bookingDetails->id) }}" class="btn btn-success"><i
+                <a href="{{ route('authorizeAndSend', $bookingDetails->id) }}" class="btn btn-success"><i
                         class="ri-mail-send-line font-13"></i> Send
-                    Authorization Link</a>
+                    Authorization Email</a>
             </h5>
 
             <div class="card">
@@ -171,9 +171,9 @@
                     </div>
 
                     @if (!$bookingDetails->authorizationForm)
-                        <a href="{{ route('authorizebooking', $bookingDetails->id) }}"class="btn btn-success"><i
+                        <a href="{{ route('authorizeAndSend', $bookingDetails->id) }}"class="btn btn-success"><i
                                 class="ri-mail-send-line font-13"></i> Send
-                            Authorization Link</a>
+                            Authorization Email</a>
                     @endif
                 </div>
             </div>
