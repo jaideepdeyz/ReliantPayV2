@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Services;
 
+use App\Models\Airline;
 use App\Models\Airport;
 use App\Models\Country;
 use App\Models\FlightBooking;
@@ -23,9 +24,9 @@ class FlightBookingService extends Component
     public $destinationCountry;
     public $departure_country_name;
     public $destination_country_name;
-    
-    public $airports = [];
-    public $destinationAirports = [];
+
+    // public $airports = [];
+    // public $destinationAirports = [];
     public $isRoundTrip = 'No';
 
     //flight details
@@ -48,6 +49,57 @@ class FlightBookingService extends Component
     public $departureAirport;
     public $destinationAirport;
     public $searchCountry;
+
+    // dropdown search
+    public $query;
+    public $departureQuery;
+    public $destinationQuery;
+    public $airlines = [];
+    public $departureAirports = [];
+    public $destinationAirports = [];
+
+    public function updatedQuery()
+    {
+        if($this->query == '')
+        {
+            $this->airlines = [];
+        } else {
+            $this->airlines = Airline::where('name', 'like', '%'.$this->query.'%')->get();
+        }
+    }
+
+    public function updatedDepartureQuery()
+    {
+        if($this->departureQuery == '')
+        {
+            $this->departureAirports = [];
+        } else {
+            $this->departureAirports = Airport::where('name', 'like', '%'.$this->departureQuery.'%')
+            ->orWhere('code', 'like', '%'.$this->departureQuery.'%')
+            ->get();
+        }
+    }
+
+    public function updatedDestinationQuery()
+    {
+        if($this->destinationQuery == '')
+        {
+            $this->destinationAirports = [];
+        } else {
+            $this->destinationAirports = Airport::where('name', 'like', '%'.$this->destinationQuery.'%')
+            ->orWhere('code', 'like', '%'.$this->destinationQuery.'%')
+            ->get();
+        }
+    }
+
+    public function setAirline($airlineName)
+    {
+        // dd($airlineName);
+        $this->airline_name = $airlineName;
+        $this->query = $airlineName;
+        $this->airlines = [];
+    }
+
 
     #[On('depAirport')]
     public function depAirport($airportID)
@@ -123,8 +175,8 @@ class FlightBookingService extends Component
         }
     }
 
-  
- 
+
+
 
     public function storeFlightBooking()
     {
@@ -154,7 +206,7 @@ class FlightBookingService extends Component
             dd($e->getMessage());
         }
     }
-   
+
     public function getDepartureAirports()
     {
         if ($this->departureCountry) {
@@ -180,7 +232,7 @@ class FlightBookingService extends Component
     {
         // $countries = Country::orderByRaw("FIELD(code,'MX','CA','US') DESC,name ASC")->get();
         $bookingDetails = SaleBooking::find($this->appID);
-
-        return view('livewire.services.flight-booking-service', compact('bookingDetails'))->layout('layouts.dashboard-layout');
+        $airlines = Airline::all();
+        return view('livewire.services.flight-booking-service', compact('bookingDetails', 'airlines'))->layout('layouts.dashboard-layout');
     }
 }

@@ -21,62 +21,78 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                                Step 2/5: Details for Flight Booking
+                                Step 2/5: Details for Flight Booking {{$airline_name}}
                             </h5>
                             <div class="row">
-                                <div class="mb-3 col-md-12">
+                                {{-- <div class="mb-3 col-md-12">
                                     <label for="airline_name" class="form-label">Airline Name</label>
-                                    <input type="text"
-                                        class="form-control @error('airline_name') is-invalid @enderror"
-                                        wire:model="airline_name">
+                                    <select class="form-control @error('airline_name') is-invalid @enderror" wire:model="airline_name">
+                                        @foreach ($airlines as $airline)
+                                            <img src="{{$airline->logo}}" alt="logo" width="65" height="65"> <option value="{{ $airline->name }}">  {{ $airline->name }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('airline_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label for="departureCountry" class="form-label">Departure Country</label>
-                                    {{-- <select class="form-control @error('departureCountry') is-invalid @enderror"
-                                        wire:model.live="departureCountry" id="departureCountry" wire::searchable="true">
-                                        <option value="">Select Departure Country</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->code }}">{{ $country->name }}</option>
-                                        @endforeach
-                                    </select> --}}
-                                    <input type="text" wire:model="departure_country_name" class="form-control pe-auto" wire:click="getCountries('Departure')" readonly style="cursor: pointer;">
-                                    @error('departureCountry')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 col-md-6" >
-                                    <label for="departure_location" class="form-label">Departure Aiport</label>
-                                    <input type="text" wire:model="departureAirport" class="form-control pe-auto" wire:click="getDepartureAirports" readonly style="cursor: pointer;">
-                                    @error('departure_location')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                </div> --}}
 
-                                <div class="mb-3 col-md-6" >
-                                    <label for="destinationCountry" class="form-label">Destination Country</label>
-                                    {{-- <select class="form-control @error('destinationCountry') is-invalid @enderror"
-                                        wire:model.live="destinationCountry" id="destinationCountry" wire::searchable="true">
-                                        <option value="">Select Destination Country</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->code }}">{{ $country->name }}</option>
-                                        @endforeach
-                                    </select> --}}
-                                    <input type="text" wire:model="destination_country_name" class="form-control pe-auto" wire:click="getCountries('Destination')" readonly style="cursor: pointer;">
-                                    @error('destinationCountry')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                {{-- testing livewire searchable dropdown --}}
+
+                                <div class="mb-3 col-md-12">
+                                    <div>
+                                        <label for="airline_name" class="form-label">Airline Name</label>
+                                        <input type="text" class="form-input form-control" placeholder="Search Airlines .." wire:model.live="query" required>
+                                        <div class="px-3" style="background:#fefdfd;">
+                                            @foreach($airlines as $airline)
+                                                <a href="#" class="d-block my-1" wire:click="setAirline('{{$airline->name}}')">
+                                                    <img src="{{$airline->logo}}" alt="logo" width="45" height="45">
+                                                    {{$airline->name}}
+                                                </a><hr>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
+                                    <div>
+                                        <label for="departure_location" class="form-label">Departure Airport</label>
+                                        <input type="text" class="form-input form-control" placeholder="Search Airports .." wire:model.live="departureQuery" required>
+                                        <div class="px-3" style="background:#fefdfd;">
+                                            @foreach($departureAirports as $depAirport)
+                                                <a href="#" class="d-block my-1" wire:click="setDepAirport('{{$depAirport->id}}')">
+                                                    {{$depAirport->code}} | {{$depAirport->name}}
+                                                </a><hr>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <div>
+                                        <label for="destination_location" class="form-label">Destination Airport</label>
+                                        <input type="text" class="form-input form-control" placeholder="Search Airports .." wire:model.live="destinationQuery" required>
+                                        <div class="px-3" style="background:#fefdfd;">
+                                            @foreach($destinationAirports as $destAirport)
+                                                <a href="#" class="d-block my-1" wire:click="setDestAirport('{{$destAirport->id}}')">
+                                                    {{$destAirport->code}} | {{$destAirport->name}}
+                                                </a><hr>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- testing end  --}}
+
+
+
+
+                                {{-- <div class="mb-3 col-md-6">
                                     <label for="destination_location" class="form-label">Destination Aiport</label>
                                    <input type="text" wire:model="destinationAirport" class="form-control" wire:click="getDestinationAirports" readonly style="cursor: pointer;">
                                     @error('destination_location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="mb-3 col-md-6">
                                     <label for="tripType" class="form-label">One Way or Round Trip ?</label>
@@ -153,7 +169,7 @@
 
         </form>
     </div>
-   
+
 
 
 
