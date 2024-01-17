@@ -46,3 +46,18 @@ button svg{
     height: 100%;
     margin-bottom:0px;
 }
+
+progress{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color:aqua
+}
+
+progress::-moz-progress-bar { background: #98b7ff; }
+progress::-webkit-progress-value { background: #98b7ff;  }
+progress { color: #98b7ff;background: rgb(236, 236, 236);  }
