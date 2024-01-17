@@ -27,7 +27,7 @@ class RegistrationCheck
         {
             case RoleEnum::DEALER->value:
                 if(Auth::user()->organization_id == null){
-                    return redirect()->route('dealer_register');
+                    return redirect()->route('dealerRegBusinessInfo');
                 }else{
                      return $next($request);
                 }

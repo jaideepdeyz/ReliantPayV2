@@ -28,6 +28,11 @@ use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
+use App\Livewire\Dealer\Registration\BankingDetails;
+use App\Livewire\Dealer\Registration\BusinessInformation;
+use App\Livewire\Dealer\Registration\Confirmation;
+use App\Livewire\Dealer\Registration\DocumentUploads;
+use App\Livewire\Dealer\Registration\ServicesCompliances;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
@@ -72,7 +77,14 @@ Route::middleware(['auth', 'verified', 'registrationCheck'])->group(function () 
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('dealer_register', Registration::class)->name('dealer_register');
+    // Route::get('dealer_register', Registration::class)->name('dealer_register');
+    // Dealer Registration Routes
+    Route::get('dealerRegBusinessInfo', BusinessInformation::class)->name('dealerRegBusinessInfo');
+    Route::get('dealerServicesCompliances/{orgID}', ServicesCompliances::class)->name('dealerServicesCompliances');
+    Route::get('dealerBankingDetails/{orgID}', BankingDetails::class)->name('dealerBankingDetails');
+    Route::get('dealerDocs/{orgID}', DocumentUploads::class)->name('dealerDocs');
+    Route::get('confirmation/{orgID}', Confirmation::class)->name('confirmation');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
