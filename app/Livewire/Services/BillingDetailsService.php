@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Services;
 
+use App\Enums\ServiceEnum;
 use App\Models\Payment;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
@@ -28,9 +29,12 @@ class BillingDetailsService extends Component
     public $billingComments;
     public $primary_passenger_id_doc;
 
+    public $saleBooking;
+
     public function mount($appID)
     {
         $this->appID = $appID;
+        $this->saleBooking = SaleBooking::find($this->appID);
         $billingDetails = Payment::where('app_id', $this->appID)->first();
         if($billingDetails)
         {
@@ -96,7 +100,16 @@ class BillingDetailsService extends Component
 
             DB::commit();
             Session::flash('message', ['heading'=>'success','text'=>'Billing Details Saved Successfully']);
-            return redirect()->route('airlineBooking.show', $this->appID);
+            switch($this->saleBooking->service->service_name)
+            {
+                case ServiceEnum::FLIGHTS->value:
+                    return redirect()->route('airlineBooking.show', $this->appID);
+                case ServiceEnum::AMTRAK->value:
+                    return redirect()->route('amtrakBooking.show', $this->appID);
+                default:
+                    return redirect()->back();
+            }
+
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());

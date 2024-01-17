@@ -4,9 +4,8 @@
         <button type="button" class="btn-close" wire:click="$dispatch('hideModal')" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-        <h4 class="badge bg-danger text-light p-2" style="font-size:14px">Default Password for new agents
-            added
-            is "Agent@123#"
+        <h4 class="badge badge-soft-danger p-2" style="font-size:14px">Default Password for new agents
+            added is "Agent@123#". The Agent will receive default password in thier email.
         </h4>
         <form wire:submit="addAgent">
 

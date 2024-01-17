@@ -27,7 +27,7 @@
             </div>
             <div class="card-body">
 
-                <div class="table-responsive">
+                <div class="">
                     <table class="table table-striped">
                         <thead class="table-light">
                             <tr>
@@ -55,8 +55,10 @@
                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                 class="mdi mdi-dots-horizontal"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end" style="">
-                                            <a class="dropdown-item" href="#"><i
+                                            {{-- <a class="dropdown-item" href="#"><i
                                                     class="mdi mdi-pencil me-2 text-primary vertical-middle"></i>Edit</a>
+                                            --}}
+
                                             <a class="dropdown-item" href="#"
                                                 wire:click='activateDeactivate({{ $agent->id }})'><i
                                                     class="mdi mdi-download me-2 text-danger vertical-middle"></i>{{

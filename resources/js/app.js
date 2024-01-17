@@ -1,5 +1,5 @@
 import "./bootstrap";
-// import("@popperjs/core");
+import("@popperjs/core");
 
 // import Alpine from 'alpinejs';
 
@@ -7,4 +7,4 @@ import "./bootstrap";
 
 // Alpine.start();
 
-// import "../../vendor/mozhuilungdsuo/livewire-bootstrap-modal/resources/js/modals.js";
+import "../../vendor/mozhuilungdsuo/livewire-bootstrap-modal/resources/js/modals.js";

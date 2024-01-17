@@ -94,6 +94,11 @@
                                         'displayName' => 'Status',
                                         'width' => 1,
                                         ])
+                                        @include('livewire.util.datatable-sortable-th', [
+                                        'name' => 'Is Active?',
+                                        'displayName' => 'Is Active?',
+                                        'width' => 1,
+                                        ])
 
                                         <th class="col-md-1">Action</th>
                                     </tr>
@@ -122,6 +127,7 @@
                                             {{ $d->business_address }}
                                         </td>
 
+
                                         <td>
                                             @if ($d->status == 'Approved')
                                             <span class="badge badge-soft-success badge-lg">{{ $d->status }}</span>
@@ -131,7 +137,14 @@
                                             <span class="badge bg-warning badge-lg">{{ $d->status }}</span>
                                             @endif
                                         </td>
-
+                                        <td>
+                                            @if ($d->user->is_active == 'Yes')
+                                            <span class="badge badge-soft-success badge-lg">{{ $d->user->is_active
+                                                }}</span>
+                                            @elseif($d->user->is_active == 'No')
+                                            <span class="badge bg-danger badge-lg">{{ $d->user->is_active }}</span>
+                                            @endif
+                                        </td>
 
 
 
@@ -152,18 +165,6 @@
                                                         <a href="{{ route('dealers.show', $d->id) }}" class="btn">
                                                             <i class="fas fa-eye text-success"></i> View</a>
 
-                                                        <!-- item-->
-
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#updateCountries"
-                                                            wire:click="editCountries({{ $d->id }})" class="btn">
-                                                            <i class="fas fa-edit text-primary"></i> Edit
-                                                        </a>
-
-                                                        {{-- <a href="{{ route('editobaquestion', ['id' => $d->id]) }}"
-                                                            class="btn">
-                                                            <i class="fas fa-edit text-primary"></i> Edit question
-                                                        </a> --}}
 
                                                         <div class="dropdown-divider"></div>
 

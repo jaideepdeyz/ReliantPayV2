@@ -56,7 +56,7 @@ class AdminActions extends Component
             $this->transactionLog();
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization Approved']);
-            return redirect()->route('manageorganizations');
+            return redirect()->route('manageOrganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
@@ -82,7 +82,7 @@ class AdminActions extends Component
             ]);
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization rejected']);
-            return redirect()->route('manageorganizations');
+            return redirect()->route('manageOrganizations');
         }catch(\Exception $e){
             DB::rollback();
             dd($e);
@@ -105,7 +105,7 @@ class AdminActions extends Component
             $this->transactionLog();
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts deactivated']);
-            return redirect()->route('manageorganizations');
+            return redirect()->route('manageOrganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);
@@ -129,7 +129,7 @@ class AdminActions extends Component
             $this->transactionLog();
             DB::commit();
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization accounts activated']);
-            return redirect()->route('manageorganizations');
+            return redirect()->route('manageOrganizations');
         } catch (\Exception $e) {
             DB::rollback();
             dd($e);

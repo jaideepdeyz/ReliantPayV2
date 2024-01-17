@@ -11,17 +11,22 @@
     <link href="{{ asset('auth/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- Theme Config Js -->
     <script src="{{ asset('auth/js/head.js') }}"></script>
     <!-- Bootstrap css -->
     <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- App css -->
     <link href="{{ asset('auth/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/css/custom.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Icons css -->
     <link href="{{ asset('auth/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script> --}}
     <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
+
     @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
@@ -340,8 +345,8 @@
         }
     </script>
     <x-toast-session />
-    {{--
-    <livewire:modals /> --}}
+
+    <livewire:modals />
     @livewireScripts
 </body>
 <script>

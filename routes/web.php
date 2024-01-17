@@ -21,6 +21,7 @@ use App\Livewire\Services\BillingDetailsService;
 use App\Livewire\Services\FlightBookingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\OrganizationsController;
+use App\Http\Controllers\AmtrakBookingController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
 use App\Http\Controllers\ZohoSignController;
@@ -29,6 +30,7 @@ use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Services\AmtrackBookingService;
+use App\Models\AmtrakBooking;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,12 +78,13 @@ Route::middleware('auth')->group(function () {
 
     // Route::resource('dealers', DealerController::class);
     Route::resource('airlineBooking', AirlineBookingController::class);
+    Route::resource('amtrakBooking', AmtrakBookingController::class);
 
     // dealer routes
     Route::get('dealersByStatus/{status}', DealersByStatus::class)->name('dealersByStatus');
     Route::get('dealers/show/{orgID}', DealerShow::class)->name('dealers.show');
     Route::get('dealerDashboard', DealerDashboard::class)->name('dealerDashboard');
-    Route::get('addAgent', AddAgent::class)->name('addAgent');
+    Route::get('addAgent', AddAgent::class)->middleware('dealerApprovalCheck')->name('addAgent');
 
     //admin Routes
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
