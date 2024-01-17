@@ -23,6 +23,7 @@
 
     <!-- Theme Config Js -->
     <script src="{{ asset('auth/js/head.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"></script>
 
     @livewireStyles
 
@@ -34,7 +35,7 @@
     {{ $slot }}
 
 
-    <livewire:modals/>
+    <livewire:modals />
     @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
 
@@ -45,14 +46,14 @@
 
     @stack('scripts')
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          <!-- Authentication js -->
-        <script src="{{ asset('auth/js/pages/authentication.init.js') }}"></script>
-	    <script>
-            window.addEventListener('swal', function(e) {
-			Swal.fire(e.detail);
-		});
-	    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Authentication js -->
+    <script src="{{ asset('auth/js/pages/authentication.init.js') }}"></script>
+    <script>
+        window.addEventListener('swal', function(e) {
+            Swal.fire(e.detail);
+        });
+    </script>
 </body>
 
 </html>
