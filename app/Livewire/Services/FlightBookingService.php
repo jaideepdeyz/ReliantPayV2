@@ -182,7 +182,7 @@ class FlightBookingService extends Component
 
     public function setAirline($airlineName)
     {
-        dd($airlineName);
+        // dd($airlineName);
         $this->airline_name = $airlineName;
         $this->query = $airlineName;
         $this->airlines = [];

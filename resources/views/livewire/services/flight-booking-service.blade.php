@@ -21,65 +21,69 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                                Step 2/5: Details for Flight Booking
+                                Step 2/5: Details for Flight Booking {{ $airline_name }}
                             </h5>
                             <div class="row">
                                 {{-- testing livewire searchable dropdown --}}
 
                                 <div class="mb-3 col-md-12">
                                     <div class="dropdownList">
-                                        <label for="airline_name" class="form-label">Airline Name <span class="text-danger"><sup>*</sup></span></label>
+                                        <label for="airline_name" class="form-label">Airline Name <span
+                                                class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control"
                                             placeholder="Search Airlines .." wire:model.live="query" required>
-                                        @if($airlines)
-                                        <div class="dropdown-container">
-                                            @foreach($airlines as $airline)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setAirline('{{$airline->name}}')">
-                                                <img src="{{$airline->logo}}" alt="logo" width="45" height="45">
-                                                &nbsp;&nbsp;{{$airline->name}}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @if ($airlines)
+                                            <div class="dropdown-container">
+                                                @foreach ($airlines as $airline)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setAirline('{{ $airline->name }}')">
+                                                        <img src="{{ $airline->logo }}" alt="logo" width="45"
+                                                            height="45">
+                                                        &nbsp;&nbsp;{{ $airline->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
                                     <div class="dropdownList">
-                                        <label for="departure_location" class="form-label">Departure Airport <span class="text-danger"><sup>*</sup></span></label>
+                                        <label for="departure_location" class="form-label">Departure Airport <span
+                                                class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control"
                                             placeholder="Search Airports .." wire:model.live="departureQuery" required>
-                                        @if($departureAirports)
-                                        <div class="dropdown-container">
-                                            @foreach($departureAirports as $depAirport)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setDepartureAirport('{{$depAirport->id}}')">
-                                                <span class="country-code">{{$depAirport->code}}</span>
-                                                &nbsp;&nbsp;{{$depAirport->name}}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @if ($departureAirports)
+                                            <div class="dropdown-container">
+                                                @foreach ($departureAirports as $depAirport)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setDepartureAirport('{{ $depAirport->id }}')">
+                                                        <span class="country-code">{{ $depAirport->code }}</span>
+                                                        &nbsp;&nbsp;{{ $depAirport->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
                                     <div class="dropdownList">
-                                        <label for="destination_location" class="form-label">Destination Airport <span class="text-danger"><sup>*</sup></span></label>
+                                        <label for="destination_location" class="form-label">Destination Airport <span
+                                                class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control"
                                             placeholder="Search Airports .." wire:model.live="destinationQuery"
                                             required>
-                                        @if($destinationAirports)
-                                        <div class="dropdown-container">
-                                            @foreach($destinationAirports as $destAirport)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setDestinationAirport('{{$destAirport->id}}')">
-                                                <span class="country-code">{{$destAirport->code}}</span>
-                                                &nbsp;&nbsp;{{$destAirport->name}}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @if ($destinationAirports)
+                                            <div class="dropdown-container">
+                                                @foreach ($destinationAirports as $destAirport)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setDestinationAirport('{{ $destAirport->id }}')">
+                                                        <span class="country-code">{{ $destAirport->code }}</span>
+                                                        &nbsp;&nbsp;{{ $destAirport->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -87,7 +91,8 @@
                                 {{-- testing end --}}
 
                                 <div class="mb-3 col-md-4">
-                                    <label for="tripType" class="form-label">One Way or Round Trip ? <span class="text-danger"><sup>*</sup></span></label>
+                                    <label for="tripType" class="form-label">One Way or Round Trip ? <span
+                                            class="text-danger"><sup>*</sup></span></label>
                                     <select class="form-control @error('tripType') is-invalid @enderror"
                                         wire:model.live="tripType" required>
                                         <option value="">Select Option</option>
@@ -95,32 +100,36 @@
                                         <option value="Round Trip">Round Trip</option>
                                     </select>
                                     @error('tripType')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                               
+
 
 
                                 <div class="mb-3 col-md-2">
-                                    <label for="departure_date" class="form-label">Departure Date <span class="text-danger"><sup>*</sup></span></label>
+                                    <label for="departure_date" class="form-label">Departure Date <span
+                                            class="text-danger"><sup>*</sup></span></label>
                                     <input type="date"
                                         class="form-control @error('departure_date') is-invalid @enderror"
                                         wire:model="departure_date">
                                     @error('departure_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-4 form-group">
-                                    <label for="departure_time" class="form-label">Departure Time <span class="text-danger"><sup>*</sup></span></label>
+                                    <label for="departure_time" class="form-label">Departure Time <span
+                                            class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
                                         <div class="col-md-2">
                                             <select wire:model="departureHour"
                                                 class="form-control @error('departureHour') is-invalid @enderror">
                                                 <option value="">HH</option>
-                                                @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }} HH</option>
-                                                    @endfor
+                                                @for ($i = 1; $i <= 24; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} HH
+                                                    </option>
+                                                @endfor
                                             </select>
                                         </div>
 
@@ -128,31 +137,38 @@
                                             <select wire:model="departureMinute"
                                                 class="form-control @error('departureMinute') is-invalid @enderror">
                                                 <option value="">MM</option>
-                                                @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }} MM</option>
-                                                    @endfor
+                                                @for ($i = 1; $i <= 30; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} MM
+                                                    </option>
+                                                @endfor
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4 @if ($isRoundTrip == 'No') d-none @endif">
-                                    <label for="return_date" class="form-label">Return Date <span class="text-danger"><sup>*</sup></span></label>
-                                    <input type="date" class="form-control @error('return_date') is-invalid @enderror"
-                                        wire:model="return_date" @if ($isRoundTrip=='Yes' ) required @endif>
+                                    <label for="return_date" class="form-label">Return Date <span
+                                            class="text-danger"><sup>*</sup></span></label>
+                                    <input type="date"
+                                        class="form-control @error('return_date') is-invalid @enderror"
+                                        wire:model="return_date" @if ($isRoundTrip == 'Yes') required @endif>
                                     @error('return_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-2 form-group  @if ($isRoundTrip == 'No') d-none @endif">
-                                    <label for="return_time" class="form-label">Return Time <span class="text-danger"><sup>*</sup></span></label>
+                                    <label for="return_time" class="form-label">Return Time <span
+                                            class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <select wire:model="returnHour"
                                                 class="form-control @error('returnHour') is-invalid @enderror">
                                                 <option value="">HH</option>
-                                                @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }} HH</option>
-                                                    @endfor
+                                                @for ($i = 1; $i <= 24; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} HH
+                                                    </option>
+                                                @endfor
                                             </select>
                                         </div>
 
@@ -160,16 +176,18 @@
                                             <select wire:model="returnMinute"
                                                 class="form-control @error('returnMinute') is-invalid @enderror">
                                                 <option value="">MM</option>
-                                                @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }} MM</option>
-                                                    @endfor
+                                                @for ($i = 1; $i <= 30; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} MM
+                                                    </option>
+                                                @endfor
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
-                                
 
-                                 {{-- <div class="mb-3 col-md-6">
+
+                                {{-- <div class="mb-3 col-md-6">
                                     <label for="confirmation_number" class="form-label">Confirmation #</label>
                                     <input class="form-control @error('confirmation_number') is-invalid @enderror"
                                         wire:model="confirmation_number">
@@ -190,17 +208,23 @@
 
                                 <div class="mb-3 col-md-12">
                                     <label for="comments" class="form-label">Comments</label>
-                                    <textarea type="text" class="form-control @error('comments') is-invalid @enderror"
-                                        wire:model="comments" col=20 row=20></textarea>
+                                    <textarea type="text" class="form-control @error('comments') is-invalid @enderror" wire:model="comments" col=20
+                                        row=20></textarea>
                                     @error('comments')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
 
-                                <div class="mb-3 col-md-12" style="position:relative" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary <span class="text-danger"><sup>*</sup></span></label>
-                                    <input type="file" class="form-control @error('itenary_screenshot') is-invalid @enderror"
+                                <div class="mb-3 col-md-12" style="position:relative" x-data="{ uploading: false, progress: 0 }"
+                                    x-on:livewire-upload-start="uploading = true"
+                                    x-on:livewire-upload-finish="uploading = false"
+                                    x-on:livewire-upload-error="uploading = false"
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                    <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
+                                        <span class="text-danger"><sup>*</sup></span></label>
+                                    <input type="file"
+                                        class="form-control @error('itenary_screenshot') is-invalid @enderror"
                                         wire:model="itenary_screenshot">
                                     <span class="text-danger"> @error('itenary_screenshot')
                                             {{ $message }}
