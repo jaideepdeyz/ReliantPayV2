@@ -35,12 +35,17 @@
     <div id="wrapper">
         <div class="app-menu">
             <!-- Brand Logo -->
-            <div class="text-center p-3">
-                <a href="#">
-                    <span>
-                        <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="Reliant Pay"
-                            class="img-fluid" style="max-height:90px;">
-                    </span>
+            <div class="logo-box my-4">
+                <!-- Brand Logo Light -->
+                <a href="{{ route('dashboard') }}" class="logo-dark">
+                    <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="logo"
+                        class="img-fluid" style="max-height:90px;">
+                </a>
+
+                <!-- Brand Logo Dark -->
+                <a href="{{ route('dashboard') }}" class="logo-light">
+                    <img src="{{ asset('auth/images/adminlogo/admin-logo-dark.png') }}" alt="dark logo"
+                        class="img-fluid" style="max-height:90px;">
                 </a>
             </div>
             <!-- menu-left -->
@@ -81,7 +86,7 @@
                         <!-- Topbar Brand Logo -->
                         <div class="logo-box">
                             <!-- Brand Logo Light -->
-                            <a href="index.html" class="logo-light">
+                            <a href="{{ url('/') }}" class="logo-light">
                                 <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="logo"
                                     class="logo-lg">
                                 <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="small logo"
@@ -89,7 +94,7 @@
                             </a>
 
                             <!-- Brand Logo Dark -->
-                            <a href="index.html" class="logo-dark">
+                            <a href="{{ url('/') }}" class="logo-dark">
                                 <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="dark logo"
                                     class="logo-lg">
                                 <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt="small logo"
