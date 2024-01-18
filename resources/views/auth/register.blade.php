@@ -173,6 +173,7 @@
                                             up</button>
                                     </div>
                                 </div>
+                                {!! RecaptchaV3::field('register') !!}
 
                             </form>
                         </div> <!-- end card-body -->

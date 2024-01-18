@@ -2,12 +2,12 @@
     <div class="auth-fluid">
 
         <!-- Auth fluid right content -->
-        <div class="auth-fluid-right text-center">
+        {{-- <div class="auth-fluid-right text-center">
             <div class="auth-user-testimonial">
-                {{-- <h2 class="mb-3 text-white">I love the color!</h2> --}}
+                
 
-            </div> <!-- end auth-user-testimonial-->
-        </div>
+            </div> 
+        </div> --}}
         <!-- end Auth fluid right content -->
         <!--Auth fluid left content -->
         <div class="auth-fluid-form-box">
@@ -86,8 +86,10 @@
                                 <label class="form-check-label" for="checkbox-signin">Remember me</label>
                             </div>
                         </div>
+                        
 
                         <div class="text-center d-grid">
+                            
                             <button class="btn btn-primary" type="submit"> Log In </button>
                         </div>
 
@@ -106,7 +108,7 @@
         <!-- end auth-fluid-form-box-->
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $('#reload').click(function() {
             $.ajax({
                 type: 'GET',
@@ -116,5 +118,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 </x-guest-base>

@@ -55,5 +55,6 @@
         });
     </script>
 </body>
+{!! RecaptchaV3::initJs() !!}
 
 </html>
