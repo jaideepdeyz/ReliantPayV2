@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="mb-3 col-md-2 form-group  @if ($isRoundTrip == 'No') d-none @endif">
-                                    <label for="departure_time" class="form-label">Return Time <span class="text-danger"><sup>*</sup></span></label>
+                                    <label for="return_time" class="form-label">Return Time <span class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <select wire:model="returnHour"

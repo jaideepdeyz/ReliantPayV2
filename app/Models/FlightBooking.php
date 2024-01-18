@@ -31,4 +31,9 @@ class FlightBooking extends Model
     {
         return $this->hasOne(Airport::class, 'id', 'destination_location');
     }
+
+    public function itenary()
+    {
+        return $this->hasOne(TravelItenaryUpload::class, 'app_id', 'app_id');
+    }
 }

@@ -7,17 +7,19 @@ use App\Models\Airport;
 use App\Models\Country;
 use App\Models\FlightBooking;
 use App\Models\SaleBooking;
+use App\Models\TravelItenaryUpload;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Attributes\Reactive;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class FlightBookingService extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     public $appID;
 
     public $departureCountry;
@@ -34,13 +36,16 @@ class FlightBookingService extends Component
     public $confirmation_number;
     public $departure_location;
     public $departure_date;
+    public $departureHour;
+    public $departureMinute;
     public $destination_location;
     public $tripType;
     public $return_date;
+    public $returnHour;
+    public $returnMinute;
     public $no_days_hotel_car;
     public $comments;
-    public $departureHour;
-    public $departureMinute;
+    public $itenary_screenshot;
 
     //passenger details
     public $full_name;
@@ -177,7 +182,7 @@ class FlightBookingService extends Component
 
     public function setAirline($airlineName)
     {
-        // dd($airlineName);
+        dd($airlineName);
         $this->airline_name = $airlineName;
         $this->query = $airlineName;
         $this->airlines = [];
@@ -208,6 +213,9 @@ class FlightBookingService extends Component
     {
         try {
             DB::beginTransaction();
+
+            $app = FlightBooking::find($this->appID);
+
             FlightBooking::updateOrCreate(
                 ['app_id' => $this->appID],
                 [
@@ -224,8 +232,10 @@ class FlightBookingService extends Component
                     'comments' => $this->comments,
                     'departure_hour' => $this->departureHour,
                     'departure_minute' => $this->departureMinute,
-                ]
-            );
+                ]);
+
+                $this->storeFile($this->itenary_screenshot, 'Flight Itenary');
+
             DB::commit();
             Session::flash('message', ['heading' => 'success', 'text' => 'Flight Booking Details Saved Successfully']);
             return redirect()->route('addPassengers', ['appID' => $this->appID]);
@@ -233,6 +243,15 @@ class FlightBookingService extends Component
             DB::rollback();
             dd($e->getMessage());
         }
+    }
+
+    public function storeFile($file, $docName)
+    {
+        $file = TravelItenaryUpload::create([
+            'app_id' => $this->appID,
+            'document_name' => $docName,
+            'document_filepath' => $file->storeAs('public/Itenary/'.$this->appID, $docName.'.'.$file->getClientOriginalExtension()),
+        ]);
     }
 
     public function getDepartureAirports()
