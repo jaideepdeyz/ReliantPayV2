@@ -139,7 +139,7 @@
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
                         <div class="form-group mb-2">
-                            <label for="service_id" class="form-label">Service</label>
+                            <label for="service_id" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
                             <select class="form-control @error('service_id') is-invalid @enderror"
                                 wire:model="service_id">
                                 <option value="">Select Service</option>
@@ -153,7 +153,7 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label for="customer_name" class="form-label">Customer's Name</label>
+                            <label for="customer_name" class="form-label">Customer's Name <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_name') is-invalid @enderror"
                                 wire:model="customer_name">
                             @error('customer_name')
@@ -162,7 +162,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="customer_phone" class="form-label">Customer's
-                                Phone</label>
+                                Phone <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_phone') is-invalid @enderror"
                                 wire:model="customer_phone">
                             @error('customer_phone')
@@ -171,7 +171,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="customer_email" class="form-label">Customer's
-                                Email</label>
+                                Email <span class="text-danger"><sup>*</sup></span></label>
                             <input type="email" class="form-control @error('customer_email') is-invalid @enderror"
                                 wire:model="customer_email">
                             @error('customer_email')
