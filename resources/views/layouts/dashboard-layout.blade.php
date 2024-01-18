@@ -54,11 +54,11 @@
                         </a>
                     </li>
                     @if (Auth::user()->role == RoleEnum::ADMIN->value)
-                    <x-admin-menu />
+                        <x-admin-menu />
                     @elseif (Auth::user()->role == RoleEnum::DEALER->value)
-                    <x-dealer-menu />
+                        <x-dealer-menu />
                     @elseif (Auth::user()->role == RoleEnum::AGENT->value)
-                    <x-agent-menu />
+                        <x-agent-menu />
                     @endif
                 </ul>
                 <!--- End Menu -->
@@ -129,10 +129,11 @@
 
 
 
-                        <img src="{{ asset('auth/images/flags/flag-icons/IN.png') }}" class="me-0 me-sm-1" height="18">
+                        {{-- <img src="{{ asset('auth/images/flags/flag-icons/IN.png') }}" class="me-0 me-sm-1"
+                            height="18"> --}}
 
 
-                        <li class="dropdown notification-list">
+                        {{-- <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none"
                                 data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                 aria-expanded="false">
@@ -179,7 +180,6 @@
                                         </div>
                                     </a>
 
-                                    <!-- item-->
                                     <a href="javascript:void(0);"
                                         class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
                                         <div class="card-body">
@@ -206,14 +206,13 @@
                                     </div>
                                 </div>
 
-                                <!-- All-->
                                 <a href="javascript:void(0);"
                                     class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
                                     View All
                                 </a>
 
                             </div>
-                        </li>
+                        </li> --}}
 
                         <!-- Light/Darj Mode Toggle Button -->
                         <li class="d-none d-sm-inline-block">
@@ -229,11 +228,19 @@
                                 aria-expanded="false">
 
                                 @if (isset(Auth::user()->image) && !empty(Auth::user()->image))
-                                <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}" alt="user-image"
-                                    class="rounded-circle">
+                                    <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}"
+                                        alt="user-image" class="rounded-circle">
                                 @else
-                                <img src="{{ env('PROFILE_IMAGE_PATH_EMPTY') }}{{ Auth::user()->name }}"
-                                    alt="user-image" class="rounded-circle">
+                                    <?php $words = explode(' ', Auth::user()->name);
+                                    $acronym = '';
+                                    foreach ($words as $w) {
+                                        $acronym .= mb_substr($w, 0, 1);
+                                    } ?>
+                                    <span
+                                        class="pro-user-name text-dark bg-light rounded-circle text-center font-weight-bold bg-soft-secondary p-1"
+                                        style="font-size: 12px;">
+                                        {{ $acronym }}
+                                    </span>
                                 @endif
 
 
@@ -297,7 +304,8 @@
                                 <div>
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> © Reliant Pay - <a href="https://reliantpay.com/" target="_blank">Reliant
+                                    </script> © Reliant Pay - <a href="https://reliantpay.com/"
+                                        target="_blank">Reliant
                                         Pay</a>
                                 </div>
                             </div>

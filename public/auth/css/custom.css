@@ -61,3 +61,13 @@ progress{
 progress::-moz-progress-bar { background: #98b7ff; }
 progress::-webkit-progress-value { background: #98b7ff;  }
 progress { color: #98b7ff;background: rgb(236, 236, 236);  }
+
+html[data-bs-theme=dark] .dropdown-container{
+    border: 1px solid #424e5a;
+    background: #262d35;
+}
+html[data-bs-theme=dark] .dropdown-container .dropdown-links{
+    border-bottom:1px solid #424e5a;
+    color:#dddddd !important;
+
+}
