@@ -39,6 +39,7 @@
                         <label for="message">Message</label>
                         <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
                     </div>
+                    {!! RecaptchaV3::field('contact') !!}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

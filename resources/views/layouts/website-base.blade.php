@@ -255,5 +255,5 @@
     </script>
     @livewireScripts
 </body>
-
+{!! RecaptchaV3::initJs() !!}
 </html>
