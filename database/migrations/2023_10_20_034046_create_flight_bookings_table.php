@@ -25,8 +25,12 @@ return new class extends Migration
             $table->string('destination_location')->nullable();
             $table->string('oneway_or_roundtrip')->nullable();
             $table->date('return_date')->nullable();
-            $table->string('returnHour')->nullable();
-            $table->string('returnMinute')->nullable();
+            $table->string('return_hour')->nullable();
+            $table->string('return_minute')->nullable();
+            $table->string('departure_eta_hour')->nullable();
+            $table->string('departure_eta_minute')->nullable();
+            $table->string('return_eta_Hour')->nullable();
+            $table->string('return_eta_Minute')->nullable();
             $table->string('no_days_hotel_car')->nullable();
             $table->longText('comments')->nullable();
             $table->timestamps();

@@ -139,7 +139,7 @@
                                                 <select wire:model="departureMinute"
                                                     class="form-control @error('departureMinute') is-invalid @enderror">
                                                     <option value="">0</option>
-                                                    @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }}
+                                                    @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i }}
                                                         </option>
                                                         @endfor
                                                 </select>
@@ -172,7 +172,7 @@
                                                 <select wire:model="departureETAMinute"
                                                     class="form-control @error('departureETAMinute') is-invalid @enderror">
                                                     <option value="">0</option>
-                                                    @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }}
+                                                    @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i }}
                                                         </option>
                                                         @endfor
                                                 </select>
@@ -219,7 +219,7 @@
                                                         <select wire:model="returnMinute"
                                                             class="form-control @error('returnMinute') is-invalid @enderror">
                                                             <option value="">0</option>
-                                                            @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i
+                                                            @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i
                                                                 }}
                                                                 </option>
                                                                 @endfor
@@ -232,7 +232,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="mb-3 col-md-4 form-group">
+                                        <div class="mb-3 col-md-4 form-group @if ($isRoundTrip == 'No') d-none @endif">
                                             <label for="departure_time" class="form-label">Return ETA
                                                 <span class="text-danger"><sup>*</sup></span></label>
                                             <div class="row">
@@ -256,9 +256,8 @@
                                                         <select wire:model="returnETAMinute"
                                                             class="form-control @error('returnETAMinute') is-invalid @enderror">
                                                             <option value="">MM</option>
-                                                            @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">
+                                                            @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">
                                                                 {{ $i }}
-                                                                MM
                                                                 </option>
                                                                 @endfor
                                                         </select>

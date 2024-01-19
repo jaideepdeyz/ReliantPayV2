@@ -47,11 +47,9 @@ class FlightBookingService extends Component
     public $comments;
     public $itenary_screenshot;
 
-    public $departure_eta_date;
     public $departureETAHour;
     public $departureETAMinute;
 
-    public $return_eta_date;
     public $returnETAHour;
     public $returnETAMinute;
 
@@ -139,6 +137,10 @@ class FlightBookingService extends Component
             $this->destinationAirport = Airport::find($this->destination_location)->name;
             $this->departureHour = $flightBooking->departure_hour;
             $this->departureMinute = $flightBooking->departure_minute;
+            $this->departureETAHour = $flightBooking->departureETAHour;
+            $this->departureETAMinute = $flightBooking->departureETAMinute;
+            $this->returnETAHour = $flightBooking->returnETAHour;
+            $this->returnETAMinute = $flightBooking->returnETAMinute;
 
         }
     }
@@ -240,6 +242,10 @@ class FlightBookingService extends Component
                     'comments' => $this->comments,
                     'departure_hour' => $this->departureHour,
                     'departure_minute' => $this->departureMinute,
+                    'departure_eta_hour' => $this->departureETAHour,
+                    'departure_eta_minute' => $this->departureETAMinute,
+                    'return_eta_Hour' => $this->returnETAHour,
+                    'return_eta_Minute' => $this->returnETAMinute,
                 ]);
 
                 $this->storeFile($this->itenary_screenshot, 'Flight Itenary');
