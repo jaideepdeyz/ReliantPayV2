@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1">$<span data-plugin="counterup">58,947</span></h3>
+                            <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{$revenueThisMonth}}</span></h3>
                             <p class="text-muted mb-1 text-truncate">Revenue this month</p>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$customers}}</span></h3>
                             <p class="text-muted mb-1 text-truncate">Customers</p>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">0.58</span>%</h3>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingPayment}}</span></h3>
                             <p class="text-muted mb-1 text-truncate">Pending Payments</p>
                         </div>
                     </div>
@@ -83,7 +83,8 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">78.41</span>k</h3>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingAuthorization}}</span>
+                            </h3>
                             <p class="text-muted mb-1 text-truncate">Pending Authorisation</p>
                         </div>
                     </div>

@@ -181,74 +181,95 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mb-3 col-md-4 @if ($isRoundTrip == 'No') d-none @endif">
-                                    <label for="return_date" class="form-label">Return Date <span
-                                            class="text-danger"><sup>*</sup></span></label>
-                                    <input type="date" class="form-control @error('return_date') is-invalid @enderror"
-                                        wire:model="return_date" @if ($isRoundTrip=='Yes' ) required @endif>
-                                    @error('return_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-2 form-group  @if ($isRoundTrip == 'No') d-none @endif">
-                                    <label for="return_time" class="form-label">Return Time <span
-                                            class="text-danger"><sup>*</sup></span></label>
+                                <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <label for="">HH</label>
-                                            <select wire:model="returnHour"
-                                                class="form-control @error('returnHour') is-invalid @enderror">
-                                                <option value="">HH</option>
-                                                @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }} HH
-                                                    </option>
-                                                    @endfor
-                                            </select>
+                                        <div class="mb-3 col-md-2 @if ($isRoundTrip == 'No') d-none @endif">
+                                            <label for="return_date" class="form-label">Return Date <span
+                                                    class="text-danger"><sup>*</sup></span></label>
+                                            <input type="date"
+                                                class="form-control @error('return_date') is-invalid @enderror"
+                                                wire:model="return_date" @if ($isRoundTrip=='Yes' ) required @endif>
+                                            @error('return_date')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
-                                        <div class="col-md-3">
-                                            <label for="">MM</label>
-                                            <select wire:model="returnMinute"
-                                                class="form-control @error('returnMinute') is-invalid @enderror">
-                                                <option value="">MM</option>
-                                                @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }} MM
-                                                    </option>
-                                                    @endfor
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3 col-md-4 form-group">
-                                            <label for="departure_time" class="form-label">Return ETA (HH:MM) <span
+                                        <div class="mb-3 col-md-4 form-group  @if ($isRoundTrip == 'No') d-none @endif">
+                                            <label for="return_time" class="form-label">Return Time <span
                                                     class="text-danger"><sup>*</sup></span></label>
                                             <div class="row">
-                                                <div class="col-md-2">
-                                                    <label for="hour">HH</label>
-                                                    <select wire:model="returnETAHour"
-                                                        class="form-control @error('$returnETAHour') is-invalid @enderror">
-                                                        <option value="">HH</option>
-                                                        @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }}
-                                                            HH
-                                                            </option>
-                                                            @endfor
-                                                    </select>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+
+                                                        <select wire:model="returnHour"
+                                                            class="form-control @error('returnHour') is-invalid @enderror">
+                                                            <option value="">0</option>
+                                                            @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i
+                                                                }}
+                                                                </option>
+                                                                @endfor
+                                                        </select>
+                                                        <span class="input-group-text" id="basic-addon1">H</span>
+
+                                                    </div>
                                                 </div>
 
-                                                <div class="col-md-2">
-                                                    <label for="minute">MM</label>
-                                                    <select wire:model="returnETAMinute"
-                                                        class="form-control @error('returnETAMinute') is-invalid @enderror">
-                                                        <option value="">MM</option>
-                                                        @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i }}
-                                                            MM
-                                                            </option>
-                                                            @endfor
-                                                    </select>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <select wire:model="returnMinute"
+                                                            class="form-control @error('returnMinute') is-invalid @enderror">
+                                                            <option value="">0</option>
+                                                            @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">{{ $i
+                                                                }}
+                                                                </option>
+                                                                @endfor
+                                                        </select>
+                                                        <span class="input-group-text" id="basic-addon1">M</span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="mb-3 col-md-4 form-group">
+                                            <label for="departure_time" class="form-label">Return ETA
+                                                <span class="text-danger"><sup>*</sup></span></label>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <select wire:model="returnETAHour"
+                                                            class="form-control @error('$returnETAHour') is-invalid @enderror">
+                                                            <option value="">0</option>
+                                                            @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">
+                                                                {{ $i }}
+                                                                </option>
+                                                                @endfor
+                                                        </select>
+                                                        <span class="input-group-text" id="basic-addon1">H</span>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <select wire:model="returnETAMinute"
+                                                            class="form-control @error('returnETAMinute') is-invalid @enderror">
+                                                            <option value="">MM</option>
+                                                            @for ($i = 1; $i <= 30; $i++) <option value="{{ $i }}">
+                                                                {{ $i }}
+                                                                MM
+                                                                </option>
+                                                                @endfor
+                                                        </select>
+                                                        <span class="input-group-text" id="basic-addon1">M</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
 
 
 
