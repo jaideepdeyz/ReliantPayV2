@@ -20,7 +20,7 @@
                 </h5>
                 <form wire:submit="storePassenger">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <input type="text" class="form-control @error('full_name') is-invalid @enderror"
                                     wire:model="full_name" placeholder="Passenger Name">
@@ -30,7 +30,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <select class="form-select @error('gender') is-invalid @enderror" wire:model="gender"
                                     placeholder="Gender">
@@ -46,7 +46,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <input type="date" class="form-control @error('dob') is-invalid @enderror"
                                     wire:model="dob" placeholder="Date of Birth">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <select class="form-select @error('relationship_to_card_holder') is-invalid @enderror"
                                     wire:model="relationship_to_card_holder">
@@ -79,6 +79,57 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="form-floating">
+                                <select class="form-select @error('is_disabled') is-invalid @enderror"
+                                    wire:model.live="is_disabled">
+                                    <option value="">Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <label for="is_disabled" class="form-label">Does the passenger have any disability
+                                    ?</label>
+                                @error('is_disabled')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mb-3 @if($pwdType == 0) d-none @endif">
+                            <div class="form-floating">
+                                <select class="form-select @error('disability_type') is-invalid @enderror"
+                                    wire:model="disability_type">
+                                    <option value="">Select Option</option>
+                                    <option value="Blind or Vision Loss">Blind or Vision Loss</option>
+                                    <option value="Deaf or Hearing Loss">Deaf or Hearing Loss</option>
+                                    <option value="Reduced Mobility">Reduced Mobility</option>
+                                    <option value="Needs Not Listed">Needs Not Listed</option>
+                                </select>
+                                <label for="disability_type" class="form-label">Disability Type
+                                    ?</label>
+                                @error('disability_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 mb-3 @if($pwdType == 0) d-none @endif">
+                            <div class="form-floating">
+                                <select class="form-select @error('requires_assistance') is-invalid @enderror"
+                                    wire:model="requires_assistance">
+                                    <option value="">Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <label for="requires_assistance" class="form-label">Passenger requires Airport/Station Assistance
+                                    ?</label>
+                                @error('requires_assistance')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="mb-3 mt-3 col-md-12 action-buttons d-flex justify-content-between">
                             <button type="submit" class="btn w-sm btn-blue waves-effect waves-danger">

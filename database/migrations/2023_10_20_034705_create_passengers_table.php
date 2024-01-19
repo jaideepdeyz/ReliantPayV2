@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
             $table->string('relationship_to_card_holder')->nullable();
+            $table->string('is_disabled')->nullable();
+            $table->string('disability_type')->nullable();
+            $table->string('requires_assistance')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

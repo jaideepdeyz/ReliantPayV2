@@ -60,7 +60,7 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="cc_cvc" class="form-label">CVV: <span class="text-danger"><sup>*</sup></span></label>
-                                <input class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc">
+                                <input class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc" minlength="3" maxlength="3">
                                 @error('cc_cvc')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

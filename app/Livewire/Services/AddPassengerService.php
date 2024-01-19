@@ -21,11 +21,25 @@ class AddPassengerService extends Component
     public $passengerID;
     public $saleBooking;
 
+    public $is_disabled;
+    public $disability_type;
+    public $requires_assistance;
+    public $pwdType=0;
+
     public function mount($appID)
     {
         $this->appID = $appID;
         $this->saleBooking = SaleBooking::find($this->appID);
 
+    }
+
+    public function updatedIsDisabled()
+    {
+        if($this->is_disabled == 'Yes'){
+            $this->pwdType = 1;
+        }else{
+            $this->pwdType = 0;
+        }
     }
 
     public function storePassenger()
@@ -45,6 +59,9 @@ class AddPassengerService extends Component
                 'gender' => $this->gender,
                 'dob' => Carbon::parse($this->dob)->format('Y-m-d'),
                 'relationship_to_card_holder' => $this->relationship_to_card_holder,
+                'is_disabled' => $this->is_disabled,
+                'disability_type' => $this->disability_type,
+                'requires_assistance' => $this->requires_assistance,
             ]);
             DB::commit();
             $this->dispatch('message', heading:'success',text:'Passenger added');
