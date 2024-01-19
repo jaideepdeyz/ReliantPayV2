@@ -3,7 +3,6 @@
 namespace App\Livewire\Agents;
 
 use App\Enums\StatusEnum;
-use App\Models\Payment;
 use App\Models\SaleBooking;
 use Livewire\Component;
 use Auth;
@@ -25,12 +24,17 @@ class AgentDashboard extends Component
         $revenueThisWeek= 0;
         $revenueThisMonth = 0;
         $revenueThisYear = 0;
+        $revenueMonthly=0;
+        $inc = 1;
         foreach($revenue as $rev){
             $revenueThisDay += $rev->totalPaymentsDay();
             $revenueThisMonth += $rev->totalPaymentsMonth();
             $revenueThisYear += $rev->totalPaymentsYear();
             $revenueThisWeek += $rev->totalPaymentsWeek();
+            $revenueMonthly += $rev->totalPaymentsMonthly('02');
+            $inc++;
         }
+        dd($revenueMonthly);
         return view('livewire.agents.agent-dashboard', compact('authorizations', 'bookings','customers','pendingPayment','pendingAuthorization','revenueThisMonth','revenueThisDay','revenueThisYear','revenueThisWeek'))->layout('layouts.dashboard-layout');
     }
 }

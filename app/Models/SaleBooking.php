@@ -60,6 +60,13 @@ class SaleBooking extends Model
         return $totalPayments;
     }
 
+    public function totalPaymentsMonthly($i)
+    {
+        //get monthly sum of all payments from payments relation
+        $totalPayments = $this->payment()->whereYear('updated_at',date('Y'))->whereMonth('updated_at',$i)->sum('amount_charged');
+        return $totalPayments;
+    }
+
     public function passengers()
     {
         return $this->hasMany(Passenger::class, 'app_id', 'id');
