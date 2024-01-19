@@ -15,9 +15,8 @@
         </div>
         <div class="col-md-12">
             <h5 class="bg-light p-2 mt-0 mb-4">
-                <a href="{{ route('authorizeAndSend', $bookingDetails->id) }}" class="btn btn-success"><i
-                        class="ri-mail-send-line font-13"></i> Send
-                    Authorization Email</a>
+                <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i
+                        class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
             </h5>
 
             <div class="card">
@@ -174,22 +173,5 @@
                 </div>
             </div>
         </div>
-
-        @if ($bookingDetails->authorizationForm)
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <ol>
-                        <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}"
-                                target="_blank">Signed Authorization Form</a></li>
-                        <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
-                                target="_blank">Completion Certificate</a></li>
-                    </ol>
-                </div>
-            </div>
-
-        </div>
-        @endif
-
     </div>
 </x-dashboard-layout>

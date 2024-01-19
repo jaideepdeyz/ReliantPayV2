@@ -5,14 +5,16 @@ namespace App\Livewire\Services;
 use App\Models\AmtrakBooking;
 use App\Models\SaleBooking;
 use App\Models\TrainStation;
+use App\Models\TravelItenaryUpload;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class AmtrackBookingService extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
     public $appID;
 
     // public $airports = [];
@@ -30,6 +32,15 @@ class AmtrackBookingService extends Component
     public $comments;
     public $departureHour;
     public $departureMinute;
+    public $itenary_screenshot;
+
+    public $departure_eta_date;
+    public $departureETAHour;
+    public $departureETAMinute;
+
+    public $return_eta_date;
+    public $returnETAHour;
+    public $returnETAMinute;
 
     //passenger details
     public $full_name;
@@ -137,8 +148,20 @@ class AmtrackBookingService extends Component
                     'comments' => $this->comments,
                     'departure_hour' => $this->departureHour,
                     'departure_minute' => $this->departureMinute,
+                    'departure_eta_date' => $this->departure_eta_date,
+                    'departure_eta_hour' => $this->departureETAHour,
+                    'departure_eta_minute' => $this->departureETAMinute,
+                    'return_eta_date' => $this->return_eta_date,
+                    'return_eta_hour' => $this->returnETAHour,
+                    'return_eta_minute' => $this->returnETAMinute,
+
                 ]
             );
+
+            if ($this->itenary_screenshot) {
+                $this->storeFile($this->itenary_screenshot, 'AMTRAK Itenary');
+            }
+
             DB::commit();
             Session::flash('message', ['heading' => 'success', 'text' => 'Flight Booking Details Saved Successfully']);
             return redirect()->route('addPassengers', ['appID' => $this->appID]);
@@ -146,6 +169,20 @@ class AmtrackBookingService extends Component
             DB::rollback();
             dd($e->getMessage());
         }
+    }
+
+    public function storeFile($file, $docName)
+    {
+        $file = TravelItenaryUpload::updateOrCreate(
+            [
+                'app_id' => $this->appID,
+            ],
+            [
+
+                'document_name' => $docName,
+                'document_filepath' => $file->storeAs('public/Itenary/' . $this->appID, $docName . '.' . $file->getClientOriginalExtension()),
+            ]
+        );
     }
 
     public function render()
