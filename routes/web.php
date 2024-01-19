@@ -123,7 +123,7 @@ Route::middleware('auth')->group(function () {
     Route::get('payment/generatePaymentLink/{id}', [App\Http\Controllers\PaymentController::class, 'generatePaymentLink'])->name('payment.generatePaymentLink');
 
     // PDF Routes
-    Route::get('authorizationForm', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
+    Route::get('authorizationForm/{bookingID}', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
 });
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');
