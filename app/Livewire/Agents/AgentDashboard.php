@@ -34,7 +34,6 @@ class AgentDashboard extends Component
             $revenueMonthly += $rev->totalPaymentsMonthly('02');
             $inc++;
         }
-        dd($revenueMonthly);
         return view('livewire.agents.agent-dashboard', compact('authorizations', 'bookings','customers','pendingPayment','pendingAuthorization','revenueThisMonth','revenueThisDay','revenueThisYear','revenueThisWeek'))->layout('layouts.dashboard-layout');
     }
 }
