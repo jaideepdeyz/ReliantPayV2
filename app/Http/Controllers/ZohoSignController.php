@@ -48,7 +48,7 @@ class ZohoSignController extends Controller
             $user = new OAuth([
                 OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
                 OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
-                OAuth::DC => 'in',
+                OAuth::DC => 'com',
                 // OAuth::ACCESS_TOKEN => env('ZOHO_DEV_ACCESS_TOKEN'),
                 OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
             ]);
@@ -69,9 +69,11 @@ class ZohoSignController extends Controller
             $pdf = Pdf::loadView('pdf.sample');
             $path = storage_path('app/public/Unsigned/'.$saleBooking->id.'.pdf');
             $pdf->save($path);
+            Log::info($path);
             $files = [
                 new CURLFile($path)
             ];
+            Log::info('here');
             $draftJSON = ZohoSign::draftRequest($reqObject, $files);
             $sign1 = new ImageField();
             $sign1->setFieldTypeName(ImageField::SIGNATURE);
