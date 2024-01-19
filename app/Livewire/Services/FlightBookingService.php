@@ -47,6 +47,14 @@ class FlightBookingService extends Component
     public $comments;
     public $itenary_screenshot;
 
+    public $departure_eta_date;
+    public $departureETAHour;
+    public $departureETAMinute;
+
+    public $return_eta_date;
+    public $returnETAHour;
+    public $returnETAMinute;
+
     //passenger details
     public $full_name;
     public $gender;

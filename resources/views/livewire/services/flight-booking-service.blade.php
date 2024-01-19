@@ -119,10 +119,11 @@
                                 </div>
 
                                 <div class="mb-3 col-md-4 form-group">
-                                    <label for="departure_time" class="form-label">Departure Time <span
+                                    <label for="departure_time" class="form-label">Departure Time (HH:MM) <span
                                             class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
                                         <div class="col-md-2">
+                                            <label for="hour">HH</label>
                                             <select wire:model="departureHour"
                                                 class="form-control @error('departureHour') is-invalid @enderror">
                                                 <option value="">HH</option>
@@ -134,8 +135,40 @@
                                         </div>
 
                                         <div class="col-md-2">
+                                            <label for="minute">MM</label>
                                             <select wire:model="departureMinute"
                                                 class="form-control @error('departureMinute') is-invalid @enderror">
+                                                <option value="">MM</option>
+                                                @for ($i = 1; $i <= 30; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} MM
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3 col-md-4 form-group">
+                                    <label for="departure_time" class="form-label">ETA (HH:MM) <span
+                                            class="text-danger"><sup>*</sup></span></label>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="hour">HH</label>
+                                            <select wire:model="departureETAHour"
+                                                class="form-control @error('departureETAHour') is-invalid @enderror">
+                                                <option value="">HH</option>
+                                                @for ($i = 1; $i <= 24; $i++)
+                                                    <option value="{{ $i }}">{{ $i }} HH
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label for="minute">MM</label>
+                                            <select wire:model="departureETAMinute"
+                                                class="form-control @error('departureETAMinute') is-invalid @enderror">
                                                 <option value="">MM</option>
                                                 @for ($i = 1; $i <= 30; $i++)
                                                     <option value="{{ $i }}">{{ $i }} MM
@@ -162,6 +195,7 @@
                                             class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
                                         <div class="col-md-3">
+                                            <label for="">HH</label>
                                             <select wire:model="returnHour"
                                                 class="form-control @error('returnHour') is-invalid @enderror">
                                                 <option value="">HH</option>
@@ -173,6 +207,7 @@
                                         </div>
 
                                         <div class="col-md-3">
+                                            <label for="">MM</label>
                                             <select wire:model="returnMinute"
                                                 class="form-control @error('returnMinute') is-invalid @enderror">
                                                 <option value="">MM</option>
@@ -181,6 +216,36 @@
                                                     </option>
                                                 @endfor
                                             </select>
+                                        </div>
+
+                                        <div class="mb-3 col-md-4 form-group">
+                                            <label for="departure_time" class="form-label">Return ETA (HH:MM) <span
+                                                    class="text-danger"><sup>*</sup></span></label>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="hour">HH</label>
+                                                    <select wire:model="returnETAHour"
+                                                        class="form-control @error('$returnETAHour') is-invalid @enderror">
+                                                        <option value="">HH</option>
+                                                        @for ($i = 1; $i <= 24; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} HH
+                                                            </option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <label for="minute">MM</label>
+                                                    <select wire:model="returnETAMinute"
+                                                        class="form-control @error('returnETAMinute') is-invalid @enderror">
+                                                        <option value="">MM</option>
+                                                        @for ($i = 1; $i <= 30; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} MM
+                                                            </option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

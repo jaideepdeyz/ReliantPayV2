@@ -4,7 +4,9 @@
             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 4/5: Upload Documents</h5>
             <form wire:submit.prevent="save">
                 <div class="row">
-
+                    <div class="col0-md-12 mb-2">
+                        <h5 class="text-uppercase">All Documents must be PDF format only having a maximum filesize of 5 MB.</h5>
+                    </div>
                     {{-- Business EIN --}}
                     <div class="mb-3 col-md-6" style="position:relative" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <label for="business_scan_EIN" class="form-label">Scanned EIN <span class="text-danger"><sup>*</sup></span></label>
