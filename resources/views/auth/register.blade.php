@@ -16,7 +16,7 @@
                                         </span>
                                     </a>
 
-                                    <a href="index.html" class="logo logo-light text-center">
+                                    <a href="{{ url('/') }}" class="logo logo-light text-center">
                                         <span class="logo-lg">
                                             <img src="{{ asset('auth/images/adminlogo/admin-logo-dark.png') }}"
                                                 alt="">
