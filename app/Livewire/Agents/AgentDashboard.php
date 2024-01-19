@@ -24,6 +24,6 @@ class AgentDashboard extends Component
 
 
 
-        return view('livewire.agents.agent-dashboard', compact('authorizations', 'bookings','customers','pendingPayment','pendingAuthorization','revenueThi     sMonth'))->layout('layouts.dashboard-layout');
+        return view('livewire.agents.agent-dashboard', compact('authorizations', 'bookings','customers','pendingPayment','pendingAuthorization','revenueThisMonth'))->layout('layouts.dashboard-layout');
     }
 }

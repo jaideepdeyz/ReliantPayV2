@@ -141,7 +141,6 @@ class FlightBookingService extends Component
             $this->departureETAMinute = $flightBooking->departureETAMinute;
             $this->returnETAHour = $flightBooking->returnETAHour;
             $this->returnETAMinute = $flightBooking->returnETAMinute;
-
         }
     }
 
@@ -156,37 +155,34 @@ class FlightBookingService extends Component
 
     public function updatedQuery()
     {
-        if($this->query == '')
-        {
+        if ($this->query == '') {
             $this->airlines = [];
         } else {
-            $this->airlines = Airline::where('name', 'like', '%'.$this->query.'%')->get();
+            $this->airlines = Airline::where('name', 'like', '%' . $this->query . '%')->get();
         }
     }
 
     public function updatedDepartureQuery()
     {
-        if($this->departureQuery == '')
-        {
+        if ($this->departureQuery == '') {
             $this->departureAirports = [];
         } else {
-            $this->departureAirports = Airport::where('code', 'like', '%'.$this->departureQuery.'%')
-            ->orWhere('city', 'like', '%'.$this->departureQuery.'%')
-            ->orWhere('name', 'like', '%'.$this->departureQuery.'%')
-            ->get();
+            $this->departureAirports = Airport::where('code', 'like', '%' . $this->departureQuery . '%')
+                ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
+                ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
+                ->get();
         }
     }
 
     public function updatedDestinationQuery()
     {
-        if($this->destinationQuery == '')
-        {
+        if ($this->destinationQuery == '') {
             $this->destinationAirports = [];
         } else {
-            $this->destinationAirports = Airport::where('code', 'like', '%'.$this->destinationQuery.'%')
-            ->orWhere('city', 'like', '%'.$this->destinationQuery.'%')
-            ->orWhere('name', 'like', '%'.$this->destinationQuery.'%')
-            ->get();
+            $this->destinationAirports = Airport::where('code', 'like', '%' . $this->destinationQuery . '%')
+                ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
+                ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
+                ->get();
         }
     }
 
@@ -246,9 +242,11 @@ class FlightBookingService extends Component
                     'departure_eta_minute' => $this->departureETAMinute,
                     'return_eta_Hour' => $this->returnETAHour,
                     'return_eta_Minute' => $this->returnETAMinute,
-                ]);
-
+                ]
+            );
+            if ($this->itenary_screenshot) {
                 $this->storeFile($this->itenary_screenshot, 'Flight Itenary');
+            }
 
             DB::commit();
             Session::flash('message', ['heading' => 'success', 'text' => 'Flight Booking Details Saved Successfully']);
@@ -261,11 +259,16 @@ class FlightBookingService extends Component
 
     public function storeFile($file, $docName)
     {
-        $file = TravelItenaryUpload::create([
-            'app_id' => $this->appID,
-            'document_name' => $docName,
-            'document_filepath' => $file->storeAs('public/Itenary/'.$this->appID, $docName.'.'.$file->getClientOriginalExtension()),
-        ]);
+        $file = TravelItenaryUpload::updateOrCreate(
+            [
+                'app_id' => $this->appID,
+            ],
+            [
+
+                'document_name' => $docName,
+                'document_filepath' => $file->storeAs('public/Itenary/' . $this->appID, $docName . '.' . $file->getClientOriginalExtension()),
+            ]
+        );
     }
 
     public function getDepartureAirports()
@@ -277,7 +280,8 @@ class FlightBookingService extends Component
             return;
         }
     }
-    public function getDestinationAirports(){
+    public function getDestinationAirports()
+    {
         if ($this->destinationCountry) {
             $this->dispatch('showModal', ['alias' => 'modals.airport-selection', 'params' => ['countryID' => $this->destinationCountry, 'type' => 'Destination']]);
         } else {
@@ -285,7 +289,8 @@ class FlightBookingService extends Component
             return;
         }
     }
-    public function getCountries($type){
+    public function getCountries($type)
+    {
         $this->dispatch('showModal', ['alias' => 'modals.country-selection', 'params' => ['type' => $type]]);
     }
 
