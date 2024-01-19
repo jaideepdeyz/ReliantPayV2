@@ -66,9 +66,11 @@ class ZohoSignController extends Controller
             $partner->setVerificationType(Actions::EMAIL);
             $reqObject->addAction($partner);
             $reqObject->setExpirationDays(1);
-            $pdf = Pdf::loadView('pdf.sample');
-            $path = storage_path('app/public/Unsigned/'.$saleBooking->id.'.pdf');
-            $pdf->save($path);
+            // $pdf = Pdf::loadView('pdf.sample');
+            $unsignedFile = AuthorizationForm::where('app_id', $saleBooking->id)->first();
+            $file = Storage::url($unsignedFile->unsigned_document);
+            $path = public_path($file);
+            // $pdf->save($path);
             Log::info($path);
             $files = [
                 new CURLFile($path)
