@@ -32,6 +32,34 @@ class SaleBooking extends Model
         return $this->hasOne(Payment::class, 'app_id', 'id');
     }
 
+    public function totalPaymentsMonth()
+    {
+       //get sum of all payments from payments relation
+        $totalPayments = $this->payment()->whereYear('updated_at',date('Y'))->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        return $totalPayments;
+    }
+
+    public function totalPaymentsYear()
+    {
+       //get sum of all payments from payments relation
+        $totalPayments = $this->payment()->whereYear('updated_at',date('Y'))->sum('amount_charged');
+        return $totalPayments;
+    }
+
+    public function totalPaymentsWeek()
+    {
+       //get sum of all payments from payments relation
+        $totalPayments = $this->payment()->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        return $totalPayments;
+    }
+
+    public function totalPaymentsDay()
+    {
+       //get sum of all payments from payments relation
+        $totalPayments = $this->payment()->whereDay('updated_at',date('d'))->sum('amount_charged');
+        return $totalPayments;
+    }
+
     public function passengers()
     {
         return $this->hasMany(Passenger::class, 'app_id', 'id');

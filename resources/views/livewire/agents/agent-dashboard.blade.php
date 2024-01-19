@@ -121,22 +121,22 @@
                         <div id="total-revenue" class="mt-0" data-colors="#f1556c"></div>
 
                         <h5 class="text-muted mt-0">Total sales made today</h5>
-                        <h2>$178</h2>
+                        <h2>${{$revenueThisDay}}</h2>
 
                         {{-- <p class="text-muted w-75 mx-auto sp-line-2">by Agent {{Auth::User()->name}}</p> --}}
 
                         <div class="row mt-3">
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
-                                <h4><i class="fe-arrow-down text-danger me-1"></i>$7.8k</h4>
+                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{$revenueThisWeek}}</h4>
                             </div>
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
-                                <h4><i class="fe-arrow-up text-success me-1"></i>$1.4k</h4>
+                                <h4><i class="fe-arrow-up text-success me-1"></i>${{$revenueThisMonth}}</h4>
                             </div>
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
-                                <h4><i class="fe-arrow-down text-danger me-1"></i>$15k</h4>
+                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{$revenueThisYear}}</h4>
                             </div>
                         </div>
 
