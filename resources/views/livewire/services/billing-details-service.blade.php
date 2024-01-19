@@ -60,8 +60,16 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="cc_cvc" class="form-label">CVV: <span class="text-danger"><sup>*</sup></span></label>
-                                <input class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc" minlength="3" maxlength="3">
+                                <input type="text" class="form-control @error('cc_cvc') is-invalid @enderror" wire:model="cc_cvc" minlength="3" maxlength="3">
                                 @error('cc_cvc')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-2 col-md-12">
+                                <label for="cc_billing_address">Billing Address:</label>
+                                <input type="text" class="form-control @error('cc_billing_address') is-invalid @enderror" wire:model="cc_billing_address">
+                                @error('cc_billing_address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

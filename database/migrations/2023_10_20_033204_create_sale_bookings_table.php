@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('sale_bookings', function (Blueprint $table) {
             $table->id()->startingValue(1000000001);
             $table->foreignId('agent_id')->constrained('users');
+            $table->string('organization_id');
             $table->foreignId('service_id')->constrained('service_masters');
             $table->string('customer_name')->nullable();
             $table->string('customer_phone')->nullable();
             $table->string('customer_email')->nullable();
             $table->string('app_status')->nullable();
             $table->string('order_id')->nullable();
+            $table->string('amount_charged')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -44,6 +44,7 @@ class BookSales extends Component
 
             $this->sale = SaleBooking::create([
                 'agent_id' => auth()->user()->id,
+                'organization_id' => auth()->user()->organization_id,
                 'service_id' => $this->service_id,
                 'customer_name' => $this->customer_name,
                 'customer_phone' => $this->customer_phone,

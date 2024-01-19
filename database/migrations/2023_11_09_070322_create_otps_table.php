@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->string('country_code');
-            $table->string('phone_number');
-            $table->string('otp');
+            $table->string('type')->nullable();
+            $table->string('country_code')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('otp')->nullable();
+            $table->string('access_code')->nullable();
             $table->boolean('is_verified')->default(false);
             $table->timestamp('verified_at')->nullable();
             $table->timestamp('expiration_time')->nullable();

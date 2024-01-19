@@ -40,4 +40,9 @@ class Organization extends Model
         ->orWhere('status', 'LIKE', "%{$value}%");
     }
 
+    public function supportDetails()
+    {
+        return $this->hasOne(SupportDetails::class, 'org_id', 'id');
+    }
+
 }

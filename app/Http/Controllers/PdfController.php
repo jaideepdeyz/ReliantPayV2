@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ServiceEnum;
+use App\Models\AmtrakBooking;
 use App\Models\AuthorizationForm;
 use App\Models\ChargeDetails;
+use App\Models\FlightBooking;
 use App\Models\Passenger;
 use App\Models\Payment;
 use App\Models\SaleBooking;
 use App\Models\TravelItenaryUpload;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class PdfController extends Controller
 {
@@ -35,10 +37,12 @@ class PdfController extends Controller
         switch($saleBooking->service->service_name)
         {
             case ServiceEnum::FLIGHTS->value:
-                $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary'));
+                $flightDetails = FlightBooking::where('app_id', $bookingID)->first();
+                $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'flightDetails'));
                 break;
             case ServiceEnum::AMTRAK->value:
-                $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary'));
+                $amtrakDetails = AmtrakBooking::where('app_id', $bookingID)->first();
+                $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'amtrakDetails'));
                 break;
             default:
                 break;

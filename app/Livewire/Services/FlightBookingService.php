@@ -47,9 +47,11 @@ class FlightBookingService extends Component
     public $comments;
     public $itenary_screenshot;
 
+    public $departure_eta_date;
     public $departureETAHour;
     public $departureETAMinute;
 
+    public $return_eta_date;
     public $returnETAHour;
     public $returnETAMinute;
 
@@ -126,7 +128,16 @@ class FlightBookingService extends Component
             $this->destination_location = $flightBooking->destination_location;
             $this->destinationCountry = $flightBooking->destination_country;
             $this->tripType = $flightBooking->oneway_or_roundtrip;
-            $this->return_date = $flightBooking->return_date;
+            if($this->tripType == 'Round Trip')
+            {
+                $this->isRoundTrip = 'Yes';
+                $this->return_date = $flightBooking->return_date;
+                $this->returnHour = $flightBooking->return_hour;
+                $this->returnMinute = $flightBooking->return_minute;
+                $this->return_eta_date = $flightBooking->return_eta_date;
+                $this->returnETAHour = $flightBooking->return_eta_hour;
+                $this->returnETAMinute = $flightBooking->return_eta_minute;
+            }
             // $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
             // $this->departure_country_name = Country::where('code', $this->departureCountry)->first()->name;
@@ -137,10 +148,9 @@ class FlightBookingService extends Component
             $this->destinationAirport = Airport::find($this->destination_location)->name;
             $this->departureHour = $flightBooking->departure_hour;
             $this->departureMinute = $flightBooking->departure_minute;
-            $this->departureETAHour = $flightBooking->departureETAHour;
-            $this->departureETAMinute = $flightBooking->departureETAMinute;
-            $this->returnETAHour = $flightBooking->returnETAHour;
-            $this->returnETAMinute = $flightBooking->returnETAMinute;
+            $this->departure_eta_date = $flightBooking->departure_eta_date;
+            $this->departureETAHour = $flightBooking->departure_eta_Hour;
+            $this->departureETAMinute = $flightBooking->departure_eta_minute;
         }
     }
 
@@ -240,8 +250,10 @@ class FlightBookingService extends Component
                     'departure_minute' => $this->departureMinute,
                     'departure_eta_hour' => $this->departureETAHour,
                     'departure_eta_minute' => $this->departureETAMinute,
-                    'return_eta_Hour' => $this->returnETAHour,
-                    'return_eta_Minute' => $this->returnETAMinute,
+                    'return_eta_hour' => $this->returnETAHour,
+                    'return_eta_minute' => $this->returnETAMinute,
+                    'departure_eta_date' => $this->departure_eta_date,
+                    'return_eta_date' => $this->return_eta_date,
                 ]
             );
             if ($this->itenary_screenshot) {

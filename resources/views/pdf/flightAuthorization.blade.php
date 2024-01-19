@@ -25,18 +25,110 @@
                         <b>{{ str_repeat('X', max(0, strlen($paymentDetails->cc_number) - 4)) . substr($paymentDetails->cc_number, -4) }}.</b></p>
                     <p><b>Note:</b> Your credit card may be billed in multiple charges not exceeding the above-mentioned total amount.</p>
 
-                    <p>On your bank statement, the following charges will be shown, from Reservation Assistance for a total of <b>USD {{$paymentDetails->amount_charged}}. </b></p>
+                    <p>On your bank statement, the following charges will be shown, from Reservation Assistance for a total of <b>USD {{$paymentDetails->amount_charged}}. </b></p><br>
 
                         @foreach($charges as $charge)
                         <p><b>CHARGE {{$loop->iteration }} : RESERVATION ASSISTANCE : ${{$charge->amount}}</b></p>
                         @endforeach
-
+                        <br><br>
                     <p><b>PLEASE VERIFY THE PASSENGER(S) INFORMATION BELOW</b></p>
-                    @foreach($passengers as $passenger)
-                        <p>{{$loop->iteration}}. {{$passenger->full_name}} | {{$passenger->gender}} | {{ Carbon\Carbon::parse($passenger->dob)->format('F j, Y')}}</p>
-                    @endforeach
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="style=font-size:12;">#</th>
+                                <th style="style=font-size:12;">Passenger's Name</th>
+                                <th style="style=font-size:12;">Gender</th>
+                                <th style="style=font-size:12;">Date of Birth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($passengers as $passenger)
+                            <tr>
+                                <td style="style=font-size:10;">{{$loop->iteration}}</td>
+                                <td style="style=font-size:10;">{{$passenger->full_name}}</td>
+                                <td style="style=font-size:10;">{{$passenger->gender}}</td>
+                                <td style="style=font-size:10;">{{ Carbon\Carbon::parse($passenger->dob)->format('F j, Y')}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <br><br>
+
 
                     <p><b>PLEASE VERIFY THE FLIGHT(S) INFORMATION BELOW</b></p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="font-size:12px;">JOURNEY</th>
+                                <th style="font-size:12px;">FROM</th>
+                                <th style="font-size:12px;">TO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>ONWARD JOURNEY</b></td>
+                                <td>
+                                    <b>
+                                    {{$flightDetails->departureAirport->name}}, {{$flightDetails->departureAirport->city}}, {{$flightDetails->departureAirport->country}}
+                                    </b>
+                                </td>
+                                <td>
+                                    <b>
+                                    {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p>
+                                        Date: {{ Carbon\Carbon::parse($flightDetails->departure_date)->format('F j, Y')}}</p>
+                                    <p>
+                                        Time: {{$flightDetails->departure_hour}} :{{$flightDetails->departure_minute}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>Date: {{ Carbon\Carbon::parse($flightDetails->departure_eta_date)->format('F j, Y')}}</p>
+                                    <p>
+                                        Time: {{$flightDetails->departure_eta_hour}} :{{$flightDetails->departure_eta_minute}}
+                                    </p>
+                                </td>
+                            </tr>
+                            @if($flightDetails->oneway_or_roundtrip == 'Round Trip')
+                            <tr>
+                                <td><b>RETURN JOURNEY</b></td>
+                                <td>
+                                    <b>
+                                    {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
+                                    </b>
+                                </td>
+                                <td>
+                                    <b>
+                                    {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p>
+                                        Date: {{ Carbon\Carbon::parse($flightDetails->return_date)->format('F j, Y')}}</p>
+                                    <p>
+                                        Time: {{$flightDetails->return_hour}} :{{$flightDetails->return_minute}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>Date: {{ Carbon\Carbon::parse($flightDetails->return_eta_date)->format('F j, Y')}}</p>
+                                    <p>
+                                        Time: {{$flightDetails->return_eta_hour}} :{{$flightDetails->return_eta_minute}}
+                                    </p>
+                                </td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                    <br><br><br><br>
+                    <p><b>PLEASE VERIFY THE FLIGHT(S) ITENARY BELOW</b></p>
                     <p>
                         <img src="{{$itenary}}" alt="" width="100%">
                     </p>
@@ -46,17 +138,21 @@
                     <p><b>Card Type:</b> {{$paymentDetails->cc_type}}</p>
                     <p><b>Card Number:</b> <b>{{ str_repeat('X', max(0, strlen($paymentDetails->cc_number) - 4)) . substr($paymentDetails->cc_number, -4) }}</b></p>
                     <p><b>Expiration Date:</b> {{$paymentDetails->cc_expiration_date}}</p>
-                    <p><b>Billing Address :</b></p>
+                    <p><b>Billing Address:</b> {{$paymentDetails->cc_billing_address }}</p>
 
-                    <p>TERMS & CONDITIONS</p>
-                    <ol>
+                    <br>
+
+                    <p><b>TERMS & CONDITIONS</b></p>
+                    <ol style="font-size:12px;">
                         <li>By agreeing to this authorization, you officially authorize that the charges on your CREDIT/DEBIT card be done through your chosen AIRLINE/PASSENGER RAIL SERVICE PROVIDER solely for tickets and related services on today's date through RESERVATION ASSISTANCE.</li>
                         <li>By agreeing to this authorization, you understand that your card details are not saved or recorded for any future purchase by RESERVATION ASSISTANCE. You would have to provide the details again to pay for any other service.</li>
                         <li>By agreeing to this authorization, you confirm that you have initiated contact with the customer service representative of RESERVATION ASSISTANCE via phone and provided all necessary information for the reservation and billing process. You understand and acknowledge that the charges will be processed following the agreed-upon terms and conditions. You confirm and understand that these charges are non-refundable and non-reversible as per standard Terms of Service.</li>
                     </ol>
 
-                    <p>IMPORTANT INFORMATION</p>
-                    <ol>
+                    <br>
+
+                    <p><b>IMPORTANT INFORMATION</b></p>
+                    <ol style="font-size:12px;">
                         <li>For any query call us on 844-314-1008 or write to us at clients@reservationassistance.com</li>
                         <li>Additional Services are subject to credit card approval at the time of ticketing. Additional Services may appear on multiple accompanied documents as a matter of reference.</li>
 
@@ -89,13 +185,15 @@
                             website for policy on travelling with animals for more information.</li>
                     </ol>
 
+                    <br>
+
                     <p><b>NOTICE OF INCORPORATED TERMS OF CONTRACT</b></p>
                     <p>Air Transportation, whether it is domestic or international (including domestic portions of international journeys), is subject to the individual terms of
                         the transporting air carriers/passenger rail service providers, which are herein incorporated by reference and made part of the contract of carriage.
                         Other carriers on which you may be ticketed may have different conditions of carriage. International air transportation, including the carrier's liability,
                         may also be governed by applicable tariffs on file with the U.S. and other governments and by the Warsaw Convention, as amended, or by the
                         Montreal Convention. Incorporated terms may include, but are not restricted to:</p>
-                        <ol>
+                        <ol style="font-size:12px;">
                             <li> Rules and limits on liability for personal injury or death,</li>
                             <li>Rules and limits on liability for baggage, including fragile or perishable goods, and availability of excess valuation charges,</li>
                             <li>Claim restrictions, including time periods in which passengers must file a claim or bring an action against the air carrier,</li>
@@ -106,18 +204,11 @@
                         </ol>
 
                         <p>
-                            You can obtain additional information on items 1 through 6 above at any U.S. location where the transporting air carrier's/passenger rail service
-provider’s tickets are sold. You have the right to inspect the full text of each transporting air carrier's terms at its airports/stations and city ticket
-offices/websites. You also have the right, upon request, to receive (free of charge) the full text of the applicable terms incorporated by reference from
-each of the transporting air carriers / Passenger Rail Providers. Information on ordering the full text of each air carrier's/ Passenger Rail Provider’s
-terms is available at any U.S. location where the air carrier's/ Passenger Rail Provider’s tickets are sold or can be found on the e-tickets.
+                            You can obtain additional information on items 1 through 6 above at any U.S. location where the transporting air carrier's/passenger rail service provider’s tickets are sold. You have the right to inspect the full text of each transporting air carrier's terms at its airports/stations and city ticket offices/websites. You also have the right, upon request, to receive (free of charge) the full text of the applicable terms incorporated by reference from each of the transporting air carriers / Passenger Rail Providers. Information on ordering the full text of each air carrier's/ Passenger Rail Provider’s terms is available at any U.S. location where the air carrier's/ Passenger Rail Provider’s tickets are sold or can be found on the e-tickets.
                         </p>
 
                         <p>
-                            NOTICE: This email and any information, files or attachments are for the exclusive and confidential use of the intended recipient. This message
-contains confidential and proprietary information (such as customer and business data) that may not be read, searched, distributed or otherwise used
-by anyone other than the intended recipient. If you are not an intended recipient, do not read, distribute, or take action in reliance upon this message.
-Do you think you received this email by mistake? If so, please forward this email to us with an explanation.
+                            NOTICE: This email and any information, files or attachments are for the exclusive and confidential use of the intended recipient. This message contains confidential and proprietary information (such as customer and business data) that may not be read, searched, distributed or otherwise used by anyone other than the intended recipient. If you are not an intended recipient, do not read, distribute, or take action in reliance upon this message. Do you think you received this email by mistake? If so, please forward this email to us with an explanation.
                         </p>
                 </div>
 
