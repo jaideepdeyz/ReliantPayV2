@@ -89,15 +89,10 @@
                                                     class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Check
                                                 Status</a>
                                             @endif
-                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#alertModal"
-                                                wire:click='selectId({{ $booking->id }})'><i
-                                                    class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
-                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
                                             <a class="dropdown-item"
-                                                href="{{ route('checkAuthorizationForm', $booking->id) }}"><i
-                                                    class="mdi mdi-delete me-2 text-muted vertical-middle"></i>Check
-                                                Status</a>
+                                            href={{ route('payment.stepOnePay', $booking->id) }}"><i
+                                                    class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
                                             @endif
 
                                         </div>
