@@ -1,1 +1,1 @@
-Your Otp for verify your email is: {{ $otp }}
+Your Otp for verifying your email is: {{ $otp }}
