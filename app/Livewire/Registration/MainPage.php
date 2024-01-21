@@ -45,18 +45,21 @@ class MainPage extends Component
                 'password_confirmation' => 'required|min:6|same:password',
             ]);
             $this->step = $currentStep + 1;
+            return;
         }
         if ($currentStep == 2) {
             if (!$this->is_email_verified) {
                 return;
             }
             $this->step = $currentStep + 1;
+            return;
         }
         if ($currentStep == 3) {
             if (!$this->is_phone_verified) {
                 return;
             }
             $this->step = $currentStep + 1;
+            return;
         }
     }
 
@@ -86,14 +89,12 @@ class MainPage extends Component
             $this->dispatch('notify', [
                 'message' => 'Email Otp Sent,please check your email',
                 'type' => 'success',
-            ]); 
-            
+            ]);
         } catch (\Exception $e) {
             $this->dispatch('notify', [
                 'message' => $e->getMessage(),
                 'type' => 'error',
             ]);
-            
         }
     }
     public function verifyEmailOtp()
@@ -118,8 +119,8 @@ class MainPage extends Component
     }
     public function sendPhoneOtp()
     {
-       
-       
+
+
         $this->validate([
             'phone' => 'required|numeric|unique:users,phone_number',
         ]);
@@ -134,7 +135,7 @@ class MainPage extends Component
                     'type' => 'phone',
                 ]
             );
-            $this->smsService->sendSms('+1'.$this->phone, 'Your phone otp for registration is '.$phone_otp);
+            $this->smsService->sendSms('+1' . $this->phone, 'Your phone otp for registration is ' . $phone_otp);
             $this->is_phone_otp_sent = true;
             $this->dispatch('notify', [
                 'message' => 'Phone Otp Sent,please check your phone',
