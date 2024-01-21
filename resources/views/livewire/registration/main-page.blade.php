@@ -31,29 +31,29 @@
                                 <div class="mb-3">
                                     <label for="fullname" class="form-label">Full Name</label>
                                    
-                                    <input class="form-control" type="text" id="name" wire:model="name"
+                                    <input class="form-control" type="text" id="name" wire:model.blur="name"
                                         placeholder="Enter your name" required>
-                                    <div class="invalid-feedback">
+                                    
                                       @error('name')
                                           {{ $message }}
                                       @enderror
-                                    </div>
+                                  
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password" class="form-control"
-                                            placeholder="Enter your password" wire:model="password">
+                                            placeholder="Enter your password" wire:model.blur="password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-                                        <div class="invalid-feedback">
+                                       
                                             @error('password')
                                                 {{ $message }}
                                             @enderror
 
-                                        </div>
+                                       
                                     </div>
                                 </div>
 
@@ -61,16 +61,16 @@
                                     <label for="password" class="form-label">Confirm Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="confirm_password" name="password_confirmation"
-                                            wire:model="password_confirmation" class="form-control"
+                                        wire:model.blur="password_confirmation" class="form-control"
                                             placeholder="Confirm your password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-                                        <div class="invalid-feedback passwordValidation">
+                                       
                                            @error('password_confirmation')
                                                 {{ $message }}
                                            @enderror
-                                        </div>
+                                       
                                     </div>
 
                                 </div>
@@ -81,24 +81,24 @@
                                 <h4 class="mb-4 text-center">Email Verification</h4>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
-                                    <input class="form-control" type="email" name ="email" wire:model="email"
+                                    <input class="form-control" type="email" name ="email" wire:model.blur="email"
                                         id="email" required placeholder="Enter your email">
-                                    <div class="invalid-feedback emailValidation">
+                                
                                         @error('email')
                                             {{ $message }}
                                         @enderror
-                                    </div>
+                                
                                 </div>
                                 <div class="mb-3" x-show="$wire.is_email_otp_sent">
                                     <label for="email" class="form-label">OTP</label>
-                                    <input class="form-control" type="text" wire:model="email_otp" required
+                                    <input class="form-control" type="text" wire:model.blur="email_otp" required
                                         placeholder="Enter your otp"
                                         x-bind:readonly="$wire.is_email_verified ? true : false">
-                                    <div class="invalid-feedback emailOtp">
+                                  
                                         @error('email_otp')
                                             {{ $message }}
                                         @enderror
-                                    </div>
+                                  
                                 </div>
                                 <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
                                     x-show="!$wire.is_email_otp_sent">Send OTP to
@@ -121,13 +121,13 @@
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon1">+1</span>
                                         <input class="form-control" type="text" id="phone" name ="phone"
-                                            placeholder="Enter your mobile number" required wire:model="phone"
+                                            placeholder="Enter your mobile number" required wire:model.blur="phone"
                                             x-bind:readonly="$wire.is_phone_verified ? true : false">
-                                        <div class="invalid-feedback">
+                                      
                                             @error('phone')
                                                 {{ $message }}
                                             @enderror
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -209,4 +209,5 @@
            
         });
     </script>
+   
 </div>

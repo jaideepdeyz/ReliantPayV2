@@ -14,20 +14,28 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use App\Service\TrueDialogSmsService;
+use Livewire\Attributes\Validate;
 
 class MainPage extends Component
 {
 
     private $smsService;
     public $step = 1;
+    #[Validate('required|min:3')]
     public $name;
+    #[Validate('required|min:6')]
     public $password;
+    #[Validate('required|min:6|same:password')]
     public $password_confirmation;
+    #[Validate('required|email|unique:users,email')]
     public $email;
+    #[Validate('required')]
     public $email_otp;
     public $is_email_otp_sent = false;
     public $is_email_verified = false;
+    #[Validate('required|numeric|unique:users,phone_number,digits:10')]
     public $phone;
+    #[Validate('required')]
     public $phone_otp;
     public $is_phone_otp_sent = false;
     public $is_phone_verified = false;
