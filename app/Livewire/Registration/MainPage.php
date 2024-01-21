@@ -62,6 +62,9 @@ class MainPage extends Component
             return;
         }
     }
+    public function gotoPreviousStep(){
+        $this->step = $this->step - 1;
+    }
 
 
     public function render()
@@ -109,6 +112,7 @@ class MainPage extends Component
                 'message' => 'Email Verified',
                 'type' => 'success',
             ]);
+            $this->gotoNextStep();
         } else {
             $this->is_email_verified = false;
             $this->dispatch('notify', [
@@ -141,6 +145,7 @@ class MainPage extends Component
                 'message' => 'Phone Otp Sent,please check your phone',
                 'type' => 'success',
             ]);
+            
         } catch (\Exception $e) {
             $this->dispatch('notify', [
                 'message' => $e->getMessage(),
@@ -160,6 +165,7 @@ class MainPage extends Component
                 'message' => 'Phone Verified',
                 'type' => 'success',
             ]);
+            $this->gotoNextStep();
         } else {
             $this->is_phone_verified = false;
             $this->dispatch('notify', [
