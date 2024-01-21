@@ -57,7 +57,7 @@ class PaymentController extends Controller
                 ]);
             }
 
-            return view('payment.payment-response', compact('gwResponse', 'response'));
+            return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -69,7 +69,7 @@ class PaymentController extends Controller
         $url = route('paymentLink', $base64EncodedId);
         Session::flash('generatedpaymenturl', 'Payment link generated successfully');
         return redirect()->back()->with('generatedpaymenturl', $url);
-        
+
     }
     public function paymentLink($id)
     {
