@@ -70,11 +70,11 @@ class ZohoSignController extends Controller
             $path = public_path($file);
             // $pdf->save($path);
             // $path = storage_path('app/public/Unsigned/' . $file);
-            Log::info($path);
+         
             $files = [
                 new CURLFile($path)
             ];
-            Log::info('here');
+          
             $draftJSON = ZohoSign::draftRequest($reqObject, $files);
             $sign1 = new ImageField();
             $sign1->setFieldTypeName(ImageField::SIGNATURE);
@@ -82,7 +82,7 @@ class ZohoSignController extends Controller
             $sign1->setDocumentId($draftJSON->getDocumentIds()[0]->getDocumentId());
             $sign1->setFieldName('Signature');
             $sign1->setX_value(53);
-            $sign1->setY_value(51);
+            $sign1->setY_value(15);
             $sign1->setHeight(2);
             $sign1->setWidth(16);
             $sign1->setIsMandatory(true);
@@ -94,8 +94,8 @@ class ZohoSignController extends Controller
             $action[0] = $action0;
             $draftJSON->setActions($action);
             $sfs_resp    = ZohoSign::submitForSignature($draftJSON);
-            Log::info($sfs_resp->getRequestId());
-            Log::info($sfs_resp->getRequestStatus());
+            // Log::info($sfs_resp->getRequestId());
+            // Log::info($sfs_resp->getRequestStatus());
 
             $authForm = AuthorizationForm::updateOrCreate(['app_id' => $saleBooking->id,], [
 
