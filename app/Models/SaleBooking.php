@@ -74,7 +74,7 @@ class SaleBooking extends Model
 
     public function authorizationForm()
     {
-        return $this->hasOne(AuthorizationForm::class, 'app_id', 'id')->latest()->first();
+        return $this->hasOne(AuthorizationForm::class, 'app_id', 'id')->latest();
     }
 
     public function chargeDetails()
