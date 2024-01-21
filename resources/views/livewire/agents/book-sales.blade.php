@@ -27,7 +27,7 @@
                 <div class="row mb-3">
                     <div class="col-md-9">
                         <div class="form-floating">
-                            <input wire:model.live.debounce.800ms="search" class="form-select">
+                            <input wire:model.live.debounce.800ms="search" class="form-control">
                             <label for="">Search by Name, Email or Phone</label>
                         </div>
                     </div>
