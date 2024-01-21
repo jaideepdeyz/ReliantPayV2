@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Admin;
 
+use App\Enums\RoleEnum;
 use App\Enums\StatusEnum;
 use App\Models\SaleBooking;
+use App\Models\User;
 use Livewire\Component;
 
 class AdminDashboard extends Component
@@ -12,9 +14,9 @@ class AdminDashboard extends Component
     {
         $authorizations = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->latest()->take(5)->get();
         $bookings = SaleBooking::latest()->take(5)->get();
-        $customers = SaleBooking::where('app_status',StatusEnum::PAYMENT_DONE->value)->count();
-        $pendingPayment = SaleBooking::where('app_status',StatusEnum::AUTHORIZED->value)->count();
-        $pendingAuthorization = SaleBooking::where('app_status',StatusEnum::PENDING->value)->count();
+        $agents = User::where('role', RoleEnum::AGENT->value)->count();
+        $dealers = User::where('role',RoleEnum::DEALER->value)->count();
+        $pendingRegistrations = User::where('role',RoleEnum::DEALER->value)->where('is_approved', 'No')->where('organization_id', '!=', NULL)->count();
         $revenue = SaleBooking::where('app_status',StatusEnum::PAYMENT_DONE->value)
         ->whereYear('updated_at',date('Y'))
         ->get();
@@ -35,9 +37,9 @@ class AdminDashboard extends Component
         return view('livewire.admin.admin-dashboard', [
             'authorizations' => $authorizations,
             'bookings' => $bookings,
-            'customers' => $customers,
-            'pendingPayment' => $pendingPayment,
-            'pendingAuthorization' => $pendingAuthorization,
+            'agents' => $agents,
+            'dealers' => $dealers,
+            'pendingRegistrations' => $pendingRegistrations,
             'revenueThisDay' => $revenueThisDay,
             'revenueThisWeek' => $revenueThisWeek,
             'revenueThisMonth' => $revenueThisMonth,

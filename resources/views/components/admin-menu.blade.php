@@ -9,7 +9,7 @@
 
             <li class="menu-item">
                 <a href="{{ route('manageOrganizations') }}" class="menu-link">
-                    <span class="menu-text"> Manage Dealers </span>
+                    <span class="menu-text"> Manage Merchants </span>
                 </a>
             </li>
         </ul>

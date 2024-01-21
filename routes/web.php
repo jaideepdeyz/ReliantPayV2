@@ -26,7 +26,9 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
 use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\Admin\ManageAgents;
 use App\Livewire\Admin\ManageOrganizations;
+use App\Livewire\Admin\ManageSales;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Dealer\Registration\BankingDetails;
@@ -104,6 +106,9 @@ Route::middleware('auth')->group(function () {
     //admin Routes
     Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
+    Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
+    Route::get('manageSales', ManageSales::class)->name('manageSales');
+
     // Agents Routes
     Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');
     Route::get('authorizedSales', AuthorizedBookings::class)->name('authorizedSales');

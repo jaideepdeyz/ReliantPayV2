@@ -8,10 +8,10 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                         <li class="breadcrumb-item">Admin Dashboard</li>
-                        <li class="breadcrumb-item active">Manage Merchants</li>
+                        <li class="breadcrumb-item active">Manage Agents</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Manage Merchants</h4>
+                <h4 class="page-title">Manage Agents</h4>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <h4 class="header-title">
-                                Merchants
+                                Agents
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
@@ -42,7 +42,7 @@
                     <div class="row mb-3">
                         <div class="row mt-3 d-flex justify-content-between">
 
-                            <div class="col-md-3">
+                            <div class="col-md-8">
                                 <form class="form-floating">
                                     <input type="text" class="form-control" wire:model.live.debounce.300ms="search"
                                         placeholder="Search...">
@@ -50,7 +50,7 @@
                                 </form>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="form-floating">
                                     <select wire:model.live="perPage" class="form-select" id="floatingSelect"
                                         aria-label="Floating label select example">
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        @if ($dealers->count() > 0)
+                        @if ($agents->count() > 0)
                         <div class="flex">
                             <table class="table table-hover table-striped table-borderless wrap table-fixed">
                                 <thead class="table-light">
@@ -85,15 +85,22 @@
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Phone</th>
+                                        {{-- @include('livewire.util.datatable-sortable-th', [
+                                        'name' => '{{$agent->organization->business_name}}',
+                                        'displayName' => 'Email',
+                                        'width' => 1,
+                                        ]) --}}
 
-                                        <th class="col-md-2">Address</th>
+                                        <th class="col-md-1">Organization/Center</th>
 
-                                        @include('livewire.util.datatable-sortable-th', [
+                                        {{-- <th class="col-md-2">Address</th> --}}
+
+                                        {{-- @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'status',
                                         'displayName' => 'Status',
                                         'width' => 1,
-                                        ])
+                                        ]) --}}
+
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'Is Active?',
                                         'displayName' => 'Is Active?',
@@ -108,41 +115,39 @@
                                 <tbody>
 
 
-                                    @foreach ($dealers as $d)
-                                    <tr wire:key={{ $d->id }}>
+                                    @foreach ($agents as $agent)
+                                    <tr wire:key={{ $agent->id }}>
                                         <td class="table-user">
                                             <img src="{{ asset('auth/images/users/user-3.jpg') }}" alt="table-user"
                                                 class="me-2 rounded-circle">
-                                            {{ $d->business_name }}
+                                            {{ $agent->name }}
                                         </td>
                                         <td>
-                                            {{ $d->business_email }}
-                                        </td>
-
-                                        <td>
-                                            {{ $d->business_phone }}
+                                            {{ $agent->email }}
                                         </td>
 
                                         <td>
-                                            {{ $d->business_address }}
-                                        </td>
-
-
-                                        <td>
-                                            @if ($d->status == 'Approved')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == 'Rejected')
-                                            <span class="badge bg-danger badge-lg">{{ $d->status }}</span>
-                                            @else
-                                            <span class="badge bg-warning badge-lg">{{ $d->status }}</span>
+                                            @if($agent->organization)
+                                                {{ $agent->organization->business_name }}
                                             @endif
                                         </td>
+
+                                        {{-- <td>
+                                            {{ $d->business_address }}
+                                        </td> --}}
+                                        {{-- <td>
+                                            @if ($agent->is_approved == 'Yes')
+                                            <span class="badge badge-soft-success badge-lg">{{ $agent->is_approved }}</span>
+                                            @else
+                                            <span class="badge bg-danger badge-lg">{{ $agent->is_approved }}</span>
+                                            @endif
+                                        </td> --}}
                                         <td>
-                                            @if ($d->user->is_active == 'Yes')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->user->is_active
+                                            @if ($agent->is_active == 'Yes')
+                                            <span class="badge badge-soft-success badge-lg">{{ $agent->is_active
                                                 }}</span>
-                                            @elseif($d->user->is_active == 'No')
-                                            <span class="badge bg-danger badge-lg">{{ $d->user->is_active }}</span>
+                                            @else
+                                            <span class="badge bg-danger badge-lg">{{ $agent->is_active }}</span>
                                             @endif
                                         </td>
 
@@ -160,22 +165,11 @@
                                                     </a>
 
                                                     <div class="dropdown-menu">
-
-
-                                                        <a href="{{ route('dealers.show', $d->id) }}" class="btn">
-                                                            <i class="fas fa-eye text-success"></i> View</a>
-
-
-                                                        <div class="dropdown-divider"></div>
-
-                                                        <!-- item-->
-
                                                         <a href="javascript:void(0);"
-                                                            wire:click="activateDeactivate({{ $d->id }})" class="btn">
+                                                            wire:click="activateDeactivate({{ $agent->id }})" class="btn">
                                                             <i class="fas fa-trash text-danger"></i>
-                                                            {{ $d->user->is_active == 'Yes' ? 'Deactivate' : 'Activate'
+                                                            {{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate'
                                                             }}
-
                                                         </a>
                                                     </div>
                                                 </div>
@@ -188,7 +182,7 @@
                             </table>
 
                             <div class="d-flex justify-content-end">
-                                {{ $dealers->links() }}
+                                {{ $agents->links() }}
                             </div>
 
                         </div>

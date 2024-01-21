@@ -24,7 +24,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{$revenueThisMonth}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Revenue this month</p>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageSales') }}">Revenue this month</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$customers}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Customers</p>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$agents}}</span></h3>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageAgents')}}">Agents</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -63,8 +63,8 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingPayment}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Pending Payments</p>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$dealers}}</span></h3>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageOrganizations')}}">Merchants</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -83,9 +83,9 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingAuthorization}}</span>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingRegistrations}}</span>
                             </h3>
-                            <p class="text-muted mb-1 text-truncate">Pending Authorisation</p>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageOrganizations')}}">Pending Merchant Registrations</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
