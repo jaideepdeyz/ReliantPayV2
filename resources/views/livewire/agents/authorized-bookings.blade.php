@@ -6,7 +6,7 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                     <li class="breadcrumb-item active">Agent Dashboard</li>
-                    <li class="breadcrumb-item active">Authorized Sales</li>
+                    <li class="breadcrumb-item active">Sales Listing</li>
                 </ol>
             </div>
             <h4 class="page-title">Agent Dashboard</h4>
