@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,18 @@ class ServiceMaster extends Model
     {
         return $this->hasMany(SaleBooking::class, 'service_id', 'id');
     }
+
+    public function successBooking()
+    {
+        return $this->hasMany(SaleBooking::class, 'service_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+    }
+
+    public function totalRevenue()
+    {
+       //get sum of all payments from booking relation
+        $totalRevenue = $this->successBooking()->sum('amount_charged');
+        return $totalRevenue;
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,6 +44,18 @@ class Organization extends Model
     public function supportDetails()
     {
         return $this->hasOne(SupportDetails::class, 'org_id', 'id');
+    }
+
+    public function merchantSuccessBooking()
+    {
+        return $this->hasMany(SaleBooking::class, 'organization_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+    }
+
+    public function totalMerchantRevenue()
+    {
+       //get sum of all payments from booking relation
+        $totalMerchantRevenue = $this->merchantSuccessBooking()->sum('amount_charged');
+        return $totalMerchantRevenue;
     }
 
 }

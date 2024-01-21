@@ -186,42 +186,22 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Top 5 customers by revenue</h4>
+                    <h4 class="header-title mb-3">Top 5 Processes <span><small>(cumulative by revenue)</small></span></h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-hover table-nowrap table-centered m-0">
 
                             <thead class="table-light">
                                 <tr>
-                                    <th>Amount </th>
-                                    <th colspan="2">Customer Name</th>
-                                    <th>Sale ID</th>
-                                    <th>Customer Phone</th>
-                                    <th>Customer Email</th>
+                                    <th>Process</th>
+                                    <th>Amount in USD </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($authorizations as $authorization)
+                                @foreach($processes as $process)
                                 <tr>
-                                    <td>$ {{$authorization->amount_charged}}</td>
-                                    <td style="width: 36px;">
-                                        <img src="{{asset('auth/images/users/user-1.jpg') }}" alt="contact-img"
-                                            title="contact-img" class="rounded-circle avatar-sm" />
-                                    </td>
-                                    <td>
-                                        <h5 class="m-0 fw-normal">{{$authorization->customer_name}}</h5>
-                                        <p class="mb-0 text-muted"><small>Authorization Date:
-                                                {{$authorization->updated_at}}</small></p>
-                                    </td>
-                                    <td>{{$authorization->id}}</td>
-                                    <td>{{$authorization->customer_phone}}</td>
-                                    <td>{{$authorization->customer_email}}</td>
-                                    <td>
-                                        <a href="javascript: void(0);" class="btn btn-xs btn-light"><i
-                                                class="mdi mdi-plus"></i></a>
-                                        <a href="javascript: void(0);" class="btn btn-xs btn-danger"><i
-                                                class="mdi mdi-minus"></i></a>
-                                    </td>
+                                    <td>{{$process['service']}}</td>
+                                    <td>{{$process['totalRevenue']}}</td>
                                 </tr>
                                 @endforeach
 
@@ -250,47 +230,22 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Last 5 Bookings</h4>
+                    <h4 class="header-title mb-3">Top 5 Merchants <span><small>(cumulative by revenue)</small></span></h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-nowrap table-hover table-centered m-0">
 
                             <thead class="table-light">
                                 <tr>
-                                    <th>Amount</th>
-                                    <th>Customer Name</th>
-                                    <th>Phone</th>
-                                    {{-- <th>Email</th> --}}
-                                    <th>Status</th>
-                                    {{-- <th>Action</th> --}}
+                                    <th>Merchant Name</th>
+                                    <th>Amount in USD</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($bookings as $booking)
+                                @foreach($merchants as $merchant)
                                 <tr>
-                                    <td>$ {{$booking->amount_charged}}</td>
-                                    <td>
-                                        <h5 class="m-0 fw-normal">{{$booking->customer_name}}</h5>
-                                    </td>
-                                    <td>{{$booking->customer_phone}}</td>
-                                    {{-- <td>{{$booking->customer_email}}</td> --}}
-                                    <td>
-                                        @switch($booking->app_status)
-                                            @case(StatusEnum::PENDING->value)
-                                            <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
-                                            @break
-                                            @case(StatusEnum::AUTHORIZED->value)
-                                            <span class="badge bg-soft-primary text-primary">{{$booking->app_status}}</span>
-                                            @break
-                                            @case(StatusEnum::PAYMENT_DONE->value)
-                                            <span class="badge bg-soft-success text-success">{{$booking->app_status}}</span>
-                                            @break
-                                            @default
-                                            <span class="badge bg-soft-danger text-danger">{{$booking->app_status}}</span>
-                                        @endswitch
-                                    </td>
-                                    {{-- <td><a href="javascript: void(0);" class="btn btn-xs btn-light"><i
-                                                class="mdi mdi-pencil"></i></a></td> --}}
+                                    <td>{{$merchant['merchant']}}</td>
+                                    <td>$ {{$merchant['totalMerchRevenue']}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
