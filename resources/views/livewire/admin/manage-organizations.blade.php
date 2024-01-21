@@ -133,8 +133,10 @@
                                             <span class="badge badge-soft-success badge-lg">{{ $d->status }}</span>
                                             @elseif($d->status == 'Rejected')
                                             <span class="badge bg-danger badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == null || $d->status == 'Submitted')
+                                            @elseif($d->status == 'Submitted')
                                             <span class="badge bg-danger badge-lg">Approval Pending</span>
+                                            @elseif($d->status == null)
+                                            <span class="badge bg-warning badge-lg">Incomplete</span>
                                             @endif
                                         </td>
                                         <td>
