@@ -250,7 +250,7 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Last 5 Successfull Bookings</h4>
+                    <h4 class="header-title mb-3">Last 5 Bookings</h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-nowrap table-hover table-centered m-0">
@@ -260,7 +260,7 @@
                                     <th>Amount</th>
                                     <th>Customer Name</th>
                                     <th>Phone</th>
-                                    <th>Email</th>
+                                    {{-- <th>Email</th> --}}
                                     <th>Status</th>
                                     {{-- <th>Action</th> --}}
                                 </tr>
@@ -273,9 +273,21 @@
                                         <h5 class="m-0 fw-normal">{{$booking->customer_name}}</h5>
                                     </td>
                                     <td>{{$booking->customer_phone}}</td>
-                                    <td>{{$booking->customer_email}}</td>
+                                    {{-- <td>{{$booking->customer_email}}</td> --}}
                                     <td>
-                                        <span class="badge bg-soft-success text-success">{{$booking->app_status}}</span>
+                                        @switch($booking->app_status)
+                                            @case(StatusEnum::PENDING->value)
+                                            <span class="badge bg-soft-warning text-warning">{{$booking->app_status}}</span>
+                                            @break
+                                            @case(StatusEnum::AUTHORIZED->value)
+                                            <span class="badge bg-soft-primary text-primary">{{$booking->app_status}}</span>
+                                            @break
+                                            @case(StatusEnum::PAYMENT_DONE->value)
+                                            <span class="badge bg-soft-success text-success">{{$booking->app_status}}</span>
+                                            @break
+                                            @default
+                                            <span class="badge bg-soft-danger text-danger">{{$booking->app_status}}</span>
+                                        @endswitch
                                     </td>
                                     {{-- <td><a href="javascript: void(0);" class="btn btn-xs btn-light"><i
                                                 class="mdi mdi-pencil"></i></a></td> --}}

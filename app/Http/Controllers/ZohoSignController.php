@@ -43,9 +43,6 @@ class ZohoSignController extends Controller
              *
              *
              */
-
-
-
             $user = new OAuth([
                 OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
                 OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
@@ -109,6 +106,7 @@ class ZohoSignController extends Controller
 
             $saleBooking->update([
                 'app_status' => StatusEnum::SENT_FOR_AUTH->value,
+                'amount_charged' => $saleBooking->payment->amount_charged,
             ]);
 
             return redirect()->route('dashboard');

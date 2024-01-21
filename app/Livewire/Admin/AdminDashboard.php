@@ -11,7 +11,7 @@ class AdminDashboard extends Component
     public function render()
     {
         $authorizations = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->latest()->take(5)->get();
-        $bookings = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->latest()->take(5)->get();
+        $bookings = SaleBooking::latest()->take(5)->get();
         $customers = SaleBooking::where('app_status',StatusEnum::PAYMENT_DONE->value)->count();
         $pendingPayment = SaleBooking::where('app_status',StatusEnum::AUTHORIZED->value)->count();
         $pendingAuthorization = SaleBooking::where('app_status',StatusEnum::PENDING->value)->count();
