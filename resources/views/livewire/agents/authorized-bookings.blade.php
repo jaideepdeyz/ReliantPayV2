@@ -72,6 +72,9 @@
                                     @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
                                     <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value
                                     }}</span>
+                                    @elseif($booking->app_status == StatusEnum::PAYMENT_DONE->value)
+                                    <span class="badge badge-outline-success">{{ StatusEnum::PAYMENT_DONE->value
+                                    }}</span>
                                     @endif
                                 </td>
                                 <td>
@@ -94,6 +97,21 @@
                                             <a class="dropdown-item"
                                             href={{ route('payment.stepOnePay', $booking->id) }}"><i
                                                     class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
+                                            @endif
+                                            @if ($booking->app_status == StatusEnum::PAYMENT_DONE->value)
+                                                @switch($booking->service->service_name)
+                                                    @case('Flight Booking')
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('flightBooking.show', $booking->id) }}"><i
+                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                    @break
+                                                    @case('AMTRAK Booking')
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('amtrakBooking.show', $booking->id) }}"><i
+                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                    @break
+                                                    @default
+                                                @endswitch
                                             @endif
 
                                         </div>
