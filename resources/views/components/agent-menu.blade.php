@@ -20,7 +20,7 @@
             </li> --}}
             <li class="menu-item">
                 <a href="{{ route('authorizedSales') }}" class="menu-link">
-                    <span class="menu-text">Authorized Sales </span>
+                    <span class="menu-text">Sales Listing </span>
                     {{-- <span class="menu-icon"><i class="fas fa-user-check"></i></span> --}}
                 </a>
             </li>

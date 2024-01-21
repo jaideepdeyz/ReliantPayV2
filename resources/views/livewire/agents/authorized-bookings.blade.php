@@ -15,41 +15,38 @@
     <div class="col-md-12 mt-3">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="d-inline header-title mb-0">Authorized Sales</h5>
+                <h5 class="d-inline header-title mb-0">Sales Listing</h5>
             </div>
             <div class="card-body">
-                {{-- <div class="row mb-3">
-                    <div class="form-group col-md-3">
-                        <label for="">Search by ID</label>
-                        <input type="text" wire:model.live="search" class="form-control" placeholder="Sale ID">
+                <div class="row mb-3">
+                    <div class="col-md-9">
+                        <div class="form-floating">
+                            <input wire:model.live.debounce.800ms="search" class="form-select">
+                            <label for="">Search by Name, Email or Phone</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <select wire:model.live.debounce.800ms="statusSearch" class="form-select">
+                                <option value="" class="select">Select Status</option>
+                                {{-- <option value="{{StatusEnum::DRAFT->value}}">{{StatusEnum::DRAFT->value}}</option>
+                                <option value="{{StatusEnum::PENDING->value}}">{{StatusEnum::PENDING->value}}</option> --}}
+                                <option value="{{StatusEnum::SENT_FOR_AUTH->value}}">{{StatusEnum::SENT_FOR_AUTH->value}}</option>
+                                <option value="{{StatusEnum::AUTHORIZED->value}}">{{StatusEnum::AUTHORIZED->value}}</option>
+                                <option value="{{StatusEnum::PAYMENT_DONE->value}}">{{StatusEnum::PAYMENT_DONE->value}}</option>
+                            </select>
+                            <label for="">Search by Status</label>
+                        </div>
                     </div>
 
-                    <div class="form-group col-md-3">
-                        <label for="">Search by Customer's Name</label>
-                        <input type="text" wire:model.live="search" class="form-control" placeholder="Customer's Name">
-                    </div>
+                </div>
 
-                    <div class="form-group col-md-3">
-                        <label for="">Search by Customer's Email</label>
-                        <input type="text" wire:model.live="search" class="form-control" placeholder="Customer's Email">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="">Search by Status</label>
-                        <select wire:model.live="search" class="form-control">
-                            <option value="">Select Status</option>
-                            <option value="Draft">Draft</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Authorized">Authorized</option>
-                        </select>
-                    </div>
-                </div> --}}
-
-                <div class="table-responsive">
+                {{-- <div class="table-responsive"> --}}
                     <table class="table table-striped table-sm">
                         <thead class="table-light">
                             <tr>
                                 <th>Sale ID</th>
+                                <th>Booking Date</th>
                                 <th>Service</th>
                                 <th>Customer's Name</th>
                                 <th>Customer's Phone</th>
@@ -62,6 +59,7 @@
                             @foreach ($sales as $booking)
                             <tr>
                                 <td>{{ $booking->id }}</td>
+                                <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
                                 <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
@@ -84,21 +82,12 @@
                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                 class="mdi mdi-dots-horizontal"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end" style="">
-                                            {{-- <a class="dropdown-item" href="#"
-                                                wire:click="viewBooking({{ $booking->id }})"><i
-                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Proceed</a> --}}
-                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                            <a class="dropdown-item"
-                                                href="{{ route('checkAuthorizationFormStatus', $booking->id) }}"><i
-                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Check
-                                                Status</a>
-                                            @endif
                                             @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
                                             <a class="dropdown-item"
                                             href={{ route('payment.stepOnePay', $booking->id) }}"><i
                                                     class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
                                             @endif
-                                            @if ($booking->app_status == StatusEnum::PAYMENT_DONE->value)
+                                            @if ($booking->app_status == StatusEnum::PAYMENT_DONE->value || $booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
                                                 @switch($booking->service->service_name)
                                                     @case('Flight Booking')
                                                     <a class="dropdown-item"
@@ -135,7 +124,7 @@
                         </tbody>
                     </table>
                     {{ $sales->links() }}
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
     <div class="col-md-12 mt-3">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="d-inline header-title mb-0">Latest Bookings</h5>
+                <h5 class="d-inline header-title mb-0">Incomplete Bookings</h5>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
                     class="btn btn-blue float-right"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                         fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
@@ -25,34 +25,18 @@
             </div>
             <div class="card-body">
                 <div class="row mb-3">
-                    <div class="col-md-3">
+                    <div class="col-md-9">
                         <div class="form-floating">
-                            <input type="text" wire:model.live.debounce.800ms="search" class="form-control"
-                                id="searchID" placeholder="Search by ID">
-                            <label for="searchID">Search by ID</label>
+                            <input wire:model.live.debounce.800ms="search" class="form-select">
+                            <label for="">Search by Name, Email or Phone</label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating">
-                            <input type="text" wire:model.live.debounce.800ms="search" class="form-control"
-                                placeholder="Search by Name">
-                            <label for="">Search by Customer's Name</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-floating">
-                            <input type="text" wire:model.live.debounce.800ms="search" class="form-control"
-                                placeholder="Search by Email">
-                            <label for="">Search by Customer's Email</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-floating">
-                            <select wire:model.live.debounce.800ms="search" class="form-select">
+                            <select wire:model.live.debounce.800ms="statusSearch" class="form-select">
                                 <option value="" class="select">Select Status</option>
-                                <option value="Draft">Draft</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Authorized">Authorized</option>
+                                <option value="{{StatusEnum::DRAFT->value}}">Draft</option>
+                                <option value="{{StatusEnum::PENDING->value}}">{{StatusEnum::PENDING->value}}</option>
                             </select>
                             <label for="">Search by Status</label>
                         </div>
@@ -60,11 +44,12 @@
 
                 </div>
 
-                <div class="table-responsive">
+                {{-- <div class="table-responsive"> --}}
                     <table class="table table-striped table-sm">
                         <thead class="table-light">
                             <tr>
                                 <th>Sale ID</th>
+                                <th>Booking Date</th>
                                 <th>Service</th>
                                 <th>Customer's Name</th>
                                 <th>Customer's Phone</th>
@@ -77,6 +62,7 @@
                             @foreach ($bookedSales as $booking)
                             <tr>
                                 <td>{{ $booking->id }}</td>
+                                <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
                                 <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
@@ -104,17 +90,27 @@
                                         <div class="dropdown-menu dropdown-menu-end" style="">
                                             <a class="dropdown-item" href="#"
                                                 wire:click="viewBooking({{ $booking->id }})"><i
-                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Proceed</a>
+                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Complete Booking</a>
+                                             @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                                @switch($booking->service->service_name)
+                                                    @case('Flight Booking')
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('airlineBooking.show', $booking->id) }}"><i
+                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                    @break
+                                                    @case('AMTRAK Booking')
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
+                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                    @break
+                                                    @default
+                                                @endswitch
+                                            @endif
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#alertModal"
                                                 wire:click='selectId({{ $booking->id }})'><i
                                                     class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
-                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                            <a class="dropdown-item"
-                                                href="{{ route('checkAuthorizationForm', $booking->id) }}"><i
-                                                    class="mdi mdi-delete me-2 text-muted vertical-middle"></i>Check
-                                                Status</a>
-                                            @endif
+
 
                                         </div>
                                     </div>
@@ -124,7 +120,7 @@
                         </tbody>
                     </table>
                     {{ $bookedSales->links() }}
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
     </div>
