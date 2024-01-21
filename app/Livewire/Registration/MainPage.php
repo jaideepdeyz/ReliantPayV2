@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use App\Providers\RouteServiceProvider;
+use App\Service\TrueDialogSmsService;
 
 class MainPage extends Component
 {
 
+    private $smsService;
     public $step = 1;
     public $name;
     public $password;
@@ -29,6 +31,10 @@ class MainPage extends Component
     public $phone_otp;
     public $is_phone_otp_sent = false;
     public $is_phone_verified = false;
+    public function boot()
+    {
+        $this->smsService = new TrueDialogSmsService();
+    }
     public function gotoNextStep()
     {
         $currentStep = $this->step;
@@ -128,7 +134,7 @@ class MainPage extends Component
                     'type' => 'phone',
                 ]
             );
-            // Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
+            $this->smsService->sendSms('+1'.$this->phone, 'Your phone otp for registration is '.$phone_otp);
             $this->is_phone_otp_sent = true;
             $this->dispatch('notify', [
                 'message' => 'Phone Otp Sent,please check your phone',
