@@ -16,7 +16,7 @@ class AdminDashboard extends Component
         $bookings = SaleBooking::latest()->take(5)->get();
         $agents = User::where('role', RoleEnum::AGENT->value)->count();
         $dealers = User::where('role',RoleEnum::DEALER->value)->count();
-        $pendingRegistrations = User::where('role',RoleEnum::DEALER->value)->where('is_approved', 'No')->where('organization_id', '!=', NULL)->count();
+        $pendingRegistrations = User::where('role',RoleEnum::DEALER->value)->whereIn('is_approved', ['No', null])->where('organization_id', '!=', NULL)->count();
         $revenue = SaleBooking::where('app_status',StatusEnum::PAYMENT_DONE->value)
         ->whereYear('updated_at',date('Y'))
         ->get();
