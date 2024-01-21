@@ -159,8 +159,7 @@
                                 ><i
                                         class="bi bi-arrow-right-circle-fill"></i> Proceed</button>
                             </div>
-                            {{-- {!! RecaptchaV3::field('register') !!} --}}
-
+                           
                         </form>
                     </div>
                 </div>
