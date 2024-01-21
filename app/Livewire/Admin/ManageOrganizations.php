@@ -74,7 +74,7 @@ class ManageOrganizations extends Component
     public function render()
     {
 
-        $dealers = Organization::where('status', '!=', null)->search($this->search)
+        $dealers = Organization::search($this->search)
         ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->perPage);
         Log::info('Admin Merchants Listing Results: ' . json_encode($dealers));
