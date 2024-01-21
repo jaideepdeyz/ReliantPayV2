@@ -66,6 +66,7 @@ Route::get('checkAuthorizationForm/{appId}', [JwtDocuSignController::class, 'che
 // Zoho routes
 Route::get('authorizeAndSend/{id}', [ZohoSignController::class, 'authorizeAndSend'])->name('authorizeAndSend');
 Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');
+Route::get('checkAuthorizationFormStatus/{appId}', [ZohoSignController::class, 'checkAuthorizationFormStatus'])->name('checkAuthorizationFormStatus');
 
 
 // page routes

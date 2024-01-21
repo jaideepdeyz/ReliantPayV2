@@ -65,15 +65,57 @@
                                 <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
                                 <td>{{ $booking->customer_email }}</td>
-                                <td>{{ $booking->app_status }}</td>
                                 <td>
+                                    @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
+                                    <span class="badge badge-outline-info">Authorized</span>
+                                    @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                    <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value
+                                    }}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group dropdown">
+                                        <a href="javascript: void(0);"
+                                            class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs"
+                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                class="mdi mdi-dots-horizontal"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-end" style="">
+                                            {{-- <a class="dropdown-item" href="#"
+                                                wire:click="viewBooking({{ $booking->id }})"><i
+                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Proceed</a> --}}
+                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            <a class="dropdown-item"
+                                                href="{{ route('checkAuthorizationFormStatus', $booking->id) }}"><i
+                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Check
+                                                Status</a>
+                                            @endif
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#alertModal"
+                                                wire:click='selectId({{ $booking->id }})'><i
+                                                    class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
+                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            <a class="dropdown-item"
+                                                href="{{ route('checkAuthorizationForm', $booking->id) }}"><i
+                                                    class="mdi mdi-delete me-2 text-muted vertical-middle"></i>Check
+                                                Status</a>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </td>
+                                {{-- <td>
                                     <button class="btn btn-sm btn-blue"
                                         wire:click="showDetails('{{ $booking->id }}')">View</button>
                                     @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
+                                    <span class="badge badge-outline-info">Authorized</span>
+                                    @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                    <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value
+                                    }}</span>
+                                    @endif
                                     <a class="btn btn-sm btn-danger" href={{ route('payment.generatePaymentLink',
                                         $booking->id) }}>Generate Payment Link</a>
-                                    @endif
-                                </td>
+                                </td> --}}
+
                             </tr>
                             @endforeach
                         </tbody>

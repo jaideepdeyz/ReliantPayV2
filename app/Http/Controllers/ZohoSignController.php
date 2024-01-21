@@ -10,6 +10,7 @@ use App\Service\ZohoTokenService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use CURLFile;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -71,6 +72,7 @@ class ZohoSignController extends Controller
             $file = Storage::url($unsignedFile->unsigned_document);
             $path = public_path($file);
             // $pdf->save($path);
+            // $path = storage_path('app/public/Unsigned/' . $file);
             Log::info($path);
             $files = [
                 new CURLFile($path)
@@ -106,7 +108,7 @@ class ZohoSignController extends Controller
             ]);
 
             $saleBooking->update([
-                'app_status' => StatusEnum::PENDING->value,
+                'app_status' => StatusEnum::SENT_FOR_AUTH->value,
             ]);
 
             return redirect()->route('dashboard');
@@ -131,7 +133,7 @@ class ZohoSignController extends Controller
             $user = new OAuth([
                 OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
                 OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
-                OAuth::DC => 'in',
+                OAuth::DC => 'com',
                 // OAuth::ACCESS_TOKEN => env('ZOHO_DEV_ACCESS_TOKEN'),
                 OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
             ]);
@@ -193,4 +195,87 @@ class ZohoSignController extends Controller
             Log::info($ex->getMessage());
         }
     }
+
+    public function checkAuthorizationFormStatus($appID)
+    {
+        try {
+            $authForm = AuthorizationForm::where('app_id', $appID)->first();
+            $requestID = $authForm->request_id;
+
+            // Setting User
+            $user = new OAuth([
+                OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
+                OAuth::CLIENT_SECRET => env('ZOHO_CLIENT_SECRET'),
+                OAuth::DC => 'com',
+                // OAuth::ACCESS_TOKEN => env('ZOHO_DEV_ACCESS_TOKEN'),
+                OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
+            ]);
+            ZohoSign::setCurrentUser( $user );
+
+
+
+            // Make API request to get document information
+            // $client = new Client();
+            // $response = Http::withToken($user)->get->get("https://sign.zoho.com/api/v1/requests/{$requestID}");
+            $response = ZohoSign::getRequest($requestID);
+            dd($response);
+            // $documentJson = json_decode($response);
+
+            $docStatus = $documentJson['request_status'];
+
+            if ($docStatus === 'completed') {
+                $documentIds = $documentJson['document_ids'];
+
+                foreach ($documentIds as $documentInfo) {
+                    $documentId = $documentInfo['document_id'];
+                    $documentName = $documentInfo['document_name'];
+
+                    // Download single or multiple documents
+                    $this->downloadDocument($requestID, $documentId, $documentName, $authForm);
+                }
+
+                // Download completion certificate
+                $this->downloadCompletionCertificate($requestID, $documentJson['request_name'], $authForm);
+            }
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            dd($e->getMessage());
+        }
+
+    }
+
+    private function downloadDocument($requestID, $documentID, $documentName, $authForm)
+    {
+        $client = new Client();
+        $response = $client->get("https://sign.zoho.com/api/v1/requests/{$requestID}/documents/{$documentID}/pdf");
+
+        // Save the file to a local path
+        file_put_contents("C:\\Users\\windowsUserName\\Downloads\\{$documentName}", $response->getBody());
+        $content = $response->getBody();
+        $file = Storage::put('public/Signed/authorization'.$authForm->id.'.pdf', $content);
+        // Save information to the database using Eloquent
+        $doc = AuthorizationForm::where('request_id', $requestID)->first();
+        $doc->update([
+            'signed_document' => 'public/Signed/authorization'.$authForm->id.'.pdf',
+        ]);
+
+        $saleBooking = SaleBooking::find($authForm->app_id);
+        $saleBooking->update([
+            'app_status' => StatusEnum::AUTHORIZED->value,
+        ]);
+    }
+
+    private function downloadCompletionCertificate($requestID, $requestName, $authForm)
+    {
+        $client = new Client();
+        $response = $client->get("https://sign.zoho.com/api/v1/requests/{$requestID}/completioncertificate");
+
+        // Save the completion certificate to a local path
+        $content = $response->getBody();
+        $file = Storage::put('public/Signed/authorization'.$authForm->id.'.pdf', $content);
+        file_put_contents("C:\\Users\\windowsUserName\\Downloads\\{$requestName}_completioncertificate.pdf", $response->getBody());
+    }
+
+
 }
