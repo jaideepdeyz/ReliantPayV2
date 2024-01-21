@@ -102,12 +102,12 @@
                                                 @switch($booking->service->service_name)
                                                     @case('Flight Booking')
                                                     <a class="dropdown-item"
-                                                        href="{{ route('flightBooking.show', $booking->id) }}"><i
+                                                        href="{{ route('airlineBooking.show', $booking->id) }}"><i
                                                             class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
                                                     @break
                                                     @case('AMTRAK Booking')
                                                     <a class="dropdown-item"
-                                                        href="{{ route('amtrakBooking.show', $booking->id) }}"><i
+                                                        href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
                                                             class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
                                                     @break
                                                     @default
