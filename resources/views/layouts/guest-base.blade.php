@@ -49,6 +49,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Authentication js -->
     <script src="{{ asset('auth/js/pages/authentication.init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener('swal', function(e) {
             Swal.fire(e.detail);

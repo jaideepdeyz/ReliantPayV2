@@ -30,10 +30,13 @@
                                 </h4>
                                 <div class="mb-3">
                                     <label for="fullname" class="form-label">Full Name</label>
+                                   
                                     <input class="form-control" type="text" id="name" wire:model="name"
                                         placeholder="Enter your name" required>
                                     <div class="invalid-feedback">
-                                        Please enter full name.
+                                      @error('name')
+                                          {{ $message }}
+                                      @enderror
                                     </div>
                                 </div>
 
@@ -46,6 +49,9 @@
                                             <span class="password-eye"></span>
                                         </div>
                                         <div class="invalid-feedback">
+                                            @error('password')
+                                                {{ $message }}
+                                            @enderror
 
                                         </div>
                                     </div>
@@ -61,7 +67,9 @@
                                             <span class="password-eye"></span>
                                         </div>
                                         <div class="invalid-feedback passwordValidation">
-                                            Please enter Password confirmation.
+                                           @error('password_confirmation')
+                                                {{ $message }}
+                                           @enderror
                                         </div>
                                     </div>
 
@@ -76,6 +84,9 @@
                                     <input class="form-control" type="email" name ="email" wire:model="email"
                                         id="email" required placeholder="Enter your email">
                                     <div class="invalid-feedback emailValidation">
+                                        @error('email')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3" x-show="$wire.is_email_otp_sent">
@@ -84,6 +95,9 @@
                                         placeholder="Enter your otp"
                                         x-bind:readonly="$wire.is_email_verified ? true : false">
                                     <div class="invalid-feedback emailOtp">
+                                        @error('email_otp')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                                 <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
@@ -102,13 +116,18 @@
                             <div class="block3 " x-show="$wire.step==3">
                                 <h6 class="text-muted d-block text-center">Step 3</h6>
                                 <h4 class="mb-4 text-center">Mobile Verification</h4>
-                                <div class="mb-3">
+                                <div class="mb-3" class="input-group input-group-merge">
                                     <label for="phone" class="form-label">Mobile Number</label>
-                                    <input class="form-control" type="text" id="phone" name ="phone"
-                                        placeholder="Enter your mobile number" required wire:model="phone"
-                                        x-bind:readonly="$wire.is_phone_verified ? true : false">
-                                    <div class="invalid-feedback">
-                                        Please enter mobile number.
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text" id="basic-addon1">+1</span>
+                                        <input class="form-control" type="text" id="phone" name ="phone"
+                                            placeholder="Enter your mobile number" required wire:model="phone"
+                                            x-bind:readonly="$wire.is_phone_verified ? true : false">
+                                        <div class="invalid-feedback">
+                                            @error('phone')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
@@ -176,4 +195,18 @@
         <!-- end row -->
     </div>
     <!-- end container -->
+    <script>
+        document.addEventListener('livewire:init', function () {
+            Livewire.on('notify', (e) => {
+                Swal.fire({
+                    icon: e[0].type,
+                    title: e[0].message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+
+           
+        });
+    </script>
 </div>

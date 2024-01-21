@@ -75,10 +75,19 @@ class MainPage extends Component
                     'type' => 'email',
                 ]
             );
-            // Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
+            Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
             $this->is_email_otp_sent = true;
+            $this->dispatch('notify', [
+                'message' => 'Email Otp Sent,please check your email',
+                'type' => 'success',
+            ]); 
+            
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
+            $this->dispatch('notify', [
+                'message' => $e->getMessage(),
+                'type' => 'error',
+            ]);
+            
         }
     }
     public function verifyEmailOtp()
@@ -89,14 +98,22 @@ class MainPage extends Component
         $email_otp = EmailPhoneOtp::where('email', $this->email)->where('otp', $this->email_otp)->first();
         if ($email_otp) {
             $this->is_email_verified = true;
+            $this->dispatch('notify', [
+                'message' => 'Email Verified',
+                'type' => 'success',
+            ]);
         } else {
             $this->is_email_verified = false;
+            $this->dispatch('notify', [
+                'message' => 'Email Otp does not match',
+                'type' => 'error',
+            ]);
         }
     }
     public function sendPhoneOtp()
     {
-        Log::info('sendPhoneOtp');
-        Log::info($this->phone);
+       
+       
         $this->validate([
             'phone' => 'required|numeric|unique:users,phone_number',
         ]);
@@ -113,8 +130,15 @@ class MainPage extends Component
             );
             // Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
             $this->is_phone_otp_sent = true;
+            $this->dispatch('notify', [
+                'message' => 'Phone Otp Sent,please check your phone',
+                'type' => 'success',
+            ]);
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
+            $this->dispatch('notify', [
+                'message' => $e->getMessage(),
+                'type' => 'error',
+            ]);
         }
     }
     public function verifyPhoneOtp()
@@ -125,8 +149,16 @@ class MainPage extends Component
         $phone_otp = EmailPhoneOtp::where('phone', $this->phone)->where('otp', $this->phone_otp)->first();
         if ($phone_otp) {
             $this->is_phone_verified = true;
+            $this->dispatch('notify', [
+                'message' => 'Phone Verified',
+                'type' => 'success',
+            ]);
         } else {
             $this->is_phone_verified = false;
+            $this->dispatch('notify', [
+                'message' => 'Phone Otp does not match',
+                'type' => 'error',
+            ]);
         }
     }
 
