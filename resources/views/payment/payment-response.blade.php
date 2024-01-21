@@ -7,6 +7,7 @@
                     <div class="alert alert-success">
                         <h3>Payment Success</h3>
                         <p>Payment has been successfully processed.</p>
+                        <p>Transaction ID : {{ $gwResponse['transaction-id'] }}</p>
                     </div>
                 @break
 
@@ -24,7 +25,7 @@
                     </div>
             @endswitch
             {{-- XML response --}}
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h3>XML Response</h3>
                 </div>
@@ -35,7 +36,7 @@
                         </code>
                     </pre>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
 

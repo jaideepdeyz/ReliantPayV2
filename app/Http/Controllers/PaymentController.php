@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\StatusEnum;
 use App\Models\SaleBooking;
+use App\Models\SuccessfulPaymentResponse;
 use App\Service\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -43,6 +44,16 @@ class PaymentController extends Controller
                 $salebooking = SaleBooking::where('order_id', $gwResponse['order-id'])->first();
                 $salebooking->update([
                     'app_status' => StatusEnum::PAYMENT_DONE,
+                ]);
+                $successfulPaymentResponse = SuccessfulPaymentResponse::create([
+                    'sale_booking_id' => $salebooking->id,
+                    'order-id' => $gwResponse['order-id'],
+                    'result' => $gwResponse['result'],
+                    'result-code' => $gwResponse['result-code'],
+                    'result-text' => $gwResponse['result-text'],
+                    'authorization-code' => $gwResponse['authorization-code'],
+                    'transaction-id' => $gwResponse['transaction-id'],
+                    'amount' => $gwResponse['amount'],
                 ]);
             }
 
