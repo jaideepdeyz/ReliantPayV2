@@ -5,14 +5,14 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
-                        <li class="breadcrumb-item active">Agent Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Agent Dashboard</a></li>
+                        <li class="breadcrumb-item active">Payment Response</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Payment Response</h4>
             </div>
         </div>
         <div class="col-md-12">
-            <h5>Payment Response</h5>
             @switch($gwResponse['result'])
                 @case(1)
                     <div class="card">
@@ -46,18 +46,11 @@
                                     <td>{{ $gwResponse['amount'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Payment Date :</th>
+                                    <th>Payment Date (YYYY-MM-DD HH-MM-SS) :</th>
                                     <td>{{ $salebooking->updated_at}}</td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                    <div class="alert alert-success">
-                        <h3>Great !!</h3>
-                        <br>
-                        <p>Card has been charged sucessfully and details are as follows:-</p>
-
-                        <p>Transaction ID : </p>
                     </div>
                 @break
 
