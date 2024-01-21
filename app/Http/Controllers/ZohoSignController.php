@@ -82,8 +82,8 @@ class ZohoSignController extends Controller
             $sign1->setDocumentId($draftJSON->getDocumentIds()[0]->getDocumentId());
             $sign1->setFieldName('Signature');
             $sign1->setX_value(53);
-            $sign1->setY_value(15);
-            $sign1->setHeight(2);
+            $sign1->setY_value(5);
+            $sign1->setHeight(4);
             $sign1->setWidth(16);
             $sign1->setIsMandatory(true);
             $fields = new Fields();
