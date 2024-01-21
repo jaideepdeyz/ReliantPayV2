@@ -100,8 +100,8 @@ class ZohoSignController extends Controller
             Log::info($sfs_resp->getRequestId());
             Log::info($sfs_resp->getRequestStatus());
 
-            $authForm = AuthorizationForm::create([
-                'app_id' => $saleBooking->id,
+            $authForm = AuthorizationForm::updateOrCreate(['app_id' => $saleBooking->id,], [
+
                 'unsigned_document' => $path,
                 'request_id' => $sfs_resp->getRequestId(),
                 'document_id' => $draftJSON->getDocumentIds()[0]->getDocumentId(),
@@ -115,7 +115,6 @@ class ZohoSignController extends Controller
         } catch (SignException $e) {
             Log::info($e);
             return redirect()->back()->with('error', $e);
-
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
@@ -124,11 +123,11 @@ class ZohoSignController extends Controller
 
     public function zohoWebhook(Request $request)
     {
-        try{
+        try {
 
             /*********
                 STEP 1 : Set user credentials
-            **********/
+             **********/
 
             $user = new OAuth([
                 OAuth::CLIENT_ID => env('ZOHO_CLIENT_ID'),
@@ -138,20 +137,20 @@ class ZohoSignController extends Controller
                 OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
             ]);
 
-            ZohoSign::setCurrentUser( $user );
+            ZohoSign::setCurrentUser($user);
 
             /*********
             STEP 2 : Download document
-            **********/
+             **********/
 
             $postBody = file_get_contents("php://input");
-            if( $postBody == "" ){
+            if ($postBody == "") {
                 throw new Exception('post contents are empty ');
             }
-            $data_json = json_decode( $postBody, true );
+            $data_json = json_decode($postBody, true);
 
-            if( isset( $data_json["notifications"] ) ){
-                if( $data_json["notifications"]["operation_type"]=="RequestCompleted" ){
+            if (isset($data_json["notifications"])) {
+                if ($data_json["notifications"]["operation_type"] == "RequestCompleted") {
 
                     $completed_request_id = $data_json["requests"]["request_id"];
 
@@ -169,29 +168,25 @@ class ZohoSignController extends Controller
                     $saleBooking = SaleBooking::find($authForm->app_id);
 
                     $authForm->update([
-                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer_name.'.pdf',
-                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer_name.'.pdf',
+                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer_name . '.pdf',
+                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer_name . '.pdf',
                     ]);
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,
                     ]);
-
-                }else{
+                } else {
                     // webhook for someother action
                     throw new Exception("Error Processing Request - 2", 2);
                 }
-            }else{
+            } else {
                 // wrong json,  not of webooks
                 throw new Exception("Error Processing Request - 1 : $postBody", 1);
-
             }
-
-
-        }catch( SignException $signEx ){
+        } catch (SignException $signEx) {
             // log it
             Log::info($signEx);
             // echo "SIGN EXCEPTION : ".$signEx;
-        }catch( Exception $ex ){
+        } catch (Exception $ex) {
             Log::info($ex->getMessage());
         }
     }
@@ -210,7 +205,7 @@ class ZohoSignController extends Controller
                 // OAuth::ACCESS_TOKEN => env('ZOHO_DEV_ACCESS_TOKEN'),
                 OAuth::REFRESH_TOKEN => env('ZOHO_DEV_REFRESH_TOKEN'),
             ]);
-            ZohoSign::setCurrentUser( $user );
+            ZohoSign::setCurrentUser($user);
 
 
 
@@ -237,12 +232,10 @@ class ZohoSignController extends Controller
                 // Download completion certificate
                 $this->downloadCompletionCertificate($requestID, $documentJson['request_name'], $authForm);
             }
-
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             dd($e->getMessage());
         }
-
     }
 
     private function downloadDocument($requestID, $documentID, $documentName, $authForm)
@@ -253,11 +246,11 @@ class ZohoSignController extends Controller
         // Save the file to a local path
         file_put_contents("C:\\Users\\windowsUserName\\Downloads\\{$documentName}", $response->getBody());
         $content = $response->getBody();
-        $file = Storage::put('public/Signed/authorization'.$authForm->id.'.pdf', $content);
+        $file = Storage::put('public/Signed/authorization' . $authForm->id . '.pdf', $content);
         // Save information to the database using Eloquent
         $doc = AuthorizationForm::where('request_id', $requestID)->first();
         $doc->update([
-            'signed_document' => 'public/Signed/authorization'.$authForm->id.'.pdf',
+            'signed_document' => 'public/Signed/authorization' . $authForm->id . '.pdf',
         ]);
 
         $saleBooking = SaleBooking::find($authForm->app_id);
@@ -273,9 +266,7 @@ class ZohoSignController extends Controller
 
         // Save the completion certificate to a local path
         $content = $response->getBody();
-        $file = Storage::put('public/Signed/authorization'.$authForm->id.'.pdf', $content);
+        $file = Storage::put('public/Signed/authorization' . $authForm->id . '.pdf', $content);
         file_put_contents("C:\\Users\\windowsUserName\\Downloads\\{$requestName}_completioncertificate.pdf", $response->getBody());
     }
-
-
 }
