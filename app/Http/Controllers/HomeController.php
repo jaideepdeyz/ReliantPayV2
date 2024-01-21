@@ -15,9 +15,10 @@ class HomeController extends Controller
     {
         switch(Auth::User()->role){
             case RoleEnum::ADMIN->value:
-                $authorizations = SaleBooking::where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();
-                $bookings = SaleBooking::where('app_status', '!=', StatusEnum::DRAFT->value)->latest()->take(5)->get();
-                return view('admin.adminDashboard', compact('authorizations', 'bookings'));
+                // $authorizations = SaleBooking::where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();
+                // $bookings = SaleBooking::where('app_status', '!=', StatusEnum::DRAFT->value)->latest()->take(5)->get();
+                // return view('admin.adminDashboard', compact('authorizations', 'bookings'));
+                return redirect()->route('adminDashboard');
             case RoleEnum::DEALER->value:
                     return redirect()->route('dealerDashboard');
             case RoleEnum::AGENT->value:

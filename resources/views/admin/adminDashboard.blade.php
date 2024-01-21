@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item active">Admin Dashboard</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Agent Dashboard</h4>
+                <h4 class="page-title">Admin Dashboard</h4>
             </div>
         </div>
         <!-- end page title -->

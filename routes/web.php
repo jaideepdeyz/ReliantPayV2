@@ -25,6 +25,7 @@ use App\Http\Controllers\AmtrakBookingController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
 use App\Http\Controllers\ZohoSignController;
+use App\Livewire\Admin\AdminDashboard;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
@@ -101,6 +102,7 @@ Route::middleware('auth')->group(function () {
     Route::get('addAgent', AddAgent::class)->middleware('dealerApprovalCheck')->name('addAgent');
 
     //admin Routes
+    Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
     // Agents Routes
     Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');
