@@ -155,12 +155,12 @@
                 <div class="card-body pb-2">
                     <div class="float-end d-none d-md-inline-block">
                         <div class="btn-group mb-2">
-                            <button type="button" class="btn btn-xs btn-light" 
+                            <button type="button" class="btn btn-xs btn-light mr-1"
                             wire:click="updateChart('10')"
                            
                             >Last 10 Days</button>
-                            <button type="button" class="btn btn-xs btn-light" wire:click="updateChart('30')">Last 30 days</button>
-                            <button type="button" class="btn btn-xs btn-light" wire:click="updateChart('60')">Last 60 days</button>
+                            <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('30')">Last 30 days</button>
+                            <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('60')">Last 60 days</button>
 
                             
                         </div>
