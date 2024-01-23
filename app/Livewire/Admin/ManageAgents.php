@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Enums\RoleEnum;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 // use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -53,12 +54,29 @@ class ManageAgents extends Component
 
     public function render()
     {
-        $agents = User::where('role', RoleEnum::AGENT->value)
-        ->when($this->search, function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('email', 'like', '%' . $this->search . '%');
-        })
-        ->paginate(10);
+        switch(Auth::User()->role)
+        {
+            case RoleEnum::ADMIN->value:
+                $agents = User::where('role', RoleEnum::AGENT->value)
+                ->when($this->search, function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('email', 'like', '%' . $this->search . '%');
+                })
+                ->paginate(10);
+            break;
+            case RoleEnum::DEALER->value:
+            $agents = User::where('organization_id', Auth::User()->organization_id)
+                ->where('role', RoleEnum::AGENT->value)
+                ->when($this->search, function ($query) {
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('email', 'like', '%' . $this->search . '%');
+                })
+                ->paginate(10);
+            break;
+            default:
+             return redirect()->back();
+        }
+        
         return view('livewire.admin.manage-agents', [
             'agents' => $agents,
         ])->layout('layouts.dashboard-layout');

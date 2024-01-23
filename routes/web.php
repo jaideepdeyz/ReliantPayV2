@@ -31,6 +31,8 @@ use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
+use App\Livewire\Dealer\ManageCustomers;
+use App\Livewire\Dealer\PendingAuthorization;
 use App\Livewire\Dealer\Registration\BankingDetails;
 use App\Livewire\Dealer\Registration\BusinessInformation;
 use App\Livewire\Dealer\Registration\Confirmation;
@@ -82,6 +84,7 @@ Route::middleware(['auth', 'verified', 'registrationCheck'])->group(function () 
 
 Route::middleware('auth')->group(function () {
     // Route::get('dealer_register', Registration::class)->name('dealer_register');
+
     // Dealer Registration Routes
     Route::get('dealerRegBusinessInfo', BusinessInformation::class)->name('dealerRegBusinessInfo');
     Route::get('dealerServicesCompliances/{orgID}', ServicesCompliances::class)->name('dealerServicesCompliances');
@@ -102,6 +105,8 @@ Route::middleware('auth')->group(function () {
     Route::get('dealers/show/{orgID}', DealerShow::class)->name('dealers.show');
     Route::get('dealerDashboard', DealerDashboard::class)->name('dealerDashboard');
     Route::get('addAgent', AddAgent::class)->middleware('dealerApprovalCheck')->name('addAgent');
+    Route::get('manageCustomers', ManageCustomers::class)->name('manageCustomers');
+    Route::get('pendingAuthorizations', PendingAuthorization::class)->name('pendingAuthorizations');
 
     //admin Routes
     Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');

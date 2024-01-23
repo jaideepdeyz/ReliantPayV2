@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -52,6 +54,18 @@ class User extends Authenticatable
     public function organization()
     {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
+
+    public function agentActivity()
+    {
+        return $this->hasMany(SaleBooking::class, 'agent_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+    }
+
+    public function totalAgentRevenue()
+    {
+       //get sum of all payments from booking relation
+        $totalAgentRevenue = $this->agentActivity()->sum('amount_charged');
+        return $totalAgentRevenue;
     }
 
     public function transactionLogs()

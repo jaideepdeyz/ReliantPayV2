@@ -7,11 +7,11 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
-                        <li class="breadcrumb-item">Admin Dashboard</li>
-                        <li class="breadcrumb-item active">Manage Agents</li>
+                        <li class="breadcrumb-item">Dealer Dashboard</li>
+                        <li class="breadcrumb-item active">Manage Customers</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Manage Agents</h4>
+                <h4 class="page-title">Manage Customers</h4>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <h4 class="header-title">
-                                Agents
+                                Customers
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
@@ -67,47 +67,18 @@
                     </div>
 
                     <div class="row mb-3">
-                        @if ($agents->count() > 0)
+                        @if ($customers->count() > 0)
                         <div class="flex">
                             <table class="table table-hover table-striped table-borderless wrap table-fixed">
                                 <thead class="table-light">
                                     <tr>
-
-                                        @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'name',
-                                        'displayName' => 'Name',
-                                        'width' => 2,
-                                        ])
-
-                                        @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'email',
-                                        'displayName' => 'Email',
-                                        'width' => 1,
-                                        ])
-
-                                        {{-- @include('livewire.util.datatable-sortable-th', [
-                                        'name' => '{{$agent->organization->business_name}}',
-                                        'displayName' => 'Email',
-                                        'width' => 1,
-                                        ]) --}}
-
-                                        <th class="col-md-1">Organization/Center</th>
-
-                                        {{-- <th class="col-md-2">Address</th> --}}
-
-                                        {{-- @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'status',
-                                        'displayName' => 'Status',
-                                        'width' => 1,
-                                        ]) --}}
-
-                                        @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'Is Active?',
-                                        'displayName' => 'Is Active?',
-                                        'width' => 1,
-                                        ])
-
-                                        <th class="col-md-1 text-center">Action</th>
+                                        <th>Sale ID</th>
+                                        <th>Customer's Name</th>
+                                        <th>Customer's Email</th>
+                                        <th>Customer's Contact #</th>
+                                        <th>Service Availed</th>
+                                        <th>Service Amount</th>
+                                        {{-- <th class="col-md-1 text-center">Action</th> --}}
                                     </tr>
                                 </thead>
 
@@ -115,74 +86,21 @@
                                 <tbody>
 
 
-                                    @foreach ($agents as $agent)
-                                    <tr wire:key={{ $agent->id }}>
-                                        <td class="table-user">
-                                            <img src="{{ asset('auth/images/users/user-3.jpg') }}" alt="table-user"
-                                                class="me-2 rounded-circle">
-                                            {{ $agent->name }}
-                                        </td>
-                                        <td>
-                                            {{ $agent->email }}
-                                        </td>
-
-                                        <td>
-                                            @if($agent->organization)
-                                                {{ $agent->organization->business_name }}
-                                            @endif
-                                        </td>
-
-                                        {{-- <td>
-                                            {{ $d->business_address }}
-                                        </td> --}}
-                                        {{-- <td>
-                                            @if ($agent->is_approved == 'Yes')
-                                            <span class="badge badge-soft-success badge-lg">{{ $agent->is_approved }}</span>
-                                            @else
-                                            <span class="badge bg-danger badge-lg">{{ $agent->is_approved }}</span>
-                                            @endif
-                                        </td> --}}
-                                        <td>
-                                            @if ($agent->is_active == 'Yes')
-                                            <span class="badge badge-soft-success badge-lg">{{ $agent->is_active
-                                                }}</span>
-                                            @else
-                                            <span class="badge bg-danger badge-lg">{{ $agent->is_active }}</span>
-                                            @endif
-                                        </td>
-
-
-
-                                        <td style="text-align:center;">
-                                            <div>
-
-                                                <div class="dropdown d-none d-xl-block">
-                                                    <a class="nav-link dropdown-toggle waves-effect waves-light"
-                                                        data-bs-toggle="dropdown" href="#" role="button"
-                                                        aria-haspopup="false" aria-expanded="false">
-                                                        <i class="mdi mdi-chevron-down-box text-success"
-                                                            style="font-size: 24px;"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu">
-                                                        <a href="javascript:void(0);"
-                                                            wire:click="activateDeactivate({{ $agent->id }})" class="btn">
-                                                            <i class="fas fa-trash text-danger"></i>
-                                                            {{ $agent->is_active == 'Yes' ? 'Deactivate' : 'Activate'
-                                                            }}
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
+                                    @foreach ($customers as $customer)
+                                    <tr>
+                                        <td>{{$customer->id}}</td>
+                                        <td>{{$customer->customer_name}}</td>
+                                        <td>{{$customer->customer_email}}</td>
+                                        <td>{{$customer->customer_phone}}</td>
+                                        <td>{{$customer->service->service_name}}</td>
+                                        <td>{{$customer->amount_charged}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
 
                             <div class="d-flex justify-content-end">
-                                {{ $agents->links() }}
+                                {{ $customers->links() }}
                             </div>
 
                         </div>
