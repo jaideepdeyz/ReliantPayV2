@@ -27,16 +27,16 @@ class ManageCustomers extends Component
                 ->paginate(10);
             break;
             case RoleEnum::AGENT->value:
-            $customers = SaleBooking::where('agent_id', Auth::User()->id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
-                ->when($this->search, function ($query) {
-                    $query->where('customer_name', 'like', '%' . $this->search . '%')
-                        ->orWhere('customer_email', 'like', '%' . $this->search . '%');
-                })
-                ->orderBy('updated_at', 'DESC')
-                ->paginate(10);
+                $customers = SaleBooking::where('agent_id', Auth::User()->id)
+                    ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                    ->when($this->search, function ($query) {
+                        $query->where('customer_name', 'like', '%' . $this->search . '%')
+                            ->orWhere('customer_email', 'like', '%' . $this->search . '%');
+                    })
+                    ->orderBy('updated_at', 'DESC')
+                    ->paginate(10);
             default:
-             return redirect()->back();
+            $customers =  SaleBooking::where('agent_id', Auth::User()->id)->where('app_status', StatusEnum::PAYMENT_DONE->value)->paginate(10);
         }
         return view('livewire.dealer.manage-customers', [
             'customers' => $customers,

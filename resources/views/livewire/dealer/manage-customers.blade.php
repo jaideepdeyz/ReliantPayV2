@@ -65,9 +65,8 @@
 
                         </div>
                     </div>
-
+                    @if($customers)
                     <div class="row mb-3">
-                        @if ($customers->count() > 0)
                         <div class="flex">
                             <table class="table table-hover table-striped table-borderless wrap table-fixed">
                                 <thead class="table-light">
@@ -104,10 +103,10 @@
                             </div>
 
                         </div>
-                        @else
-                        <p>No data found!!</p>
-                        @endif
                     </div>
+                    @else 
+                    No data found 
+                    @endif
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col -->
@@ -162,91 +161,4 @@
             </div>
         </div>
     </div>
-
-
-    <!-- Update Country Modal -->
-    <div wire:ignore.self class="modal fade" id="updateCountries" tabindex="-1" aria-labelledby="updateCountriesLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateCountriesLabel">Edit Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
-                        aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="updateCountries">
-                    <div class="modal-body">
-                        <div class="mb-3" style="display:none;">
-                            <label>country id</label>
-                            <input type="text" wire:model="country_id" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Name</label>
-                            <input type="text" wire:model="name" class="form-control">
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Code</label>
-                            <input type="text" wire:model="code" class="form-control">
-                            @error('code')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Flag icon</label>
-                            <input type="text" wire:model="flagimage" class="form-control">
-                            @error('flagimage')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Country Modal -->
-    <div wire:ignore.self class="modal fade" id="deleteCountries" tabindex="-1" aria-labelledby="deleteCountriesLabel"
-        aria-hidden="true" x-data="{ livewire: false }">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCountriesLabel">Delete Country</h5>
-                    <button type="button" class="btn-close" wire:click="closeModal" aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="destroyCountry">
-                    <div class="modal-body">
-                        <h4>Are you sure you want to delete this data ?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Yes! Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-    {{-- @section('scripts') --}}
-    <script>
-        window.addEventListener('close-modal', event => {
-            console.log('close-modal event received:', event);
-            $('#Countries').modal('hide');
-            $('#updateCountries').modal('hide');
-            $('#deleteCountries').modal('hide');
-        })
-    </script>
-
 </div>
