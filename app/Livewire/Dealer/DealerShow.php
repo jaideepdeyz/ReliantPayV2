@@ -8,6 +8,7 @@ use Livewire\Component;
 class DealerShow extends Component
 {
     public $orgID;
+    
     public function render()
     {
         $org = Organization::find($this->orgID);

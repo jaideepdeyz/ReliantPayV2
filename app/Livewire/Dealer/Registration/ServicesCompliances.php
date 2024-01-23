@@ -43,8 +43,16 @@ class ServicesCompliances extends Component
                 'business_HTTPS_compliance_status' => $this->business_HTTPS_compliance_status,
             ]);
 
+            $existingServices = OrganizationServiceMap::where('organization_id', $org->id)->get();
+            foreach($existingServices as $existingService)
+            {
+                $existingService->delete();
+            }
+
             //storing Services and Products of an Organization
             foreach($this->business_product_services as $key=> $service){
+                
+
                 if($service == true)
                 {
                     OrganizationServiceMap::create([

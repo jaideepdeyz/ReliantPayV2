@@ -72,15 +72,15 @@ class DocumentUploads extends Component
 
         try {
             DB::beginTransaction();
-            $this->storeFile($this->business_scan_signed_contract, 'Signed Contract');
-            $this->storeFile($this->business_scan_EIN, 'EIN');
-            $this->storeFile($this->business_scan_PAN, 'PAN');
-            $this->storeFile($this->business_scan_registration_document, 'Registration Document');
-            $this->storeFile($this->business_scan_bank_statement, 'Bank Statement');
-            $this->storeFile($this->business_scan_utility_bills, 'Utility Bills');
-            $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns');
-            $this->storeFile($this->business_premises_external_pictures, 'External Pictures');
-            $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures');
+            $this->storeFile($this->business_scan_signed_contract, 'Signed Contract', $this->orgID);
+            $this->storeFile($this->business_scan_EIN, 'EIN', $this->orgID);
+            $this->storeFile($this->business_scan_PAN, 'PAN', $this->orgID);
+            $this->storeFile($this->business_scan_registration_document, 'Registration Document', $this->orgID);
+            $this->storeFile($this->business_scan_bank_statement, 'Bank Statement', $this->orgID);
+            $this->storeFile($this->business_scan_utility_bills, 'Utility Bills', $this->orgID);
+            $this->storeFile($this->business_scan_business_tax_returns, 'Tax Returns', $this->orgID);
+            $this->storeFile($this->business_premises_external_pictures, 'External Pictures', $this->orgID);
+            $this->storeFile($this->business_premises_internal_pictures, 'Internal Pictures', $this->orgID);
             DB::commit();
             return redirect()->route('confirmation', ['orgID' => $this->orgID]);
         } catch(\Exception $e){
@@ -89,9 +89,11 @@ class DocumentUploads extends Component
         }
     }
 
-    public function storeFile($file, $docName)
+    public function storeFile($file, $docName, $orgID)
     {
-        $file = RegistrationUpload::create([
+        $file = RegistrationUpload::updateOrCreate(
+            ['organization_id' => $this->orgID, 'document_name' => $docName],
+            [
             'organization_id' => $this->orgID,
             'document_name' => $docName,
             'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
