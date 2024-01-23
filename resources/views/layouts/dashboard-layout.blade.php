@@ -338,7 +338,7 @@
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('auth/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
-    <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script>
+    {{-- <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script> --}}
 
     <!-- Plugins js-->
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>

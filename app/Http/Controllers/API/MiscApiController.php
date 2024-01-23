@@ -11,7 +11,7 @@ class MiscApiController extends Controller
 {
     public function getAirportsByCountry(Request $request)
     {
-        Log::info($request->all());
+       
         $airports = Airport::where('iso_country', $request->iso_country)->where('name', 'like', '%' . strval($request->term) . '%')->simplePaginate(10);
 
         $morePages = true;

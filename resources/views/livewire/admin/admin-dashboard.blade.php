@@ -23,8 +23,10 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{$revenueThisMonth}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageSales') }}">Revenue this month</a></p>
+                            <h3 class="text-dark mt-1">$<span data-plugin="counterup">{{ $revenueThisMonth }}</span>
+                            </h3>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageSales') }}">Revenue this
+                                    month</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -43,8 +45,9 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$agents}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageAgents')}}">Agents</a></p>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $agents }}</span></h3>
+                            <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageAgents') }}">Agents</a>
+                            </p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -63,8 +66,9 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$dealers}}</span></h3>
-                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageOrganizations')}}">Merchants</a></p>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $dealers }}</span></h3>
+                            <p class="text-muted mb-1 text-truncate"><a
+                                    href="{{ route('manageOrganizations') }}">Merchants</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -83,9 +87,10 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{$pendingRegistrations}}</span>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $pendingRegistrations }}</span>
                             </h3>
-                            <p class="text-muted mb-1 text-truncate"><a href="{{route('manageOrganizations')}}">Pending Merchant Registrations</a></p>
+                            <p class="text-muted mb-1 text-truncate"><a
+                                    href="{{ route('manageOrganizations') }}">Pending Merchant Registrations</a></p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -121,22 +126,22 @@
                         <div id="total-revenue" class="mt-0" data-colors="#f1556c"></div>
 
                         <h5 class="text-muted mt-0">Total sales made today</h5>
-                        <h2>${{$revenueThisDay}}</h2>
+                        <h2>${{ $revenueThisDay }}</h2>
 
                         {{-- <p class="text-muted w-75 mx-auto sp-line-2">by Agent {{Auth::User()->name}}</p> --}}
 
                         <div class="row mt-3">
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
-                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{$revenueThisWeek}}</h4>
+                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
                             </div>
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
-                                <h4><i class="fe-arrow-up text-success me-1"></i>${{$revenueThisMonth}}</h4>
+                                <h4><i class="fe-arrow-up text-success me-1"></i>${{ $revenueThisMonth }}</h4>
                             </div>
                             <div class="col-4">
                                 <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
-                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{$revenueThisYear}}</h4>
+                                <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisYear }}</h4>
                             </div>
                         </div>
 
@@ -150,16 +155,26 @@
                 <div class="card-body pb-2">
                     <div class="float-end d-none d-md-inline-block">
                         <div class="btn-group mb-2">
-                            <button type="button" class="btn btn-xs btn-light">Today</button>
-                            <button type="button" class="btn btn-xs btn-light">Weekly</button>
-                            <button type="button" class="btn btn-xs btn-secondary">Monthly</button>
+                            <button type="button" class="btn btn-xs btn-light" 
+                            wire:click="updateChart('10')"
+                           
+                            >Last 10 Days</button>
+                            <button type="button" class="btn btn-xs btn-light" wire:click="updateChart('30')">Last 30 days</button>
+                            <button type="button" class="btn btn-xs btn-light" wire:click="updateChart('60')">Last 60 days</button>
+
+                            
                         </div>
                     </div>
 
                     <h4 class="header-title mb-3">Sales Analytics</h4>
 
-                    <div dir="ltr">
-                        <div id="sales-analytics" class="mt-4" data-colors="#1abc9c,#4a81d4"></div>
+                    <div dir="ltr" x-data="{ chartData: {} }"
+                    x-init="
+                       
+                        chartData = {{ json_encode($options) }};
+                        new ApexCharts($refs.chart, chartData).render();
+                    ">
+                        <div x-ref="chart"></div>
                     </div>
                 </div>
             </div> <!-- end card -->
@@ -186,7 +201,8 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Top 5 Processes <span><small>(cumulative by revenue)</small></span></h4>
+                    <h4 class="header-title mb-3">Top 5 Processes <span><small>(cumulative by revenue)</small></span>
+                    </h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-hover table-nowrap table-centered m-0">
@@ -198,11 +214,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($processes as $process)
-                                <tr>
-                                    <td>{{$process['service']}}</td>
-                                    <td>{{$process['totalRevenue']}}</td>
-                                </tr>
+                                @foreach ($processes as $process)
+                                    <tr>
+                                        <td>{{ $process['service'] }}</td>
+                                        <td>{{ $process['totalRevenue'] }}</td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>
@@ -230,7 +246,8 @@
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Top 5 Merchants <span><small>(cumulative by revenue)</small></span></h4>
+                    <h4 class="header-title mb-3">Top 5 Merchants <span><small>(cumulative by revenue)</small></span>
+                    </h4>
 
                     <div class="table-responsive">
                         <table class="table table-borderless table-nowrap table-hover table-centered m-0">
@@ -242,11 +259,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($merchants as $merchant)
-                                <tr>
-                                    <td>{{$merchant['merchant']}}</td>
-                                    <td>$ {{$merchant['totalMerchRevenue']}}</td>
-                                </tr>
+                                @foreach ($merchants as $merchant)
+                                    <tr>
+                                        <td>{{ $merchant['merchant'] }}</td>
+                                        <td>$ {{ $merchant['totalMerchRevenue'] }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -255,5 +272,5 @@
             </div> <!-- end card-->
         </div> <!-- end col -->
     </div>
-    <!-- end row -->
+    <script></script>
 </div>
