@@ -1,4 +1,4 @@
-<div class="account-pages mt-5 mb-5">
+<div class="account-pages mt-5 mb-5" x-data="{ resendEmailCountdown: 60 }">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-4">
@@ -30,14 +30,14 @@
                                 </h4>
                                 <div class="mb-3">
                                     <label for="fullname" class="form-label">Full Name</label>
-                                   
+
                                     <input class="form-control" type="text" id="name" wire:model.blur="name"
                                         placeholder="Enter your name" required>
-                                    
-                                      @error('name')
-                                          {{ $message }}
-                                      @enderror
-                                  
+
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
+
                                 </div>
 
                                 <div class="mb-3">
@@ -48,12 +48,12 @@
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-                                       
-                                            @error('password')
-                                                {{ $message }}
-                                            @enderror
 
-                                       
+                                        @error('password')
+                                            {{ $message }}
+                                        @enderror
+
+
                                     </div>
                                 </div>
 
@@ -61,16 +61,16 @@
                                     <label for="password" class="form-label">Confirm Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="confirm_password" name="password_confirmation"
-                                        wire:model.blur="password_confirmation" class="form-control"
+                                            wire:model.blur="password_confirmation" class="form-control"
                                             placeholder="Confirm your password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-                                       
-                                           @error('password_confirmation')
-                                                {{ $message }}
-                                           @enderror
-                                       
+
+                                        @error('password_confirmation')
+                                            {{ $message }}
+                                        @enderror
+
                                     </div>
 
                                 </div>
@@ -83,26 +83,40 @@
                                     <label for="email" class="form-label">Email address</label>
                                     <input class="form-control" type="email" name ="email" wire:model.blur="email"
                                         id="email" required placeholder="Enter your email">
-                                
-                                        @error('email')
-                                            {{ $message }}
-                                        @enderror
-                                
+
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+
                                 </div>
                                 <div class="mb-3" x-show="$wire.is_email_otp_sent">
                                     <label for="email" class="form-label">OTP</label>
                                     <input class="form-control" type="text" wire:model.blur="email_otp" required
-                                        placeholder="Enter your otp"
+                                        placeholder="Enter your OTP"
                                         x-bind:readonly="$wire.is_email_verified ? true : false">
-                                  
-                                        @error('email_otp')
-                                            {{ $message }}
-                                        @enderror
-                                  
+
+                                    @error('email_otp')
+                                        {{ $message }}
+                                    @enderror
+
                                 </div>
                                 <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
                                     x-show="!$wire.is_email_otp_sent">Send OTP to
                                     email</button>
+                                <div x-show="$wire.is_email_otp_sent" class= "mb-2">
+                                   
+
+                                   
+                                    <button class="btn btn-success" type="button" wire:click="resendEmailOtp()"
+                                        x-bind:disabled="$wire.resendEmailCountdown > 0">
+                                        <span x-show="$wire.resendEmailCountdown > 0">
+                                            Resend OTP in {{ $resendEmailCountdown }} seconds
+                                        </span>
+                                        <span x-show="$wire.resendEmailCountdown == 0">
+                                            Resend OTP. 
+                                        </span>
+                                    </button>
+                                </div>
                                 <button class="btn btn-warning verifyEmailOtp" type="button"
                                     wire:click="verifyEmailOtp()" x-show="$wire.is_email_otp_sent"
                                     x-bind:disabled="$wire.is_email_verified ? true : false">Verify
@@ -123,31 +137,43 @@
                                         <input class="form-control" type="text" id="phone" name ="phone"
                                             placeholder="Enter your mobile number" required wire:model.blur="phone"
                                             x-bind:readonly="$wire.is_phone_verified ? true : false">
-                                      
-                                            @error('phone')
-                                                {{ $message }}
-                                            @enderror
-                                        
+
+                                        @error('phone')
+                                            {{ $message }}
+                                        @enderror
+
                                     </div>
                                 </div>
 
                                 <div class="mb-3" x-show="$wire.is_phone_otp_sent">
                                     <label for="phone_otp" class="form-label">OTP</label>
                                     <input class="form-control" type="text" id="phone_otp" name ="phone_otp"
-                                        wire:model="phone_otp"
-                                        x-bind:readonly="$wire.is_phone_verified ? true : false"
+                                        wire:model="phone_otp" x-bind:readonly="$wire.is_phone_verified ? true : false"
                                         placeholder="Enter your otp" required>
                                 </div>
                                 <div class="mb-3" x-show="!$wire.is_phone_otp_sent">
-                                    <button class="btn btn-success" type="button" wire:click="sendPhoneOtp()"
-                                       >Request
+                                    <button class="btn btn-success" type="button"
+                                        wire:click="sendPhoneOtp()">Request
                                         OTP</button>
                                 </div>
+
                                 <div class="mb-3" x-show="$wire.is_phone_otp_sent">
-                                     <button class="btn btn-warning" type="button"
-                                    wire:click="verifyPhoneOtp()"
-                                    x-bind:disabled="$wire.is_phone_verified ? true : false">Verify
-                                    OTP</button>
+                                    <button class="btn btn-success" type="button" wire:click="resendPhoneOtp()"
+                                        x-bind:disabled="$wire.resendPhoneCountdown > 0">
+                                        <span x-show="$wire.resendPhoneCountdown > 0">
+                                            Resend OTP in {{ $resendPhoneCountdown }} seconds
+                                        </span>
+                                        <span x-show="$wire.resendPhoneCountdown == 0">
+                                            Resend OTP
+                                        </span>
+                                    </button>
+                                   
+
+                                </div>
+                                <div class="mb-3" x-show="$wire.is_phone_otp_sent">
+                                    <button class="btn btn-warning" type="button" wire:click="verifyPhoneOtp()"
+                                        x-bind:disabled="$wire.is_phone_verified ? true : false">Verify
+                                        OTP</button>
                                 </div>
                             </div>
 
@@ -163,22 +189,20 @@
                                     </div>
                                 </div>
                                 <div class="text-center d-grid">
-                                    <button class="btn btn-success" type="submit" >Sign
+                                    <button class="btn btn-success" type="submit">Sign
                                         up</button>
                                 </div>
                             </div>
-                       
+
                             <div class="btnBottom" style="position:absolute;bottom:30px;width:85%">
-                                <button class="btn btn-secondary btnBack " type="button"
-                                x-show="$wire.step > 1" wire:click="gotoPreviousStep"
-                                ><i
-                                        class="bi bi-arrow-left-circle-fill"></i> Back</button>
+                                <button class="btn btn-secondary btnBack " type="button" x-show="$wire.step > 1"
+                                    wire:click="gotoPreviousStep"><i class="bi bi-arrow-left-circle-fill"></i>
+                                    Back</button>
                                 <button class="btn btn-primary btnProceed" style="float:right" type="button"
-                                x-show="$wire.step < 4" wire:click="gotoNextStep"
-                                ><i
-                                        class="bi bi-arrow-right-circle-fill"></i> Proceed</button>
+                                    x-show="$wire.step < 4 && !($wire.step == 2 && !$wire.is_email_verified) && !($wire.step == 3 && !$wire.is_phone_verified)"
+                                    wire:click="gotoNextStep"><i class="bi bi-arrow-right-circle-fill"></i> Proceed</button>
                             </div>
-                           
+
                         </form>
                     </div>
                 </div>
@@ -196,7 +220,7 @@
     </div>
     <!-- end container -->
     <script>
-        document.addEventListener('livewire:init', function () {
+        document.addEventListener('livewire:init', function() {
             Livewire.on('notify', (e) => {
                 Swal.fire({
                     icon: e[0].type,
@@ -205,9 +229,37 @@
                     timer: 1500
                 })
             });
+            Livewire.on('startEmailCountdown', (e) => {
 
-           
+
+
+                let resendInterval = setInterval(() => {
+
+                    @this.resendEmailCountdown--;
+                    console.log(@this.resendEmailCountdown);
+                    @this.$refresh();
+
+
+                    if (@this.resendEmailCountdown == 0) {
+                        clearInterval(resendInterval);
+                    }
+                }, 1000);
+
+            });
+            Livewire.on('startPhoneCountdown', (e) => {
+                let resendInterval = setInterval(() => {
+
+                    @this.resendPhoneCountdown--;
+                    console.log(@this.resendPhoneCountdown);
+                    @this.$refresh();
+                if (@this.resendPhoneCountdown == 0) {
+                        clearInterval(resendInterval);
+                    }
+                }, 1000);
+            });
+
+
         });
     </script>
-   
+
 </div>

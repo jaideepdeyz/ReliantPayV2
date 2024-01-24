@@ -39,6 +39,10 @@ class MainPage extends Component
     public $phone_otp;
     public $is_phone_otp_sent = false;
     public $is_phone_verified = false;
+    public $resendEmailCounter=0;
+    public $resendEmailCountdown = 60;
+    public $resendPhoneCounter=0;
+    public $resendPhoneCountdown = 60;
     public function boot()
     {
         $this->smsService = new TrueDialogSmsService();
@@ -70,7 +74,8 @@ class MainPage extends Component
             return;
         }
     }
-    public function gotoPreviousStep(){
+    public function gotoPreviousStep()
+    {
         $this->step = $this->step - 1;
     }
 
@@ -86,7 +91,12 @@ class MainPage extends Component
         ]);
 
         try {
+            
+           
+            $this->resendEmailCounter++;
             $email_otp = rand(100000, 999999);
+            Log::info('email otp is '.$email_otp);
+            $this->startEmailCountdown();
 
             EmailPhoneOtp::updateOrCreate(
                 ['email' => $this->email],
@@ -97,8 +107,10 @@ class MainPage extends Component
             );
             Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
             $this->is_email_otp_sent = true;
+            
+            
             $this->dispatch('notify', [
-                'message' => 'Email Otp Sent,please check your email',
+                'message' => 'Email OTP Sent,please check your email',
                 'type' => 'success',
             ]);
         } catch (\Exception $e) {
@@ -124,7 +136,7 @@ class MainPage extends Component
         } else {
             $this->is_email_verified = false;
             $this->dispatch('notify', [
-                'message' => 'Email Otp does not match',
+                'message' => 'Email OTP does not match',
                 'type' => 'error',
             ]);
         }
@@ -138,7 +150,10 @@ class MainPage extends Component
         ]);
 
         try {
+            $this->resendPhoneCounter++;
             $phone_otp = rand(100000, 999999);
+            $this->startPhoneCountdown();
+            Log::info('phone otp is '.$phone_otp);
 
             EmailPhoneOtp::updateOrCreate(
                 ['phone' => $this->phone],
@@ -147,13 +162,12 @@ class MainPage extends Component
                     'type' => 'phone',
                 ]
             );
-            $this->smsService->sendSms('+1' . $this->phone, 'Your phone otp for registration is ' . $phone_otp);
+            $this->smsService->sendSms('+1' . $this->phone, 'Your phone OTP for registration is ' . $phone_otp);
             $this->is_phone_otp_sent = true;
             $this->dispatch('notify', [
-                'message' => 'Phone Otp Sent,please check your phone',
+                'message' => 'Phone OTP Sent,please check your phone',
                 'type' => 'success',
             ]);
-            
         } catch (\Exception $e) {
             $this->dispatch('notify', [
                 'message' => $e->getMessage(),
@@ -177,7 +191,7 @@ class MainPage extends Component
         } else {
             $this->is_phone_verified = false;
             $this->dispatch('notify', [
-                'message' => 'Phone Otp does not match',
+                'message' => 'Phone OTP does not match',
                 'type' => 'error',
             ]);
         }
@@ -209,4 +223,39 @@ class MainPage extends Component
             Log::error($e->getMessage());
         }
     }
+    public function resendEmailOtp()
+    {
+        if ($this->resendEmailCounter ==2) {
+            $this->dispatch('notify', [
+                'message' => 'You have reached maximum resend limit',
+                'type' => 'error',
+            ]);
+            return;
+           
+        }
+        $this->sendEmailOtp();
+    }
+    private function startEmailCountdown()
+    {
+        $this->resendEmailCountdown=60;
+        $this->dispatch('startEmailCountdown', $this->resendEmailCountdown);
+    }
+    public function resendPhoneOtp()
+    {
+        if ($this->resendPhoneCounter ==2) {
+            $this->dispatch('notify', [
+                'message' => 'You have reached maximum resend limit',
+                'type' => 'error',
+            ]);
+            return;
+           
+        }
+        $this->sendPhoneOtp();
+    }
+    private function startPhoneCountdown()
+    {
+        $this->resendPhoneCountdown=60;
+        $this->dispatch('startPhoneCountdown', $this->resendPhoneCountdown);
+    }
+   
 }
