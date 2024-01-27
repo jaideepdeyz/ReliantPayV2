@@ -43,19 +43,31 @@ class MainPage extends Component
     public $resendEmailCountdown = 60;
     public $resendPhoneCounter=0;
     public $resendPhoneCountdown = 60;
+
     public function boot()
     {
         $this->smsService = new TrueDialogSmsService();
     }
+
     public function gotoNextStep()
     {
         $currentStep = $this->step;
         if ($currentStep == 1) {
-            $this->validate([
+            $this->validate(
+                [
                 'name' => 'required|min:3',
                 'password' => 'required|min:6',
                 'password_confirmation' => 'required|min:6|same:password',
-            ]);
+            ], [
+                'name.required' => 'Please enter your Full Name',
+                'name.min' => 'Full Name must be at least 3 characters.',
+                'password.required' => 'Password is required',
+                'password.min' => 'Password must be at least 6 characters.',
+                'password_confirmation.required' => 'Confirmation Password is required',
+                'password_confirmation.min' => 'Confirmation Password must be at least 6 characters.',
+                'password_confirmation.same' => 'Passwords provided do not match',
+            ]
+            );
             $this->step = $currentStep + 1;
             return;
         }
@@ -74,6 +86,7 @@ class MainPage extends Component
             return;
         }
     }
+
     public function gotoPreviousStep()
     {
         $this->step = $this->step - 1;
@@ -89,6 +102,10 @@ class MainPage extends Component
     {
         $this->validate([
             'email' => 'required|email|unique:users,email',
+        ], [
+            'email.required' => 'Please enter your email',
+            'email.email' => 'Please enter valid email',
+            'email.unique' => 'Email is already registered',
         ]);
 
         try {
@@ -111,7 +128,7 @@ class MainPage extends Component
 
 
             $this->dispatch('notify', [
-                'message' => 'Email OTP Sent,please check your email',
+                'message' => 'Email OTP Sent, please check your email',
                 'type' => 'success',
             ]);
         } catch (\Exception $e) {
@@ -125,7 +142,10 @@ class MainPage extends Component
     {
         $this->validate([
             'email_otp' => 'required',
+        ], [
+            'email_otp.required' => 'Please enter the OTP received on your email',
         ]);
+
         $email_otp = EmailPhoneOtp::where('email', $this->email)->where('otp', $this->email_otp)->first();
         if ($email_otp) {
             $this->is_email_verified = true;
@@ -148,6 +168,10 @@ class MainPage extends Component
 
         $this->validate([
             'phone' => 'required|numeric|unique:users,phone_number',
+        ], [
+            'phone.required' => 'Please enter your phone number',
+            'phone.numeric' => 'Please enter valid phone number',
+            'phone.unique' => 'Phone number is already registered',
         ]);
 
         try {
@@ -166,7 +190,7 @@ class MainPage extends Component
             $this->smsService->sendSms('+1' . $this->phone, 'Your phone OTP for registration is ' . $phone_otp);
             $this->is_phone_otp_sent = true;
             $this->dispatch('notify', [
-                'message' => 'Phone OTP Sent,please check your phone',
+                'message' => 'Phone OTP Sent, please check your phone',
                 'type' => 'success',
             ]);
         } catch (\Exception $e) {
@@ -180,6 +204,8 @@ class MainPage extends Component
     {
         $this->validate([
             'phone_otp' => 'required',
+        ], [
+            'phone_otp.required' => 'Please enter your OTP received on your phone',
         ]);
         $phone_otp = EmailPhoneOtp::where('phone', $this->phone)->where('otp', $this->phone_otp)->first();
         if ($phone_otp) {
@@ -222,6 +248,10 @@ class MainPage extends Component
             return redirect(RouteServiceProvider::HOME);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+            $this->dispatch('notify', [
+                'message' => $e->getMessage(),
+                'type' => 'error',
+            ]);
         }
     }
     public function resendEmailOtp()

@@ -13,7 +13,7 @@
                                     </span>
                                 </a>
 
-                                <a href="index.html" class="logo logo-light text-center">
+                                <a href="{{url('/')}}" class="logo logo-light text-center">
                                     <span class="logo-lg">
                                         <img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
                                             alt="">
@@ -28,78 +28,79 @@
                                 <h4 class="mb-1 text-center">
                                     Account Details
                                 </h4>
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-12">
                                     <label for="fullname" class="form-label">Full Name</label>
-
-                                    <input class="form-control" type="text" id="name" wire:model.blur="name"
+                                    <input class="form-control @error('is-invalid') name @enderror" type="text" id="name" wire:model.blur="name"
                                         placeholder="Enter your name" required>
 
                                     @error('name')
-                                        {{ $message }}
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
                                     @enderror
 
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-12">
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" name="password" class="form-control"
+                                        <input type="password" id="password" name="password" class="form-control @error('is-invalid') password @enderror"
                                             placeholder="Enter your password" wire:model.blur="password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-
-                                        @error('password')
-                                            {{ $message }}
-                                        @enderror
-
-
                                     </div>
+                                    @error('password')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-12">
                                     <label for="password" class="form-label">Confirm Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="confirm_password" name="password_confirmation"
-                                            wire:model.blur="password_confirmation" class="form-control"
+                                            wire:model.blur="password_confirmation" class="form-control @error('is-invalid') password_confirmation @enderror"
                                             placeholder="Confirm your password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
-
-                                        @error('password_confirmation')
-                                            {{ $message }}
-                                        @enderror
-
                                     </div>
-
+                                    @error('password_confirmation')
+                                        <div class="text-danger mb-3">
+                                            {{ $message }}
+                                        </div>
+                                     @enderror
                                 </div>
+                                <br>
                             </div>
 
                             <div class="block2" x-show="$wire.step == 2">
                                 <h6 class="text-muted d-block text-center">Step 2</h6>
                                 <h4 class="mb-4 text-center">Email Verification</h4>
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-12">
                                     <label for="email" class="form-label">Email address</label>
-                                    <input class="form-control" type="email" name ="email" wire:model.blur="email"
+                                    <input class="form-control @error('is-invalid') email @enderror" type="email" name ="email" wire:model.blur="email"
                                         id="email" required placeholder="Enter your email">
-
                                     @error('email')
-                                        {{ $message }}
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
                                     @enderror
-
                                 </div>
-                                <div class="mb-3" x-show="$wire.is_email_otp_sent">
+                                <div class="mb-3 col-md-12" x-show="$wire.is_email_otp_sent">
                                     <label for="email" class="form-label">OTP</label>
-                                    <input class="form-control" type="text" wire:model.blur="email_otp" required
+                                    <input class="form-control @error('is-invalid') email_otp @enderror" type="text" wire:model.blur="email_otp" required
                                         placeholder="Enter your OTP"
                                         x-bind:readonly="$wire.is_email_verified ? true : false">
-
                                     @error('email_otp')
-                                        {{ $message }}
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
                                     @enderror
-
                                 </div>
+
                                 <div class="col-md-12 mb-3 text-center">
                                     <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
                                     x-show="!$wire.is_email_otp_sent">Send OTP to
@@ -139,22 +140,27 @@
                                     <label for="phone" class="form-label">Mobile Number</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon1">+1</span>
-                                        <input class="form-control" type="text" id="phone" name ="phone"
+                                        <input class="form-control @error('is-invalid') phone @enderror" type="text" id="phone" name ="phone"
                                             placeholder="Enter your mobile number" required wire:model.blur="phone"
                                             x-bind:readonly="$wire.is_phone_verified ? true : false">
-
-                                        @error('phone')
-                                            {{ $message }}
-                                        @enderror
-
                                     </div>
+                                    @error('phone')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3" x-show="$wire.is_phone_otp_sent">
                                     <label for="phone_otp" class="form-label">OTP</label>
-                                    <input class="form-control" type="text" id="phone_otp" name ="phone_otp"
+                                    <input class="form-control @error('is-invalid') phone_otp @enderror" type="text" id="phone_otp" name ="phone_otp"
                                         wire:model="phone_otp" x-bind:readonly="$wire.is_phone_verified ? true : false"
                                         placeholder="Enter your OTP" required>
+                                    @error('phone_otp')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3 col-md-12 text-center" x-show="!$wire.is_phone_otp_sent">
                                     <button class="btn btn-success" type="button"
@@ -212,10 +218,10 @@
                                     <div class="col-md-12 mb-2 text-center">
                                         <button class="btn btn-success" type="submit">Sign Up</button>
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="btnBottom mt-2" style="position:absolute;bottom:30px;width:85%">
+
+                            <div class="btnBottom mt-3" style="position:absolute;bottom:30px;width:85%">
                                 <hr>
                                 <button class="btn btn-secondary btnBack " type="button" x-show="$wire.step > 1"
                                     wire:click="gotoPreviousStep"><i class="bi bi-arrow-left-circle-fill"></i>
@@ -224,7 +230,6 @@
                                     x-show="$wire.step < 4 && !($wire.step == 2 && !$wire.is_email_verified) && !($wire.step == 3 && !$wire.is_phone_verified)"
                                     wire:click="gotoNextStep"><i class="bi bi-arrow-right-circle-fill"></i> Proceed</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
