@@ -4,10 +4,12 @@ namespace App\Livewire\Modals;
 
 use App\Enums\RoleEnum;
 use App\Livewire\Agents\AddAgent;
+use App\Mail\AgentCreationMail;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class AddUserModal extends Component
@@ -26,11 +28,15 @@ class AddUserModal extends Component
         $this->validate([
             'name' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        ], [
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'email.unique' => 'Email already exists',
         ]);
 
         try {
             DB::beginTransaction();
-            User::create([
+            $user = User::create([
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make('Agent@123#'),
@@ -40,6 +46,13 @@ class AddUserModal extends Component
                 'is_approved' => 'Yes',
             ]);
             DB::commit();
+            $mailData = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'organization_name' => $user->organization->business_name,
+            ];
+
+            Mail::to($user->email)->send(new AgentCreationMail($mailData));
             $this->dispatch('hideModal');
             $this->dispatch('updatedAgent');
             $this->dispatch('message', heading:'success',text:'Agent added successfully')->to(AddAgent::class);
