@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -6,7 +5,7 @@ style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: 
 <head>
 <meta name="viewport" content="width=device-width"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>ReliantPay - Authorize Transaction</title>
+<title>ReliantPay - Rejection</title>
 
 </head>
 
@@ -25,7 +24,7 @@ bgcolor="#f6f6f6">
     <div class="content"
          style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
         <table class="main" width="100%" cellpadding="0" cellspacing="0" itemprop="action" itemscope
-               itemtype="http://schema.org/ConfirmAction"
+               itemtype="#"
                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; margin: 0; border: none;"
                >
             <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -38,37 +37,30 @@ bgcolor="#f6f6f6">
                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                         <tr>
                             <td style="text-align: center">
-                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="images/adminlogo/admin-logo-light.png" height="24" alt="logo"/></a> <br/>
+                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="https://reliant.yellowberry.in/auth/images/adminlogo/admin-logo-light.png" height="80" alt="logo"/></a> <br/>
                             </td>
                         </tr>
                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                             <td class="content-block"
                                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                 valign="top">
-                                Please authorize your payment for Airline Booking via ReliantPay, which will be charged to the Credit Card Provided to us.
-                            </td>
-                        </tr>
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                            <td class="content-block"
-                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                valign="top">
-                                We would require your consent to charge your card for the amount of $ {{ $mailData['amount'] }}
-                            </td>
-                        </tr>
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                            <td class="content-block" itemprop="handler" itemscope
-                                itemtype="http://schema.org/HttpActionHandler"
-                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                valign="top">
-                                <a href="{{ $mailData['file_path'] }}" class="btn-primary" itemprop="url"
-                                   style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #6658dd; margin: 0; border-color: #6658dd; border-style: solid; border-width: 8px 16px;">Click here to Confirm</a>
-                            </td>
-                        </tr>
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                            <td class="content-block"
-                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                valign="top">
-                                &mdash; <b>ReliantPay</b> - Simpe, Transparent, Secure
+                                Dear {{ $mailData['name'] }},
+                                <p>Thank you for applying to ReliantPay as {{$mailData['organization_name']}} a Merchant. We appreciate the time and effort you put into the application process. </p><br>
+
+                                <p>After careful consideration, we regret to inform you that your application has not been successful at this time due to one or many reasons as indicated below:-</p>
+
+                                <p>Here are some key observations of our Internal Review Team for your kind consideration:</p>
+
+                                <p><b>** </b> {{$mailData['reason']}}</p>
+
+                                <p>We genuinely appreciate your interest in joining ReliantPay, and we encourage you to re-apply after making necessary corrections/rectifications.</p>
+
+                                <p>If you have any questions or would like feedback on your application, please don't hesitate to reach out to our support team at <a href="mailto:support@reliantpay.com">support@reliantpay.com</a>. We appreciate your understanding. </p>
+
+                                <p><b>Thank you for choosing ReliantPay. We look forward to having you on board and assisting with your merchant service needs.</b></p>
+
+                                <p>Warm regards,</p>
+                                <p>The ReliantPay Team</p>
                             </td>
                         </tr>
                     </table>

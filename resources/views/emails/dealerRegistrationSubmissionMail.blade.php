@@ -69,7 +69,7 @@ bgcolor="#f6f6f6">
                 </td>
             </tr>
         </table>
-        <div class="footer"
+        {{-- <div class="footer"
              style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
             <table width="100%"
                    style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -81,7 +81,7 @@ bgcolor="#f6f6f6">
                     </td>
                 </tr>
             </table>
-        </div>
+        </div> --}}
     </div>
 </td>
 <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;"

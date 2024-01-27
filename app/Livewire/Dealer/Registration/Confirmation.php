@@ -16,6 +16,7 @@ class Confirmation extends Component
 {
     public $orgID;
     private $smsService;
+
     public function boot(){
         $this->smsService = new TrueDialogSmsService();
     }

@@ -3,13 +3,17 @@
 namespace App\Livewire\Admin;
 
 use App\Enums\StatusEnum;
+use App\Mail\DealerRegistrationApprovalMail;
+use App\Mail\DealerRegistrationRejectionMail;
 use App\Models\Organization;
 use App\Models\OrganizationServiceMap;
 use App\Models\RegistrationUpload;
 use App\Models\TransactionLog;
 use App\Models\User;
+use App\Service\TrueDialogSmsService;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class AdminActions extends Component
@@ -21,6 +25,12 @@ class AdminActions extends Component
     public $docs;
     public $services;
     public $action;
+
+    private $smsService;
+
+    public function boot(){
+        $this->smsService = new TrueDialogSmsService();
+    }
 
     public function mount($orgID)
     {
@@ -55,6 +65,12 @@ class AdminActions extends Component
             ]);
             $this->transactionLog();
             DB::commit();
+            $mailData = [
+                'name' => $user->name,
+                'email' => $user->email,
+            ];
+            Mail::to($user->email)->send(new DealerRegistrationApprovalMail($mailData));
+            $this->smsService->sendSms('+1'.$user->phone_number, 'Your application for merchant registration on the ReliantPay platform is Approved. Questions? Contact support@reliantpay.com');
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization Approved']);
             return redirect()->route('manageOrganizations');
         } catch (\Exception $e) {
@@ -68,6 +84,8 @@ class AdminActions extends Component
     {
         $this->validate([
             'remarks' => 'required',
+        ], [
+            'remarks.required' => 'Please enter reason for rejection',
         ]);
 
         try {
@@ -81,6 +99,13 @@ class AdminActions extends Component
                 'is_approved' => 'No',
             ]);
             DB::commit();
+            $mailData = [
+                'name' => $user->name,
+                'organization_name' => $user->organization->business_name,
+                'reason' => $this->remarks,
+            ];
+            Mail::to($user->email)->send(new DealerRegistrationRejectionMail($mailData));
+            $this->smsService->sendSms('+1'.$user->phone_number, 'Your application for merchant registration on the ReliantPay platform is Rejected. Questions? Contact support@reliantpay.com');
             session()->flash('message', ['heading' => 'success', 'text' => 'Organization rejected']);
             return redirect()->route('manageOrganizations');
         }catch(\Exception $e){
