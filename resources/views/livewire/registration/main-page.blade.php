@@ -104,16 +104,16 @@
                                     x-show="!$wire.is_email_otp_sent">Send OTP to
                                     email</button>
                                 <div x-show="$wire.is_email_otp_sent" class= "mb-2">
-                                   
 
-                                   
+
+
                                     <button class="btn btn-success" type="button" wire:click="resendEmailOtp()"
                                         x-bind:disabled="$wire.resendEmailCountdown > 0">
                                         <span x-show="$wire.resendEmailCountdown > 0">
                                             Resend OTP in {{ $resendEmailCountdown }} seconds
                                         </span>
                                         <span x-show="$wire.resendEmailCountdown == 0">
-                                            Resend OTP. 
+                                            Resend OTP.
                                         </span>
                                     </button>
                                 </div>
@@ -149,7 +149,7 @@
                                     <label for="phone_otp" class="form-label">OTP</label>
                                     <input class="form-control" type="text" id="phone_otp" name ="phone_otp"
                                         wire:model="phone_otp" x-bind:readonly="$wire.is_phone_verified ? true : false"
-                                        placeholder="Enter your otp" required>
+                                        placeholder="Enter your OTP" required>
                                 </div>
                                 <div class="mb-3" x-show="!$wire.is_phone_otp_sent">
                                     <button class="btn btn-success" type="button"
@@ -167,7 +167,7 @@
                                             Resend OTP
                                         </span>
                                     </button>
-                                   
+
 
                                 </div>
                                 <div class="mb-3" x-show="$wire.is_phone_otp_sent">

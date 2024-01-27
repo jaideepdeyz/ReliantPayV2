@@ -1,5 +1,5 @@
 <div class="row mb-5">
-    
+
     <!-- start page title -->
     <div class="col-12">
         <div class="page-title-box">
@@ -16,7 +16,11 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                Your application is under process, kindly wait for the results.
+                <p>🌟 <b>Welcome to ReliantPay!</b> 🌟</p>
+                <p>Thank you for registering. Your application is now under review by our team.</p>
+                <p>Once Approved, we will intimate you via EMAIL with further instructions.</p>
+                <p>We appreciate your patience! </p>
+                <p><b>Need assistance?</b> Reach out to our support team anytime on <b>support@reliantpay.com</b>, kindly include your registered <b>EMAIL and MOBILE</b> Number in your support request for us to address your concerns effectively.</p></b>
             </div>
         </div>
     </div>
@@ -167,12 +171,12 @@
                             <div class="btn-group mb-2">
                                 <button type="button" class="btn btn-xs btn-light mr-1"
                                 wire:click="updateChart('10')"
-                            
+
                                 >Last 10 Days</button>
                                 <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('30')">Last 30 days</button>
                                 <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('60')">Last 60 days</button>
 
-                                
+
                             </div>
                         </div>
 
@@ -180,7 +184,7 @@
 
                         <div dir="ltr" x-data="{ chartData: {} }"
                         x-init="
-                        
+
                             chartData = {{ json_encode($options) }};
                             new ApexCharts($refs.chart, chartData).render();
                         ">

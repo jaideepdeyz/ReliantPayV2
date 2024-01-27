@@ -109,7 +109,7 @@
                                 <div class="mb-3" x-show="otp_requested && !otp_verified">
                                     <label for="otp" class="form-label">OTP</label>
                                     <input class="form-control" type="text" id="otp" name ="otp"
-                                        placeholder="Enter your otp" required>
+                                        placeholder="Enter your OTP" required>
                                 </div>
                                 <div class="mb-3" x-show="!otp_requested">
                                     <button class="btn btn-success" type="button" @click="requestOtp()">Request

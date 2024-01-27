@@ -5,7 +5,7 @@ style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: 
 <head>
 <meta name="viewport" content="width=device-width"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>ReliantPay - EMAIL VERIFICATION</title>
+<title>ReliantPay - Confirmation</title>
 
 </head>
 
@@ -44,29 +44,25 @@ bgcolor="#f6f6f6">
                             <td class="content-block"
                                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                 valign="top">
-                                🌟 Welcome to ReliantPay! 🌟
+                                Dear {{ $mailData }}, <br>
+                                <p>We're excited to have you join us at ReliantPay!</p><br>
 
-                                <br>
-                                <p>Thank you for showing an interest in ReliantPay. We are excited to have you on board.
-                                </p>
-                                <p>As the first step in onboarding with us, please use the OTP <b>{{ $otp }}</b> to verify your email.</p>
-                            </td>
-                        </tr>
+                                <p>We have successfully received your registration and our team is now reviewing your application. This process is part of our commitment to maintain the highest standards of security and service.</p><br>
 
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                            <td class="content-block"
-                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                valign="top">
-                                &mdash; <b>With warm regards,</b> <br>
-                            </td>
-                        </tr>
+                                <p>What Happens Next?</p> <br>
 
+                                <p><b>*Application Review:*</b> Our risk assessment team is carefully reviewing your application.</p><br>
 
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                            <td class="content-block"
-                                style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                valign="top">
-                                &mdash; <b>ReliantPay</b> - Simpe, Transparent, Secure
+                                <p><b>*Application Approval:*</b> Once your application is approved, you will receive an email confirmation and you can then LOGIN with your the credentials (EMAIL/PASSWORD) used during registration.</p><br>
+
+                                <p><b>* Getting Started?:*</b> As soon as your application is approved, you'll be able to access our services.</p><br>
+
+                                <p><b>* Need Help?:*</b> If you have any questions or require assistance while your application is being processed, please don't hesitate to contact our support team at <a href="mailto:support@reliantpay.com">support@reliantpay.com</a></p><br>
+
+                                <p><b>Thank you for choosing ReliantPay. We look forward to having you on board and assisting with your merchant service needs.</b></p>
+
+                                <p>Warm regards,</p>
+                                <p>The ReliantPay Team</p>
                             </td>
                         </tr>
                     </table>
