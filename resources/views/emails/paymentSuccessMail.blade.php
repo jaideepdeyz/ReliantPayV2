@@ -55,7 +55,7 @@ bgcolor="#f6f6f6">
                                     <p>Arrival Airport / Station : {{ $mailData['toAirport'] }}<p>
                                     <p>Order ID: {{ $mailData['order_id'] }}<p>
                                     <p>Payment Status: {{ $mailData['result'] }}<p>
-                                    <p>Transaction ID: {{ $mailData['transaction'] }}<p>
+                                    <p>Transaction ID: {{ $mailData['transaction_id'] }}<p>
                                     <p>Amount: {{ $mailData['amount'] }}<p>
 
                                 </p>

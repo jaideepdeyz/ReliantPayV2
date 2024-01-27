@@ -60,7 +60,9 @@ class PaymentController extends Controller
                     'amount' => $gwResponse['amount'],
                 ]);
 
-                switch($salebooking->service->service_name)
+            }
+
+            switch($salebooking->service->service_name)
                 {
                     case ServiceEnum::FLIGHTS->value:
                         $type = ServiceEnum::FLIGHTS->value;
@@ -90,13 +92,12 @@ class PaymentController extends Controller
                     'departureDate' => $departureDate,
                     'order_id' => $gwResponse['order-id'],
                     'result' => $gwResponse['result'],
-                    'transaction-id' => $gwResponse['transaction-id'],
+                    'transaction_id' => $gwResponse['transaction-id'],
                     'amount' => $gwResponse['amount'],
                 ];
 
                 Mail::to($salebooking->customer_email)->send(new PaymentSuccessMail($mailData));
                 return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
-            }
         }
         catch (\Exception $e)
         {
