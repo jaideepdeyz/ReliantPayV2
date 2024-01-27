@@ -84,6 +84,7 @@ class MainPage extends Component
     {
         return view('livewire.registration.main-page')->layout('layouts.guest-base');
     }
+
     public function sendEmailOtp()
     {
         $this->validate([
@@ -91,8 +92,8 @@ class MainPage extends Component
         ]);
 
         try {
-            
-           
+
+
             $this->resendEmailCounter++;
             $email_otp = rand(100000, 999999);
             Log::info('email otp is '.$email_otp);
@@ -107,8 +108,8 @@ class MainPage extends Component
             );
             Mail::to($this->email)->send(new \App\Mail\EmailOtp($email_otp));
             $this->is_email_otp_sent = true;
-            
-            
+
+
             $this->dispatch('notify', [
                 'message' => 'Email OTP Sent,please check your email',
                 'type' => 'success',
@@ -231,7 +232,7 @@ class MainPage extends Component
                 'type' => 'error',
             ]);
             return;
-           
+
         }
         $this->sendEmailOtp();
     }
@@ -248,7 +249,7 @@ class MainPage extends Component
                 'type' => 'error',
             ]);
             return;
-           
+
         }
         $this->sendPhoneOtp();
     }
@@ -257,5 +258,5 @@ class MainPage extends Component
         $this->resendPhoneCountdown=60;
         $this->dispatch('startPhoneCountdown', $this->resendPhoneCountdown);
     }
-   
+
 }

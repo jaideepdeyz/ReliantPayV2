@@ -100,27 +100,32 @@
                                     @enderror
 
                                 </div>
-                                <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
+                                <div class="col-md-12 mb-3 text-center">
+                                    <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
                                     x-show="!$wire.is_email_otp_sent">Send OTP to
                                     email</button>
-                                <div x-show="$wire.is_email_otp_sent" class= "mb-2">
+                                </div>
 
-
-
-                                    <button class="btn btn-success" type="button" wire:click="resendEmailOtp()"
-                                        x-bind:disabled="$wire.resendEmailCountdown > 0">
+                                <div x-show="$wire.is_email_otp_sent" class= "mb-2 row">
+                                    <div class="col-md-6 text-center">
                                         <span x-show="$wire.resendEmailCountdown > 0">
                                             Resend OTP in {{ $resendEmailCountdown }} seconds
                                         </span>
-                                        <span x-show="$wire.resendEmailCountdown == 0">
-                                            Resend OTP.
-                                        </span>
-                                    </button>
+                                        <button class="btn btn-success" type="button" wire:click="resendEmailOtp()"
+                                        x-bind:disabled="$wire.resendEmailCountdown > 0" x-show="$wire.resendEmailCountdown == 0">
+                                            {{-- <span x-show="$wire.resendEmailCountdown == 0"> --}}
+                                                Resend OTP
+                                            {{-- </span> --}}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-2 text-right">
+                                        <button class="btn btn-primary verifyEmailOtp" type="button"
+                                            wire:click="verifyEmailOtp()" x-show="$wire.is_email_otp_sent"
+                                            x-bind:disabled="$wire.is_email_verified ? true : false">Verify
+                                            OTP
+                                        </button>
+                                    </div>
                                 </div>
-                                <button class="btn btn-warning verifyEmailOtp" type="button"
-                                    wire:click="verifyEmailOtp()" x-show="$wire.is_email_otp_sent"
-                                    x-bind:disabled="$wire.is_email_verified ? true : false">Verify
-                                    OTP</button>
                                 {{-- <img src="{{ asset('img/email.gif') }}" alt=""
                                     class="mt-1 sendEmailGif d-none" width="40"> --}}
 
@@ -130,7 +135,7 @@
                             <div class="block3 " x-show="$wire.step==3">
                                 <h6 class="text-muted d-block text-center">Step 3</h6>
                                 <h4 class="mb-4 text-center">Mobile Verification</h4>
-                                <div class="mb-3" class="input-group input-group-merge">
+                                <div class="mb-3 col-md-12" class="input-group input-group-merge">
                                     <label for="phone" class="form-label">Mobile Number</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text" id="basic-addon1">+1</span>
@@ -151,50 +156,67 @@
                                         wire:model="phone_otp" x-bind:readonly="$wire.is_phone_verified ? true : false"
                                         placeholder="Enter your OTP" required>
                                 </div>
-                                <div class="mb-3" x-show="!$wire.is_phone_otp_sent">
+                                <div class="mb-3 col-md-12 text-center" x-show="!$wire.is_phone_otp_sent">
                                     <button class="btn btn-success" type="button"
                                         wire:click="sendPhoneOtp()">Request
                                         OTP</button>
                                 </div>
 
-                                <div class="mb-3" x-show="$wire.is_phone_otp_sent">
-                                    <button class="btn btn-success" type="button" wire:click="resendPhoneOtp()"
-                                        x-bind:disabled="$wire.resendPhoneCountdown > 0">
+                                <div class="mb-3 row" x-show="$wire.is_phone_otp_sent">
+                                    <div class="col-md-6 mb-2 text-center">
                                         <span x-show="$wire.resendPhoneCountdown > 0">
                                             Resend OTP in {{ $resendPhoneCountdown }} seconds
                                         </span>
-                                        <span x-show="$wire.resendPhoneCountdown == 0">
-                                            Resend OTP
-                                        </span>
-                                    </button>
-
+                                        <button class="btn btn-success" type="button" wire:click="resendPhoneOtp()"
+                                            x-bind:disabled="$wire.resendPhoneCountdown > 0" x-show="$wire.resendPhoneCountdown == 0">
+                                            {{-- <span > --}}
+                                                Resend OTP
+                                            {{-- </span> --}}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 mb-2 text-center">
+                                        <button class="btn btn-primary" type="button" wire:click="verifyPhoneOtp()"
+                                            x-bind:disabled="$wire.is_phone_verified ? true : false">Verify
+                                            OTP
+                                        </button>
+                                    </div>
 
                                 </div>
-                                <div class="mb-3" x-show="$wire.is_phone_otp_sent">
-                                    <button class="btn btn-warning" type="button" wire:click="verifyPhoneOtp()"
-                                        x-bind:disabled="$wire.is_phone_verified ? true : false">Verify
-                                        OTP</button>
-                                </div>
+                                {{-- <div class="mb-3" x-show="$wire.is_phone_otp_sent">
+
+                                </div> --}}
                             </div>
 
 
                             <div class="block4 " x-show="$wire.step==4">
                                 <div class="mb-3">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="terms"
-                                            name="terms" required>
-                                        <label class="form-check-label" for="terms">I accept <a
-                                                href="javascript: void(0);" class="text-dark">Terms and
-                                                Conditions</a></label>
+                                    <div class="col-md-12 mb-2">
+                                        <p>Terms & Conditions</p>
+                                        <ol>
+                                            <li>By signing up, you agree to abide by our terms and conditions.</li>
+                                            <li>Any false or misleading details may result in account termination.</li>
+                                            <li>Keep your login details safe. Report any unauthorized access.</li>
+                                            <li>Your personal info is handled per our privacy policy. We value your privacy.</li>
+                                            <li>We reserve the right to terminate or suspend your account at our discretion. You will be notified of any such action taken.</li>
+                                        </ol>
                                     </div>
-                                </div>
-                                <div class="text-center d-grid">
-                                    <button class="btn btn-success" type="submit">Sign
-                                        up</button>
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="terms"
+                                                name="terms" required>
+                                            <label class="form-check-label" for="terms">I accept <a
+                                                    href="javascript: void(0);" class="text-dark">all the Terms and
+                                                    Conditions</a></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-2 text-center">
+                                        <button class="btn btn-success" type="submit">Sign Up</button>
+                                    </div>
+
                                 </div>
                             </div>
-
-                            <div class="btnBottom" style="position:absolute;bottom:30px;width:85%">
+                            <div class="btnBottom mt-2" style="position:absolute;bottom:30px;width:85%">
+                                <hr>
                                 <button class="btn btn-secondary btnBack " type="button" x-show="$wire.step > 1"
                                     wire:click="gotoPreviousStep"><i class="bi bi-arrow-left-circle-fill"></i>
                                     Back</button>
