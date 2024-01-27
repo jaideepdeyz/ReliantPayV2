@@ -7,12 +7,18 @@ use App\Mail\DealerRegistrationSubmissionMail;
 use App\Models\Organization;
 use App\Models\TransactionLog;
 use App\Models\User;
+use App\Service\TrueDialogSmsService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Confirmation extends Component
 {
     public $orgID;
+    private $smsService;
+    public function boot(){
+        $this->smsService = new TrueDialogSmsService();
+    }
 
     public function mount($orgID)
     {
@@ -22,6 +28,7 @@ class Confirmation extends Component
     public function save()
     {
         try {
+            DB::beginTransaction();
             $org = Organization::find($this->orgID);
             //storing transaction log
             TransactionLog::create([
@@ -41,8 +48,12 @@ class Confirmation extends Component
             ]);
 
             Mail::to($user->email)->send(new DealerRegistrationSubmissionMail($user->name));
+            $this->smsService->sendSms($user->phone_number, 'Thank you for registering! Your application is under review. We will intimate you via email upon approval. Questions? Contact support@reliantpay.com');
+            DB::commit();
+
 
         } catch (\Exception $e) {
+            DB::rollBack();
             dd($e);
         }
 
