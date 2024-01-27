@@ -72,7 +72,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransactionLog::class, 'user_id', 'id');
     }
-  
+
+    public function agentPasswordChangeLogs()
+    {
+        return $this->hasMany(AgentPasswordChangeLogs::class, 'user_id', 'id');
+    }
+
 
 
 }

@@ -3,10 +3,14 @@
 namespace App\Livewire\Agents;
 
 use App\Enums\StatusEnum;
+use App\Models\AgentPasswordChangeLogs;
 use App\Models\SaleBooking;
+use App\Models\User;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AgentDashboard extends Component
 {
@@ -15,10 +19,19 @@ class AgentDashboard extends Component
     public $performingAgents = [];
     public $options;
     public $charttype = '10';
-    
+    public $firstPasswordChanged = 'No';
+    public $currentPassword;
+    public $newPassword;
+
     public function mount()
     {
         $this->last10days();
+        $passChangeStatus = AgentPasswordChangeLogs::where('user_id', Auth::User()->id)->first();
+        if($passChangeStatus->first_password_changed == 'Yes'){
+            $this->firstPasswordChanged = 'Yes';
+        } else {
+            $this->firstPasswordChanged = 'No';
+        }
     }
 
     public function updateChart($type)
@@ -177,7 +190,7 @@ class AgentDashboard extends Component
             ],
         ];
     }
-    
+
     public function last60Days()
     {
         $days = [];
@@ -249,6 +262,43 @@ class AgentDashboard extends Component
             ],
         ];
     }
+
+    public function changePassword()
+    {
+        if($this->currentPassword == $this->newPassword){
+            $this->dispatch('message', heading:'error', text: 'New Password cannot be same as Old Password')->self();
+            return;
+        } else {
+            $this->validate([
+                'currentPassword' => 'required',
+                'newPassword' => 'required|min:6',
+            ], [
+                'currentPassword.required' => 'Current Password is required',
+                'newPassword.required' => 'New Password is required',
+                'newPassword.min' => 'New Password must be at least 8 characters',
+            ]);
+
+            try
+            {
+                DB::beginTransaction();
+                $user = User::where('id', Auth::User()->id)->first();
+                $user->password = Hash::make($this->newPassword);
+                $user->save();
+
+                $agentLogs = AgentPasswordChangeLogs::where('user_id', Auth::User()->id)->first();
+                $agentLogs->first_password_changed = 'Yes';
+                $agentLogs->save();
+                DB::commit();
+                $this->firstPasswordChanged = 'Yes';
+                $this->dispatch('message', heading:'success',text:'Password Updated successfully')->self();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                $this->dispatch('message', heading:'error', text: $e->getMessage())->self();
+                return;
+            }
+        }
+    }
+
     public function render()
     {
         $authorizations = SaleBooking::where('agent_id', auth()->user()->id)->where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();

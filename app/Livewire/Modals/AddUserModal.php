@@ -5,11 +5,13 @@ namespace App\Livewire\Modals;
 use App\Enums\RoleEnum;
 use App\Livewire\Agents\AddAgent;
 use App\Mail\AgentCreationMail;
+use App\Models\AgentPasswordChangeLogs;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 
 class AddUserModal extends Component
@@ -45,6 +47,13 @@ class AddUserModal extends Component
                 'is_active' => 'Yes',
                 'is_approved' => 'Yes',
             ]);
+
+            $agentLogs = AgentPasswordChangeLogs::create([
+                'user_id' => $user->id,
+                'first_password_changed' => 'No',
+                'last_login_from' => Request::ip(),
+            ]);
+
             DB::commit();
             $mailData = [
                 'name' => $user->name,

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use App\Providers\RouteServiceProvider;
 use App\Service\TrueDialogSmsService;
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Validate;
 
 class MainPage extends Component
