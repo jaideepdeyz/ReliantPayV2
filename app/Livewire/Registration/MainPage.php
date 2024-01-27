@@ -139,6 +139,7 @@ class MainPage extends Component
             ]);
         }
     }
+
     public function verifyEmailOtp()
     {
         $this->validate([
@@ -255,6 +256,7 @@ class MainPage extends Component
             ]);
         }
     }
+
     public function resendEmailOtp()
     {
         if ($this->resendEmailCounter ==2) {
@@ -267,11 +269,13 @@ class MainPage extends Component
         }
         $this->sendEmailOtp();
     }
+
     private function startEmailCountdown()
     {
         $this->resendEmailCountdown=60;
         $this->dispatch('startEmailCountdown', $this->resendEmailCountdown);
     }
+
     public function resendPhoneOtp()
     {
         if ($this->resendPhoneCounter ==2) {
@@ -284,6 +288,7 @@ class MainPage extends Component
         }
         $this->sendPhoneOtp();
     }
+
     private function startPhoneCountdown()
     {
         $this->resendPhoneCountdown=60;

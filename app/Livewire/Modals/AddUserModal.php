@@ -48,8 +48,9 @@ class AddUserModal extends Component
                 'is_approved' => 'Yes',
             ]);
 
-            $agentLogs = AgentPasswordChangeLogs::create([
+            $agentLogs = AgentPasswordChangeLogs::updateOrCreate([
                 'user_id' => $user->id,
+            ],[
                 'first_password_changed' => 'No',
                 'last_login_from' => Request::ip(),
             ]);

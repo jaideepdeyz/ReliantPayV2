@@ -73,6 +73,10 @@
                                     </div>
                                 </div>
 
+                                <div class="text-center d-grid mb-3">
+                                    <a href="{{route('resetPassword')}}">Forgot Password ? Click here to reset</a>
+                                </div>
+
                                 <div class="text-center d-grid">
                                     <button class="btn btn-success" type="submit">Sign
                                         In</button>

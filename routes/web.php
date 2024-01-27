@@ -41,6 +41,7 @@ use App\Livewire\Dealer\Registration\ServicesCompliances;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
+use App\Livewire\User\ResetPassword;
 use App\Models\AmtrakBooking;
 
 /*
@@ -58,6 +59,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
+
+// User Routes
+Route::get('resetPassword', ResetPassword::class)->name('resetPassword');
 
 //docusign routes
 Route::get('docusign', [DocusignController::class, 'index'])->name('docusign');
