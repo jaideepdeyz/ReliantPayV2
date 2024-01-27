@@ -27,6 +27,11 @@ class SaleBooking extends Model
         return $this->hasOne(FlightBooking::class, 'app_id', 'id');
     }
 
+    public function amtrakBooking()
+    {
+        return $this->hasOne(AmtrakBooking::class, 'app_id', 'id');
+    }
+
     public function payment()
     {
         return $this->hasOne(Payment::class, 'app_id', 'id');

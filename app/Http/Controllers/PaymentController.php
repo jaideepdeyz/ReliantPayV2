@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ServiceEnum;
 use App\Enums\StatusEnum;
+use App\Mail\PaymentSuccessMail;
 use App\Models\SaleBooking;
 use App\Models\SuccessfulPaymentResponse;
 use App\Service\PaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Xml;
 
@@ -57,11 +60,49 @@ class PaymentController extends Controller
                 ]);
             }
 
+            switch($salebooking->service->service_name)
+            {
+                case ServiceEnum::FLIGHTS->value:
+                    $type = ServiceEnum::FLIGHTS->value;
+                    $mode =  $salebooking->flightBooking->one_way_or_round_trip;
+                    $fromAirport = $salebooking->flightBooking->departureAirport->name;
+                    $toAirport = $salebooking->flightBooking->destinationAirport->name;
+                    $departureDate = $salebooking->flightBooking->departure_date;
+                    break;
+                case ServiceEnum::AMTRAK->value:
+                    $type = ServiceEnum::AMTRAK->value;
+                    $mode =  $salebooking->amtrakBooking->one_way_or_round_trip;
+                    $fromAirport = $salebooking->amtrakBooking->departureStation->name;
+                    $toAirport = $salebooking->amtrakBooking->destinationStation->name;
+                    $departureDate = $salebooking->amtrakBooking->departure_date;
+                    break;
+            }
+
+            $mailData = [
+                'bookingId' => $salebooking->id,
+                'name' => $salebooking->customer_name,
+                'email' => $salebooking->customer_email,
+                'phone' => $salebooking->customer_phone,
+                'type' => $type,
+                'mode' => $mode,
+                'fromAirport' => $fromAirport,
+                'toAirport' => $toAirport,
+                'departureDate' => $departureDate,
+                'order_id' => $gwResponse['order-id'],
+                'result' => $gwResponse['result'],
+                'transaction-id' => $gwResponse['transaction-id'],
+                'amount' => $gwResponse['amount'],
+            ];
+
+            Mail::to($salebooking->customer_email)->send(new PaymentSuccessMail($mailData));
             return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e)
+        {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
     public function generatePaymentLink($id)
     {
 
@@ -71,12 +112,14 @@ class PaymentController extends Controller
         return redirect()->back()->with('generatedpaymenturl', $url);
 
     }
+
     public function paymentLink($id)
     {
         $decodedId = base64_decode($id);
         $salebooking = SaleBooking::find($decodedId);
         return view('payment.payment-link', compact('salebooking','decodedId'));
     }
+
     public function makePaymentLinkPayment(Request $request)
     {
         $_token=$request['_token'];
