@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('first_password_changed')->nullable();
-            $table->string('email_otp')->nullable();
             $table->string('last_login_from')->nullable(); // IP address
             $table->timestamps();
         });
