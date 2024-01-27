@@ -49,7 +49,7 @@ class Confirmation extends Component
             ]);
 
             Mail::to($user->email)->send(new DealerRegistrationSubmissionMail($user->name));
-            $this->smsService->sendSms($user->phone_number, 'Thank you for registering! Your application is under review. We will intimate you via email upon approval. Questions? Contact support@reliantpay.com');
+            $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is under review. We will intimate you via email upon approval. Questions? Contact support@reliantpay.com');
             DB::commit();
 
 

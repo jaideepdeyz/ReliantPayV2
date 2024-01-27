@@ -14,16 +14,24 @@ class ServicesCompliances extends Component
     public $business_product_services = [];
     public $business_PCI_DSS_compliance_status;
     public $business_HTTPS_compliance_status;
+    public $viewOnly = 'No';
+    public $productsServices = [];
+    public $orgProductsServices = [];
 
-    public function mount($orgID)
+    public function mount($orgID, $viewOnly = null)
     {
-        $this->orgID = $orgID;
         $org = Organization::find($orgID);
         if($org)
         {
-
             $this->business_PCI_DSS_compliance_status = $org->business_PCI_DSS_compliance_status;
             $this->business_HTTPS_compliance_status = $org->business_HTTPS_compliance_status;
+        }
+
+        $this->viewOnly = $viewOnly;
+        if($this->viewOnly != null)
+        {
+            $this->viewOnly = 'Yes';
+            $this->orgProductsServices = OrganizationServiceMap::where('organization_id', $orgID)->get();
         }
 
         // if($org->productsServices)
@@ -51,7 +59,7 @@ class ServicesCompliances extends Component
 
             //storing Services and Products of an Organization
             foreach($this->business_product_services as $key=> $service){
-                
+
 
                 if($service == true)
                 {

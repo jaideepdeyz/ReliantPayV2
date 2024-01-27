@@ -6,6 +6,7 @@ use App\Models\RegistrationUpload;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Monolog\Handler\NullHandler;
 
 class DocumentUploads extends Component
 {
@@ -23,9 +24,20 @@ class DocumentUploads extends Component
     public $business_premises_external_pictures;
     public $business_premises_internal_pictures;
 
-    public function mount($orgID)
+    public $uploadedDocs = [];
+
+    public $viewOnly = 'No';
+
+    public function mount($orgID, $viewOnly = null)
     {
         $this->orgID = $orgID;
+
+        $this->viewOnly = $viewOnly;
+        if($viewOnly != null)
+        {
+            $this->viewOnly = 'Yes';
+            $this->uploadedDocs = RegistrationUpload::where('organization_id', $this->orgID)->get();
+        }
     }
 
     public function save()
@@ -94,7 +106,6 @@ class DocumentUploads extends Component
         $file = RegistrationUpload::updateOrCreate(
             ['organization_id' => $this->orgID, 'document_name' => $docName],
             [
-            'organization_id' => $this->orgID,
             'document_name' => $docName,
             'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
         ]);

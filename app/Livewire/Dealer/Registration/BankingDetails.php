@@ -18,8 +18,9 @@ class BankingDetails extends Component
     public $business_bank_IFSC;
     public $business_bank_SWIFT_code;
     public $business_bank_routing_code;
+    public $viewOnly = 'No';
 
-    public function mount($orgID)
+    public function mount($orgID, $viewOnly = null)
     {
         $this->orgID = $orgID;
         $org = Organization::find($orgID);
@@ -33,6 +34,12 @@ class BankingDetails extends Component
             $this->business_bank_IFSC = $org->business_bank_IFSC;
             $this->business_bank_SWIFT_code = $org->business_bank_SWIFT_code;
             $this->business_bank_routing_code = $org->business_bank_routing_code;
+        }
+
+        $this->viewOnly = $viewOnly;
+        if($this->viewOnly != null)
+        {
+            $this->viewOnly = 'Yes';
         }
     }
 

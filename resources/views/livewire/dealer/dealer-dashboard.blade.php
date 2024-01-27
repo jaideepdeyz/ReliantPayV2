@@ -24,6 +24,79 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <h4 class="card-header">Merchant Application Details</h4>
+            <div class="card-body">
+                <div class="row">
+                    <div class="flex">
+                        <table class="table table-hover table-striped table-borderless wrap table-fixed">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Section</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>1</th>
+                                    <th>Business Information</th>
+                                    <td>
+                                        <a href="{{ route('dealerRegBusinessInfo', 'view') }}" class="btn btn-primary btn-sm">View</a>
+                                        @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
+                                        <a href="{{ route('dealerRegBusinessInfo') }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>2</th>
+                                    <th>Services & Compliances</th>
+                                    <td>
+                                        <a href="{{ route('dealerServicesCompliances', [ 'orgID'=> Auth::User()->organization_id, 'viewOnly' => 'view']) }}" class="btn btn-primary btn-sm">View</a>
+                                        @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
+                                        <a href="{{ route('dealerServicesCompliances', Auth::User()->organization_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>3</th>
+                                    <th>Banking Information</th>
+                                    <td>
+                                        <a href="{{ route('dealerBankingDetails', [ 'orgID'=> Auth::User()->organization_id, 'viewOnly' => 'view']) }}" class="btn btn-primary btn-sm">View</a>
+                                        @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
+                                        <a href="{{ route('dealerBankingDetails', Auth::User()->organization_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>4</th>
+                                    <th>Supporting Business Documents Uploaded</th>
+                                    <td>
+                                        <a href="{{ route('dealerDocs', [ 'orgID'=> Auth::User()->organization_id, 'viewOnly' => 'view']) }}" class="btn btn-primary btn-sm">View</a>
+                                        @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
+                                        <a href="{{ route('dealerDocs', Auth::User()->organization_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>5</th>
+                                    <th>Confirmation to Terms & Conditions</th>
+                                    <td>
+                                        <a href="{{ route('confirmation', [ 'orgID'=> Auth::User()->organization_id, 'viewOnly' => 'view'] )}}" class="btn btn-primary btn-sm">View</a>
+                                        @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
+                                        <a href="{{ route('confirmation', Auth::User()->organization_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @else
         <!-- end page title -->
         <div class="col-md-6 col-xl-3 mb-3">

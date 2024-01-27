@@ -14,8 +14,9 @@ class BusinessInformation extends Component
     public $business_website;
     public $business_email;
     public $business_phone;
+    public $viewOnly = 'No';
 
-    public function mount()
+    public function mount($viewOnly = null)
     {
         $org = Organization::where('user_id', auth()->user()->id)->first();
         if($org) {
@@ -25,6 +26,13 @@ class BusinessInformation extends Component
             $this->business_email = $org->business_email;
             $this->business_phone = $org->business_phone;
         }
+
+        $this->viewOnly = $viewOnly;
+        if($this->viewOnly != null)
+        {
+            $this->viewOnly = 'Yes';
+        }
+
     }
 
     public function storeBusinessInfo()
