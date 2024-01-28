@@ -123,7 +123,11 @@
 
                     <div class="widget-chart text-center" dir="ltr">
 
-                        <div id="total-revenue" class="mt-0" data-colors="#f1556c"></div>
+                        <div dir="ltr" x-data="{ totalRevenueChart: {} }" x-init="totalRevenueChart = {{ json_encode($totalrevenueoptions) }};
+                        new ApexCharts($refs.totalrevenuechart, totalRevenueChart).render();">
+                            <div x-ref="totalrevenuechart"></div>
+                        </div>
+                        {{-- <div id="total-revenue" class="apex-charts mb-4 mt-4" dir="ltr"></div> --}}
 
                         <h5 class="text-muted mt-0">Total sales made today</h5>
                         <h2>${{ $revenueThisDay }}</h2>
@@ -156,24 +160,20 @@
                     <div class="float-end d-none d-md-inline-block">
                         <div class="btn-group mb-2">
                             <button type="button" class="btn btn-xs btn-light mr-1"
-                            wire:click="updateChart('10')"
-                           
-                            >Last 10 Days</button>
-                            <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('30')">Last 30 days</button>
-                            <button type="button" class="btn btn-xs btn-light  mr-1" wire:click="updateChart('60')">Last 60 days</button>
+                                wire:click="updateChart('10')">Last 10 Days</button>
+                            <button type="button" class="btn btn-xs btn-light  mr-1"
+                                wire:click="updateChart('30')">Last 30 days</button>
+                            <button type="button" class="btn btn-xs btn-light  mr-1"
+                                wire:click="updateChart('60')">Last 60 days</button>
 
-                            
+
                         </div>
                     </div>
 
                     <h4 class="header-title mb-3">Sales Analytics</h4>
 
-                    <div dir="ltr" x-data="{ chartData: {} }"
-                    x-init="
-                       
-                        chartData = {{ json_encode($options) }};
-                        new ApexCharts($refs.chart, chartData).render();
-                    ">
+                    <div dir="ltr" x-data="{ chartData: {} }" x-init="chartData = {{ json_encode($options) }};
+                    new ApexCharts($refs.chart, chartData).render();">
                         <div x-ref="chart"></div>
                     </div>
                 </div>

@@ -17,11 +17,13 @@ class AdminDashboard extends Component
     public $processes = [];
     public $merchants = [];
     public $options;
+    public $totalrevenueoptions;
     public $charttype = '10';
 
     public function mount()
     {
         $this->last10days();
+        $this->totalRevenue();
     }
 
     public function updateChart($type)
@@ -304,6 +306,39 @@ class AdminDashboard extends Component
             'processes' => $this->processes,
             'merchants' => $this->merchants,
         ])->layout('layouts.dashboard-layout');
+    }
+    public function totalRevenue(){
+
+        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+         
+        $this->totalrevenueoptions = [
+            'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
+            'chart' => [
+                'type' => 'donut',
+            ],
+            'labels' => ['Total Revenue','Today','This Week','This Month','This Year'],
+            'responsive' => [
+                [
+                    'breakpoint' => 480,
+                    'options' => [
+                        'chart' => [
+                            'width' => 200,
+                        ],
+                        
+                    ],
+                ],
+            ],
+            'legend' => [
+                'show' => false,
+            ],
+        ];
+
+        
+       
     }
 
     
