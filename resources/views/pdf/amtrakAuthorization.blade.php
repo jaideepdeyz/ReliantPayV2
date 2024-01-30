@@ -15,7 +15,7 @@
                 <img src="{{ $logo }}" alt="" width="80">
                 <hr>
                 <div>
-                    <p><b>Dear {{ $saleBooking->customer_name }}, </p>
+                    <p><b>Dear {{ $saleBooking->customer->customer_name }}, </p>
                     <p>Greetings of the day !</p>
                     <p><b>New Reservation- Reservation Authorization</b></p>
                     <p>We would like you to go through your itinerary carefully. Please reply to this email as "I Authorize or I Agree" only when you have checked all the information and are completely satisfied with the itinerary and price. </p>

@@ -13,32 +13,61 @@
                 <h4 class="page-title">Agent Dashboard</h4>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <div class="col-md-6 ">
-                        <form action="{{ $formUrl }}" method="post" id="payment-form">
-                            <div class="form-group mt-2">
-                                <label for="name">Card Number</label>
-                                <input type="text" name="billing-cc-number" id="billing-cc-number" class="form-control"
-                                    placeholder="Enter card Number" minlength="16" maxlength="16"
-                                    value="{{ $salebooking->payment->cc_number }}" required>
-                            </div>
-                            <div class="form-group mt-2">
+                    <form action="{{ $formUrl }}" method="post" id="payment-form">
+                        <div class="form-group mt-2">
+                            <label for="name">Card Number</label>
+                            <input type="text" name="billing-cc-number" id="billing-cc-number" class="form-control"
+                                placeholder="Enter card Number" minlength="16" maxlength="16"
+                                value="{{ $salebooking->payment->cc_number }}" required>
+                        </div>
+                        <div class="form-group mt-2">
 
-                                <label for="name">Expiration Date</label>
-                                <input type="text" name="billing-cc-exp" id="billing-cc-exp" class="form-control"
-                                    placeholder="MM/YY" required pattern="([0-9]{2}[/]?){2}" />
-                            </div>
-                            <div class="form-group mt-2">
-                                <label for="name">CVV</label>
-                                <input type="password" name="cvv" id="cvv" class="form-control"
-                                    placeholder="Enter card CVV" minlength="3" maxlength="3" required>
-                            </div>
+                            <label for="name">Expiration Date</label>
+                            <input type="text" name="billing-cc-exp" id="billing-cc-exp" class="form-control"
+                                placeholder="MM/YY" required pattern="([0-9]{2}[/]?){2}" />
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="name">CVV</label>
+                            <input type="password" name="cvv" id="cvv" class="form-control"
+                                placeholder="Enter card CVV" minlength="3" maxlength="3" required>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary mt-2">Charge Card</button>
-                        </form>
-                    </div>
+                        <button type="submit" class="btn btn-primary mt-2">Charge Card</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-primary">
+                <div class="card-header">
+                    <h5>Billing Details</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-striped table-bordered">
+                        <tr>
+                            <th>Customer's Name:</th>
+                            <td>{{$saleBooking->customer->customer_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Customer's Email:</th>
+                            <td>{{$saleBooking->customer->customer_email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Customer's Phone #:</th>
+                            <td>{{$saleBooking->customer_phone}}</td>
+                        </tr>
+                        <tr>
+                            <th>Service Type :</th>
+                            <td>{{$saleBooking->service->service_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Charge Amount :</th>
+                            <td>{{$saleBooking->payment->amount_charged}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
