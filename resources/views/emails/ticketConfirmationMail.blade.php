@@ -37,7 +37,7 @@ bgcolor="#f6f6f6">
                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                         <tr>
                             <td style="text-align: center">
-                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="{{$mailData['logo']}}" height="80" alt="logo"/></a> <br/>
+                                <a href="#" style="display: block;margin-bottom: 10px;"> <img src="https://reliant.yellowberry.in/website/images/reservation_assistance_logo.png" height="80" alt="logo"/></a> <br/>
                             </td>
                         </tr>
                         <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">

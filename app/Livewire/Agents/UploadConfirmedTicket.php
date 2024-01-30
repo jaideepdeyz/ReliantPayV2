@@ -42,7 +42,6 @@ class UploadConfirmedTicket extends Component
             ]);
             DB::commit();
             $mailData = [
-                'logo' => public_path('website/images/reservation_assistance_logo.png'),
                 'app_id' => $this->booking->id,
                 'name' => $this->booking->customer->customer_name,
                 'passengers' => $this->booking->passengers,
