@@ -254,8 +254,8 @@
                                             <tr>
                                                 <td>{{ $customer->id }}</td>
                                                 <td>{{ $customer->service->service_name }}</td>
-                                                <td>{{ $customer->customer_name }}</td>
-                                                <td>{{ $customer->customer_email }}</td>
+                                                <td>{{ $customer->customer->customer_name }}</td>
+                                                <td>{{ $customer->customer->customer_email }}</td>
                                                 <td>{{ $customer->customer_phone }}</td>
                                                 <td>{{ $customer->amount_charged }}</td>
                                             </tr>
