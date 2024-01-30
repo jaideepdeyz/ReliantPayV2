@@ -118,7 +118,7 @@
                             <div class="mb-3 col-md-3">
                                 <label for="cc_billing_address_zip" class="form-label">ZIP Code <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_billing_address_zip') is-invalid @enderror"
-                                    wire:model="cc_billing_address_zip">
+                                    wire:model="cc_billing_address_zip" minlength="5" maxlength="5">
                                 @error('cc_billing_address_zip')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

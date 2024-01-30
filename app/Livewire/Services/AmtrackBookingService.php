@@ -27,7 +27,6 @@ class AmtrackBookingService extends Component
     public $departure_date;
     public $destination_location;
     public $tripType;
-    public $return_date;
     public $no_days_hotel_car;
     public $comments;
     public $departureHour;
@@ -37,6 +36,10 @@ class AmtrackBookingService extends Component
     public $departure_eta_date;
     public $departureETAHour;
     public $departureETAMinute;
+
+    public $return_date;
+    public $returnHour;
+    public $returnMinute;
 
     public $return_eta_date;
     public $returnETAHour;
@@ -68,7 +71,16 @@ class AmtrackBookingService extends Component
             $this->departure_date = $amtrakBooking->departure_date;
             $this->destination_location = $amtrakBooking->destination_location;
             $this->tripType = $amtrakBooking->oneway_or_roundtrip;
-            $this->return_date = $amtrakBooking->return_date;
+            if($this->tripType == 'Round Trip')
+            {
+                $this->isRoundTrip = 'Yes';
+                $this->return_date = $amtrakBooking->return_date;
+                $this->returnHour = $amtrakBooking->return_hour;
+                $this->returnMinute = $amtrakBooking->return_minute;
+                $this->return_eta_date = $amtrakBooking->return_eta_date;
+                $this->returnETAHour = $amtrakBooking->return_eta_hour;
+                $this->returnETAMinute = $amtrakBooking->return_eta_minute;
+            }
             // $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $amtrakBooking->comments;
             $this->departureStation = TrainStation::find($this->departure_location)->name;
@@ -77,6 +89,9 @@ class AmtrackBookingService extends Component
             $this->departureMinute = $amtrakBooking->departure_minute;
             $this->departureQuery = $amtrakBooking->departureStation->station_location;
             $this->destinationQuery = $amtrakBooking->destinationStation->station_location;
+            $this->departure_eta_date = $amtrakBooking->departure_eta_date;
+            $this->departureETAHour = $amtrakBooking->departure_eta_Hour;
+            $this->departureETAMinute = $amtrakBooking->departure_eta_minute;
 
         }
     }
@@ -133,6 +148,42 @@ class AmtrackBookingService extends Component
 
     public function storeAmtrakBooking()
     {
+        $this->validate([
+            // 'confirmation_number' => 'required',
+            'departure_location' => 'required',
+            'destination_location' => 'required',
+            'tripType' => 'required',
+            // 'no_days_hotel_car' => 'required',
+            // 'comments' => 'required',
+            'departure_date' => 'required',
+            'departureHour' => 'required|numeric|digits:2',
+            'departureMinute' => 'required|numeric|digits:2',
+            'departure_eta_date' => 'required',
+            'departureETAHour' => 'required|numeric|digits:2',
+            'departureETAMinute' => 'required|numeric|digits:2',
+        ], [
+            // 'confirmation_number.required' => 'Confirmation Number is required',
+            'departure_location.required' => 'Departure Location is required',
+            'departure_date.required' => 'Departure Date is required',
+            'destination_location.required' => 'Destination Location is required',
+            'tripType.required' => 'Trip Type is required',
+            // 'no_days_hotel_car.required' => 'Number of Days Hotel Car is required',
+            // 'comments.required' => 'Comments is required',
+            'departureHour.required' => 'Departure Hour is required',
+            'departureHour.numeric' => 'Departure Hour must be numeric',
+            'departureHour.digits' => 'Departure Hour must be 2 digits',
+            'departureMinute.required' => 'Departure Minute is required',
+            'departureMinute.numeric' => 'Departure Minute must be numeric',
+            'departureMinute.digits' => 'Departure Minute must be 2 digits',
+            'departure_eta_date.required' => 'Departure ETA Date is required',
+            'departureETAHour.required' => 'Departure ETA Hour is required',
+            'departureETAHour.numeric' => 'Departure ETA Hour must be numeric',
+            'departureETAHour.digits' => 'Departure ETA Hour must be 2 digits',
+            'departureETAMinute.required' => 'Departure ETA Minute is required',
+            'departureETAMinute.numeric' => 'Departure ETA Minute must be numeric',
+            'departureETAMinute.digits' => 'Departure ETA Minute must be 2 digits',
+        ]);
+
         try {
             DB::beginTransaction();
             AmtrakBooking::updateOrCreate(
@@ -140,17 +191,19 @@ class AmtrackBookingService extends Component
                 [
                     // 'confirmation_number' => $this->confirmation_number,
                     'departure_location' => $this->departure_location,
-                    'departure_date' => $this->departure_date,
                     'destination_location' => $this->destination_location,
                     'oneway_or_roundtrip' => $this->tripType,
-                    'return_date' => $this->return_date,
                     // 'no_days_hotel_car' => $this->no_days_hotel_car,
                     'comments' => $this->comments,
+                    'departure_date' => $this->departure_date,
                     'departure_hour' => $this->departureHour,
                     'departure_minute' => $this->departureMinute,
                     'departure_eta_date' => $this->departure_eta_date,
                     'departure_eta_hour' => $this->departureETAHour,
                     'departure_eta_minute' => $this->departureETAMinute,
+                    'return_date' => $this->return_date,
+                    'return_hour' => $this->returnHour,
+                    'return_minute' => $this->returnMinute,
                     'return_eta_date' => $this->return_eta_date,
                     'return_eta_hour' => $this->returnETAHour,
                     'return_eta_minute' => $this->returnETAMinute,

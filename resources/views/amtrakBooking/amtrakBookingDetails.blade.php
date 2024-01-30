@@ -159,8 +159,12 @@
                                     {{ $billingDetails->cc_billing_address_state }},
                                     {{ $billingDetails->cc_billing_address_zip }}
                                 </td>
-                                <td><a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}"
-                                        class="btn btn-sm btn-primary" target="_blank">Customer's ID</a></td>
+                                <td>
+                                    @if($billingDetails->primary_passenger_id_doc != null)
+                                    <a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}"
+                                        class="btn btn-sm btn-primary" target="_blank">Customer's ID</a>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td><strong>Comments / Remarks :</strong></td>
