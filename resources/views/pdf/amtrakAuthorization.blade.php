@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <img src="{{ $logo }}" alt="" width="80">
+                <img src="{{ $logo }}" alt="" width="160">
                 <hr>
                 <div>
                     <p><b>Dear {{ $saleBooking->customer->customer_name }}, </p>
