@@ -22,7 +22,10 @@ return new class extends Migration
             $table->string('cc_type')->nullable();
             $table->string('cc_expiration_date')->nullable();
             $table->string('cc_cvc')->nullable();
-            $table->longText('cc_billing_address')->nullable();
+            $table->string('cc_billing_address_street')->nullable();
+            $table->string('cc_billing_address_city')->nullable();
+            $table->string('cc_billing_address_state')->nullable();
+            $table->string('cc_billing_address_zip')->nullable();
             $table->string('amount_charged')->nullable();
             $table->longText('comments')->nullable();
             $table->string('primary_passenger_id_doc')->nullable();

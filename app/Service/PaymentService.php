@@ -38,9 +38,9 @@ class PaymentService
             'first-name' => $salebooking->payment->cc_name,
             'last-name' => $salebooking->payment->cc_name,
             'address1' => $salebooking->payment->cc_billing_address,
-            'city' => 'Los Angeles',
-            'state' => 'CA',
-            'postal' => '90001',
+            'city' => $salebooking->payment->cc_billing_address_city,
+            'state' => $salebooking->payment->cc_billing_address_state,
+            'postal' => $salebooking->payment->cc_billing_address_zip,
             'country' => 'US',
             'phone' => $salebooking->payment->cc_phone,
             'email' => $salebooking->payment->cc_email,
@@ -49,9 +49,9 @@ class PaymentService
             'first-name' => $salebooking->payment->cc_name,
             'last-name' => $salebooking->payment->cc_name,
             'address1' => $salebooking->payment->cc_billing_address,
-            'city' => 'Los Angeles',
-            'state' => 'CA',
-            'postal' => '90001',
+            'city' => $salebooking->payment->cc_billing_address_city,
+            'state' => $salebooking->payment->cc_billing_address_state,
+            'postal' => $salebooking->payment->cc_billing_address_zip,
             'country' => 'US',
             'phone' => $salebooking->payment->cc_phone,
             'company' => 'ABC Company',
@@ -137,9 +137,9 @@ class PaymentService
         ];
 
         $queryString = http_build_query($query);
-     
+
         $response = $this->_doPost($queryString, $this->paymentApiUrl);
-     
+
         return $response;
     }
     function _doPost($query, $url)

@@ -129,7 +129,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="header-title">Create new booking</h4>
+                    <h4 class="header-title">Create New Booking</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -171,6 +171,29 @@
                             <input type="email" class="form-control @error('customer_email') is-invalid @enderror"
                                 wire:model="customer_email">
                             @error('customer_email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="customer_dob" class="form-label">Customer's
+                                Date of Birth <span class="text-danger"><sup>*</sup></span></label>
+                            <input type="date" class="form-control @error('customer_dob') is-invalid @enderror"
+                                wire:model="customer_dob">
+                            @error('customer_dob')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="customer_gender" class="form-label">Customer's
+                                Gender <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('customer_gender') is-invalid @enderror"
+                                wire:model="customer_gender">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Others</option>
+                            </select>
+                            @error('customer_gender')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

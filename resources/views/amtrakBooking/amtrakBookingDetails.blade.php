@@ -153,7 +153,12 @@
                             </tr>
                             <tr>
                                 <td><strong>Billing Address:</strong></td>
-                                <td colspan="3">{{ $billingDetails->cc_billing_address }}</td>
+                                <td colspan="3">
+                                    {{ $billingDetails->cc_billing_address_street }},
+                                    {{ $billingDetails->cc_billing_address_city }},
+                                    {{ $billingDetails->cc_billing_address_state }},
+                                    {{ $billingDetails->cc_billing_address_zip }}
+                                </td>
                                 <td><a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}"
                                         class="btn btn-sm btn-primary" target="_blank">Customer's ID</a></td>
                             </tr>

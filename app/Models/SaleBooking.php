@@ -17,6 +17,11 @@ class SaleBooking extends Model
         return $this->hasOne(User::class, 'id', 'agent_id');
     }
 
+    public function customer()
+    {
+        return $this->hasOne(CustomerMaster::class, 'id', 'customer_id');
+    }
+
     public function service()
     {
         return $this->hasOne(ServiceMaster::class, 'id', 'service_id');

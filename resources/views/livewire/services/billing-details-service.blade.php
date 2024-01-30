@@ -66,10 +66,60 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-2 col-md-12">
-                                <label for="cc_billing_address">Billing Address:</label>
-                                <input type="text" class="form-control @error('cc_billing_address') is-invalid @enderror" wire:model="cc_billing_address">
-                                @error('cc_billing_address')
+                            <div class="mb-3 col-md-3">
+                                <label for="cc_billing_address_street">Street Address:</label>
+                                <input type="text" class="form-control @error('cc_billing_address_street') is-invalid @enderror mt-1" wire:model="cc_billing_address_street">
+                                @error('cc_billing_address_street')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <div class="dropdownList">
+                                    <label for="destination_location" class="form-label">City <span
+                                            class="text-danger"><sup>*</sup></span></label>
+                                    <input type="text" class="form-input form-control"
+                                        placeholder="Search Cities .." wire:model.live="cityQuery"
+                                        required>
+                                    @if ($cities)
+                                    <div class="dropdown-container">
+                                        @foreach ($cities as $selectedCity)
+                                        <a href="#" class="d-block dropdown-links"
+                                            wire:click="setCity('{{ $selectedCity->id }}')">
+                                           {{ $selectedCity->city }}
+                                        </a>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <div class="dropdownList">
+                                    <label for="destination_location" class="form-label">State <span
+                                            class="text-danger"><sup>*</sup></span></label>
+                                    <input type="text" class="form-input form-control"
+                                        placeholder="Search States .." wire:model.live="stateQuery"
+                                        required>
+                                    @if ($states)
+                                    <div class="dropdown-container">
+                                        @foreach ($states as $state)
+                                        <a href="#" class="d-block dropdown-links"
+                                            wire:click="setState('{{ $state->id }}')">
+                                            <span class="country-code">{{ $state->state_code }}</span>
+                                            &nbsp;&nbsp;{{ $state->state_name }}
+                                        </a>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-3">
+                                <label for="cc_billing_address_zip" class="form-label">ZIP Code <span class="text-danger"><sup>*</sup></span></label>
+                                <input type="text" class="form-control @error('cc_billing_address_zip') is-invalid @enderror"
+                                    wire:model="cc_billing_address_zip">
+                                @error('cc_billing_address_zip')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

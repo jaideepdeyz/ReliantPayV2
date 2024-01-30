@@ -138,7 +138,12 @@
                     <p><b>Card Type:</b> {{$paymentDetails->cc_type}}</p>
                     <p><b>Card Number:</b> <b>{{ str_repeat('X', max(0, strlen($paymentDetails->cc_number) - 4)) . substr($paymentDetails->cc_number, -4) }}</b></p>
                     <p><b>Expiration Date:</b> {{$paymentDetails->cc_expiration_date}}</p>
-                    <p><b>Billing Address:</b> {{$paymentDetails->cc_billing_address }}</p>
+                    <p><b>Billing Address:</b>
+                        {{$paymentDetails->cc_billing_address_street }},
+                        {{$paymentDetails->cc_billing_address_city }},
+                        {{$paymentDetails->cc_billing_address_state }},
+                        {{$paymentDetails->cc_billing_address_zip }}
+                    </p>
 
                     <br>
 

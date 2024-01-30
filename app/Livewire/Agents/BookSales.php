@@ -4,6 +4,7 @@ namespace App\Livewire\Agents;
 
 use App\Enums\ServiceEnum;
 use App\Enums\StatusEnum;
+use App\Models\CustomerMaster;
 use App\Models\FlightBooking;
 use App\Models\Payment;
 use App\Models\SaleBooking;
@@ -30,6 +31,8 @@ class BookSales extends Component
     public $search;
     public $statusSearch;
     public $selectedID;
+    public $customer_dob;
+    public $customer_gender;
 
     public function storeSaleBooking()
     {
@@ -38,18 +41,31 @@ class BookSales extends Component
             'customer_name' => 'required',
             'customer_phone' => 'required',
             'customer_email' => 'required',
+            'customer_dob' => 'required',
+            'customer_gender' => 'required',
         ]);
 
         try {
             DB::beginTransaction();
 
+            //checking uniqueness of customer email
+            $customer = CustomerMaster::where('customer_email', $this->customer_email)->first();
+            if(!$customer)
+            {
+                $customer = CustomerMaster::create([
+                    'customer_email' => $this->customer_email,
+                    'customer_name' => $this->customer_name,
+                    'customer_gender' => $this->customer_gender,
+                    'customer_dob' => $this->customer_dob
+                ]);
+            }
+
             $this->sale = SaleBooking::create([
                 'agent_id' => auth()->user()->id,
                 'organization_id' => auth()->user()->organization_id,
                 'service_id' => $this->service_id,
-                'customer_name' => $this->customer_name,
+                'customer_id' => $customer->id,
                 'customer_phone' => $this->customer_phone,
-                'customer_email' => $this->customer_email,
                 'app_status' => StatusEnum::DRAFT,
             ]);
             $this->status = StatusEnum::DRAFT;
@@ -57,7 +73,7 @@ class BookSales extends Component
             $this->transactionLog();
 
             DB::commit();
-            $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email']);
+            $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email', 'customer_dob', 'customer_gender']);
             $this->dispatch('close-modal');
             $this->dispatch('message', heading:'success',text:'Booking Created')->self();
             switch($this->sale->service->service_name)
