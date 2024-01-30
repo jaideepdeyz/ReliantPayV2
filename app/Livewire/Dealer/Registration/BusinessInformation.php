@@ -28,9 +28,11 @@ class BusinessInformation extends Component
         }
 
         $this->viewOnly = $viewOnly;
-        if($this->viewOnly != null)
+        if($this->viewOnly == 'view')
         {
             $this->viewOnly = 'Yes';
+        } else {
+            $this->viewOnly = 'No';
         }
 
     }
