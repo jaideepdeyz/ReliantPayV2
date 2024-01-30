@@ -52,10 +52,10 @@ class ZohoSignController extends Controller
             ]);
             ZohoSign::setCurrentUser($user);
             $reqObject = new RequestObject();
-            $reqObject->setRequestName('Authorization Letter for ' . $saleBooking->customer_name);
+            $reqObject->setRequestName('Authorization Letter for ' . $saleBooking->customer->customer_name);
             $partner = new Actions();
-            $partner->setRecipientName($saleBooking->customer_name);
-            $partner->setRecipientEmail($saleBooking->customer_email);
+            $partner->setRecipientName($saleBooking->customer->customer_name);
+            $partner->setRecipientEmail($saleBooking->customer->customer_email);
             $partner->setRecipientCountrycode('');
             $partner->setActionType(Actions::SIGNER);
             $partner->setPrivateNotes('Please sign the document to authorize the booking');
@@ -70,11 +70,11 @@ class ZohoSignController extends Controller
             $path = public_path($file);
             // $pdf->save($path);
             // $path = storage_path('app/public/Unsigned/' . $file);
-         
+
             $files = [
                 new CURLFile($path)
             ];
-          
+
             $draftJSON = ZohoSign::draftRequest($reqObject, $files);
             $sign1 = new ImageField();
             $sign1->setFieldTypeName(ImageField::SIGNATURE);
