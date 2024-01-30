@@ -33,7 +33,7 @@
                         <div class="form-group mt-2">
                             <label for="name">CVV</label>
                             <input type="password" name="cvv" id="cvv" class="form-control"
-                                placeholder="Enter card CVV" value="{{$salebooking->cc_cvc}}" readonly>
+                                value="{{$salebooking->cc_cvc}}" readonly>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-2">Charge Card</button>
@@ -44,7 +44,7 @@
         <div class="col-md-6">
             <div class="card h-100">
                 <div class="card-header bg-sucess">
-                    <h5>Billing Details</h5>
+                    Billing Details (as on record)
                 </div>
                 <div class="card-body">
                     <table class="table table-sm table-striped table-bordered">
