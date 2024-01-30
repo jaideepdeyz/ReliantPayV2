@@ -31,6 +31,7 @@ use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
+use App\Livewire\Agents\UploadConfirmedTicket;
 use App\Livewire\Dealer\ManageCustomers;
 use App\Livewire\Dealer\PendingAuthorization;
 use App\Livewire\Dealer\Registration\BankingDetails;
@@ -131,6 +132,8 @@ Route::middleware('auth')->group(function () {
     Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
     Route::get('addChargeDetails/{appID}', ChargeDetailService::class)->name('addChargeDetails');
     Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
+
+    Route::get('uploadTicket/{appID}', UploadConfirmedTicket::class)->name('uploadTicket');
 
     // Email routes
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');

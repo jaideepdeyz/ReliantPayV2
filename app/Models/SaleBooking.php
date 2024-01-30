@@ -22,6 +22,11 @@ class SaleBooking extends Model
         return $this->hasOne(CustomerMaster::class, 'id', 'customer_id');
     }
 
+    public function ticket()
+    {
+        return $this->hasOne(ConfirmedTicket::class, 'sale_booking_id', 'id');
+    }
+
     public function service()
     {
         return $this->hasOne(ServiceMaster::class, 'id', 'service_id');

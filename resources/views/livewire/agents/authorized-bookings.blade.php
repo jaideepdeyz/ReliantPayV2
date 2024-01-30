@@ -101,6 +101,9 @@
                                                     @break
                                                     @default
                                                 @endswitch
+                                                <a class="dropdown-item"
+                                                        href="{{ route('uploadTicket', $booking->id) }}"><i
+                                                            class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
                                             @endif
 
                                         </div>
