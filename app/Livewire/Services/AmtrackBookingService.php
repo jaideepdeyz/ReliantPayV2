@@ -90,7 +90,7 @@ class AmtrackBookingService extends Component
             $this->departureQuery = $amtrakBooking->departureStation->station_location;
             $this->destinationQuery = $amtrakBooking->destinationStation->station_location;
             $this->departure_eta_date = $amtrakBooking->departure_eta_date;
-            $this->departureETAHour = $amtrakBooking->departure_eta_Hour;
+            $this->departureETAHour = $amtrakBooking->departure_eta_hour;
             $this->departureETAMinute = $amtrakBooking->departure_eta_minute;
 
         }

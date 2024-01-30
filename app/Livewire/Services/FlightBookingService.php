@@ -111,7 +111,7 @@ class FlightBookingService extends Component
             $this->departureHour = $flightBooking->departure_hour;
             $this->departureMinute = $flightBooking->departure_minute;
             $this->departure_eta_date = $flightBooking->departure_eta_date;
-            $this->departureETAHour = $flightBooking->departure_eta_Hour;
+            $this->departureETAHour = $flightBooking->departure_eta_hour;
             $this->departureETAMinute = $flightBooking->departure_eta_minute;
         }
     }
