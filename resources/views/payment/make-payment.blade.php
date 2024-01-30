@@ -49,23 +49,23 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tr>
                             <th>Customer's Name:</th>
-                            <td>{{$saleBooking->customer->customer_name}}</td>
+                            <td>{{$salebooking->customer->customer_name}}</td>
                         </tr>
                         <tr>
                             <th>Customer's Email:</th>
-                            <td>{{$saleBooking->customer->customer_email}}</td>
+                            <td>{{$salebooking->customer->customer_email}}</td>
                         </tr>
                         <tr>
                             <th>Customer's Phone #:</th>
-                            <td>{{$saleBooking->customer_phone}}</td>
+                            <td>{{$salebooking->customer_phone}}</td>
                         </tr>
                         <tr>
                             <th>Service Type :</th>
-                            <td>{{$saleBooking->service->service_name}}</td>
+                            <td>{{$salebooking->service->service_name}}</td>
                         </tr>
                         <tr>
                             <th>Charge Amount :</th>
-                            <td>{{$saleBooking->payment->amount_charged}}</td>
+                            <td>{{$salebooking->payment->amount_charged}}</td>
                         </tr>
                     </table>
                 </div>
