@@ -122,27 +122,17 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <select wire:model="departureHour"
-                                                    class="form-control @error('departureHour') is-invalid @enderror">
-                                                    <option value="">0</option>
-                                                    @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }}
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                                <span class="input-group-text" id="basic-addon1">H</span>
+                                                <input type="text" wire:model="departureHour"
+                                                    class="form-control @error('departureHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <select wire:model="departureMinute"
-                                                    class="form-control @error('departureMinute') is-invalid @enderror">
-                                                    <option value="">0</option>
-                                                    @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i }}
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                                <span class="input-group-text" id="basic-addon1">M</span>
+                                                <input type="text" wire:model="departureMinute"
+                                                    class="form-control @error('departureMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,27 +156,17 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <select wire:model="departureETAHour"
-                                                    class="form-control @error('departureETAHour') is-invalid @enderror">
-                                                    <option value="">0</option>
-                                                    @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i }}
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                                <span class="input-group-text" id="basic-addon1">H</span>
+                                                <input type="text" wire:model="departureETAHour"
+                                                    class="form-control @error('departureETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <select wire:model="departureETAMinute"
-                                                    class="form-control @error('departureETAMinute') is-invalid @enderror">
-                                                    <option value="">0</option>
-                                                    @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i }}
-                                                        </option>
-                                                        @endfor
-                                                </select>
-                                                <span class="input-group-text" id="basic-addon1">M</span>
+                                                <input type="text" wire:model="departureETAMinute"
+                                                    class="form-control @error('departureETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
                                     </div>
@@ -214,29 +194,17 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
 
-                                                    <select wire:model="returnHour"
-                                                        class="form-control @error('returnHour') is-invalid @enderror">
-                                                        <option value="">0</option>
-                                                        @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">{{ $i
-                                                            }}
-                                                            </option>
-                                                            @endfor
-                                                    </select>
-                                                    <span class="input-group-text" id="basic-addon1">H</span>
+                                                    <input type="text" wire:model="returnHour"
+                                                        class="form-control @error('returnHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                    <span class="input-group-text" id="basic-addon1">HH</span>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <select wire:model="returnMinute"
-                                                        class="form-control @error('returnMinute') is-invalid @enderror">
-                                                        <option value="">0</option>
-                                                        @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">{{ $i
-                                                            }}
-                                                            </option>
-                                                            @endfor
-                                                    </select>
-                                                    <span class="input-group-text" id="basic-addon1">M</span>
+                                                    <input type="text" wire:model="returnMinute"
+                                                        class="form-control @error('returnMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,29 +227,17 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <select wire:model="returnETAHour"
-                                                        class="form-control @error('$returnETAHour') is-invalid @enderror">
-                                                        <option value="">0</option>
-                                                        @for ($i = 1; $i <= 24; $i++) <option value="{{ $i }}">
-                                                            {{ $i }}
-                                                            </option>
-                                                            @endfor
-                                                    </select>
-                                                    <span class="input-group-text" id="basic-addon1">H</span>
+                                                    <input type="text" wire:model="returnETAHour"
+                                                        class="form-control @error('$returnETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2" >
+                                                    <span class="input-group-text" id="basic-addon1">HH</span>
 
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="input-group">
-                                                    <select wire:model="returnETAMinute"
-                                                        class="form-control @error('returnETAMinute') is-invalid @enderror">
-                                                        <option value="">MM</option>
-                                                        @for ($i = 1; $i <= 60; $i++) <option value="{{ $i }}">
-                                                            {{ $i }}
-                                                            </option>
-                                                            @endfor
-                                                    </select>
-                                                    <span class="input-group-text" id="basic-addon1">M</span>
+                                                    <input type="text" wire:model="returnETAMinute"
+                                                        class="form-control @error('returnETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -73,44 +73,6 @@ class FlightBookingService extends Component
     public $departureAirports = [];
     public $destinationAirports = [];
 
-
-
-
-    // #[On('depAirport')]
-    // public function depAirport($airportID)
-    // {
-    //     $this->departure_location = $airportID;
-    //     $airport = Airport::find($airportID);
-    //     $this->departureAirport = $airport->name;
-    // }
-
-    // #[On('destAirport')]
-    // public function destAirport($airportID)
-    // {
-    //     $this->destination_location = $airportID;
-    //     $airport = Airport::find($airportID);
-    //     $this->destinationAirport = $airport->name;
-    // }
-    // #[On('depCountry')]
-    // public function depCountry($code)
-    // {
-    //     $this->departureCountry = $code;
-    //     $country = Country::where('code', $code)->first();
-    //     $this->departure_country_name = $country->name;
-    //     $this->departure_location = null;
-    //     $this->departureAirport = null;
-
-    // }
-    // #[On('destCountry')]
-    // public function destCountry($code)
-    // {
-    //     $this->destinationCountry = $code;
-    //     $country = Country::where('code', $code)->first();
-    //     $this->destination_country_name = $country->name;
-    //     $this->destination_location = null;
-    //     $this->destinationAirport = null;
-    // }
-
     public function mount($appID)
     {
         $this->appID = $appID;
@@ -227,6 +189,23 @@ class FlightBookingService extends Component
 
     public function storeFlightBooking()
     {
+        $this->validate([
+            'airline_name' => 'required',
+            // 'confirmation_number' => 'required',
+            'departureCountry' => 'required',
+            'departure_location' => 'required',
+            'departure_date' => 'required',
+            'destinationCountry' => 'required',
+            'destination_location' => 'required',
+            'tripType' => 'required',
+            // 'no_days_hotel_car' => 'required',
+            // 'comments' => 'required',
+            'departureHour' => 'required|digits:2',
+            'departureMinute' => 'required|digits:2',
+            'departure_eta_date' => 'required',
+            'departureETAHour' => 'required|digits:2',
+            'departureETAMinute' => 'required|digits:2',
+        ]);
         try {
             DB::beginTransaction();
 
