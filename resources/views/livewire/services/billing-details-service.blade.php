@@ -78,7 +78,7 @@
                                 <div class="dropdownList">
                                     <label for="destination_location" class="form-label">City <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="text" class="form-input form-control"
+                                    <input type="text" class="form-input form-control @error('cityQuery') is-invalid @enderror"
                                         placeholder="Search Cities .." wire:model.live="cityQuery"
                                         required>
                                     @if ($cities)
@@ -91,6 +91,9 @@
                                         @endforeach
                                     </div>
                                     @endif
+                                    @error('cityQuery')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
 
@@ -98,7 +101,7 @@
                                 <div class="dropdownList">
                                     <label for="destination_location" class="form-label">State <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="text" class="form-input form-control"
+                                    <input type="text" class="form-input form-control @error('stateQuery') is-invalid @enderror"
                                         placeholder="Search States .." wire:model.live="stateQuery"
                                         required>
                                     @if ($states)
@@ -112,6 +115,11 @@
                                         @endforeach
                                     </div>
                                     @endif
+                                    @error('stateQuery')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 

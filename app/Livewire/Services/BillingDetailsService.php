@@ -76,6 +76,8 @@ class BillingDetailsService extends Component
             $this->cc_billing_address_zip = $billingDetails->cc_billing_address_zip;
             $this->amount_charged = $billingDetails->amount_charged;
             $this->billingComments = $billingDetails->comments;
+            $this->stateQuery = $billingDetails->cc_billing_address_state;
+            $this->cityQuery = $billingDetails->cc_billing_address_city;
         }
     }
 
