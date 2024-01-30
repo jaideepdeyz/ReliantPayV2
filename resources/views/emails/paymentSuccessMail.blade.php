@@ -56,7 +56,7 @@ bgcolor="#f6f6f6">
                                     <p>Order ID: {{ $mailData['order_id'] }}<p>
                                     <p>Payment Status: PAID<p>
                                     <p>Transaction ID: {{ $mailData['transaction_id'] }}<p>
-                                    <p>Amount: {{ $mailData['amount'] }}<p>
+                                    <p>Amount: USD {{ $mailData['amount'] }}<p>
 
                                 </p>
                                 <p>Your Card has been successfully charged for USD {{$mailData['amount']}} </p><br>

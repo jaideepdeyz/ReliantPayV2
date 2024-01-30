@@ -41,9 +41,9 @@
                             </tr>
                             <tr>
                                 <td><strong>Customer's Name:</strong></td>
-                                <td>{{ $bookingDetails->customer_name }}</td>
+                                <td>{{ $bookingDetails->customer->customer_name }}</td>
                                 <td><strong>Customer's Phone & Email:</strong></td>
-                                <td>{{ $bookingDetails->customer_phone }} | {{ $bookingDetails->customer_email }}</td>
+                                <td>{{ $bookingDetails->customer_phone }} | {{ $bookingDetails->customer->customer_email }}</td>
                             </tr>
                         </table>
                     </div>
