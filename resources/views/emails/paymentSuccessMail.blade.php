@@ -50,11 +50,11 @@ bgcolor="#f6f6f6">
                                 <p>
                                     <p>Type of Booking : {{ $mailData['type'] }}<p>
                                     <p>Booking ID : {{ $mailData['bookingId'] }}<p>
-                                    <p>Departure Date : {{ $mailData['departureDate'] }}<p>
+                                    {{-- <p>Departure Date : {{ $mailData['departureDate'] }}<p>
                                     <p>Departure Airport / Station  : {{ $mailData['fromAirport'] }}<p>
-                                    <p>Arrival Airport / Station : {{ $mailData['toAirport'] }}<p>
+                                    <p>Arrival Airport / Station : {{ $mailData['toAirport'] }}<p> --}}
                                     <p>Order ID: {{ $mailData['order_id'] }}<p>
-                                    <p>Payment Status: {{ $mailData['result'] }}<p>
+                                    <p>Payment Status: PAID<p>
                                     <p>Transaction ID: {{ $mailData['transaction_id'] }}<p>
                                     <p>Amount: {{ $mailData['amount'] }}<p>
 
