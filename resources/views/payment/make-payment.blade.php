@@ -33,7 +33,7 @@
                         <div class="form-group mt-2">
                             <label for="name">CVV</label>
                             <input type="password" name="cvv" id="cvv" class="form-control"
-                                value="{{$salebooking->cc_cvc}}" readonly>
+                                value="{{$salebooking->payment->cc_cvc}}" readonly>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-2">Charge Card</button>
