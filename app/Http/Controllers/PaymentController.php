@@ -38,17 +38,20 @@ class PaymentController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
     public function stepThreePay(Request $request)
     {
         try {
             $response = $this->paymentService->stepThreePay($request['token-id']);
             $gwResponse = Xml::decode($response);
+
             if ($gwResponse['result'] == "1")
             {
                 $salebooking = SaleBooking::where('order_id', $gwResponse['order-id'])->first();
                 $salebooking->update([
                     'app_status' => StatusEnum::PAYMENT_DONE,
                 ]);
+
                 $successfulPaymentResponse = SuccessfulPaymentResponse::create([
                     'sale_booking_id' => $salebooking->id,
                     'order-id' => $gwResponse['order-id'],
@@ -60,9 +63,7 @@ class PaymentController extends Controller
                     'amount' => $gwResponse['amount'],
                 ]);
 
-            }
-
-            switch($salebooking->service->service_name)
+                switch($salebooking->service->service_name)
                 {
                     case ServiceEnum::FLIGHTS->value:
                         $type = ServiceEnum::FLIGHTS->value;
@@ -82,9 +83,9 @@ class PaymentController extends Controller
 
                 $mailData = [
                     'bookingId' => $salebooking->id,
-                    'name' => $salebooking->customer_name,
-                    'email' => $salebooking->customer_email,
-                    'phone' => $salebooking->customer_phone,
+                    'name' => $salebooking->customer->customer_name,
+                    'email' => $salebooking->customer->customer_email,
+                    'phone' => $salebooking->customer->customer_phone,
                     'type' => $type,
                     'mode' => $mode,
                     'fromAirport' => $fromAirport,
@@ -95,8 +96,8 @@ class PaymentController extends Controller
                     'transaction_id' => $gwResponse['transaction-id'],
                     'amount' => $gwResponse['amount'],
                 ];
-
-                Mail::to($salebooking->customer_email)->send(new PaymentSuccessMail($mailData));
+                Mail::to($salebooking->customer->customer_email)->send(new PaymentSuccessMail($mailData));
+            }
                 return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
         }
         catch (\Exception $e)
