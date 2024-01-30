@@ -49,7 +49,6 @@ class UploadConfirmedTicket extends Component
                 'agent' => $this->booking->agent->name,
             ];
 
-            dd($mailData);
 
             Mail::to($this->booking->customer->customer_email)->send(new TicketConfirmationMail($mailData));
             Session::flash('message', ['heading' => 'success', 'text' => 'Ticket uploaded and mailed successfully.']);
