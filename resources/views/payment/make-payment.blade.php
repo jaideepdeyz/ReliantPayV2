@@ -14,25 +14,26 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-body">
                     <form action="{{ $formUrl }}" method="post" id="payment-form">
                         <div class="form-group mt-2">
                             <label for="name">Card Number</label>
                             <input type="text" name="billing-cc-number" id="billing-cc-number" class="form-control"
                                 placeholder="Enter card Number" minlength="16" maxlength="16"
-                                value="{{ $salebooking->payment->cc_number }}" required>
+                                value="{{ $salebooking->payment->cc_number }}" required readonly>
                         </div>
                         <div class="form-group mt-2">
 
                             <label for="name">Expiration Date</label>
-                            <input type="text" name="billing-cc-exp" id="billing-cc-exp" class="form-control"
-                                placeholder="MM/YY" required pattern="([0-9]{2}[/]?){2}" />
+                            {{-- <input type="text" name="billing-cc-exp" id="billing-cc-exp" class="form-control"
+                                placeholder="MM/YY" required pattern="([0-9]{2}[/]?){2}" /> --}}
+                            <input type="text" name="billing-cc-exp" id="billing-cc-exp" class="form-control" value="{!! str_replace('/','',$salebooking->payment->cc_expiration_date) !!}" readonly>
                         </div>
                         <div class="form-group mt-2">
                             <label for="name">CVV</label>
                             <input type="password" name="cvv" id="cvv" class="form-control"
-                                placeholder="Enter card CVV" minlength="3" maxlength="3" required>
+                                placeholder="Enter card CVV" value="{{$salebooking->cc_cvc}}" readonly>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-2">Charge Card</button>
@@ -41,8 +42,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card bg-primary">
-                <div class="card-header">
+            <div class="card h-100">
+                <div class="card-header bg-sucess">
                     <h5>Billing Details</h5>
                 </div>
                 <div class="card-body">
