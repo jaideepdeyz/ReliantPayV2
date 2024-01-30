@@ -21,7 +21,7 @@ class PdfController extends Controller
     {
 
         $saleBooking = SaleBooking::find($bookingID);
-        $logo = public_path('auth/images/adminlogo/admin-logo-light.png');
+        $logo = public_path('website/images/reservation_assistance_logo.png');
 
         // itenary
         $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
