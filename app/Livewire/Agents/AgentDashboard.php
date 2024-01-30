@@ -22,10 +22,12 @@ class AgentDashboard extends Component
     public $firstPasswordChanged = 'No';
     public $currentPassword;
     public $newPassword;
+    public $totalrevenueoptions;
 
     public function mount()
     {
         $this->last10days();
+        $this->totalRevenue();
         $passChangeStatus = AgentPasswordChangeLogs::where('user_id', Auth::User()->id)->first();
         if($passChangeStatus->first_password_changed == 'Yes'){
             $this->firstPasswordChanged = 'Yes';
@@ -338,5 +340,40 @@ class AgentDashboard extends Component
             'revenueMonthly' => $revenueMonthly,
             'topCustomers' => $topCustomers,
         ])->layout('layouts.dashboard-layout');
+    }
+
+    public function totalRevenue()
+    {
+
+        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+
+        $this->totalrevenueoptions = [
+            'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
+            'chart' => [
+                'type' => 'donut',
+            ],
+            'labels' => ['Total Revenue','Today','This Week','This Month','This Year'],
+            'responsive' => [
+                [
+                    'breakpoint' => 480,
+                    'options' => [
+                        'chart' => [
+                            'width' => 200,
+                        ],
+
+                    ],
+                ],
+            ],
+            'legend' => [
+                'show' => false,
+            ],
+        ];
+
+
+
     }
 }

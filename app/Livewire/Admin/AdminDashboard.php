@@ -177,7 +177,7 @@ class AdminDashboard extends Component
             ],
         ];
     }
-    
+
     public function last60Days()
     {
         $days = [];
@@ -251,7 +251,7 @@ class AdminDashboard extends Component
         $bookings = SaleBooking::latest()->take(5)->get();
         $agents = User::where('role', RoleEnum::AGENT->value)->count();
         $dealers = User::where('role', RoleEnum::DEALER->value)->count();
-        $pendingRegistrations = User::where('role', RoleEnum::DEALER->value)->whereIn('is_approved', ['No', null])->where('organization_id', '!=', NULL)->count();
+        $pendingRegistrations = User::where('role', RoleEnum::DEALER->value)->whereIn('is_approved', ['No'])->where('organization_id', '!=', NULL)->count();
 
         $revenue = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)
             ->whereYear('updated_at', date('Y'))
@@ -307,14 +307,16 @@ class AdminDashboard extends Component
             'merchants' => $this->merchants,
         ])->layout('layouts.dashboard-layout');
     }
-    public function totalRevenue(){
+
+    public function totalRevenue()
+    {
 
         $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->sum('amount_charged');
         $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereDay('updated_at',date('d'))->sum('amount_charged');
         $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
         $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereMonth('updated_at',date('m'))->sum('amount_charged');
         $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereYear('updated_at',date('Y'))->sum('amount_charged');
-         
+
         $this->totalrevenueoptions = [
             'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
             'chart' => [
@@ -328,7 +330,7 @@ class AdminDashboard extends Component
                         'chart' => [
                             'width' => 200,
                         ],
-                        
+
                     ],
                 ],
             ],
@@ -337,9 +339,9 @@ class AdminDashboard extends Component
             ],
         ];
 
-        
-       
+
+
     }
 
-    
+
 }

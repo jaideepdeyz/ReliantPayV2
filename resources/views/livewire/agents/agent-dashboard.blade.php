@@ -155,7 +155,11 @@
 
                             <div class="widget-chart text-center" dir="ltr">
 
-                                <div id="total-revenue" class="mt-0" data-colors="#f1556c"></div>
+                                <div dir="ltr" x-data="{ totalRevenueChart: {} }" x-init="totalRevenueChart = {{ json_encode($totalrevenueoptions) }};
+                                new ApexCharts($refs.totalrevenuechart, totalRevenueChart).render();">
+                                    <div x-ref="totalrevenuechart"></div>
+                                </div>
+                                {{-- <div id="total-revenue" class="apex-charts mb-4 mt-4" dir="ltr"></div> --}}
 
                                 <h5 class="text-muted mt-0">Total sales made today</h5>
                                 <h2>${{ $revenueThisDay }}</h2>
