@@ -103,8 +103,16 @@
 
                                 <div class="col-md-12 mb-3 text-center">
                                     <button class="btn btn-success sendEmailOtp" type="button" wire:click="sendEmailOtp()"
-                                    x-show="!$wire.is_email_otp_sent">Send OTP to
-                                    email</button>
+                                    x-show="!$wire.is_email_otp_sent">Send OTP to Email
+                                    <span class="spinner-border text-light m-2" role="status" wire:loading></span>
+                                    </button>
+
+                                    {{-- <button class="ladda-button ladda-button-demo btn btn-success sendEmailOtp" dir="ltr" data-style="zoom-in" wire:click="sendEmailOtp()"
+                                    x-show="!$wire.is_email_otp_sent">
+                                    <span class="ladda-label">Send OTP to Email</span>
+                                    <span class="ladda-spinner"></span>
+                                    <div class="ladda-progress" style="width: 75px;"></div> --}}
+                                </button>
                                 </div>
 
                                 <div x-show="$wire.is_email_otp_sent" class= "mb-2 row">
@@ -165,7 +173,9 @@
                                 <div class="mb-3 col-md-12 text-center" x-show="!$wire.is_phone_otp_sent">
                                     <button class="btn btn-success" type="button"
                                         wire:click="sendPhoneOtp()">Request
-                                        OTP</button>
+                                        OTP
+                                    <span class="spinner-border text-light m-2" role="status" wire:loading></span>
+                                    </button>
                                 </div>
 
                                 <div class="mb-3 row" x-show="$wire.is_phone_otp_sent">
