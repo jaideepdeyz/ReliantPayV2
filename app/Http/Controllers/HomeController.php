@@ -13,23 +13,31 @@ class HomeController extends Controller
 {
     public function redirector()
     {
-        switch(Auth::User()->role){
+        switch (Auth::User()->role) {
             case RoleEnum::ADMIN->value:
                 return redirect()->route('adminDashboard');
+                break;
+            case RoleEnum::AFFILIATE->value:
+
+                return redirect()->route('affiliateDashboard');
+
+                break;
             case RoleEnum::DEALER->value:
-                    return redirect()->route('dealerDashboard');
+                return redirect()->route('dealerDashboard');
+                break;
             case RoleEnum::AGENT->value:
-                if(Auth::User()->is_active == 'Yes')
-                {
+                if (Auth::User()->is_active == 'Yes') {
                     return redirect()->route('agentDashboard');
-                }else{
+                } else {
                     Session::flush();
                     Auth::logout();
 
                     return redirect('login');
                 }
+                break;
             default:
                 return redirect()->route('login');
+                break;
         }
     }
 }

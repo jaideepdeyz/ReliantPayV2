@@ -30,6 +30,7 @@ use App\Livewire\Admin\ManageAffiliates;
 use App\Livewire\Admin\ManageAgents;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
+use App\Livewire\Affilate\AffilateDashboard;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Agents\UploadConfirmedTicket;
@@ -120,6 +121,8 @@ Route::middleware('auth')->group(function () {
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
     Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+    //Affilate Routes
+    Route::get('affiliateDashboard', AffilateDashboard::class)->name('affiliateDashboard');
 
     // Agents Routes
     Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');

@@ -40,6 +40,7 @@ class RegistrationCheck
                 }
                 break;
             case RoleEnum::ADMIN->value:
+            case RoleEnum::AFFILIATE->value:    
                 return $next($request);
                 break;
         }
