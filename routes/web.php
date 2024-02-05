@@ -26,6 +26,7 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
 use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\Admin\ManageAffiliates;
 use App\Livewire\Admin\ManageAgents;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
@@ -118,6 +119,7 @@ Route::middleware('auth')->group(function () {
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
+    Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
 
     // Agents Routes
     Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');

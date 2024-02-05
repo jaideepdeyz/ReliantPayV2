@@ -5,7 +5,7 @@ namespace App\Livewire\Admin;
 use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-// use Livewire\Attributes\Url;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class ManageAgents extends Component

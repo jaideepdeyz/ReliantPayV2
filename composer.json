@@ -23,6 +23,7 @@
         "zoho-sign/php-sdk": "^1.0"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.25",
         "laravel/pint": "^1.0",
