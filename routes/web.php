@@ -94,10 +94,10 @@ Route::middleware('auth')->group(function () {
 
     // Dealer Registration Routes
     Route::get('dealerRegBusinessInfo/{viewOnly}', BusinessInformation::class)->name('dealerRegBusinessInfo');
-    Route::get('dealerServicesCompliances/{orgID}/{viewOnly}', ServicesCompliances::class)->name('dealerServicesCompliances');
-    Route::get('dealerBankingDetails/{orgID}/{viewOnly}', BankingDetails::class)->name('dealerBankingDetails');
-    Route::get('dealerDocs/{orgID}/{viewOnly}', DocumentUploads::class)->name('dealerDocs');
-    Route::get('confirmation/{orgID}/{viewOnly}', Confirmation::class)->name('confirmation');
+    Route::get('dealerServicesCompliances/{orgID}/{viewOnly?}', ServicesCompliances::class)->name('dealerServicesCompliances');
+    Route::get('dealerBankingDetails/{orgID}/{viewOnly?}', BankingDetails::class)->name('dealerBankingDetails');
+    Route::get('dealerDocs/{orgID}/{viewOnly?}', DocumentUploads::class)->name('dealerDocs');
+    Route::get('confirmation/{orgID}/{viewOnly?}', Confirmation::class)->name('confirmation');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
