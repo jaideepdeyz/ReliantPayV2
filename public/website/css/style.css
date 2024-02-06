@@ -23,7 +23,7 @@ Project:  Repay
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Jost:wght@300;400;500;600;700&family=Oxygen:wght@300;400;700&display=swap');
 
 :root {
-    --e-global-color-primary: #355770;
+    --e-global-color-primary: #26353f;
     --e-global-color-secondary: #70695E;
     --e-global-color-accent: #f37368;
     --e-global-color-text: #777777;
@@ -142,6 +142,17 @@ p{
 
 .header {
     box-shadow: 1px 1px 100px -20px #888888;
+    /* From https://css.glass */
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position:fixed;
+    width:100%;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
 }
 .navbar-collapse ul{
     align-items: center;
@@ -151,7 +162,7 @@ p{
     font-size: 16px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--e-global-color-black) !important;
+    color: var(--e-global-color-very-light-gray) !important;
     font-family: 'Oxygen', sans-serif;
 }
 .navbar-nav .nav-item a:hover{
@@ -244,13 +255,13 @@ p{
     margin-left: 0;
 }
 .bannermain {
-    background-image: url("../../Assets/images/homebanner-bg-main.jpg");
+    background-image: url("../../website/images/online-pay.jpg");
     background-color: transparent;
     background-position: center;
     height: auto;
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 132px 0 0;
+    padding: 190px 0 80px;
     vertical-align: middle;
     overflow: hidden;
 }
@@ -872,7 +883,7 @@ p{
     text-align: center;
     padding: 15px 0px;
     color: var(--e-global-color-white);
-    background-color: var(--e-global-color-secondary);
+    background-color: var(--e-global-color-primary);
 }
 .copyright .text-size-16 {
     color: var(--e-global-color-white);

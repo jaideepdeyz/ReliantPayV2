@@ -79,8 +79,8 @@
         <div class="container">
             <nav class="navbar position-relative navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
-                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt=""
-                            class="img-fluid" style="max-height:100px"></figure>
+                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-dark-color.png') }}"
+                            alt="" class="img-fluid logo" style="max-height:100px"></figure>
                 </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -247,6 +247,25 @@
     <script>
         window.addEventListener('swal', function(e) {
             Swal.fire(e.detail);
+        });
+    </script>
+    {{-- //jquery shift up menu on scroll down --}}
+    <script>
+        $(document).ready(function () {
+            var header = $(".header");
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 50) {
+                    header.addClass("scrolled");
+                    $('.logo').attr('src', "{{ asset('auth/images/adminlogo/admin-logo-light.png') }}");
+                    $('.logo').css('max-height', '60px');
+                    $('.logo').css('width', 'auto');
+                } else {
+                    header.removeClass("scrolled");
+                    $('.logo').attr('src', "{{ asset('auth/images/adminlogo/admin-logo-dark-color.png') }}");
+                    $('.logo').css('max-height', '100px');
+                }
+            });
         });
     </script>
     @livewireScripts
