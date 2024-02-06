@@ -23,9 +23,9 @@ Project:  Repay
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Jost:wght@300;400;500;600;700&family=Oxygen:wght@300;400;700&display=swap');
 
 :root {
-    --e-global-color-primary: #28214c;
-    --e-global-color-secondary: #6a59d0;
-    --e-global-color-accent: #4c7aeb;
+    --e-global-color-primary: #355770;
+    --e-global-color-secondary: #70695E;
+    --e-global-color-accent: #f37368;
     --e-global-color-text: #777777;
     --e-global-color-very-dark-blue:#010647;
     --e-global-color-very-dark-gray:#555555;

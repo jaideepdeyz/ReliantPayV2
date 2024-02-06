@@ -17,12 +17,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('website/images/favicon/apple-icon-180x180.png') }}">
     <link rel="icon" type="image/png" sizes="192x192"
         href="{{ asset('website/images/favicon/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('website/images/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96"
-        href="{{ asset('website/images/favicon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('website/images/favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('website/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('website/images/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website/images/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('website/images/favicon/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -49,10 +46,10 @@
                 <div class="col-lg-6 col-md-6 sol-sm-12">
                     <div class="email">
                         <figure class="mb-0 emailicon">
-                            <img src="{{ asset('website/images/header-emailicon.png') }}" alt=""
-                                class="img-fluid">
+                            <img src="{{ asset('website/images/header-emailicon.png') }}" alt="" class="img-fluid">
                         </figure>
-                        <a href="mailto:support@repay.com" class="mb-0 text-size-14 text-white">support@reliantpay.com</a>
+                        <a href="mailto:support@repay.com"
+                            class="mb-0 text-size-14 text-white">support@reliantpay.com</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 sol-sm-12 d-md-block d-none">
@@ -82,12 +79,12 @@
         <div class="container">
             <nav class="navbar position-relative navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
-                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
-                            alt="" class="img-fluid" style="max-height:100px"></figure>
+                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}" alt=""
+                            class="img-fluid" style="max-height:100px"></figure>
                 </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
@@ -153,10 +150,10 @@
                                     alt="">
                             </figure>
                         </a>
-                        <p class="text-size-16 footer-text">Welcome to ReliantPay, your trusted partner in the world of secure and seamless online payments.</p>
+                        <p class="text-size-16 footer-text">Welcome to ReliantPay, your trusted partner in the world of
+                            secure and seamless online payments.</p>
                         <figure class="mb-0 payment-icon">
-                            <img src="{{ asset('website/images/payment-card.png') }}" class="img-fluid"
-                                alt="">
+                            <img src="{{ asset('website/images/payment-card.png') }}" class="img-fluid" alt="">
                         </figure>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-12 col-12 d-lg-block d-none">
@@ -169,14 +166,14 @@
                             <ul class="list-unstyled mb-0">
                                 <li><a href="{{url('/')}}" class=" text-size-16 text text-decoration-none">Home</a>
                                 </li>
-                                <li><a href="{{route('about-us')}}" class=" text-size-16 text text-decoration-none">About
+                                <li><a href="{{route('about-us')}}"
+                                        class=" text-size-16 text text-decoration-none">About
                                         Us</a></li>
                                 <li><a href="{{url('/#servicesSection')}}"
                                         class=" text-size-16 text text-decoration-none">Services</a></li>
                                 <li><a href="{{route('contact-us')}}"
                                         class=" text-size-16 text text-decoration-none">Contact</a></li>
-                                <li><a href="#"
-                                        class=" text-size-16 text text-decoration-none">Pricing</a></li>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">Pricing</a></li>
                                 <li><a href="#" class=" text-size-16 text text-decoration-none">FAQ</a></li>
                             </ul>
                         </div>
@@ -192,8 +189,7 @@
                                 </li>
                                 <li><a href="{{url('/#benefitSection')}}"
                                         class=" text-size-16 text text-decoration-none">Benefits</a></li>
-                                <li><a href="#"
-                                        class=" text-size-16 text text-decoration-none">Testimonial</a></li>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">Testimonial</a></li>
                                 <li><a href="#servicesSection" class=" text-size-16 text text-decoration-none">Coming
                                         Soon</a></li>
                             </ul>
@@ -256,4 +252,5 @@
     @livewireScripts
 </body>
 {!! RecaptchaV3::initJs() !!}
+
 </html>
