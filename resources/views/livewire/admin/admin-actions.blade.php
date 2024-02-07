@@ -27,16 +27,49 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Sl.No</th>
+                    <th class="text-center">Sl.No</th>
                     <th>Name</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
 
                 @foreach ($services as $service)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $loop->iteration }}</td>
                         <td>{{ $service->service_name }}</td>
+                        <td>
+                            @if ($service->service_status == StatusEnum::ACTIVE->value)
+                                <h6 class="badge bg-success" style="display:inline-block; width:100%">{{ $service->service_status }}</h6>
+                            @else
+                                <h6 class="badge bg-danger" style="display:inline-block; width:100%">{{ $service->service_status }}</h6>
+                            @endif
+                        </td>
+                        <td style="text-align:center;">
+                            <div>
+
+                                <div class="dropdown d-none d-xl-block">
+                                    <a class="nav-link dropdown-toggle waves-effect waves-light"
+                                        data-bs-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="false" aria-expanded="false">
+                                        <i class="mdi mdi-chevron-down-box text-success"
+                                            style="font-size: 24px;"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu">
+                                        <a href="javascript:void(0);"
+                                            wire:click="activateDeactivate({{ $service->id }})" class="btn">
+                                            <i class="fas fa-trash text-danger"></i>
+                                            {{ $service->service_status == StatusEnum::ACTIVE->value ? 'Deactivate' : 'Activate'
+                                            }}
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>
@@ -103,7 +136,10 @@
                     <button class="btn btn-primary text-uppercase"
                         @if ($action == 'approve') wire:click="approve"
                         @elseif($action == 'activate') wire:click="activate"
-                        @elseif($action == 'deactivate') wire:click="deactivate" @endif>{{ $action }}</button>
+                        @elseif($action == 'deactivate') wire:click="deactivate" @endif>{{ $action }}
+
+                        <span class="spinner-border text-light m-2" role="status" wire:loading></span>
+                    </button>
                 </div>
             </div>
         </div>

@@ -46,7 +46,10 @@
                     </div>
                     <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
                         <button type="button" class="btn w-sm btn-secondary waves-effect waves-light" wire:click="decreaseStep">Previous</button>
-                        <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Submit</button>
+                        <button type="submit" class="btn w-sm btn-success waves-effect waves-light">
+                            Submit
+                            <span class="spinner-border text-light m-2" role="status" wire:loading></span>
+                        </button>
                     </div>
                 </div>
             </form>

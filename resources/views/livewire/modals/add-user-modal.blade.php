@@ -21,7 +21,10 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-sm btn-primary">Add Agent</button>
+                    <button type="submit" class="btn btn-sm btn-primary">
+                        Add Agent
+                        <span class="spinner-border text-light m-2" role="status" wire:loading></span>
+                    </button>
                 </div>
             </div>
         </form>
