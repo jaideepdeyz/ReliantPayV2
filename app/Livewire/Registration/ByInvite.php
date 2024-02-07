@@ -20,7 +20,7 @@ class ByInvite extends Component
     private $smsService;
     public $merchantName;
     public $merchantEmail;
-
+    public $formStatus = 'disabled';
 
     public $name;
     #[Validate('required|min:6')]
@@ -45,15 +45,13 @@ class ByInvite extends Component
 
     public function mount($code)
     {
-        $merchant = AffiliateMerchantCode::where('merchant_code', $code)->first();
-        $this->merchantName = $merchant->merchant_name;
-        $this->merchantEmail = $merchant->merchant_email;
+        // $merchant = AffiliateMerchantCode::where('merchant_code', $code)->first();
+        // $this->merchantName = $merchant->merchant_name;
+        // $this->merchantEmail = $merchant->merchant_email;
     }
 
     public function sendPhoneOtp()
     {
-
-
         $this->validate([
             'phone' => 'required|numeric|unique:users,phone_number',
         ], [
@@ -103,6 +101,7 @@ class ByInvite extends Component
                 'message' => 'Phone Verified',
                 'type' => 'success',
             ]);
+            $this->formStatus = null;
         } else {
             $this->is_phone_verified = false;
             $this->dispatch('notify', [
@@ -110,6 +109,7 @@ class ByInvite extends Component
                 'type' => 'error',
             ]);
         }
+
     }
 
     private function startPhoneCountdown()
