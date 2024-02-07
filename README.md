@@ -4,6 +4,7 @@
 - php artisan migrate:fresh
 - php artisan db:seed
 - ** No need to follow TODO for Affiliates below
+- *** DB Seeding will take time as there are many records in CSV
 
 <!-- # TODO for Affilates
 - php artisan migrate
