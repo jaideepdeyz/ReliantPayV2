@@ -5,7 +5,7 @@ style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: 
 <head>
 <meta name="viewport" content="width=device-width"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>ReliantPay - Invitation to Join</title>
+<title>ReliantPay - Confirmation</title>
 
 </head>
 
@@ -46,11 +46,13 @@ bgcolor="#f6f6f6">
                                 valign="top">
                                 Dear {{ $mailData['name'] }},
 
-                                <p>We're thrilled to inform you that you have been invited to onboard as a Merchant on Reliant Pay by <b>{{$mailData['affiliate_name']}}</b></p>
+                                <p>We're thrilled to inform you that you have been registered as a Merchant on Reliant Pay.</b></p>
 
-                                <p>To complete your registration and onboarding process please visit <a href="https://reliant.yellowberry.in/registrationByInvitation/{{$mailData['code']}}">https://reliant.yellowberry.in/registrationByInvitation/{{$mailData['code']}}</a></p>
+                                <p>Kindly note your LOGIN CREDENTIALS as follows :- </p>
+                                <p><b>Registered EMAIL:</b> {{$mailData['email']}}</p>
+                                <p><b>Password:</b> {{$mailData['password']}}</p>
 
-                                <p>Kindly note that this invitation is valid for 48 Hours only.</p>
+                                <p>Kindly ensure to change your password on first LOGIN.</p>
 
                                 <p><b>* Need Help?: *</b> If you have any questions or require assistance, please don't hesitate to contact our support team at <a href="mailto:support@reliantpaygate.com">support@reliantpaygate.com</a></p>
 

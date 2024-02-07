@@ -27,7 +27,10 @@ class RegistrationCheck
         {
             case RoleEnum::DEALER->value:
                 if(Auth::user()->organization_id == null){
-                    return redirect()->route('dealerRegBusinessInfo', ['viewOnly' => 'NOVIEW']);
+                    return redirect()->route('dealerRegBusinessInfo', [
+                        'userID' => Auth::user()->id,
+                        'viewOnly' => 'NOVIEW'
+                    ]);
                 }else{
                      return $next($request);
                 }
@@ -40,7 +43,10 @@ class RegistrationCheck
                 }
                 break;
             case RoleEnum::ADMIN->value:
-            case RoleEnum::AFFILIATE->value:    
+                    $userID = null;
+                    return $next($request);
+                break;
+            case RoleEnum::AFFILIATE->value:
                 return $next($request);
                 break;
         }

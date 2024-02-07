@@ -5,6 +5,7 @@ namespace App\Livewire\Dealer\Registration;
 use App\Enums\RoleEnum;
 use App\Enums\StatusEnum;
 use App\Mail\DealerRegistrationSubmissionMail;
+use App\Mail\MerchantAddedByAdminConfirmationMail;
 use App\Models\AffiliateMerchantCode;
 use App\Models\Organization;
 use App\Models\TransactionLog;
@@ -40,16 +41,28 @@ class Confirmation extends Component
                 ]);
             } else {
                 // default ORGANIC Affliate
-                switch(auth()->user()->role){
+                switch(auth()->user()->role)
+                {
                     case RoleEnum::ADMIN->value:
+                        $status = StatusEnum::APPROVED;
+                        $remarks = 'Registration Approved';
                         $org->update([
                             'affiliate_id' => 1,
+                            'status' => $status,
                         ]);
+                        $userID = $org->user_id;
+                        $isApproved = 'Yes';
                         break;
                     default:
+                        $status = StatusEnum::SUBMITTED;
+                        $remarks = 'Registration Submitted';
                         $org->update([
                             'affiliate_id' => 2,
+                            'status' => $status,
                         ]);
+                        $userID = auth()->user()->id;
+                        $isApproved = 'No';
+
                 }
             }
 
@@ -60,21 +73,32 @@ class Confirmation extends Component
                 'updated_by' => auth()->user()->id,
                 'sales_id' => null,
                 'type' => 'Registration',
-                'status' => StatusEnum::SUBMITTED,
-                'remarks' => 'Registration Submitted',
+                'status' => $status,
+                'remarks' => $remarks,
             ]);
 
-            $user = User::find(auth()->user()->id);
+            $user = User::find($userID);
             $user->update([
                 'organization_id' => $this->orgID,
-                'is_approved' => 'No',
+                'is_approved' => $isApproved,
             ]);
 
-            Mail::to($user->email)->send(new DealerRegistrationSubmissionMail($user->name));
-            $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is under review. We will intimate you via email upon approval. Questions? Contact support@reliantpay.com');
+            if(auth()->user()->role == RoleEnum::ADMIN->value)
+            {
+                $mailData = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'password' => 'Merchant@123#',
+                ];
+
+                Mail::to($user->email)->send(new MerchantAddedByAdminConfirmationMail($mailData));
+                $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is APPROVED and CREDENTIALS have been intimated over email. Questions? Contact support@reliantpay.com');
+            } else {
+                Mail::to($user->email)->send(new DealerRegistrationSubmissionMail($user->name));
+                $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is under review. We will intimate you via email upon approval. Questions? Contact support@reliantpay.com');
+            }
             DB::commit();
-
-
+            return redirect()->route('dashboard');
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);

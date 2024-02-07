@@ -8,7 +8,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                         <li class="breadcrumb-item">Admin Dashboard</li>
-                        <li class="breadcrumb-item active">Manage Merchants</li>
+                        <li class="breadcrumb-item active">Merchants</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Manage Merchants</h4>
@@ -28,13 +28,11 @@
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
-                            {{-- <a href="javascript:void(0);" class="btn btn-blue" data-bs-toggle="modal"
-                                data-bs-target="#Countries"><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                            <button class="btn btn-blue" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.add-merchant-by-admin'}})"><svg xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                                </svg> Add
-                                Dealer </a> --}}
+                                </svg> Add Merchant </button>
                         </div>
                     </div>
                 </div>
@@ -203,140 +201,4 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
-
-
-    <!-- Insert Modal -->
-    <div wire:ignore.self class="modal fade" id="Countries" tabindex="-1" aria-labelledby="CountriesLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="CountriesLabel">Create Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        wire:click="closeModal"></button>
-                </div>
-
-
-                <form wire:submit.prevent="saveCountries">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label>Country Name</label>
-                            <input type="text" wire:model="name" class="form-control">
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Code</label>
-                            <input type="text" wire:model="code" class="form-control">
-                            @error('code')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Flag icon</label>
-                            <input type="text" wire:model="flagimage" class="form-control">
-                            @error('flagimage')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Update Country Modal -->
-    <div wire:ignore.self class="modal fade" id="updateCountries" tabindex="-1" aria-labelledby="updateCountriesLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateCountriesLabel">Edit Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
-                        aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="updateCountries">
-                    <div class="modal-body">
-                        <div class="mb-3" style="display:none;">
-                            <label>country id</label>
-                            <input type="text" wire:model="country_id" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Name</label>
-                            <input type="text" wire:model="name" class="form-control">
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Code</label>
-                            <input type="text" wire:model="code" class="form-control">
-                            @error('code')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Flag icon</label>
-                            <input type="text" wire:model="flagimage" class="form-control">
-                            @error('flagimage')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Country Modal -->
-    <div wire:ignore.self class="modal fade" id="deleteCountries" tabindex="-1" aria-labelledby="deleteCountriesLabel"
-        aria-hidden="true" x-data="{ livewire: false }">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCountriesLabel">Delete Country</h5>
-                    <button type="button" class="btn-close" wire:click="closeModal" aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="destroyCountry">
-                    <div class="modal-body">
-                        <h4>Are you sure you want to delete this data ?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Yes! Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-    {{-- @section('scripts') --}}
-    <script>
-        window.addEventListener('close-modal', event => {
-            console.log('close-modal event received:', event);
-            $('#Countries').modal('hide');
-            $('#updateCountries').modal('hide');
-            $('#deleteCountries').modal('hide');
-        })
-    </script>
-
 </div>

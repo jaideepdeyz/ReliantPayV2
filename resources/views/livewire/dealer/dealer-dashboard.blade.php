@@ -44,7 +44,10 @@
                                     <th>1</th>
                                     <th>Business Information</th>
                                     <td>
-                                        <a href="{{ route('dealerRegBusinessInfo', 'view') }}" class="btn btn-primary btn-sm">View</a>
+                                        <a href="{{ route('dealerRegBusinessInfo', [
+                                            'userID'=> Auth::User()->id,
+                                            'viewOnly' => 'view'
+                                        ]) }}" class="btn btn-primary btn-sm">View</a>
                                         @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
                                         <a href="{{ route('dealerRegBusinessInfo') }}" class="btn btn-primary btn-sm">Edit</a>
                                         @endif

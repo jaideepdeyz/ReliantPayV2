@@ -95,7 +95,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('dealer_register', Registration::class)->name('dealer_register');
 
     // Dealer Registration Routes
-    Route::get('dealerRegBusinessInfo/{viewOnly}', BusinessInformation::class)->name('dealerRegBusinessInfo');
+    Route::get('dealerRegBusinessInfo/{userID}/{viewOnly}', BusinessInformation::class)->name('dealerRegBusinessInfo');
     Route::get('dealerServicesCompliances/{orgID}/{viewOnly?}', ServicesCompliances::class)->name('dealerServicesCompliances');
     Route::get('dealerBankingDetails/{orgID}/{viewOnly?}', BankingDetails::class)->name('dealerBankingDetails');
     Route::get('dealerDocs/{orgID}/{viewOnly?}', DocumentUploads::class)->name('dealerDocs');

@@ -36,7 +36,7 @@
                                 <label for="business_scan_EIN" class="form-label">Scanned EIN <span
                                         class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_scan_EIN" name="business_scan_EIN" class="form-control"
-                                    wire:model="business_scan_EIN">
+                                    wire:model="business_scan_EIN" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_EIN')
                                     {{ $message }}
                                     @enderror </span>
@@ -54,7 +54,7 @@
                                     Contract <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file"
                                     class="form-control @error('business_scan_signed_contract') is-invalid @enderror"
-                                    wire:model="business_scan_signed_contract">
+                                    wire:model="business_scan_signed_contract" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_signed_contract')
                                     {{ $message }}
                                     @enderror </span>
@@ -72,7 +72,7 @@
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
                                     Scanned PAN <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_scan_PAN" name="business_scan_PAN" class="form-control"
-                                    wire:model="business_scan_PAN">
+                                    wire:model="business_scan_PAN" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_PAN')
                                     {{ $message }}
                                     @enderror </span>
@@ -89,7 +89,7 @@
                                 <label for="business_scan_bank_statement" class="form-label">Scanned Bank
                                     Statement
                                     (Last 06 Months) <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="file" class="form-control" wire:model="business_scan_bank_statement">
+                                <input type="file" class="form-control" wire:model="business_scan_bank_statement" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_bank_statement')
                                     {{ $message }}
                                     @enderror </span>
@@ -107,7 +107,7 @@
                                 <label for="business_scan_utility_bills" class="form-label">Scanned Utility Bills
                                     (Last 03 Months) <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_scan_utility_bills" name="business_scan_utility_bills"
-                                    class="form-control" wire:model="business_scan_utility_bills">
+                                    class="form-control" wire:model="business_scan_utility_bills" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_utility_bills')
                                     {{ $message }}
                                     @enderror </span>
@@ -126,7 +126,7 @@
                                     Registration <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_scan_registration_document"
                                     name="business_scan_registration_document" class="form-control"
-                                    wire:model="business_scan_registration_document">
+                                    wire:model="business_scan_registration_document" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_registration_document')
                                     {{ $message }}
                                     @enderror </span>
@@ -135,6 +135,7 @@
                                 </div>
                             </div>
 
+                             {{-- Bussines Tax Returns --}}
                             <div class="mb-3 col-md-6" style="position:relative" x-data="{ uploading: false, progress: 0 }"
                                 x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false"
                                 x-on:livewire-upload-error="uploading = false"
@@ -143,7 +144,7 @@
                                     Returns (Last 03 Years) <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_scan_business_tax_returns"
                                     name="business_scan_business_tax_returns" class="form-control"
-                                    wire:model="business_scan_business_tax_returns">
+                                    wire:model="business_scan_business_tax_returns" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_scan_business_tax_returns')
                                     {{ $message }}
                                     @enderror </span>
@@ -162,7 +163,7 @@
                                     Pictures (External) <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_premises_external_pictures"
                                     name="business_premises_external_pictures" class="form-control"
-                                    wire:model="business_premises_external_pictures">
+                                    wire:model="business_premises_external_pictures" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_premises_external_pictures')
                                     {{ $message }}
                                     @enderror </span>
@@ -171,6 +172,7 @@
                                 </div>
                             </div>
 
+                            {{-- Business Internal Pic  --}}
                             <div class="mb-3 col-md-6" style="position:relative" x-data="{ uploading: false, progress: 0 }"
                                 x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false"
                                 x-on:livewire-upload-error="uploading = false"
@@ -180,7 +182,7 @@
                                     Pictures (Office) <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="file" id="business_premises_internal_pictures"
                                     name="business_premises_internal_pictures" class="form-control"
-                                    wire:model="business_premises_internal_pictures">
+                                    wire:model="business_premises_internal_pictures" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif>
                                 <span class="text-danger"> @error('business_premises_internal_pictures')
                                     {{ $message }}
                                     @enderror </span>
