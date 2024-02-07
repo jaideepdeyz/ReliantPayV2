@@ -45,9 +45,9 @@ class ByInvite extends Component
 
     public function mount($code)
     {
-        // $merchant = AffiliateMerchantCode::where('merchant_code', $code)->first();
-        // $this->merchantName = $merchant->merchant_name;
-        // $this->merchantEmail = $merchant->merchant_email;
+        $merchant = AffiliateMerchantCode::where('merchant_code', $code)->first();
+        $this->merchantName = $merchant->merchant_name;
+        $this->merchantEmail = $merchant->merchant_email;
     }
 
     public function sendPhoneOtp()
