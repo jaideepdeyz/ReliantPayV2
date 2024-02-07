@@ -47,6 +47,14 @@ class AddAffiliate extends Component
                     'affiliate_phone' => $this->phone
                 ]);
             } else {
+                $this->validate([
+                    'email' => 'unique:users,email',
+                ],
+                [
+                    'email.unique' => 'Email already exists'
+                ]
+            );
+
                 $user= User::create([
                     'name' => $this->name,
                     'email' => $this->email,
@@ -60,7 +68,7 @@ class AddAffiliate extends Component
                     'affiliate_name' => $this->name,
                     'affiliate_email' => $this->email,
                     'affiliate_phone' => $this->phone,
-                    'affiliate_code' => 'AFL' . $user->id, 
+                    'affiliate_code' => 'AFL' . $user->id,
                     'user_id' => $user->id
                 ]);
             }
@@ -71,8 +79,8 @@ class AddAffiliate extends Component
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error($e->getMessage());
-            $this->dispatch('error', 'Something went wrong!');
+            $this->dispatch('message', heading:'error', text: 'This Email is already registered')->to(ManageAffiliates::class);
+            $this->dispatch('hideModal');
         }
     }
 

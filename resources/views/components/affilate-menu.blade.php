@@ -8,7 +8,7 @@
         <ul class="sub-menu">
 
             <li class="menu-item">
-                <a href="{{ route('manageOrganizations') }}" class="menu-link">
+                <a href="{{ route('manageMerchants') }}" class="menu-link">
                     <span class="menu-text"> Manage Merchants </span>
                 </a>
             </li>
@@ -17,7 +17,7 @@
 </li>
 
 
-            
+
 {{-- <li class="menu-item">
     <a href="#menuAdministration" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-account-star"></i></span>
