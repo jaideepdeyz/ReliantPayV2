@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Dealer\Registration;
 
+use App\Enums\RoleEnum;
 use App\Enums\StatusEnum;
 use App\Mail\DealerRegistrationSubmissionMail;
+use App\Models\AffiliateMerchantCode;
 use App\Models\Organization;
 use App\Models\TransactionLog;
 use App\Models\User;
@@ -31,6 +33,26 @@ class Confirmation extends Component
         try {
             DB::beginTransaction();
             $org = Organization::find($this->orgID);
+            $isAddedByAffiliate = AffiliateMerchantCode::where('user_id', auth()->user()->id)->first();
+            if ($isAddedByAffiliate) {
+                $org->update([
+                    'affiliate_id' => $isAddedByAffiliate->affiliate_id,
+                ]);
+            } else {
+                // default ORGANIC Affliate
+                switch(auth()->user()->role){
+                    case RoleEnum::ADMIN->value:
+                        $org->update([
+                            'affiliate_id' => 1,
+                        ]);
+                        break;
+                    default:
+                        $org->update([
+                            'affiliate_id' => 2,
+                        ]);
+                }
+            }
+
             //storing transaction log
             TransactionLog::create([
                 'organization_id' => $org->id,

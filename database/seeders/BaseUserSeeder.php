@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class BaseUserSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class BaseUserSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@g.com',
-            'mobile' => '1234567890',
+            'phone_number' => '1234567890',
             'role' => 'Admin',
             'password' => Hash::make('Password123#'),
             'is_active' => 'Yes',
@@ -26,9 +27,9 @@ class BaseUserSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'ORGANIC',
             'email' => 'organic@g.com',
-            'mobile' => '1234567891',
+            'phone_number' => '1234567891',
             'role' => 'Affilate',
-            'password' => Hash::make('Password123#'),
+            'password' => Hash::make('Affilate@123#'),
             'is_active' => 'Yes',
             'is_approved' => 'Yes',
         ]);

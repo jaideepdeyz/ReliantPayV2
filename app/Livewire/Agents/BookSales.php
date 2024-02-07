@@ -6,6 +6,7 @@ use App\Enums\ServiceEnum;
 use App\Enums\StatusEnum;
 use App\Models\CustomerMaster;
 use App\Models\FlightBooking;
+use App\Models\OrganizationServiceMap;
 use App\Models\Payment;
 use App\Models\SaleBooking;
 use App\Models\ServiceMaster;
@@ -154,7 +155,11 @@ class BookSales extends Component
     public function render()
     {
         $this->agent_name = auth()->user()->name;
-        $services = ServiceMaster::all();
+        // $services = ServiceMaster::all();
+        $services = OrganizationServiceMap::where('organization_id', auth()->user()->organization_id)
+        ->where('service_status', 'Activated')
+        ->get();
+
         $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)
         ->whereIn('app_status', [
             StatusEnum::DRAFT->value,

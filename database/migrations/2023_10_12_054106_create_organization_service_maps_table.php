@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('organization_id')->constrained('organizations');
             $table->string('service_name');
+            $table->string('service_status')->default('Activated');
             $table->timestamps();
         });
     }

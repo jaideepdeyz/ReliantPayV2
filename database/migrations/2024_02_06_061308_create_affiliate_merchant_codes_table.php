@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('merchant_name');
             $table->string('merchant_email');
             $table->longText('merchant_code');
+            $table->string('user_id')->nullable(); // to check if the merchant has signed up or not
             $table->timestamps();
             $table->softDeletes();
         });

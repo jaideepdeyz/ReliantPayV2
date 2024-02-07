@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProducServiceSeeder extends Seeder
+class ServiceMasterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +13,10 @@ class ProducServiceSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => 'Flight Booking'],
-            ['name' => 'AMTRAK Booking'],
+            ['service_name' => 'Flight Booking'],
+            ['service_name' => 'AMTRAK Booking'],
         ];
-        \App\Models\ProductService::insert($data);
+
+        \App\Models\ServiceMaster::insert($data);
     }
 }
