@@ -18,7 +18,13 @@ use Livewire\Component;
 class Confirmation extends Component
 {
     public $orgID;
+    public $status;
+    public $remarks;
+    public $userID;
+    public $isApproved = 'No'; // 'Yes' or 'No
+
     private $smsService;
+
 
     public function boot(){
         $this->smsService = new TrueDialogSmsService();
@@ -27,6 +33,8 @@ class Confirmation extends Component
     public function mount($orgID)
     {
         $this->orgID = $orgID;
+        $org = Organization::find($this->orgID);
+        $this->userID = $org->user_id;
     }
 
     public function save()
@@ -41,46 +49,56 @@ class Confirmation extends Component
                 ]);
             } else {
                 // default ORGANIC Affliate
-                switch(auth()->user()->role)
+                if(auth()->user()->role == RoleEnum::ADMIN->value)
                 {
-                    case RoleEnum::ADMIN->value:
-                        $status = StatusEnum::APPROVED;
-                        $remarks = 'Registration Approved';
-                        $org->update([
-                            'affiliate_id' => 1,
-                            'status' => $status,
-                        ]);
-                        $userID = $org->user_id;
-                        $isApproved = 'Yes';
-                        break;
-                    default:
-                        $status = StatusEnum::SUBMITTED;
-                        $remarks = 'Registration Submitted';
-                        $org->update([
-                            'affiliate_id' => 2,
-                            'status' => $status,
-                        ]);
-                        $userID = auth()->user()->id;
-                        $isApproved = 'No';
+                    $this->status = StatusEnum::APPROVED->value;
+                    $this->remarks = 'Registration Approved';
+                    $org->update([
+                        'affiliate_id' => 1,
+                        'status' => $this->status,
+                    ]);
+                    $this->userID = $org->user_id;
+                    $this->isApproved = 'Yes';
 
+                    //storing transaction log
+                    TransactionLog::create([
+                        'organization_id' => $org->id,
+                        'user_id' => $org->user_id,
+                        'updated_by' => auth()->user()->id,
+                        'sales_id' => null,
+                        'type' => 'Registration',
+                        'status' => $this->status,
+                        'remarks' => $this->remarks,
+                    ]);
+                } else {
+                    $this->status = StatusEnum::SUBMITTED->value;
+                    $this->remarks = 'Registration Submitted';
+                    $org->update([
+                        'affiliate_id' => 2,
+                        'status' => $this->status,
+                    ]);
+                    $this->userID = auth()->user()->id;
+                    $this->isApproved = 'No';
+
+                    //storing transaction log
+                    TransactionLog::create([
+                        'organization_id' => $org->id,
+                        'user_id' => $org->user_id,
+                        'updated_by' => auth()->user()->id,
+                        'sales_id' => null,
+                        'type' => 'Registration',
+                        'status' => $this->status,
+                        'remarks' => $this->remarks,
+                    ]);
                 }
             }
 
-            //storing transaction log
-            TransactionLog::create([
-                'organization_id' => $org->id,
-                'user_id' => auth()->user()->id,
-                'updated_by' => auth()->user()->id,
-                'sales_id' => null,
-                'type' => 'Registration',
-                'status' => $status,
-                'remarks' => $remarks,
-            ]);
 
-            $user = User::find($userID);
+
+            $user = User::find($this->userID);
             $user->update([
                 'organization_id' => $this->orgID,
-                'is_approved' => $isApproved,
+                'is_approved' => $this->isApproved,
             ]);
 
             if(auth()->user()->role == RoleEnum::ADMIN->value)
