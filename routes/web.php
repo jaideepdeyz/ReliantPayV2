@@ -43,6 +43,7 @@ use App\Livewire\Dealer\Registration\Confirmation;
 use App\Livewire\Dealer\Registration\DocumentUploads;
 use App\Livewire\Dealer\Registration\ServicesCompliances;
 use App\Livewire\Payment\MakePayment;
+use App\Livewire\Registration\ByInvite;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
 use App\Livewire\User\ResetPassword;
@@ -80,7 +81,7 @@ Route::get('checkAuthorizationForm/{appId}', [JwtDocuSignController::class, 'che
 Route::get('authorizeAndSend/{id}', [ZohoSignController::class, 'authorizeAndSend'])->name('authorizeAndSend');
 Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');
 Route::get('checkAuthorizationFormStatus/{appId}', [ZohoSignController::class, 'checkAuthorizationFormStatus'])->name('checkAuthorizationFormStatus');
-
+Route::get('registrationByInvitation/{code}', ByInvite::class)->name('registrationByInvitation');
 
 // page routes
 Route::view('about-us', 'pages.about-us')->name('about-us');
@@ -99,6 +100,7 @@ Route::middleware('auth')->group(function () {
     Route::get('dealerBankingDetails/{orgID}/{viewOnly?}', BankingDetails::class)->name('dealerBankingDetails');
     Route::get('dealerDocs/{orgID}/{viewOnly?}', DocumentUploads::class)->name('dealerDocs');
     Route::get('confirmation/{orgID}/{viewOnly?}', Confirmation::class)->name('confirmation');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -122,6 +124,7 @@ Route::middleware('auth')->group(function () {
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
     Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+
     //Affilate Routes
     Route::get('affiliateDashboard', AffilateDashboard::class)->name('affiliateDashboard');
     Route::get('manageMerchants', ManageMerchants::class)->name('manageMerchants');
