@@ -166,7 +166,7 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-family: 'Oxygen', sans-serif;
 }
 .navbar-nav .nav-item a:hover{
-    color: var(--e-global-color-accent) !important;
+    color: #fff !important;
     background-color: transparent;
 }
 .navbar-nav .active > a{

@@ -26,7 +26,6 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Latest compiled and minified CSS -->
     <link href="{{ asset('website/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('website/js/bootstrap.min.js') }}">
     <!-- Font Awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- StyleSheet link CSS -->
@@ -34,7 +33,9 @@
     <link href="{{ asset('website/css/responsive.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('website/css/custom-style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('website/css/special-classes.css') }}" type="text/css">
+    {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+    --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @livewireStyles
 </head>
@@ -48,8 +49,10 @@
                         <figure class="mb-0 emailicon">
                             <img src="{{ asset('website/images/header-emailicon.png') }}" alt="" class="img-fluid">
                         </figure>
-                        <a href="mailto:support@repay.com"
-                            class="mb-0 text-size-14 text-white"><b style="color:yellow;">support@reliantpaygate.com</b> &nbsp;&nbsp;| &nbsp;&nbsp; <b style="color:yellow;"><i class="fas fa-phone-square text-white"></i> 1800 961 5292</b></a>
+                        <a href="mailto:support@repay.com" class="mb-0 text-size-14 text-white"><b
+                                style="color:yellow;">support@reliantpaygate.com</b> &nbsp;&nbsp;| &nbsp;&nbsp; <b
+                                style="color:yellow;"><i class="fas fa-phone-square text-white"></i> 1800 961
+                                5292</b></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 sol-sm-12 d-md-block d-none">
@@ -237,9 +240,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('website/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('website/js/video_link.js') }}"></script>
+    {{-- <script src="{{ asset('website/js/video_link.js') }}"></script>
     <script src="{{ asset('website/js/video.js') }}"></script>
-    <script src="{{ asset('website/js/counter.js') }}"></script>
+    <script src="{{ asset('website/js/counter.js') }}"></script> --}}
     <script src="{{ asset('website/js/custom.js') }}"></script>
     <script src="{{ asset('website/js/animation_links.js') }}"></script>
     <script src="{{ asset('website/js/animation.js') }}"></script>
