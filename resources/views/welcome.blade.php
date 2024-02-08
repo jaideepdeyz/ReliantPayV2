@@ -16,7 +16,8 @@
                     <p style="color:#d6cbcb">Welcome to ReliantPay, your trusted partner in the world of secure
                         and
                         seamless online payments.</p>
-                    <div class=" button"><a class="button_text" href="{{ route('register') }}"><h4 class="text-white">Open a Free Merchant Account &nbsp;&nbsp;&nbsp; <i class="fas fa-angle-double-right"></i></h4></a>
+                    <div class=" button"><a class="button_text" href="{{ route('register') }}">Open a Free Merchant
+                            Account &nbsp;&nbsp;&nbsp; <i class="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>

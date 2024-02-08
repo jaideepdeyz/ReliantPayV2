@@ -49,9 +49,9 @@
                         <figure class="mb-0 emailicon">
                             <img src="{{ asset('website/images/header-emailicon.png') }}" alt="" class="img-fluid">
                         </figure>
-                        <a href="mailto:support@repay.com" class="mb-0 text-size-14 text-white"><b
-                                style="color:yellow;">support@reliantpaygate.com</b> &nbsp;&nbsp;| &nbsp;&nbsp; <b
-                                style="color:yellow;"><i class="fas fa-phone-square text-white"></i> 1800 961
+                        <a href="mailto:support@repay.com"
+                            class="mb-0 text-size-14 text-white"><b>support@reliantpaygate.com</b> &nbsp;&nbsp;|
+                            &nbsp;&nbsp; <b><i class="fas fa-phone-square text-white"></i> 1800 961
                                 5292</b></a>
                     </div>
                 </div>
