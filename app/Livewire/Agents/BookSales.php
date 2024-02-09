@@ -53,7 +53,8 @@ class BookSales extends Component
             $customer = CustomerMaster::where('customer_email', $this->customer_email)->first();
             if(!$customer)
             {
-                $customer = CustomerMaster::create([
+                $customer = CustomerMaster::create(
+                    [
                     'customer_email' => $this->customer_email,
                     'customer_name' => $this->customer_name,
                     'customer_gender' => $this->customer_gender,
