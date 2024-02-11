@@ -80,7 +80,7 @@ class BookSales extends Component
             $this->transactionLog();
 
             DB::commit();
-            $this->reset(['service_id', 'customer_name', 'customer_phone', 'customer_email', 'customer_dob', 'customer_gender']);
+            $this->reset(['serviceName', 'customer_name', 'customer_phone', 'customer_email', 'customer_dob', 'customer_gender']);
             $this->dispatch('close-modal');
             $this->dispatch('message', heading:'success',text:'Booking Created')->self();
             switch($this->sale->service->service_name)
