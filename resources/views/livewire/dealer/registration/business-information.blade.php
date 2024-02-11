@@ -63,7 +63,7 @@
                                 <input type="text"
                                     class="form-control @error('business_website') is-invalid @enderror"
                                     placeholder="Enter business website" value ="{{ old('business_website') }}"
-                                    wire:model="business_website">
+                                    wire:model="business_website" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif >
                                 @error('business_website')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

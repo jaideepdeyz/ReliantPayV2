@@ -59,7 +59,7 @@
                                 </h4>
 
                                 <div class="mb-3 col-md-4">
-                                    <label for="fullname" class="form-label">Full Name</label>
+                                    <label for="fullname" class="form-label">Legal Name</label>
                                     <input class="form-control @error('is-invalid') name @enderror" type="text"
                                         id="name" wire:model="name" placeholder="Enter your name" required>
 

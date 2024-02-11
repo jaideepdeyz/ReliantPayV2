@@ -16,7 +16,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                    Step 3/4: Add Passengers
+                    Step 3/5: Add Passengers
                 </h5>
                 <form wire:submit="storePassenger">
                     <div class="row">

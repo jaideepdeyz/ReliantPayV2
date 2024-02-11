@@ -16,7 +16,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                    Step 3/4: Add Details of Billing/Charges
+                    Step 4/5: Add Details of Billing/Charges
                 </h5>
                 <form wire:submit="storeCharge">
                     <div class="row">

@@ -51,7 +51,7 @@ class BusinessInformation extends Component
         $this->validate([
             'business_name' => 'required',
             'business_address' => 'required',
-            'business_website' => 'required',
+            // 'business_website' => 'required',
             'business_email' => 'required',
             'business_phone' => 'required',
         ]);
