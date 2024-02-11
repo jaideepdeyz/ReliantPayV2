@@ -39,7 +39,7 @@ class BookSales extends Component
     public function storeSaleBooking()
     {
         $this->validate([
-            'service_id' => 'required',
+            'serviceName' => 'required',
             'customer_name' => 'required',
             'customer_phone' => 'required',
             'customer_email' => 'required',
