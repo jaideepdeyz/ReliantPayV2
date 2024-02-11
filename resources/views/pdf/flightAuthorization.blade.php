@@ -28,26 +28,26 @@
                     <p>On your bank statement, the following charges will be shown, from Reservation Assistance for a total of <b>USD {{$paymentDetails->amount_charged}}. </b></p><br>
 
                         @foreach($charges as $charge)
-                        <p><b>CHARGE {{$loop->iteration }} : RESERVATION ASSISTANCE : ${{$charge->amount}}</b></p>
+                        <p><b>CHARGE {{$loop->iteration }} : {{$charge->charge_type}} : ${{$charge->amount}}</b></p>
                         @endforeach
                         <br><br>
                     <p><b>PLEASE VERIFY THE PASSENGER(S) INFORMATION BELOW</b></p>
-                    <table class="table table-bordered">
+                    <table>
                         <thead>
                             <tr>
-                                <th style="style=font-size:12;">#</th>
-                                <th style="style=font-size:12;">Passenger's Name</th>
-                                <th style="style=font-size:12;">Gender</th>
-                                <th style="style=font-size:12;">Date of Birth</th>
+                                <th style="style=font-size:10; text-align:center; padding:20px;">#</th>
+                                <th style="style=font-size:10; text-align:center; padding:20px;">Passenger's Name</th>
+                                <th style="style=font-size:10; text-align:center; padding:20px;">Gender</th>
+                                <th style="style=font-size:10; text-align:center; padding:20px;">Date of Birth</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($passengers as $passenger)
                             <tr>
-                                <td style="style=font-size:10;">{{$loop->iteration}}</td>
-                                <td style="style=font-size:10;">{{$passenger->full_name}}</td>
-                                <td style="style=font-size:10;">{{$passenger->gender}}</td>
-                                <td style="style=font-size:10;">{{ Carbon\Carbon::parse($passenger->dob)->format('F j, Y')}}</td>
+                                <td style="style=font-size:10; text-align:center;">{{$loop->iteration}}</td>
+                                <td style="style=font-size:10; text-align:center;">{{$passenger->full_name}}</td>
+                                <td style="style=font-size:10; text-align:center;">{{$passenger->gender}}</td>
+                                <td style="style=font-size:10; text-align:center;">{{ Carbon\Carbon::parse($passenger->dob)->format('F j, Y')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -56,38 +56,38 @@
 
 
                     <p><b>PLEASE VERIFY THE FLIGHT(S) INFORMATION BELOW</b></p>
-                    <table class="table table-bordered">
+                    <table>
                         <thead>
                             <tr>
-                                <th style="font-size:12px;">JOURNEY</th>
-                                <th style="font-size:12px;">FROM</th>
-                                <th style="font-size:12px;">TO</th>
+                                <th style="font-size:10px; text-align:center; padding:20px;">JOURNEY</th>
+                                <th style="font-size:10px; text-align:center; padding:20px;">FROM</th>
+                                <th style="font-size:10px; text-align:center; padding:20px;">TO</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>ONWARD JOURNEY</b></td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;"><b>ONWARD JOURNEY</b></td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <b>
                                     {{$flightDetails->departureAirport->name}}, {{$flightDetails->departureAirport->city}}, {{$flightDetails->departureAirport->country}}
                                     </b>
                                 </td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <b>
                                     {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
                                     </b>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;"></td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <p>
                                         Date: {{ Carbon\Carbon::parse($flightDetails->departure_date)->format('F j, Y')}}</p>
                                     <p>
                                         Time: {{$flightDetails->departure_hour}} :{{$flightDetails->departure_minute}}
                                     </p>
                                 </td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <p>Date: {{ Carbon\Carbon::parse($flightDetails->departure_eta_date)->format('F j, Y')}}</p>
                                     <p>
                                         Time: {{$flightDetails->departure_eta_hour}} :{{$flightDetails->departure_eta_minute}}
@@ -96,28 +96,28 @@
                             </tr>
                             @if($flightDetails->oneway_or_roundtrip == 'Round Trip')
                             <tr>
-                                <td><b>RETURN JOURNEY</b></td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;"><b>RETURN JOURNEY</b></td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <b>
                                     {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
                                     </b>
                                 </td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <b>
                                     {{$flightDetails->destinationAirport->name}}, {{$flightDetails->destinationAirport->city}}, {{$flightDetails->destinationAirport->country}}
                                     </b>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;"></td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <p>
                                         Date: {{ Carbon\Carbon::parse($flightDetails->return_date)->format('F j, Y')}}</p>
                                     <p>
                                         Time: {{$flightDetails->return_hour}} :{{$flightDetails->return_minute}}
                                     </p>
                                 </td>
-                                <td>
+                                <td style="style=font-size:10; text-align:center;">
                                     <p>Date: {{ Carbon\Carbon::parse($flightDetails->return_eta_date)->format('F j, Y')}}</p>
                                     <p>
                                         Time: {{$flightDetails->return_eta_hour}} :{{$flightDetails->return_eta_minute}}

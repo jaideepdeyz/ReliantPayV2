@@ -140,8 +140,8 @@ class FlightBookingService extends Component
             $this->departureAirports = [];
         } else {
             $this->departureAirports = Airport::where('code', 'like', '%' . $this->departureQuery . '%')
-                ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
-                ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
+                // ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
+                // ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
                 ->get();
         }
     }
@@ -152,8 +152,8 @@ class FlightBookingService extends Component
             $this->destinationAirports = [];
         } else {
             $this->destinationAirports = Airport::where('code', 'like', '%' . $this->destinationQuery . '%')
-                ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
-                ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
+                // ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
+                // ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
                 ->get();
         }
     }

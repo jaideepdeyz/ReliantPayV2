@@ -18,7 +18,7 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                            Step 3/4: Billing Details
+                            Step 5/5: Billing Details
                         </h5>
                         <div class="row">
 
@@ -78,10 +78,13 @@
                                 <div class="dropdownList">
                                     <label for="destination_location" class="form-label">City <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="text" class="form-input form-control @error('cityQuery') is-invalid @enderror"
+                                    {{-- <input type="text" class="form-input form-control @error('cityQuery') is-invalid @enderror"
                                         placeholder="Search Cities .." wire:model.live="cityQuery"
+                                        required> --}}
+                                    <input type="text" class="form-input form-control @error('cityQuery') is-invalid @enderror"
+                                        placeholder="Enter City" wire:model="cc_billing_address_city"
                                         required>
-                                    @if ($cities)
+                                    {{-- @if ($cities)
                                     <div class="dropdown-container">
                                         @foreach ($cities as $selectedCity)
                                         <a href="#" class="d-block dropdown-links"
@@ -90,8 +93,8 @@
                                         </a>
                                         @endforeach
                                     </div>
-                                    @endif
-                                    @error('cityQuery')
+                                    @endif --}}
+                                    @error('cc_billing_address_city')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 </div>
@@ -101,10 +104,13 @@
                                 <div class="dropdownList">
                                     <label for="destination_location" class="form-label">State <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="text" class="form-input form-control @error('stateQuery') is-invalid @enderror"
+                                    {{-- <input type="text" class="form-input form-control @error('stateQuery') is-invalid @enderror"
                                         placeholder="Search States .." wire:model.live="stateQuery"
+                                        required> --}}
+                                    <input type="text" class="form-input form-control @error('stateQuery') is-invalid @enderror"
+                                        placeholder="Enter State" wire:model="cc_billing_address_state"
                                         required>
-                                    @if ($states)
+                                   {{-- @if ($states)
                                     <div class="dropdown-container">
                                         @foreach ($states as $state)
                                         <a href="#" class="d-block dropdown-links"
@@ -114,8 +120,8 @@
                                         </a>
                                         @endforeach
                                     </div>
-                                    @endif
-                                    @error('stateQuery')
+                                    @endif --}}
+                                    @error('cc_billing_address_state')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
