@@ -22,6 +22,7 @@ class AgentDashboard extends Component
     public $firstPasswordChanged = 'No';
     public $currentPassword;
     public $newPassword;
+    public $confirmPassword;
     public $totalrevenueoptions;
 
     public function mount()
@@ -273,11 +274,15 @@ class AgentDashboard extends Component
         } else {
             $this->validate([
                 'currentPassword' => 'required',
-                'newPassword' => 'required|min:6',
+                'newPassword' => 'required|min:8',
+                'confirmPassword' => 'required|min:8|same:newPassword',
             ], [
                 'currentPassword.required' => 'Current Password is required',
                 'newPassword.required' => 'New Password is required',
                 'newPassword.min' => 'New Password must be at least 8 characters',
+                'confirmPassword.required' => 'Confirm Password is required',
+                'confirmPassword.min' => 'Confirm Password must be at least 8 characters',
+                'confirmPassword.same' => 'The passwords provided do not match',
             ]);
 
             try

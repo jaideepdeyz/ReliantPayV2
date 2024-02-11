@@ -24,14 +24,20 @@
                                 <div class="col-md-12 mb-2">
                                     <label for="currentPassword" class="form-label">Current Password</label>
                                     <input type="password" class="form-control" id="currentPassword"
-                                        wire:model.defer="currentPassword" placeholder="Please enter current password">
+                                        wire:model="currentPassword" placeholder="Please enter current password">
                                     @error('currentPassword') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label for="newPassword" class="form-label">New Password</label>
                                     <input type="password" class="form-control" id="newPassword"
-                                        wire:model.defer="newPassword" placeholder="Please provide a new password">
+                                        wire:model="newPassword" placeholder="Please provide a new password">
                                     @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-md-12 mb-2">
+                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword"
+                                        wire:model="confirmPassword" placeholder="Please retype the new password">
+                                    @error('confirmPassword') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <button type="submit" class="btn btn-primary">Change Password</button>
