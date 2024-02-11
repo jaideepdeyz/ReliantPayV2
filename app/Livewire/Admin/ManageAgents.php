@@ -5,7 +5,8 @@ namespace App\Livewire\Admin;
 use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Url;
+use Illuminate\Support\Facades\Log;
+use Livewire\With\Url;
 use Livewire\Component;
 
 class ManageAgents extends Component
@@ -76,7 +77,7 @@ class ManageAgents extends Component
             default:
              return redirect()->back();
         }
-        
+
         return view('livewire.admin.manage-agents', [
             'agents' => $agents,
         ])->layout('layouts.dashboard-layout');

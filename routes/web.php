@@ -118,12 +118,12 @@ Route::middleware('auth')->group(function () {
     Route::get('manageCustomers', ManageCustomers::class)->name('manageCustomers');
     Route::get('pendingAuthorizations', PendingAuthorization::class)->name('pendingAuthorizations');
 
-    //admin Routes
-    Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
-    Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
+    //Common Routes for Admin, Affiliates and Dealers
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
-    Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+
+
+
 
     //Affilate Routes
     Route::get('affiliateDashboard', AffilateDashboard::class)->name('affiliateDashboard');
@@ -154,6 +154,13 @@ Route::middleware('auth')->group(function () {
 
     // PDF Routes
     Route::get('authorizationForm/{bookingID}', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
+});
+
+Route::middleware('auth', 'adminRoleCheck')->group(function () {
+    //admin Routes
+    Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
+    Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
+    Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
 });
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');

@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'registrationCheck' => \App\Http\Middleware\RegistrationCheck::class,
         'xml' => \Bmatovu\LaravelXml\Http\Middleware\RequireXml::class,
+        'adminRoleCheck' => \App\Http\Middleware\AdminRoleCheck::class,
     ];
 }
