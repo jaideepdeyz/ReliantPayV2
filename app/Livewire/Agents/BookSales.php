@@ -62,10 +62,14 @@ class BookSales extends Component
                 ]);
             }
 
+            // getting the service id from services table
+
+            $service = ServiceMaster::where('service_name', $this->service_id)->first();
+
             $this->sale = SaleBooking::create([
                 'agent_id' => auth()->user()->id,
                 'organization_id' => auth()->user()->organization_id,
-                'service_id' => $this->service_id,
+                'service_id' => $service->id,
                 'customer_id' => $customer->id,
                 'customer_phone' => $this->customer_phone,
                 'app_status' => StatusEnum::DRAFT,
