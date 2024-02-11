@@ -22,7 +22,8 @@ class BookSales extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $agent_name;
-    public $service_id;
+    // public $service_id;
+    public $serviceName;
     public $customer_name;
     public $customer_phone;
     public $customer_email;
@@ -64,7 +65,7 @@ class BookSales extends Component
 
             // getting the service id from services table
 
-            $service = ServiceMaster::where('service_name', $this->service_id)->first();
+            $service = ServiceMaster::where('service_name', $this->serviceName)->first();
 
             $this->sale = SaleBooking::create([
                 'agent_id' => auth()->user()->id,

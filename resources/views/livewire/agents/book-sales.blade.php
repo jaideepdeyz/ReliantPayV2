@@ -135,12 +135,12 @@
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
                         <div class="form-group mb-2">
-                            <label for="service_id" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
-                            <select class="form-control @error('service_id') is-invalid @enderror"
-                                wire:model="service_id">
+                            <label for="serviceName" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('serviceName') is-invalid @enderror"
+                                wire:model="serviceName">
                                 <option value="">Select Service</option>
                                 @foreach ($services as $service)
-                                <option value="{{ $service->id }}">
+                                <option value="{{ $service->service_name }}">
                                     {{ $service->service_name }}</option>
                                 @endforeach
                             </select>
