@@ -77,6 +77,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(AgentPasswordChangeLogs::class, 'user_id', 'id');
     }
+
+    public function merchantPasswordChangeLogs()
+    {
+        return $this->hasMany(MerchantPasswordChangeLogs::class, 'user_id', 'id');
+    }
+
     public function affiliate()
     {
         return $this->hasOne(Affiliate::class, 'user_id', 'id');

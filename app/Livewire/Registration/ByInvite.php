@@ -5,6 +5,7 @@ namespace App\Livewire\Registration;
 use App\Enums\RoleEnum;
 use App\Models\AffiliateMerchantCode;
 use App\Models\EmailPhoneOtp;
+use App\Models\MerchantPasswordChangeLogs;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Service\TrueDialogSmsService;
@@ -143,6 +144,11 @@ class ByInvite extends Component
                 [
                     'user_id' => $user->id,
                 ]);
+
+            $passwordChangeLog = MerchantPasswordChangeLogs::create([
+                'user_id' => $user->id,
+                'first_password_changed' => 'No',
+            ]);
             event(new Registered($user));
             Auth::login($user);
             return redirect(RouteServiceProvider::HOME);

@@ -7,6 +7,7 @@ use App\Enums\StatusEnum;
 use App\Mail\DealerRegistrationSubmissionMail;
 use App\Mail\MerchantAddedByAdminConfirmationMail;
 use App\Models\AffiliateMerchantCode;
+use App\Models\MerchantPasswordChangeLogs;
 use App\Models\Organization;
 use App\Models\TransactionLog;
 use App\Models\User;
@@ -108,6 +109,11 @@ class Confirmation extends Component
                     'email' => $user->email,
                     'password' => 'Merchant@123#',
                 ];
+
+                $passwordChangeLog = MerchantPasswordChangeLogs::create([
+                    'user_id' => $user->id,
+                    'first_password_changed' => 'No',
+                ]);
 
                 Mail::to($user->email)->send(new MerchantAddedByAdminConfirmationMail($mailData));
                 $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is APPROVED and CREDENTIALS have been intimated over email. Questions? Contact support@reliantpay.com');

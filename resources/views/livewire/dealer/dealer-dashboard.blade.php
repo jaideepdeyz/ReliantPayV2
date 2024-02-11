@@ -101,6 +101,43 @@
         </div>
     </div>
     @else
+    @switch($firstPasswordChanged)
+    @case('No')
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>This is your first login, please change your password before accessing any services.</h5>
+                    <hr>
+                    <form wire:submit.prevent="changePassword">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword"
+                                    wire:model="currentPassword" placeholder="Please enter current password">
+                                @error('currentPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword"
+                                    wire:model="newPassword" placeholder="Please provide a new password">
+                                @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    wire:model="confirmPassword" placeholder="Please retype the new password">
+                                @error('confirmPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @break
+    @case('Yes')
         <!-- end page title -->
         <div class="col-md-6 col-xl-3 mb-3">
             <div class="widget-rounded-circle card dashboard-card">
@@ -367,5 +404,6 @@
             </div> <!-- end col -->
         </div>
         <!-- end row -->
+    @endswitch
     @endif
 </div>
