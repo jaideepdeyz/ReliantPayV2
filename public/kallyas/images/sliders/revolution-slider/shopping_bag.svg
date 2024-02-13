@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="80px" height="85px" viewBox="0 0 80 85" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>shopping_bag</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="shopping_bag" sketch:type="MSLayerGroup" fill="#737F1A">
+            <path d="M40.1,57.5 C26.1,57.5 14.8,41.4 14.8,21.6 C14.8,19.9 16.2,18.5 17.9,18.5 C19.6,18.5 21,19.9 21,21.6 C21,37.9 29.5,51.2 40,51.2 C50.5,51.2 59,37.9 59,21.6 C59,19.9 60.4,18.5 62.1,18.5 C63.8,18.5 65.2,19.9 65.2,21.6 C65.4,41.4 54.1,57.5 40.1,57.5 L40.1,57.5 Z M17.9,20 C17,20 16.3,20.7 16.3,21.6 C16.3,40.5 27,55.9 40,55.9 C53,55.9 63.7,40.5 63.7,21.6 C63.7,20.7 63,20 62.1,20 C61.2,20 60.5,20.7 60.5,21.6 C60.5,38.8 51.3,52.8 39.9,52.8 C28.5,52.8 19.3,38.8 19.3,21.6 C19.5,20.7 18.8,20 17.9,20 L17.9,20 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+            <path d="M78.9,11.2 L74.4,5.1 L76.1,0.1 L3.5,0.1 L5.1,5.7 L1,10.9 L0.5,11.4 L0.5,83.1 L2.1,84.7 L77.7,84.7 L79.3,83.1 L79.3,11.4 L78.9,11.2 L78.9,11.2 Z M76,81.6 L3.6,81.6 L3.6,70.8 L76,70.8 L76,81.6 L76,81.6 Z M76,66.1 L3.6,66.1 L3.6,13 L76,13 L76,66.1 L76,66.1 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
