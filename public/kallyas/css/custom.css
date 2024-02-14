@@ -17,7 +17,9 @@
 * These rules are ready to be used for either overrides
 * or just your own custom rules.
 ========================================================================== */
-
+.js-tonext-btn{
+    cursor: pointer !important;
+}
 
 /** Higher screens+ **/
 @media only screen and (min-width : 1921px){
@@ -93,5 +95,5 @@
 
 /** Normal phone portrait mode+ **/
 @media (min-width: 320px) {
-	
+
 }
