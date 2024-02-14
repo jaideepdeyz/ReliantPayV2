@@ -410,58 +410,36 @@
             <div class="bgback">
             </div>
 
-            <!-- Static content wrapper fullscreen -->
             <div class="kl-slideshow-inner static-content__wrapper static-content--fullscreen" style="height:95vh">
-                <!-- Static content background source -->
                 <div class="static-content__source animateme" data-when="span" data-from="0" data-to="0.75"
                     data-easing="linear" data-translatey="300" data-opacity="0.1">
-                    <!-- Background -->
                     <div class="kl-bg-source">
-                        <!-- Background image -->
                         <div class="kl-bg-source__bgimage"
-                            style="background-image:url(website/images/online-pay.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:center; background-size:cover">
+                            style="background-image:url(website/images/online-pay.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:center; background-size:cover;opacity:0.6;filter: blur(2px);">
                         </div>
-                        <!--/ Background image -->
-
-                        <!-- Color overlay -->
                         <div class="kl-bg-source__overlay" style="background-color:rgba(0,16,35,0.5)">
                         </div>
-                        <!--/ Color overlay -->
                     </div>
-                    <!--/ Background -->
 
-                    <!-- Animated Sparkles -->
                     <div class="th-sparkles"></div>
-                    <!--/ Animated Sparkles -->
 
-                    <!-- To next section (end of slideshow section) -->
                     <a class="tonext-btn js-tonext-btn" href="#" data-endof=".kl-slideshow-inner">
                         <span class="mouse-anim-icon"></span>
                     </a>
                 </div>
-                <!--/ .static-content__source -->
 
-                <!-- Static content container -->
                 <div class="static-content__inner container animateme" data-when="span" data-from="0" data-to="0.75"
                     data-easing="linear" data-translatey="300" data-opacity="0.1" style="margin-top:50px">
                     <div class="pos-vertical-middle">
                         <div class="container">
-                            <!-- Small TITLE with custom styles -->
-                            {{-- <h3 class="fw-normal fs-normal white mb-30 lt-spacing-2">
-                                WEB • MOBILE • ECOMMERCE
-                            </h3> --}}
-
-                            <!-- Big Ttile with custom styles -->
                             <h3 class="fs-xxxl fw-normal text-white reset-line-height mb-30 mt-5">
                                 Providing Expert Solutions<br> For Merchants Of All Risk Levels
                             </h3>
 
-                            <!-- Big Title 2 with custom styles -->
                             <h3 class="fs-xl fw-thin sourcesans text-white mb-40">
                                 Plus your customers will love it.
                             </h3>
 
-                            <!-- Buttons -->
                             <a href="#" target="_self" class="btn btn-fullcolor mid-padding" title="KALLYAS">
                                 FIND OUT HOW
                             </a> <span class="pl-15 pr-15 text-white">or</span>
@@ -473,39 +451,16 @@
                         </div>
                     </div>
                     <ul class="parallax-effects d-none d-lg-block" data-friction-x="0.1" data-friction-y="0.1"
-                        data-scalar-x="25" data-scalar-y="15" style="left:802px">
+                        data-scalar-x="25" data-scalar-y="15" style="left:500px;top:-260px">
                         <!-- Layer #1 -->
                         <li class="layer" data-depth="0.03">
-                            <div class="slide-image layer-element " data-delay="1" data-start-x="50%" data-start-y="50%"
-                                data-x="340" data-y="-250">
-                                <img src="{{ asset('kallyas/images/sliders/simple_background/chroma_mock.png') }}"
-                                    alt="" data-0="transform:translateY(0px); opacity:1;"
-                                    data-600="transform:translateY(360px); opacity:0;">
-                            </div>
-                        </li>
-                        <!--/ Layer #1 -->
-
-                        <!-- Layer #2 -->
-                        <li class="layer" data-depth="0.02">
-                            <div class="slide-image layer-element sfb-effect" data-start-x="50%" data-start-y="50%"
-                                data-x="200" data-y="-120" data-delay="0.2">
-                                <img src="{{ asset('kallyas/images/sliders/simple_background/mood_mock.png') }}" alt=""
+                            <div class="slide-image layer-element">
+                                <img src="{{ asset('kallyas/images/main-pic.png') }}" alt=""
                                     data-0="transform:translateY(0px); opacity:1;"
-                                    data-600="transform:translateY(220px); opacity:0;">
+                                    data-600="transform:translateY(360px); opacity:0;" style="max-width:1200px">
                             </div>
                         </li>
-                        <!--/ Layer #2 -->
 
-                        <!-- Layer #3 -->
-                        <li class="layer" data-depth="0.02">
-                            <div class="slide-image layer-element sfb-effect" data-start-x="50%" data-start-y="50%"
-                                data-x="645" data-y="55" data-delay="0.4">
-                                <img src="images/sliders/simple_background/iphone6.png" alt=""
-                                    data-0="transform:translateY(0px); opacity:1;"
-                                    data-600="transform:translateY(160px); opacity:0;">
-                            </div>
-                        </li>
-                        <!--/ Layer #3 -->
                     </ul>
 
                 </div>
