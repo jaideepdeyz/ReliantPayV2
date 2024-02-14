@@ -176,36 +176,7 @@
                             <!-- Header Top Right Side -->
                             <div class="site-header-top-right d-flex">
                                 <!-- Languages -->
-                                <div class="topnav topnav--lang align-self-center">
-                                    <div class="languages drop">
-                                        <a href="#" class="topnav-item">
-                                            <span class="fas fa-globe xs-icon"></span>
-                                            <span class="topnav-item--text">LANGUAGES</span>
-                                        </a>
-                                        <div class="pPanel">
-                                            <ul class="inner">
-                                                <li class="toplang-item active">
-                                                    <a href="#">
-                                                        <img src="images/en.svg" alt="English"
-                                                            class="toplang-flag "> English
-                                                    </a>
-                                                </li>
-                                                <li class="toplang-item">
-                                                    <a href="#">
-                                                        <img src="images/fr.svg" alt="Francais"
-                                                            class="toplang-flag "> Francais
-                                                    </a>
-                                                </li>
-                                                <li class="toplang-item">
-                                                    <a href="#">
-                                                        <img src="images/es.svg" alt="Espanol"
-                                                            class="toplang-flag "> Espanol
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <!--/ Languages -->
 
                                 <div class="topnav support--panel align-self-center">
@@ -229,14 +200,12 @@
 
                                 <!-- header search -->
                                 <div id="search" class="header-search align-self-center">
-                                    <a href="#" class="searchBtn "><span
-                                            class="fas fa-search white-icon"></span></a>
+                                    <a href="#" class="searchBtn "><span class="fas fa-search white-icon"></span></a>
                                     <div class="search-container">
                                         <form id="searchform" class="header-searchform"
                                             action="https://www.google.com/search" method="get" target="_blank">
-                                            <input id="q" name="q" maxlength="20" class="inputbox"
-                                                type="text" size="20" value="SEARCH ..."
-                                                onblur="if (this.value=='') this.value='SEARCH ...';"
+                                            <input id="q" name="q" maxlength="20" class="inputbox" type="text" size="20"
+                                                value="SEARCH ..." onblur="if (this.value=='') this.value='SEARCH ...';"
                                                 onfocus="if (this.value=='SEARCH ...') this.value='';">
                                             <button type="submit" id="searchsubmit"
                                                 class="searchsubmit fas fa-search white-icon"></button>
@@ -271,8 +240,7 @@
                                     <h1 class="site-logo logo" id="logo">
                                         <a href="index.html" title="">
                                             <img src="{{ asset('auth/images/adminlogo/admin-logo-dark.png') }}"
-                                                class="logo-img" alt="Kallyas"
-                                                title="Kallyas Gigantic Premium Template" />
+                                                class="logo-img" style="max-height:95px;" />
                                         </a>
                                     </h1>
                                     <!--/ Logo -->
@@ -308,8 +276,7 @@
                                                         </p>
                                                         <a href="http://goo.gl/maps/1OhOu" class="map-link"
                                                             target="_blank" title="">
-                                                            <span
-                                                                class="fas fa-map-marker-alt white-icon mr-10"></span>
+                                                            <span class="fas fa-map-marker-alt white-icon mr-10"></span>
                                                             <span>Open in Google Maps</span>
                                                         </a>
                                                     </div>
@@ -319,12 +286,12 @@
                                                     <ul class="social-icons sc--clean">
                                                         <li><a href="#" target="_self" class="fab fa-twitter"
                                                                 title="Twitter"></a></li>
-                                                        <li><a href="#" target="_self"
-                                                                class="fab fa-facebook-f" title="Facebook"></a></li>
+                                                        <li><a href="#" target="_self" class="fab fa-facebook-f"
+                                                                title="Facebook"></a></li>
                                                         <li><a href="#" target="_self" class="fab fa-dribbble"
                                                                 title="Dribbble"></a></li>
-                                                        <li><a href="#" target="_blank"
-                                                                class="fab fa-google-plus-g" title="Google Plus"></a>
+                                                        <li><a href="#" target="_blank" class="fab fa-google-plus-g"
+                                                                title="Google Plus"></a>
                                                         </li>
                                                     </ul>
                                                     <!--/ Social links clean style -->
@@ -343,23 +310,17 @@
                                 <div class="separator visible-xxs"></div>
                                 <!--/ Separator -->
                             </div>
-                            <!--/ .site-header-main-left -->
 
-                            <!-- Header Main Center Side -->
                             <div class="site-header-main-center d-flex justify-content-center align-items-center">
-                                <!-- Main Menu wrapper -->
                                 <div class="main-menu-wrapper">
-                                    <!-- Responsive menu trigger -->
                                     <div id="zn-res-menuwrapper">
                                         <a href="#" class="zn-res-trigger "></a>
                                     </div>
-                                    <!--/ responsive menu trigger -->
 
-                                    <!-- Main menu -->
                                     <div id="main-menu" class="main-nav zn_mega_wrapper">
                                         <ul id="menu-main-menu" class="main-menu zn_mega_menu">
                                             <li class="menu-item-has-children menu-item-mega-parent"><a
-                                                    href="index.html">HOMEPAGES & NICHE</a>
+                                                    href="index.html">HOME</a>
                                                 <ul class="hg_mega_container row clearfix">
                                                     <li class="menu-item-has-childern col-lg-4"><a href="#"
                                                             class="zn_mega_title">HOMEPAGES</a>
@@ -384,13 +345,9 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!--/ Main menu -->
                                 </div>
-                                <!--/ .main-menu-wrapper -->
                             </div>
-                            <!--/ .site-header-main-center -->
 
-                            <!-- Header Main Right Side -->
                             <div class="site-header-main-right d-flex justify-content-end align-items-center">
                                 <!-- Shopping Cart -->
                                 <div class="mainnav mainnav--cart d-flex align-self-center">
@@ -403,8 +360,7 @@
                                                 <div class="widget_shopping_cart_content">
                                                     <ul class="cart_list product_list_widget ">
                                                         <li>
-                                                            <a href="#" class="remove"
-                                                                title="Remove this item">×</a>
+                                                            <a href="#" class="remove" title="Remove this item">×</a>
                                                             <a href="#" class="product-title">
                                                                 <img src="images/img4-90x90.jpg"
                                                                     alt="Hoodie With Patch Logo"
@@ -430,43 +386,32 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/ Shopping Cart -->
 
-                                <!-- Call to action ribbon Free Quote (Contact form pop-up element) -->
                                 <div class="quote-ribbon">
                                     <a href="#contact_panel" id="ctabutton" class="ctabutton kl-cta-ribbon"
                                         title="GET A FREE QUOTE" target="_self">
                                         <strong>FREE</strong>QUOTE
                                         <svg version="1.1" class="trisvg" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                            preserveaspectratio="none" width="14px" height="5px"
-                                            viewbox="0 0 14 5" enable-background="new 0 0 14 5" xml:space="preserve">
+                                            preserveaspectratio="none" width="14px" height="5px" viewbox="0 0 14 5"
+                                            enable-background="new 0 0 14 5" xml:space="preserve">
                                             <polygon fill-rule="nonzero" points="14 0 7 5 0 0"></polygon>
                                         </svg>
                                     </a>
                                 </div>
-                                <!--/ Call to action ribbon Free Quote (Contact form pop-up element) -->
                             </div>
-                            <!--/ .site-header-main-right -->
                         </div>
-                        <!--/ .site-header-row .site-header-main -->
                     </div>
-                    <!--/ .siteheader-container .container -->
                 </div>
-                <!--/ Header Main wrapper -->
             </div>
-            <!--/ Header wrapper -->
         </header>
-        <!-- / Header style 1 -->
 
-
-        <!-- Slideshow - Static content Product presentation alternative -->
         <div class="kl-slideshow static-content__slideshow uh_neutral_color scrollme">
             <div class="bgback">
             </div>
 
             <!-- Static content wrapper fullscreen -->
-            <div class="kl-slideshow-inner static-content__wrapper static-content--fullscreen" style="height:75vh">
+            <div class="kl-slideshow-inner static-content__wrapper static-content--fullscreen" style="height:95vh">
                 <!-- Static content background source -->
                 <div class="static-content__source animateme" data-when="span" data-from="0" data-to="0.75"
                     data-easing="linear" data-translatey="300" data-opacity="0.1">
@@ -474,7 +419,7 @@
                     <div class="kl-bg-source">
                         <!-- Background image -->
                         <div class="kl-bg-source__bgimage"
-                            style="background-image:url(kallyas/images/general-bg-2.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:center; background-size:cover">
+                            style="background-image:url(website/images/online-pay.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:center; background-size:cover">
                         </div>
                         <!--/ Background image -->
 
@@ -497,18 +442,18 @@
                 <!--/ .static-content__source -->
 
                 <!-- Static content container -->
-                <div class="static-content__inner container animateme" data-when="span" data-from="0"
-                    data-to="0.75" data-easing="linear" data-translatey="300" data-opacity="0.1">
+                <div class="static-content__inner container animateme" data-when="span" data-from="0" data-to="0.75"
+                    data-easing="linear" data-translatey="300" data-opacity="0.1" style="margin-top:50px">
                     <div class="pos-vertical-middle">
                         <div class="container">
                             <!-- Small TITLE with custom styles -->
-                            <h3 class="fw-normal fs-normal white mb-30 lt-spacing-2">
+                            {{-- <h3 class="fw-normal fs-normal white mb-30 lt-spacing-2">
                                 WEB • MOBILE • ECOMMERCE
-                            </h3>
+                            </h3> --}}
 
                             <!-- Big Ttile with custom styles -->
-                            <h3 class="fs-xxxl fw-normal text-white reset-line-height mb-30">
-                                ReliantPay Provides Expert Solutions<br> For Merchants Of All Risk Levels
+                            <h3 class="fs-xxxl fw-normal text-white reset-line-height mb-30 mt-5">
+                                Providing Expert Solutions<br> For Merchants Of All Risk Levels
                             </h3>
 
                             <!-- Big Title 2 with custom styles -->
@@ -531,8 +476,8 @@
                         data-scalar-x="25" data-scalar-y="15" style="left:802px">
                         <!-- Layer #1 -->
                         <li class="layer" data-depth="0.03">
-                            <div class="slide-image layer-element " data-delay="1" data-start-x="50%"
-                                data-start-y="50%" data-x="340" data-y="-250">
+                            <div class="slide-image layer-element " data-delay="1" data-start-x="50%" data-start-y="50%"
+                                data-x="340" data-y="-250">
                                 <img src="{{ asset('kallyas/images/sliders/simple_background/chroma_mock.png') }}"
                                     alt="" data-0="transform:translateY(0px); opacity:1;"
                                     data-600="transform:translateY(360px); opacity:0;">
@@ -544,8 +489,8 @@
                         <li class="layer" data-depth="0.02">
                             <div class="slide-image layer-element sfb-effect" data-start-x="50%" data-start-y="50%"
                                 data-x="200" data-y="-120" data-delay="0.2">
-                                <img src="{{ asset('kallyas/images/sliders/simple_background/mood_mock.png') }}"
-                                    alt="" data-0="transform:translateY(0px); opacity:1;"
+                                <img src="{{ asset('kallyas/images/sliders/simple_background/mood_mock.png') }}" alt=""
+                                    data-0="transform:translateY(0px); opacity:1;"
                                     data-600="transform:translateY(220px); opacity:0;">
                             </div>
                         </li>
@@ -569,7 +514,7 @@
             <!--/ Static content wrapper with default height (not fullscreen) -->
         </div>
         <!--/ Slideshow - Static content Product presentation alternative -->
-        <section class="hg_section bg-white pt-0">
+        {{-- <section class="hg_section bg-white pt-0">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
@@ -579,8 +524,8 @@
                                     <div class="ac-content-text col-sm-12 col-md-12 col-lg-7">
                                         <!-- Title -->
                                         <h4 class="text">
-                                            <span class="fw-thin">KALLYAS TEMPLATE, THE <span
-                                                    class="fw-semibold">SWISS ARMY SECRET</span> FOR BUILDING THE
+                                            <span class="fw-thin">KALLYAS TEMPLATE, THE <span class="fw-semibold">SWISS
+                                                    ARMY SECRET</span> FOR BUILDING THE
                                                 MODERN WEBSITE</span>
                                         </h4>
                                         <!--/ Title -->
@@ -597,12 +542,10 @@
                                     <!-- Call to Action buttons -->
                                     <div
                                         class="ac-buttons col-sm-12 col-md-12 col-lg-5 d-flex align-self-center justify-content-center justify-content-lg-end">
-                                        <a href="#" target="_blank" class="btn btn-lined ac-btn"
-                                            title="">
+                                        <a href="#" target="_blank" class="btn btn-lined ac-btn" title="">
                                             Register now
                                         </a>
-                                        <a href="#" target="_blank" class="btn btn-fullwhite ac-btn"
-                                            title="">
+                                        <a href="#" target="_blank" class="btn btn-fullwhite ac-btn" title="">
                                             LEARN MORE
                                         </a>
                                     </div>
@@ -619,7 +562,7 @@
                 <!--/ row -->
             </div>
             <!--/ container -->
-        </section>
+        </section> --}}
         <!-- Left side with background image and right side with text section -->
         <section class="hg_section p-0 bg-white">
             <div class="container-fluid">
@@ -630,8 +573,8 @@
                             <!-- Background -->
                             <div class="kl-bg-source">
                                 <!-- Image -->
-                                <div class="kl-bg-source__bgimage vh-100"
-                                    style="background-image:url(kallyas/images/watch.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:top; background-size:cover">
+                                <div class="kl-bg-source__bgimage vh-100 text-center">
+                                    <img src="kallyas/images/6134224.png" style="padding-top:71px;" alt="" width="400">
                                 </div>
                                 <!--/ Image -->
                             </div>
@@ -644,33 +587,33 @@
                     <div class="col-sm-12 col-md-12 col-lg-4 offset-lg-1 align-self-center pt-80 pb-80">
                         <!-- Title element -->
                         <div class="kl-title-block clearfix tbk--text-dark text-left tbk-symbol--line tbk--colored">
-                            <!-- Title bottom symbol -->
                             <div class="tbk__symbol ">
                                 <span></span>
                             </div>
-                            <!--/ Title bottom symbol -->
-
-                            <!-- Title with custom font size and thin style -->
                             <h3 class="tbk__title fs-xxl fw-thin">
-                                <span class="fw-semibold tcolor">
-                                    Innovation and Technological</span> Breakthrough
+                                Offering a <span class="fw-semibold tcolor">rapid and transparent</span> approach with
+                                minimal effort to
+                                set up your merchant
+                                account tailored to your specific industry needs.
                             </h3>
-                            <!--/ Title with custom font size and thin style -->
-
-                            <!-- Spacer with 50px height -->
-                            <div class="clearfix" style="height: 50px;"></div>
+                            <div class="clearfix" style="height: 10px;"></div>
                         </div>
-                        <!--/ Title element -->
 
-                        <!-- Sub-title with custom font size and bottom margin -->
-                        <h4 class="tbk__subtitle fs-xl mb-30">
-                            Truly multi-purpose & outstanding design.
-                        </h4>
+                        {{-- <h4 class="tbk__subtitle fs-xl mb-30">
+                            <div class="tbk__symbol ">
+                                <span></span>
+                            </div>
+                            Offering a <span class="fw-semibold tcolor">rapid and transparent</span> approach with
+                            minimal effort to
+                            set up your merchant
+                            account tailored to your specific industry needs.
+                        </h4> --}}
 
                         <p class="custom-p">
-                            Without a doubt, Kallyas is one of the most complete template on the market, being packed
-                            with all the goodies and sweet gems. In time, gathering awesome feedback from our loyal
-                            customers, Kallyas became a mature, stable and future-proof project.
+                            We specialize in high volume e-commerce merchants throughout the globe, creating vastly
+                            improved payment structures for hard-to-place and high-risk businesses based on their
+                            individual needs. ReliantPay's industry-leading solutions are here to take your business to
+                            the next level.
                         </p>
 
                         <!-- Call to action Button -->
@@ -692,11 +635,11 @@
         <!--/ Left side with background image and right side with text section -->
 
         <!-- Section with background and text -->
-        <section class="hg_section--relative d-flex min-500">
+        <section class="hg_section--relative d-flex min-300 why-us">
             <!-- Background with parallax effect -->
-            <div class="kl-bg-source kl-bgSource-imageParallax js-KyHtmlParallax is-fixed">
+            <div class="kl-bg-source">
                 <!-- Background image -->
-                <div class="kl-bg-source__bgimage" style="background-image: url(images/watch2.jpg);">
+                <div class="kl-bg-source__bgimage" style="background-image: url(kallyas/images/watch2.jpg);">
                 </div>
                 <!--/ Background image -->
             </div>
@@ -709,21 +652,18 @@
                         <div class="kl-title-block clearfix text-center tbk-icon-pos--before-title">
                             <!-- Title with custom font size and weight, color and bottom margin -->
                             <h3 class="tbk__title poppins fs-l fw-semibold white mb-30">
-                                EXACTLY! ONE OF THE MOST COMPLETE TEMPLATE
+                                WHY CHOOSE US
                             </h3>
                             <!--/ Title -->
 
                             <!-- Sub-title with thin weight style, color and bottom margin -->
                             <h4 class="tbk__subtitle fw-thin white mb-50">
-                                We always had this statement and we're keeping our promise. Beside a powerful yet easy
-                                to use elements, Kallyas has packed inside lots of sweet features that wait to be
-                                discovered.
+                                "Choosing Ease, Trust, and Security: Your Payment Gateway Partner"
                             </h4>
                             <!--/ Sub-title -->
 
-                            <a href="#" target="_blank" class="btn-element btn btn-fullcolor btn-skewed"
-                                title="KALLYAS TEMPLATE">
-                                <span>PURCHASE</span>
+                            <a class="tonext-btn js-tonext-btn" href="#" data-endof=".why-us">
+                                <span class="mouse-anim-icon"></span>
                             </a>
                         </div>
                         <!--/ Title element -->
@@ -737,7 +677,7 @@
         <!--/ Section with background and text -->
 
         <!-- Grid icons boxes element section -->
-        <section class="hg_section p-0">
+        <section class="hg_section p-0" id="why">
             <div class="container-fluid">
                 <div class="row gutter">
                     <div class="col-sm-12 col-md-12">
@@ -753,7 +693,7 @@
                                             <div class="grid-ibx__title-wrp">
                                                 <!-- Title -->
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    WELL DOCUMENTED
+                                                    FAST APPROVALS
                                                 </h4>
                                             </div>
                                             <!--/ .grid-ibx__title-wrp -->
@@ -769,7 +709,7 @@
                                             <div class="grid-ibx__desc-wrp">
                                                 <!-- Description -->
                                                 <p class="grid-ibx__desc">
-                                                    Documentation include with explanations for most of the options.
+                                                    Fast Approvals Within 24-72 Hours, even for high-risk industries
                                                 </p>
                                             </div>
                                             <!--/ .grid-ibx__desc -->
@@ -784,7 +724,7 @@
                                             <!-- Title wrapper -->
                                             <div class="grid-ibx__title-wrp">
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    UNLIMITED COLORS
+                                                    CUSTOMER SERVICE
                                                 </h4>
                                             </div>
                                             <!--/ .grid-ibx__title-wrp -->
@@ -799,7 +739,8 @@
                                             <!-- Description wrapper -->
                                             <div class="grid-ibx__desc-wrp">
                                                 <p class="grid-ibx__desc">
-                                                    With just a few clicks you can add any color you want.
+                                                    Exceptional Customer Service, including direct access to Management
+                                                    Team
                                                 </p>
                                             </div>
                                             <!--/ .grid-ibx__desc-wrp -->
@@ -814,7 +755,7 @@
                                             <!-- Title wrapper -->
                                             <div class="grid-ibx__title-wrp">
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    CUSTOM SHORTCODES
+                                                    RISK MITIGATION
                                                 </h4>
                                             </div>
                                             <!--/ .grid-ibx__title-wrp -->
@@ -829,7 +770,8 @@
                                             <!-- Description wrapper -->
                                             <div class="grid-ibx__desc-wrp">
                                                 <p class="grid-ibx__desc">
-                                                    Great custom shortcodes which are ment to ease up your work.
+                                                    Risk mitigation with Rapid Dispute Resolution (RDR) by Verifi, 3-D
+                                                    Secure 2.1/ our partner product CB-ALERT
                                                 </p>
                                             </div>
                                             <!--/ grid-ibx__desc-wrp -->
@@ -848,7 +790,7 @@
                                             <!-- Title wrapper -->
                                             <div class="grid-ibx__title-wrp">
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    MULTILANGUAGE READY
+                                                    LOW RATES
                                                 </h4>
                                             </div>
                                             <!--/ .grid-ibx__title-wrp -->
@@ -863,7 +805,7 @@
                                             <!-- Description wrapper -->
                                             <div class="grid-ibx__desc-wrp">
                                                 <p class="grid-ibx__desc">
-                                                    You can install languages and extend the website's languages.
+                                                    Low risk rates as low as $99 per month and $0.05 per transaction
                                                 </p>
                                             </div>
                                             <!--/ .grid-ibx__desc-wrp -->
@@ -878,7 +820,7 @@
                                             <!-- Title wrapper -->
                                             <div class="grid-ibx__title-wrp">
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    HIGHLY CUSTOMIZABLE
+                                                    CHARGEBACK ALERTS
                                                 </h4>
                                             </div>
                                             <!--/ .grid-ibx__title-wrp -->
@@ -893,51 +835,34 @@
                                             <!-- Description wrapper -->
                                             <div class="grid-ibx__desc-wrp">
                                                 <p class="grid-ibx__desc">
-                                                    This template includes lots of customizations and combinations.
+                                                    Traditional chargeback alerts by Ethoca and Verifi
                                                 </p>
                                             </div>
                                             <!--/ .grid-ibx__desc-wrp -->
                                         </div>
                                         <!--/ .grid-ibx__item-inner -->
                                     </div>
-                                    <!-- /.grid-ibx__item #5 -->
 
-                                    <!-- Item #6 with height 320px (.h-320) -->
                                     <div class="grid-ibx__item h-320">
                                         <div class="grid-ibx__item-inner">
-                                            <!-- Title wrapper -->
                                             <div class="grid-ibx__title-wrp">
                                                 <h4 class="grid-ibx__title kl-font-alt">
-                                                    CUSTOMER SUPPORT
+                                                    HIGH APPROVALS
                                                 </h4>
                                             </div>
-                                            <!--/ .grid-ibx__title-wrp -->
-
-                                            <!-- Icon wrapper -->
                                             <div class="grid-ibx__icon-wrp">
-                                                <!-- Icon .icon-gi-ico-5 with custom size -->
                                                 <span class="grid-ibx__icon icon-gi-ico-5 fs-xxxl"></span>
                                             </div>
-                                            <!--/ .grid-ibx__icon-wrp -->
-
-                                            <!-- Description wrapper -->
                                             <div class="grid-ibx__desc-wrp">
                                                 <p class="grid-ibx__desc">
-                                                    Great customer support! Check out our <br>
-                                                    <a href="https://my.hogash.com/" target="_blank"
-                                                        title="Customer Dashboard"><strong>customer
-                                                            dashboard</strong></a>
+                                                    Maximize approval ratios due to routing technology based on your
+                                                    target customer base within our proprietary payment gateway
                                                 </p>
                                             </div>
-                                            <!--/ grid-ibx__desc-wrp -->
                                         </div>
-                                        <!--/ .grid-ibx__item-inner -->
                                     </div>
-                                    <!-- /.grid-ibx__item #6 -->
                                 </div>
-                                <!-- /.grid-ibx__row -->
                             </div>
-                            <!--/ .grid-ibx__inner -->
                         </div>
                         <!--/ grid-ibx grid-ibx--cols-3 grid-ibx--style-lined-full grid-ibx--hover-shadow -->
                     </div>
@@ -1019,7 +944,7 @@
                             <div class="kl-bg-source">
                                 <!-- Image -->
                                 <div class="kl-bg-source__bgimage vh-100"
-                                    style="background-image:url(images/watch4.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:top; background-size:cover">
+                                    style="background-image:url(kallyas/images/watch4.jpg); background-repeat:no-repeat; background-attachment:scroll; background-position-x:center; background-position-y:top; background-size:cover">
                                 </div>
                                 <!--/ Image -->
                             </div>
@@ -1033,377 +958,26 @@
             </div>
             <!--/ container-fluid -->
         </section>
-        <!--/ Text + background image section -->
-
-        <!-- Stage and icon boxes element + bottom mask style 1 - section with custom paddings -->
-        <section class="hg_section--relative pt-100 pb-100">
-            <!-- Background source -->
-            <div class="kl-bg-source">
-                <!-- Background image / color / gradient -->
-                <div class="kl-bg-source__bgimage"
-                    style="background-color: #fff; background-repeat: no-repeat; background-attachment: scroll; background-position-x: center; background-position-y: top; background-size: cover;">
-                </div>
-                <!--/ Background image / color / gradient -->
-            </div>
-            <!--/ Background source -->
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <!-- Spacer with custom height -->
-                        <div class="th-spacer clearfix" style="height: 25px;">
-                        </div>
-                        <!--/ Spacer with custom height -->
-
-                        <!-- Left side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-1"
-                            data-pointx="77" data-pointy=" 45" data-pointtitle="BLUETOOTH & NFC">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-bluetooth.svg"
-                                        alt="BLUETOOTH / NFC" title="BLUETOOTH / NFC" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            BLUETOOTH / NFC
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            NFC is a technology that enables Bluetooth devices to establish wireless
-                                            communication.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!-- /Left side - Icon box -->
-
-                        <!-- Left side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-2"
-                            data-pointx="205" data-pointy="200" data-pointtitle="FINGERPRINT SCANNING">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-fingerprint.svg"
-                                        alt="FINGERPRINT" title="FINGERPRINT" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            FINGERPRINT
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            A fingerprint in its narrow sense is an impression left by the friction
-                                            ridges of a human finger.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!--/ Left side - Icon box -->
-
-                        <!-- Left side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-3"
-                            data-pointx="210" data-pointy="335" data-pointtitle="HIGH FIDELITY">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-battery.svg" alt="TURBO CHARGING"
-                                        title="TURBO CHARGING" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            TURBO CHARGING
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            Adaptive Fast Charging is designed to specifically work with device.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!--/ Left side - Icon box -->
-                    </div>
-                    <!--/ col-sm-12 col-md-12 col-lg-4 -->
-
-                    <div class="col-sm-12 col-md-12 col-lg-4 align-self-center">
-                        <!-- Stage icon box -->
-                        <div class="stage-ibx d-flex justify-content-center">
-                            <div class="stage-ibx__stage">
-                                <!-- Image -->
-                                <img src="images/_niches/business/stage-smartwatch.png"
-                                    class="stage-ibx__stage-img img-fluid" alt="SMARTWATCH" title="SMARTWATCH" />
-                                <!--/ Image -->
-
-                                <!-- Stage point 1 -->
-                                <span style="top: 45px; left: 77px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-1" data-title="BLUETOOTH & NFC"></span>
-                                <!--/ Stage point 1 -->
-
-                                <!-- Stage point 2 -->
-                                <span style="top: 200px; left: 205px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-2" data-title="FINGERPRINT SCANNING"></span>
-                                <!--/ Stage point 2 -->
-
-                                <!-- Stage point 3 -->
-                                <span style="top: 335px; left: 210px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-3" data-title="HIGH FIDELITY"></span>
-                                <!--/ Stage point 3 -->
-
-                                <!-- Stage point 4 -->
-                                <span style="top: 170px; left: 270px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-4" data-title="VOICE CONTROL"></span>
-                                <!--/ Stage point 4 -->
-
-                                <!-- Stage point 5 -->
-                                <span style="top: 340px; left: 30px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-5" data-title="MUSIC PLAYER"></span>
-                                <!--/ Stage point 5 -->
-
-                                <!-- Stage point 6 -->
-                                <span style="top: 420px; left: 125px; opacity: 1;"
-                                    class="stage-ibx__point kl-ib-point-6" data-title="WATER RESISTANT"></span>
-                                <!--/ Stage point 6 -->
-                            </div>
-                            <!-- /.stage-ibx__stage -->
-
-                            <div class="clearfix">
-                            </div>
-                        </div>
-                        <!--/ Stage icon box - .stage-ibx -->
-                    </div>
-                    <!--/ col-sm-12 col-md-12 col-lg-4 align-self-center -->
-
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <!-- Spacer with custom height -->
-                        <div class="th-spacer clearfix" style="height: 25px;">
-                        </div>
-                        <!--/ Spacer with custom height -->
-
-                        <!-- Right side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-4"
-                            data-pointx="270" data-pointy=" 170" data-pointtitle="VOICE CONTROL">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-mic.svg" alt="TURBO CHARGING"
-                                        title="VOICE CONTROL" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            VOICE CONTROL
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            Voice Control can be great, until it starts pocket dialing your contacts
-                                            while you're walking.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!--/ Right side - Icon box -->
-
-                        <!-- Right side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-5"
-                            data-pointx="30" data-pointy=" 340" data-pointtitle="MUSIC PLAYER">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-headphones.svg"
-                                        alt="MUSIC PLAYER" title="MUSIC PLAYER" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            MUSIC PLAYER
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            Music Player with powerful equalizer and all music libraries are different.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!--/ Right side - Icon box -->
-
-                        <!-- Right side - Icon box -->
-                        <div class="kl-iconbox kl-iconbox--fleft text-left" data-target-element=".kl-ib-point-6"
-                            data-pointx="125" data-pointy=" 420" data-pointtitle="WATER RESISTANT">
-                            <div class="kl-iconbox__inner">
-                                <!-- Icon box - icon wrapper -->
-                                <div class="kl-iconbox__icon-wrapper">
-                                    <!-- Image/Icon -->
-                                    <img class="kl-iconbox__icon" src="images/stage-water.svg" alt="WATER RESISTANT"
-                                        title="WATER RESISTANT" />
-                                </div>
-                                <!-- /.kl-iconbox__icon-wrapper -->
-
-                                <!-- Icon box - content wrapper -->
-                                <div class="kl-iconbox__content-wrapper">
-                                    <!-- Icon box title wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__title-wrapper">
-                                        <!-- Title -->
-                                        <h3 class="kl-iconbox__title black">
-                                            WATER RESISTANT
-                                        </h3>
-                                        <!--/ Title -->
-                                    </div>
-                                    <!-- Icon box title wrapper -->
-
-                                    <!-- Icon box description wrapper -->
-                                    <div class="kl-iconbox__el-wrapper kl-iconbox__desc-wrapper">
-                                        <!-- Description -->
-                                        <p class="kl-iconbox__desc">
-                                            A common mark stamped on the back of wrist watches to indicate how well a
-                                            watch is sealed against the ingress of water.
-                                        </p>
-                                        <!--/ Description -->
-                                    </div>
-                                    <!--/ Icon box description wrapper -->
-                                </div>
-                                <!-- /.kl-iconbox__content-wrapper -->
-                            </div>
-                            <!--/ kl-iconbox__inner -->
-                        </div>
-                        <!--/ Right side - Icon box -->
-                    </div>
-                    <!--/ col-sm-12 col-md-12 col-lg-4 -->
-
-                    <div class="col-sm-12 d-flex justify-content-center align-self-center pt-30">
-                        <!-- Button full color2 and skewed style -->
-                        <a href="#" href="_blank"
-                            class="btn-element btn btn-fullcolor btn-skewed btn-fullcolor2" title="ABOUT KALLYAS">
-                            <span>LEARN MORE</span>
-                        </a>
-                    </div>
-                    <!--/ col-sm-12 d-flex justify-content-center align-self-center pt-30 -->
-                </div>
-                <!--/ row -->
-            </div>
-            <!--/ container -->
-
-            <!-- Bottom mask style 1 -->
-            <div class="kl-bottommask kl-bottommask--shadow">
-            </div>
-            <!--/ Bottom mask style 1 -->
-        </section>
-        <!--/ Stage and icon boxes element + bottom mask style 1 - section with custom paddings -->
-
-        <!-- Office World Map element - section with default template color and custom paddings -->
         <section class="hg_section p-0 tbg">
             <div class="container-fluid">
                 <div class="row gutter">
                     <div class="col-sm-12 col-md-12 col-lg-5">
                         <div class="col-normal fundedperc pb-40 pt-40 text-center">
-                            <!-- Chart with custom margins, percent and color settings -->
-                            <span class="chart mt-150 mb-150 mt-xs-70 mb-xs-70" data-percent="75"
-                                data-color="#cd2122">
+                            <span class="chart mt-150 mb-150 mt-xs-70 mb-xs-70" data-percent="75" data-color="#cd2122">
                                 <span class="percent">
                                     <span></span> FUNDED
                                 </span>
                             </span>
                         </div>
-                        <!-- /.col-normal // first -->
                     </div>
-                    <!--/ col-sm-12 col-md-12 col-lg-5 -->
 
                     <div class="col-sm-12 col-md-12 col-lg-7">
                         <div class="col-normal last">
                             <div class="mt-100 ml-90 mt-md-30 ml-md-30">
-                                <!-- Title -->
                                 <h3 class="mb-30 fs-m fw-semibold white">
                                     OFFICES AROUND THE WORLD
                                 </h3>
 
-                                <!-- Locations list visible only on large screens -->
                                 <ul class="world-map-triggers reset-list d-none d-lg-block" data-columns="3">
                                     <li>
                                         <a href="javascript:void(0);" class="office-name"
@@ -1430,147 +1004,96 @@
                                             data-office="Botswana">Botswana</a>
                                     </li>
                                 </ul>
-                                <!-- /.reset-list -->
 
-                                <!-- World map offices wrapper -->
                                 <div class="world-map-offices">
-                                    <!-- Map main image -->
                                     <img src="images/world-map-offices/world-map.png" width="720" alt="World Map"
                                         class="d-none d-lg-block" />
-
-                                    <!-- Office #1 Stockholm -->
                                     <div class="world-office stockholm not" data-fromtop="10px" data-fromleft="392px"
                                         data-office="Stockholm">
-                                        <!-- Office details -->
                                         <div class="office-details clearfix">
-                                            <!-- Office image pop-up -->
                                             <a href="images/world-map-offices/1.jpg" data-lightbox="image"
                                                 class="hover-img-zoom">
-                                                <!-- Office image box -->
                                                 <img src="images/world-map-offices/1_tn.jpg" alt="Stockholm Office"
                                                     title="Stockholm Office" />
                                             </a>
 
-                                            <!-- Office content -->
                                             <div class="office-content">
-                                                <!-- Title -->
                                                 <h5>
                                                     Stockholm
                                                 </h5>
-
-                                                <!-- Description -->
                                                 <p>
                                                     +(30) 225 3356 <br />
                                                     www.kallyas.se<br />
                                                     dept@kallyas.se
                                                 </p>
                                             </div>
-                                            <!--/ .office-content -->
                                         </div>
-                                        <!--/ .office-details -->
                                     </div>
-                                    <!--/ Office #1 Stockholm -->
 
-                                    <!-- Office #2 New York -->
                                     <div class="world-office newyork" data-fromtop="101px" data-fromleft="194px"
                                         data-office="New York">
-                                        <!-- Office details -->
                                         <div class="office-details clearfix">
-                                            <!-- Office image pop-up -->
                                             <a href="images/world-map-offices/2.jpg" data-lightbox="image"
                                                 class="hover-img-zoom">
-                                                <!-- Office image box -->
                                                 <img src="images/world-map-offices/2_tn.jpg" alt="New York Office"
                                                     title="New York Office" />
                                             </a>
 
-                                            <!-- Office content -->
                                             <div class="office-content">
-                                                <!-- Title -->
                                                 <h5>
                                                     New York
                                                 </h5>
-
-                                                <!-- Description -->
                                                 <p>
                                                     +(30) 225 3356 <br />
                                                     www.kallyas.us<br />
                                                     dept@kallyas.us
                                                 </p>
                                             </div>
-                                            <!--/ .office-content -->
                                         </div>
-                                        <!--/ .office-details -->
                                     </div>
-                                    <!--/ Office #2 New York -->
-
-                                    <!-- Office #3 Quebec -->
                                     <div class="world-office quebec" data-fromtop="77px" data-fromleft="180px"
                                         data-office="Quebec">
-                                        <!-- Office details -->
                                         <div class="office-details clearfix">
-                                            <!-- Office image pop-up -->
                                             <a href="images/world-map-offices/3.jpg" data-lightbox="image"
                                                 class="hover-img-zoom">
-                                                <!-- Office image box -->
                                                 <img src="images/world-map-offices/3_tn.jpg" alt="Quebec Office"
                                                     title="Quebec Office" />
                                             </a>
-
-                                            <!-- Office content -->
                                             <div class="office-content">
-                                                <!-- Title -->
                                                 <h5>
                                                     Quebec
                                                 </h5>
-
-                                                <!-- Description -->
                                                 <p>
                                                     +(30) 225 3356 <br />
                                                     www.kallyas.ca<br />
                                                     dept@kallyas.ca
                                                 </p>
                                             </div>
-                                            <!--/ .office-content -->
                                         </div>
-                                        <!--/ .office-details -->
                                     </div>
-                                    <!--/ Office #3 Quebec -->
 
-                                    <!-- Office #4 Sydney -->
                                     <div class="world-office sydney" data-fromtop="272px" data-fromleft="645px"
                                         data-office="Sydney">
-                                        <!-- Office details -->
                                         <div class="office-details clearfix">
-                                            <!-- Office image pop-up -->
                                             <a href="images/world-map-offices/4.jpg" data-lightbox="image"
                                                 class="hover-img-zoom">
-                                                <!-- Office image box -->
                                                 <img src="images/world-map-offices/4_tn.jpg" alt="Sydney Office"
                                                     title="Sydney Office" />
                                             </a>
 
-                                            <!-- Office content -->
                                             <div class="office-content">
-                                                <!-- Title -->
                                                 <h5>
                                                     Sydney
                                                 </h5>
-
-                                                <!-- Description -->
                                                 <p>
                                                     +(30) 225 3356 <br />
                                                     www.kallyas.au<br />
                                                     dept@kallyas.au
                                                 </p>
                                             </div>
-                                            <!--/ .office-content -->
                                         </div>
-                                        <!--/ .office-details -->
                                     </div>
-                                    <!--/ Office #4 Sydney -->
 
-                                    <!-- Office #5 Bucharest -->
                                     <div class="world-office bucharest" data-fromtop="107px" data-fromleft="406px"
                                         data-office="Bucharest">
                                         <!-- Office details -->
@@ -1692,8 +1215,8 @@
                                 action="http://YOUR_USERNAME.DATASERVER.list-manage.com/subscribe/post-json?u=YOUR_API_KEY&amp;id=LIST_ID&c=?"
                                 method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
                                 class="validate" target="_blank" novalidate>
-                                <input type="email" value="" name="EMAIL" class="nl-email form-control"
-                                    id="mce-EMAIL" placeholder="your.address@email.com" required>
+                                <input type="email" value="" name="EMAIL" class="nl-email form-control" id="mce-EMAIL"
+                                    placeholder="your.address@email.com" required>
                                 <input type="submit" name="subscribe" class="nl-submit" id="mc-embedded-subscribe"
                                     value="JOIN US">
                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
@@ -1811,7 +1334,8 @@
                             <div class="pinterest-button d-flex align-self-center">
                                 <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonPin">
                                 </a>
-                                <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+                                <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js">
+                                </script>
                             </div>
                             <!--/ Pinterest button -->
                         </div>
@@ -1850,8 +1374,8 @@
                                 </li>
                                 <li><a href="#" target="_self" class="fab fa-dribbble" title="Dribbble"></a>
                                 </li>
-                                <li><a href="#" target="_self" class="fab fa-google-plus-g"
-                                        title="Google Plus"></a></li>
+                                <li><a href="#" target="_self" class="fab fa-google-plus-g" title="Google Plus"></a>
+                                </li>
                             </ul>
                             <!--/ social-icons -->
 
@@ -1911,16 +1435,15 @@
                         class="auth-popup-remember-chb"> Remember Me
                 </label>
 
-                <input type="submit" id="login" name="submit_button"
-                    class="btn zn_sub_button btn-fullcolor btn-md" value="LOG IN">
+                <input type="submit" id="login" name="submit_button" class="btn zn_sub_button btn-fullcolor btn-md"
+                    value="LOG IN">
 
                 <input type="hidden" value="login" class="" name="form_action">
                 <input type="hidden" value="login" class="" name="action">
                 <input type="hidden" value="#" class="" name="submit">
 
                 <div class="links auth-popup-links">
-                    <a href="#register_panel"
-                        class="create_account auth-popup-createacc kl-login-box auth-popup-link">
+                    <a href="#register_panel" class="create_account auth-popup-createacc kl-login-box auth-popup-link">
                         CREATE AN ACCOUNT
                     </a>
 
@@ -2035,49 +1558,49 @@
                                 We'll do everything we can to make our next best project!
                             </h4>
 
-                            <form action="php_helpers/_contact-process.php" method="post"
-                                class="contact_form row mt-40" enctype="multipart/form-data">
+                            <form action="php_helpers/_contact-process.php" method="post" class="contact_form row mt-40"
+                                enctype="multipart/form-data">
                                 <div class="cf_response"></div>
 
                                 <div class="col-sm-6 kl-fancy-form">
-                                    <input type="text" name="name" id="cf_name-pop-up"
-                                        class="form-control" placeholder="Please enter your first name"
-                                        value="" tabindex="1" maxlength="35" required>
+                                    <input type="text" name="name" id="cf_name-pop-up" class="form-control"
+                                        placeholder="Please enter your first name" value="" tabindex="1" maxlength="35"
+                                        required>
                                     <label class="control-label">
                                         FIRSTNAME
                                     </label>
                                 </div>
 
                                 <div class="col-sm-6 kl-fancy-form">
-                                    <input type="text" name="lastname" id="cf_lastname-pop-up"
-                                        class="form-control" placeholder="Please enter your first last name"
-                                        value="" tabindex="1" maxlength="35" required>
+                                    <input type="text" name="lastname" id="cf_lastname-pop-up" class="form-control"
+                                        placeholder="Please enter your first last name" value="" tabindex="1"
+                                        maxlength="35" required>
                                     <label class="control-label">
                                         LASTNAME
                                     </label>
                                 </div>
 
                                 <div class="col-sm-12 kl-fancy-form">
-                                    <input type="text" name="email" id="cf_email-pop-up"
-                                        class="form-control h5-email" placeholder="Please enter your email address"
-                                        value="" tabindex="1" maxlength="35" required>
+                                    <input type="text" name="email" id="cf_email-pop-up" class="form-control h5-email"
+                                        placeholder="Please enter your email address" value="" tabindex="1"
+                                        maxlength="35" required>
                                     <label class="control-label">
                                         EMAIL
                                     </label>
                                 </div>
 
                                 <div class="col-sm-12 kl-fancy-form">
-                                    <input type="text" name="subject" id="cf_subject-pop-up"
-                                        class="form-control" placeholder="Enter the subject message"
-                                        value="" tabindex="1" maxlength="35" required>
+                                    <input type="text" name="subject" id="cf_subject-pop-up" class="form-control"
+                                        placeholder="Enter the subject message" value="" tabindex="1" maxlength="35"
+                                        required>
                                     <label class="control-label">
                                         SUBJECT
                                     </label>
                                 </div>
 
                                 <div class="col-sm-12 kl-fancy-form">
-                                    <textarea name="message" id="cf_message-pop-up" class="form-control" cols="30" rows="10"
-                                        placeholder="Your message" tabindex="4" required></textarea>
+                                    <textarea name="message" id="cf_message-pop-up" class="form-control" cols="30"
+                                        rows="10" placeholder="Your message" tabindex="4" required></textarea>
                                     <label class="control-label">
                                         MESSAGE
                                     </label>

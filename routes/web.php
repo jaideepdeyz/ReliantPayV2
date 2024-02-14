@@ -63,6 +63,9 @@ use App\Models\AmtrakBooking;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('alt', function () {
+    return view('welcome-uc');
+});
 Route::get('reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
 
 // User Routes
