@@ -19,17 +19,18 @@ class PdfController extends Controller
 {
     public function authorizationForm($bookingID)
     {
-
+        $background = public_path('img/pdfPartials/reservationAssistanceTemplate.png');
+        $signature = public_path('img/pdfPartials/signature.png');
         $saleBooking = SaleBooking::find($bookingID);
-        $logo = public_path('website/images/reservation_assistance_logo.png');
+        // $logo = public_path('website/images/reservation_assistance_logo.png');
 
         // itenary
-        $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
-        $url = Storage::URL($itenaryUpload->document_filepath);
-        $path = public_path($url);
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $itenary = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        // $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
+        // $url = Storage::URL($itenaryUpload->document_filepath);
+        // $path = public_path($url);
+        // $type = pathinfo($path, PATHINFO_EXTENSION);
+        // $data = file_get_contents($path);
+        // $itenary = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         $paymentDetails = Payment::where('app_id', $bookingID)->first();
         $charges = ChargeDetails::where('app_id', $bookingID)->get();
@@ -37,16 +38,25 @@ class PdfController extends Controller
         switch($saleBooking->service->service_name)
         {
             case ServiceEnum::FLIGHTS->value:
-                $flightDetails = FlightBooking::where('app_id', $bookingID)->first();
-                $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'flightDetails'));
+                $data = FlightBooking::where('app_id', $bookingID)->first();
+                $type = 'Flight';
+                $carrier = $data->airline_name;
+                $departureLocation = $data->departureAirport->name;
+                $destinationLocation = $data->destinationAirport->name;
+                // $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'flightDetails'));
                 break;
             case ServiceEnum::AMTRAK->value:
-                $amtrakDetails = AmtrakBooking::where('app_id', $bookingID)->first();
-                $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'amtrakDetails'));
+                $data = AmtrakBooking::where('app_id', $bookingID)->first();
+                $type = 'Train';
+                $carrier = 'AMTRAK';
+                $departureLocation = $data->departureStation->station_location;
+                $destinationLocation = $data->destinationStation->station_location;
+                // $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'amtrakDetails'));
                 break;
             default:
                 break;
         }
+        $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
         $content = $pdf->download()->getOriginalContent();
         $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
         $authFile = AuthorizationForm::updateOrCreate(

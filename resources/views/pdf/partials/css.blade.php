@@ -1,4 +1,131 @@
 <style media="screen">
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}
+@page {
+    margin-top: 70px; /* create space for header */
+    margin-bottom: 100px; /* create space for footer */
+}
+
+#watermark {
+  position: fixed;
+  text-align: center;
+  height:100%;
+  /* top: 4cm; */
+  z-index:  -1000;
+  padding: 0px;
+}
+
+footer {
+    position: fixed; 
+    bottom: -60px; 
+    left: 0px; 
+    right: 0px;
+    height: 90px; 
+
+    /** Extra personal styles **/
+    /* background-color: #830303; */
+    color: rgb(170, 12, 12);
+    text-align: center;
+    line-height: 10px;
+}
+
+.col {
+  flex: 1 0 0%;
+}
+.row-cols-auto > * {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.row-cols-1 > * {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.row-cols-2 > * {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.row-cols-3 > * {
+  flex: 0 0 auto;
+  width: 33.3333333333%;
+}
+.row-cols-4 > * {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.row-cols-5 > * {
+  flex: 0 0 auto;
+  width: 20%;
+}
+.row-cols-6 > * {
+  flex: 0 0 auto;
+  width: 16.6666666667%;
+}
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+.col-1 {
+  flex: 0 0 auto;
+  width: 8.33333333%;
+}
+.col-2 {
+  flex: 0 0 auto;
+  width: 16.66666667%;
+}
+.col-3 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.col-4 {
+  flex: 0 0 auto;
+  width: 33.33333333%;
+}
+.col-5 {
+  flex: 0 0 auto;
+  width: 41.66666667%;
+}
+.col-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.col-7 {
+  flex: 0 0 auto;
+  width: 58.33333333%;
+}
+.col-8 {
+  flex: 0 0 auto;
+  width: 66.66666667%;
+}
+.col-9 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+.col-10 {
+  flex: 0 0 auto;
+  width: 83.33333333%;
+}
+.col-11 {
+  flex: 0 0 auto;
+  width: 91.66666667%;
+}
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+.col-md-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
 .alert {
     position: relative;
     padding: 0.75rem 1.25rem;
@@ -289,8 +416,18 @@
     color: #fff;
     background-color: rgba(255, 255, 255, 0.075);
   }
-*{font-family: sans-serif}
+  .text-center {
+  text-align: center !important;
+  }
+
+*{font-family: sans-serif,}
   p{font-size:12px}
   h5{font-size:16px;font-weight:bold}
-  tr td{font-size:12px;}
+  tr td th{font-size:12px;}
+  ol,ul {padding-left: 2rem;}
+  ol,ul,dl {margin-top: 0;margin-bottom: 1rem;}
+  ol ol,ul ul,ol ul,ul ol {margin-bottom: 0;}
+  sub, sup {position: relative;font-size: 0.75em;line-height: 0;vertical-align: baseline;}
+  sup {top: -0.5em;}
+
 </style>
