@@ -33,5 +33,15 @@ class BaseUserSeeder extends Seeder
             'is_active' => 'Yes',
             'is_approved' => 'Yes',
         ]);
+
+        \App\Models\User::create([
+            'name' => 'TICKETER',
+            'email' => 'ticketer@g.com',
+            'phone_number' => '1234500000',
+            'role' => 'Ticketer',
+            'password' => Hash::make('Ticketer@123#'),
+            'is_active' => 'Yes',
+            'is_approved' => 'Yes',
+        ]);
     }
 }
