@@ -35,6 +35,7 @@ class BookSales extends Component
     public $selectedID;
     public $customer_dob;
     public $customer_gender;
+    public $relationship_to_card_holder;
 
     public function storeSaleBooking()
     {
@@ -74,6 +75,7 @@ class BookSales extends Component
                 'customer_id' => $customer->id,
                 'customer_phone' => $this->customer_phone,
                 'app_status' => StatusEnum::DRAFT,
+                'relationship_to_card_holder' => $this->relationship_to_card_holder,
             ]);
             $this->status = StatusEnum::DRAFT;
             $this->remarks = 'New Sale Added';

@@ -8,7 +8,7 @@
             </h5>
         </div>
         <div class="col-md-12">
-            <iframe src="/ViewerJS/#{{ Storage::URL($authFile->unsigned_document) }}" width='100%' height='500' allowfullscreen
+            <iframe src="/ViewerJS/#{{ Storage::URL($authFile->unsigned_document) }}" width='100%' height='850' allowfullscreen
             webkitallowfullscreen></iframe>
         </div>
     </div>

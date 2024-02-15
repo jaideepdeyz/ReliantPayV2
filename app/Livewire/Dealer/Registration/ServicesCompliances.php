@@ -5,6 +5,7 @@ namespace App\Livewire\Dealer\Registration;
 use App\Models\Organization;
 use App\Models\OrganizationServiceMap;
 use App\Models\ProductService;
+use App\Models\ServiceMaster;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -63,9 +64,11 @@ class ServicesCompliances extends Component
 
                 if($service == true)
                 {
+                    $service = ServiceMaster::where('service_name', $key)->first();
                     OrganizationServiceMap::create([
                         'organization_id' => $org->id,
-                        'service_name' => $key
+                        'service_name' => $service->service_name,
+                        'service_id' => $service->id,
                     ]);
                 }
             }

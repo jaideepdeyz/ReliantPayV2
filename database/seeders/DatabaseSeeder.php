@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AirlineSeeder::class);
         $this->call(AirportSeeder::class);
         $this->call(TrainStationSeeder::class);
-        $this->call(UsCityStateSeeder::class);
+        // $this->call(UsCityStateSeeder::class);
     }
 }

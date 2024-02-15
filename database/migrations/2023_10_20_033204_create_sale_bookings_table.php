@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('app_status')->nullable();
             $table->string('order_id')->nullable();
             $table->string('amount_charged')->nullable();
+            $table->string('relationship_to_card_holder')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -97,4 +97,9 @@ class SaleBooking extends Model
         return $this->hasMany(ChargeDetails::class, 'app_id', 'id');
     }
 
+    public function ticketBooking()
+    {
+        return $this->hasOne(TicketBookingMode::class, 'app_id', 'id');
+    }
+
 }

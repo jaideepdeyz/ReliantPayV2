@@ -174,7 +174,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-4">
                                 <label for="amount_charged" class="form-label">Total Amount Charged (in USD): <span class="text-danger"><sup>*</sup></span></label>
                                 <input class="form-control @error('amount_charged') is-invalid @enderror"
                                     wire:model="amount_charged" readonly>
@@ -183,7 +183,19 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-4">
+                                <label for="bookedThroughReservationAssistance" class="form-label">Ticket booked through Reservation Assistance ?:</label>
+                                <select class="form-control @error('bookedThroughReservationAssistance') is-invalid @enderror"
+                                    wire:model="bookedThroughReservationAssistance">
+                                    <option value="">Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                @error('bookedThroughReservationAssistance')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-4">
                                 <label for="billingComments" class="form-label">Comments (If any):</label>
                                 <input class="form-control @error('billingComments') is-invalid @enderror"
                                     wire:model="billingComments">

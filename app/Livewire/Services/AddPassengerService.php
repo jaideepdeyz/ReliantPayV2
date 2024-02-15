@@ -17,7 +17,7 @@ class AddPassengerService extends Component
     public $full_name;
     public $gender ;
     public $dob;
-    public $relationship_to_card_holder;
+    // public $relationship_to_card_holder;
     public $passengerID;
     public $saleBooking;
 
@@ -48,7 +48,7 @@ class AddPassengerService extends Component
             'full_name' => 'required',
             'gender' => 'required',
             'dob' => 'required',
-            'relationship_to_card_holder' => 'required',
+            // 'relationship_to_card_holder' => 'required',
         ]);
 
         try {
@@ -58,14 +58,14 @@ class AddPassengerService extends Component
                 'full_name' => $this->full_name,
                 'gender' => $this->gender,
                 'dob' => Carbon::parse($this->dob)->format('Y-m-d'),
-                'relationship_to_card_holder' => $this->relationship_to_card_holder,
+                // 'relationship_to_card_holder' => $this->relationship_to_card_holder,
                 'is_disabled' => $this->is_disabled,
                 'disability_type' => $this->disability_type,
                 'requires_assistance' => $this->requires_assistance,
             ]);
             DB::commit();
             $this->dispatch('message', heading:'success',text:'Passenger added');
-            $this->reset(['full_name','gender', 'dob', 'relationship_to_card_holder']);
+            $this->reset(['full_name','gender', 'dob']);
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());

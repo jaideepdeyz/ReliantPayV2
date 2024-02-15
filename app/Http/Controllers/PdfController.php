@@ -25,12 +25,12 @@ class PdfController extends Controller
         // $logo = public_path('website/images/reservation_assistance_logo.png');
 
         // itenary
-        // $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
-        // $url = Storage::URL($itenaryUpload->document_filepath);
-        // $path = public_path($url);
-        // $type = pathinfo($path, PATHINFO_EXTENSION);
-        // $data = file_get_contents($path);
-        // $itenary = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
+        $url = Storage::URL($itenaryUpload->document_filepath);
+        $path = public_path($url);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $itenary = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         $paymentDetails = Payment::where('app_id', $bookingID)->first();
         $charges = ChargeDetails::where('app_id', $bookingID)->get();
@@ -56,7 +56,7 @@ class PdfController extends Controller
             default:
                 break;
         }
-        $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
+        $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers','itenary', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
         $content = $pdf->download()->getOriginalContent();
         $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
         $authFile = AuthorizationForm::updateOrCreate(

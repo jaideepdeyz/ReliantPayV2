@@ -16,4 +16,9 @@ class Payment extends Model
     {
         return $this->hasOne(SaleBooking::class, 'id', 'app_id');
     }
+
+    public function ticketBookingMode()
+    {
+        return $this->hasOne(TicketBookingMode::class, 'app_id', 'app_id');
+    }
 }

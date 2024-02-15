@@ -197,6 +197,25 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group mb-2">
+                            <label for="relationship_to_card_holder" class="form-label">Relationship to Card
+                                Holder <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('relationship_to_card_holder') is-invalid @enderror"
+                                wire:model="relationship_to_card_holder">
+                                <option value="">Select Option</option>
+                                <option value="Card Holder">Card Holder</option>
+                                <option value="Husband">Husband</option>
+                                <option value="Wife">Wife</option>
+                                <option value="Son">Son</option>
+                                <option value="Daughter">Daughter</option>
+                                <option value="Uncle">Uncle</option>
+                                <option value="Aunt">Aunt</option>
+                                <option value="Colleague">Colleague</option>
+                            </select>
+                            @error('relationship_to_card_holder')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="my-3">
                             <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Create
                                 New Booking</button>

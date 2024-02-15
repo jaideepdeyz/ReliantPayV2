@@ -34,19 +34,19 @@
 
         <div class="col-md-12">
             <p style="font-size:12px; color:black;">
-                <b>Customer Information:</b>
+                <b>Customer Information (Person who has contacted Reservation Assistance to book this ticket):</b>
             </p>
             <p>
                 <ul style="font-size:12px; color:black;">
                     <li><b>Name:</b> {{ $saleBooking->customer->customer_name }}</li>
                     <li><b>Contact Number:</b> {{ $saleBooking->customer_phone }}</li>
                     <li><b>Email Address:</b> {{ $saleBooking->customer->customer_email }}</li>
-                    <li><b>Travelers Date of Birth :</b> {{ Carbon\Carbon::parse($saleBooking->customer->customer_dob)->format('F j, Y') }}</li>
+                    <li><b>Customer's relationship with the Card Holder:</b> {{$saleBooking->relationship_to_card_holder}}</li>
                 </ul>
             </p>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12" style="page-break-after: always;">
             <p style="font-size:12px; color:black;">
                 <b>{{$type}} Information:</b>
             </p>
@@ -59,12 +59,48 @@
                     <li><b>Arrival Time:</b> {{ $data->departure_eta_hour }} : {{ $data->departure_eta_minute }}</li>
                     <li><b>Arrival Airport/Station/Port:</b> {{ $destinationLocation }}</li>
                     <li><b>Airline/Carrier Name:</b> {{ $carrier }}</li>
-                    <li><b>Flight / Train Number:</b> </li>
-                    <li><b>Class:</b> </li>
+                    {{-- <li><b>Flight / Train Number:</b> </li>
+                    <li><b>Class:</b> </li> --}}
                 </ul>
             </p>
+            {{-- add travel iternary here --}}
+            <p>
+                <img src="{{$itenary}}" alt="" width="100%">
+            </p>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" style="padding-top:130px; margin-bottom:0px;">
+            <p style="font-size:12px; color:black;">
+                <b>Passengers (As per booking request):</b>
+            </p>
+            <table class="table" style="font-size:12px; color:black;">
+                <thead style="font-size:12px; color:black;">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size:12px; color:black;">
+                    @foreach($passengers as $passenger)
+                        <tr style="text-align:center;">
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $passenger->full_name }}</td>
+                            <td>{{ $passenger->gender }}</td>
+                            <td>
+                                @php
+                                    $dob = Carbon\Carbon::parse($passenger->dob);
+                                    $age = $dob->diffInYears(Carbon\Carbon::now());
+                                    $isAdult = $age > 16 ? 'Adult' : 'Minor';
+                                @endphp
+                                {{ $isAdult }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12" style="margin-bottom:0px;">
             <p style="font-size:12px; color:black;">
                 <b>Total Amount:</b>
             </p>
@@ -76,7 +112,8 @@
                 </ol>
             </p>
         </div>
-        <div class="col-md-12">
+        
+        <div class="col-md-12" style="margin-bottom:0px;">
             <p style="font-size:12px; color:black;">
                 <b>Payment Method:</b>
             </p>
@@ -90,12 +127,11 @@
                         {{$paymentDetails->cc_billing_address_state }},
                         {{$paymentDetails->cc_billing_address_zip }}
                     </li>
-                    <li>Your relationship with the Card Holder: </li>
                 </ul>
             </p>
         </div>
         <div class="col-md-12">
-            <p style="font-size:12px; color:black; padding-top:180px;">
+            <p style="font-size:12px; color:black;">
                 <b>Refund Procedure:</b>
             </p>
             <p style="font-size:12px; color:black;">

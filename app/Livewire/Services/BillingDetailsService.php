@@ -6,6 +6,7 @@ use App\Enums\ServiceEnum;
 use App\Models\ChargeDetails;
 use App\Models\Payment;
 use App\Models\SaleBooking;
+use App\Models\TicketBookingMode;
 use App\Models\UsCityState;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -38,6 +39,8 @@ class BillingDetailsService extends Component
 
     public $saleBooking;
     public $showIdUpload = 'No';
+
+    public $bookedThroughReservationAssistance;
 
     // dropdown search
     public $cityQuery;
@@ -80,7 +83,7 @@ class BillingDetailsService extends Component
             // $this->cityQuery = $billingDetails->cc_billing_address_city;
             $this->cc_billing_address_city = $billingDetails->cc_billing_address_state;
             $this->cc_billing_address_state = $billingDetails->cc_billing_address_city;
-
+            $this->bookedThroughReservationAssistance = $billingDetails->ticketBookingMode->bookedThroughReservationAssistance;
         }
     }
 
@@ -136,6 +139,7 @@ class BillingDetailsService extends Component
             'cc_billing_address_state' => 'required',
             'cc_billing_address_zip' => 'required|numeric|digits:5',
             'amount_charged' => 'required|numeric',
+            'bookedThroughReservationAssistance' => 'required',
         ], [
             'cc_name.required' => 'Card Holders Name is required',
             'cc_phone.required' => 'Card Holders Phone Number is required',
@@ -153,6 +157,7 @@ class BillingDetailsService extends Component
             'cc_billing_address_zip.digits' => 'Zip must be 5 digits',
             'amount_charged.required' => 'Amount Charged is required',
             'amount_charged.numeric' => 'Amount Charged must be a number',
+            'bookedThroughReservationAssistance.required' => 'Whether Ticket is Booked Through Reservation Assistance is required',
         ]);
 
         try {
@@ -184,6 +189,33 @@ class BillingDetailsService extends Component
                 'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/'.$this->appID.'/passengerID_doc.'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
                 ]);
             }
+
+            $booking = SaleBooking::find($this->appID);
+            switch($booking->service->service_name)
+            {
+                case ServiceEnum::FLIGHTS->value:
+                    $carrier = $booking->flightBooking->airline_name;
+                    $departureDate = $booking->flightBooking->departure_date;
+                    $departureTime = $booking->flightBooking->departure_hour.":".$booking->flightBooking->departure_minute;
+                    break;
+                case ServiceEnum::AMTRAK->value:
+                    $carrier = 'Train';
+                    $departureDate = $booking->amtrakBooking->departure_date;
+                    $departureTime = $booking->amtrakBooking->departure_hour.":".$booking->amtrakBooking->departure_minute;
+                    break;
+                default:
+                    break;
+            }
+
+            $ticketBookingMode = TicketBookingMode::updateOrCreate(
+                ['app_id' => $this->appID],
+                [
+                'bookedThroughReservationAssistance' => $this->bookedThroughReservationAssistance,
+                'departure_date' => $departureDate, 
+                'departure_time' => $departureTime,
+                'carrier' => $carrier,
+                ]
+            );
 
             DB::commit();
             Session::flash('message', ['heading'=>'success','text'=>'Billing Details Saved Successfully']);
