@@ -49,6 +49,9 @@ class RegistrationCheck
             case RoleEnum::AFFILIATE->value:
                 return $next($request);
                 break;
+            case RoleEnum::TICKETER->value:
+                return $next($request);
+                break;
         }
     }
 }

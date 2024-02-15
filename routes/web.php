@@ -46,6 +46,7 @@ use App\Livewire\Payment\MakePayment;
 use App\Livewire\Registration\ByInvite;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
+use App\Livewire\Ticketer\ManageTickets;
 use App\Livewire\User\ResetPassword;
 use App\Models\AmtrakBooking;
 
@@ -147,6 +148,9 @@ Route::middleware('auth')->group(function () {
     Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
 
     Route::get('uploadTicket/{appID}', UploadConfirmedTicket::class)->name('uploadTicket');
+
+    //Ticketer routes   
+    Route::get('manageTickets', ManageTickets::class)->name('manageTickets');
 
     // Email routes
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');

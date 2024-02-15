@@ -7,4 +7,5 @@ enum RoleEnum: string
     case DEALER = 'Dealer';
     case AGENT = 'Agent';
     case AFFILIATE = 'Affilate';
+    case TICKETER = 'Ticketer';
 }

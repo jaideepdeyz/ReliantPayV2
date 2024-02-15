@@ -35,6 +35,15 @@ class HomeController extends Controller
                     return redirect('login');
                 }
                 break;
+            case RoleEnum::TICKETER->value:
+                if (Auth::User()->is_active == 'Yes') {
+                    return redirect()->route('manageTickets');
+                } else {
+                    Session::flush();
+                    Auth::logout();
+                    return redirect('login');
+                }
+                break;
             default:
                 return redirect()->route('login');
                 break;
