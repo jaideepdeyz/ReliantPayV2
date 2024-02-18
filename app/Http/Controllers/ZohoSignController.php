@@ -52,7 +52,7 @@ class ZohoSignController extends Controller
             ]);
             ZohoSign::setCurrentUser($user);
             $reqObject = new RequestObject();
-            $reqObject->setRequestName('Authorization Letter for ' . $saleBooking->customer->customer_name);
+            $reqObject->setRequestName('Authorization Letter for ' . $saleBooking->customer->customer_name. ' - ' . $saleBooking->id);
             $partner = new Actions();
             $partner->setRecipientName($saleBooking->customer->customer_name);
             $partner->setRecipientEmail($saleBooking->customer->customer_email);
@@ -168,8 +168,8 @@ class ZohoSignController extends Controller
                     $saleBooking = SaleBooking::find($authForm->app_id);
 
                     $authForm->update([
-                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer->customer_name . '.pdf',
-                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer->customer_name . '.pdf',
+                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer->customer_name .'-'.$saleBooking->id. '.pdf',
+                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer->customer_name .'-'.$saleBooking->id.'.pdf',
                     ]);
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,
