@@ -2,16 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ServiceEnum;
-use App\Models\AmtrakBooking;
-use App\Models\AuthorizationForm;
-use App\Models\ChargeDetails;
-use App\Models\FlightBooking;
-use App\Models\Passenger;
-use App\Models\Payment;
-use App\Models\SaleBooking;
-use App\Models\TravelItenaryUpload;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\TicketBookingMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -68,4 +59,11 @@ class PdfController extends Controller
         return view('pdf.showAuthFile', compact('authFile'));
 
     }
+
+    public function showTicket($bookingID)
+    {
+        $ticket = TicketBookingMode::where('id', $bookingID)->first();
+        return view('pdf.showTicket', compact('ticket'));
+    }
+
 }

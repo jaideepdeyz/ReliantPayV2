@@ -99,7 +99,7 @@
                                                 <a class="dropdown-item" href="{{ route('uploadTicket', $booking->app_id) }}"><i
                                                  class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
                                             @else
-                                                <a class="dropdown-item" href="#"><i class="mdi mdi-eye me-2 text-primary vertical-middle"></i>View Ticket</a>
+                                                <a class="dropdown-item" href="{{route('showTicket', $booking->app_id)}}"><i class="mdi mdi-eye me-2 text-primary vertical-middle"></i>View Ticket</a>
                                             @endif
                                         </div>
                                     </div>

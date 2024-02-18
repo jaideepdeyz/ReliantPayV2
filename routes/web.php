@@ -129,9 +129,6 @@ Route::middleware('auth')->group(function () {
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
 
-
-
-
     //Affilate Routes
     Route::get('affiliateDashboard', AffilateDashboard::class)->name('affiliateDashboard');
     Route::get('manageMerchants', ManageMerchants::class)->name('manageMerchants');
@@ -164,6 +161,7 @@ Route::middleware('auth')->group(function () {
 
     // PDF Routes
     Route::get('authorizationForm/{bookingID}', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
+    Route::get('showTicket/{bookingID}', [App\Http\Controllers\PdfController::class, 'showTicket'])->name('showTicket');
 });
 
 Route::middleware('auth', 'adminRoleCheck')->group(function () {
