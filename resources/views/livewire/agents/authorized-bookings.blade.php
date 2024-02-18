@@ -61,9 +61,9 @@
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
-                                <td>{{ $booking->customer_name }}</td>
+                                <td>{{ $booking->customer->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
-                                <td>{{ $booking->customer_email }}</td>
+                                <td>{{ $booking->customer->customer_email }}</td>
                                 <td>
                                     @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
                                     <span class="badge badge-outline-info">Authorized</span>

@@ -300,11 +300,11 @@
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
                                     <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
                                         <span class="text-danger"><sup>*</sup></span></label>
-                                    <input type="file"
+                                        <input type="file"
                                         class="form-control @error('itenary_screenshot') is-invalid @enderror"
                                         wire:model="itenary_screenshot">
                                     <span class="text-danger"> @error('itenary_screenshot')
-                                            {{ $message }}
+                                        {{ $message }}
                                         @enderror </span>
                                     <div class="mt-1" x-show="uploading"
                                         style="position:absolute;bottom:-19px;width:96%">
