@@ -59,15 +59,15 @@
                         <tbody>
                             @foreach ($confirmedBookings as $booking)
                             <tr>
-                                <td>{{ $booking->ticketBooking->app_id}}</td>
-                                <td>{{ Carbon\Carbon::parse($booking->ticketBooking->departure_date)->format('F j, Y') }}</td>
-                                <td>{{ $booking->ticketBooking->departure_time }}</td>
-                                <td>{{ $booking->service->service_name}}</td>
+                                <td>{{ $booking->saleBooking->app_id}}</td>
+                                <td>{{ Carbon\Carbon::parse($booking->saleBooking->service->departure_date)->format('F j, Y') }}</td>
+                                <td>{{ $booking->saleBooking->service->departure_time }}</td>
+                                <td>{{ $booking->saleBooking->service->service_name}}</td>
                                 <td>
                                     @if ($booking->confirmation_number == null)
                                         <span class="badge badge-outline-danger ">Incomplete</span>
                                     @else
-                                    <span class="badge badge-outline-success">Ticket Issued</span>
+                                        <span class="badge badge-outline-success">Ticket Issued</span>
                                     @endif
                                 </td>
                                 <td>
@@ -78,13 +78,9 @@
                                                 class="mdi mdi-dots-horizontal"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end" style="">
                                              @if ($booking->ticket_upload == null)
-                                                <a class="dropdown-item"
-                                                href="{{ route('airlineBooking.show', $booking->id) }}"><i
-                                                    class="mdi mdi-eye me-2 text-success vertical-middle"></i>Add Ticket</a>
-                                            @else
-                                                <a class="dropdown-item"
-                                                href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
-                                                    class="mdi mdi-eye me-2 text-success vertical-middle"></i>View Ticket</a>
+                                             <a class="dropdown-item"
+                                             href="{{ route('uploadTicket', $booking->id) }}"><i
+                                                 class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
                                             @endif
                                         </div>
                                     </div>

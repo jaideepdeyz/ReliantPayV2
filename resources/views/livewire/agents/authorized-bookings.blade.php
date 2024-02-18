@@ -82,6 +82,7 @@
                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                 class="mdi mdi-dots-horizontal"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end" style="">
+                                            {{-- show both view and charge card in below case, view will switch based on service  --}}
                                             @if ($booking->app_status == StatusEnum::AUTHORIZED->value)
                                                 <a class="dropdown-item" href={{ route('payment.stepOnePay', $booking->id) }}"><i
                                                     class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
@@ -99,6 +100,8 @@
                                                     @default
                                                 @endswitch
                                             @endif
+
+                                            {{-- just show view in below case , view will switch based on service --}}
                                             @if ($booking->app_status == StatusEnum::PAYMENT_DONE->value || $booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
                                                 @switch($booking->service->service_name)
                                                     @case('Flight Booking')
@@ -113,9 +116,18 @@
                                                     @break
                                                     @default
                                                 @endswitch
-                                                <a class="dropdown-item"
+                                            @endif
+
+                                            {{-- show upload ticket in below case based on user role and ticket booking mode --}}
+                                                @if(Auth::User()->role == RoleEnum::AGENT->value && $booking->app_status == StatusEnum::PAYMENT_DONE->value)
+                                                @switch($booking->ticketBooking->bookedThroughReservationAssistance)
+                                                    @case('Yes')
+                                                    <a class="dropdown-item"
                                                         href="{{ route('uploadTicket', $booking->id) }}"><i
                                                             class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
+                                                    @break
+                                                    @default
+                                                @endswitch
                                             @endif
 
                                         </div>
