@@ -6,6 +6,7 @@ use App\Enums\StatusEnum;
 use App\Mail\TicketConfirmationMail;
 use App\Models\ConfirmedTicket;
 use App\Models\SaleBooking;
+use App\Models\TicketBookingMode;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -44,8 +45,8 @@ class UploadConfirmedTicket extends Component
 
         try {
             DB::beginTransaction();
-            $ticket = ConfirmedTicket::updateOrCreate([
-                'app_id' => $this->booking->id,
+            $ticket = TicketBookingMode::updateOrCreate([
+                'app_id' => $this->bookingID,
             ], [
                 'confirmation_number' => $this->confirmation_number,
                 'ticket_filepath' => $this->ticket_filepath->storeAs('public/Tickets/' . $this->booking->id, 'Ticket' . '.' . $this->ticket_filepath->getClientOriginalExtension()),
