@@ -17,6 +17,7 @@ class UploadConfirmedTicket extends Component
     use WithFileUploads;
 
     public $booking;
+    public $bookingID;
     public $confirmation_number;
     public $ticket_filepath;
 
@@ -49,7 +50,7 @@ class UploadConfirmedTicket extends Component
                 'ticket_filepath' => $this->ticket_filepath->storeAs('public/Tickets/' . $this->booking->id, 'Ticket' . '.' . $this->ticket_filepath->getClientOriginalExtension()),
             ]);
 
-            $booking = SaleBooking::find($this->booking->id);
+            $booking = SaleBooking::where('id', $this->bookingID)->first();
             $booking->update([
                 'app_status' => StatusEnum::TICKET_ISSUED->value,
             ]);
