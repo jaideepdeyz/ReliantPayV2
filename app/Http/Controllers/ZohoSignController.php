@@ -168,8 +168,8 @@ class ZohoSignController extends Controller
                     $saleBooking = SaleBooking::find($authForm->app_id);
 
                     $authForm->update([
-                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer_name .'-'.$saleBooking->id. '.pdf',
-                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer_name .'-'.$saleBooking->id.'.pdf',
+                        'signed_document' => 'public/Signed/Authorization_Letter_for_'.$saleBooking->id.'.pdf',
+                        'completion_certificate' => 'public/Signed/Completion_Certificate_for_'.$saleBooking->id.'.pdf',
                     ]);
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,

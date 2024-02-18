@@ -14,41 +14,53 @@
             </div>
         </div>
         <div class="col-md-12">
-
-            <h5 class="bg-light p-2 mt-0 mb-4">
-                <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i
-                        class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
-            </h5>
-
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                        Details
-                    </h5>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered">
-                            <tr>
-                                <td><strong>Booking ID:</strong></td>
-                                <td>{{ $bookingDetails->id }}</td>
-                                <td><strong>Agent Name:</strong></td>
-                                <td>{{ $bookingDetails->agent->name }}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Service Type:</strong></td>
-                                <td>{{ $bookingDetails->service->service_name }}</td>
-                                <td><strong>Booking Status:</strong></td>
-                                <td>{{ $bookingDetails->app_status }}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Customer's Name:</strong></td>
-                                <td>{{ $bookingDetails->customer_name }}</td>
-                                <td><strong>Customer's Phone & Email:</strong></td>
-                                <td>{{ $bookingDetails->customer_phone }} | {{ $bookingDetails->customer_email }}</td>
-                            </tr>
-                        </table>
-                    </div>
+                    <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
+                    <span>
+                        @switch($bookingDetails->app_status)
+                            @case(StatusEnum::AUTHORIZED->value)
+                            @case(StatusEnum::PAYMENT_DONE->value)
+                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
+                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
+                                    target="_blank" class="btn btn-primary">Completion Certificate</a>
+                            @break
+                        @endswitch
+                    </span>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
+                            Details
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <td><strong>Booking ID:</strong></td>
+                                    <td>{{ $bookingDetails->id }}</td>
+                                    <td><strong>Agent Name:</strong></td>
+                                    <td>{{ $bookingDetails->agent->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Service Type:</strong></td>
+                                    <td>{{ $bookingDetails->service->service_name }}</td>
+                                    <td><strong>Booking Status:</strong></td>
+                                    <td>{{ $bookingDetails->app_status }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Customer's Name:</strong></td>
+                                    <td>{{ $bookingDetails->customer_name }}</td>
+                                    <td><strong>Customer's Phone & Email:</strong></td>
+                                    <td>{{ $bookingDetails->customer_phone }} | {{ $bookingDetails->customer_email }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
         </div>
 
         <div class="col-md-12">
