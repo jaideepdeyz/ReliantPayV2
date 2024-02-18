@@ -66,7 +66,7 @@
                                 <td>{{ $booking->service->service_name }}</td>
                                 <td>{{ $booking->customer->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
-                                <td>{{ $booking->customer_email }}</td>
+                                <td>{{ $booking->customer->customer_email }}</td>
                                 <td>
                                     @if ($booking->app_status == StatusEnum::DRAFT->value)
                                     <span class="badge badge-outline-danger ">Incomplete</span>
@@ -203,7 +203,7 @@
                             <select class="form-control @error('relationship_to_card_holder') is-invalid @enderror"
                                 wire:model="relationship_to_card_holder">
                                 <option value="">Select Option</option>
-                                <option value="Card Holder">Card Holder</option>
+                                <option value="Self">Self</option>
                                 <option value="Husband">Husband</option>
                                 <option value="Wife">Wife</option>
                                 <option value="Son">Son</option>

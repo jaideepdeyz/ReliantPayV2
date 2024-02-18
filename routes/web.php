@@ -41,6 +41,7 @@ use App\Livewire\Dealer\Registration\BankingDetails;
 use App\Livewire\Dealer\Registration\BusinessInformation;
 use App\Livewire\Dealer\Registration\Confirmation;
 use App\Livewire\Dealer\Registration\DocumentUploads;
+use App\Livewire\Dealer\Registration\RegistrationByAdmin;
 use App\Livewire\Dealer\Registration\ServicesCompliances;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Registration\ByInvite;
@@ -168,6 +169,7 @@ Route::middleware('auth', 'adminRoleCheck')->group(function () {
     Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
     Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+    Route::get('registrationByAdmin/{userID}', RegistrationByAdmin::class)->name('registrationByAdmin'); 
 });
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');

@@ -4,6 +4,7 @@ namespace App\Livewire\Dealer\Registration;
 
 use App\Enums\RoleEnum;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -48,13 +49,22 @@ class BusinessInformation extends Component
 
     public function storeBusinessInfo()
     {
-        $this->validate([
-            'business_name' => 'required',
-            'business_address' => 'required',
-            // 'business_website' => 'required',
-            'business_email' => 'required',
-            'business_phone' => 'required',
-        ]);
+        if(Auth::User()->role != RoleEnum::ADMIN->value)
+        {
+            $this->validate([
+                'business_name' => 'required',
+                'business_address' => 'required',
+                'business_website' => 'required',
+                'business_email' => 'required',
+                'business_phone' => 'required',
+            ]);
+        } else {
+            $this->validate([
+                'business_name' => 'required',
+            ]);
+        }
+        
+    
 
         try {
             DB::beginTransaction();

@@ -76,7 +76,7 @@
                                         <th>Customer's Email</th>
                                         <th>Customer's Contact #</th>
                                         <th>Service Availed</th>
-                                        <th>Service Amount</th>
+                                        <th class="text-center">Amount Charged</th>
                                         {{-- <th class="col-md-1 text-center">Action</th> --}}
                                     </tr>
                                 </thead>
@@ -88,11 +88,11 @@
                                     @foreach ($customers as $customer)
                                     <tr>
                                         <td>{{$customer->id}}</td>
-                                        <td>{{$customer->customer_name}}</td>
-                                        <td>{{$customer->customer_email}}</td>
+                                        <td>{{$customer->customer->customer_name}}</td>
+                                        <td>{{$customer->customer->customer_email}}</td>
                                         <td>{{$customer->customer_phone}}</td>
                                         <td>{{$customer->service->service_name}}</td>
-                                        <td>{{$customer->amount_charged}}</td>
+                                        <td class="text-center">$ {{$customer->amount_charged}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

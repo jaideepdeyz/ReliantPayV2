@@ -153,7 +153,7 @@
                                 <th>Name</th>
                                 <th>DOB</th>
                                 <th>Gender</th>
-                                <th>Relationship</th>
+                                {{-- <th>Relationship</th> --}}
                                 <th>Needs Assistance</th>
                                 <th>Actions</th>
                             </tr>
@@ -165,8 +165,14 @@
                                 <td>{{ $passenger->full_name }}</td>
                                 <td>{{ $passenger->dob }}</td>
                                 <td>{{ $passenger->gender }}</td>
-                                <td>{{ $passenger->relationship_to_card_holder }}</td>
-                                <td>{{ $passenger->requires_assistance }}</td>
+                                {{-- <td>{{ $passenger->relationship_to_card_holder }}</td> --}}
+                                <td>
+                                    @if($passenger->requires_assistance == 'Yes')
+                                        Yes
+                                    @else
+                                        No
+                                    @endif
+                                </td>
                                 <td>
                                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#alertModal"

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('business_name')->nullable();
             $table->longText('business_address')->nullable();
             $table->string('business_website')->nullable();
-            $table->string('business_email')->unique();
+            $table->string('business_email')->nullable(); // change it to nullable
             $table->string('business_phone')->nullable();
             $table->string('business_PCI_DSS_compliance_status')->nullable();
             $table->string('business_HTTPS_compliance_status')->nullable();

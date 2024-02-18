@@ -123,7 +123,7 @@
 
                                         <td>
                                             @if($d->organization)
-                                            {{ $d->organization->business_name}}
+                                                {{ $d->organization->business_name}}
                                             @else
                                                 <span class="badge bg-warning badge-lg">Incomplete</span>
                                             @endif
@@ -189,11 +189,15 @@
 
                                                         @switch( $d->is_active )
                                                             @case('Yes')
+                                                            @if(Auth::User()->role == RoleEnum::ADMIN->value)
+                                                                <a href="{{ route('registrationByAdmin', ['userID'=> $d->id]) }}" class="btn">
+                                                                    <i class="fas fa-eye text-success"></i> View</a>
+                                                            @else
                                                                 <a href="{{ route('dealers.show', $d->id) }}" class="btn">
                                                                     <i class="fas fa-eye text-success"></i> View</a>
 
                                                                     <div class="dropdown-divider"></div>
-
+                                                            @endif
                                                                 <!-- item-->
 
                                                                 <a href="javascript:void(0);"
@@ -205,8 +209,13 @@
                                                                 </a>
                                                                 @break
                                                             @case('No')
-                                                                <a href="{{ route('dealerRegBusinessInfo', ['userID'=> $d->id, 'viewOnly' => 'False']) }}" class="btn">
-                                                                    <i class="fas fa-eye text-dark"></i> Continue Regd.</a>
+                                                                    @if(Auth::User()->role == RoleEnum::ADMIN->value)
+                                                                        <a href="{{ route('registrationByAdmin', ['userID'=> $d->id]) }}" class="btn">
+                                                                            <i class="fas fa-eye text-success"></i> Continue Regd.</a>
+                                                                    @else
+                                                                        <a href="{{ route('dealerRegBusinessInfo', ['userID'=> $d->id, 'viewOnly' => 'False']) }}" class="btn">
+                                                                            <i class="fas fa-eye text-dark"></i> Continue Regd.</a>
+                                                                    @endif
                                                                 @break
                                                         @endswitch
 

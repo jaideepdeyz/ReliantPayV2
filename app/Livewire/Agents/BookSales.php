@@ -46,6 +46,15 @@ class BookSales extends Component
             'customer_email' => 'required',
             'customer_dob' => 'required',
             'customer_gender' => 'required',
+            'relationship_to_card_holder' => 'required',
+        ], [
+            'serviceName.required' => 'Service is required',
+            'customer_name.required' => 'Customer Name is required',
+            'customer_phone.required' => 'Customer Phone is required',
+            'customer_email.required' => 'Customer Email is required',
+            'customer_dob.required' => 'Customer Date of Birth is required',
+            'customer_gender.required' => 'Customer Gender is required',
+            'relationship_to_card_holder.required' => 'Relationship to Card Holder is required',
         ]);
 
         try {
