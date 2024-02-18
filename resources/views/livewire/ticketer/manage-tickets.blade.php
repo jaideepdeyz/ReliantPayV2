@@ -61,37 +61,25 @@
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
                                 <td>
-                                    @switch($booking->saleBooking->service->id)
-                                        @case(ServiceEnum::FLIGHTS->value)
-                                            {{ $booking->flightBooking->departure_date }}
-                                            @break
-                                        @case(ServiceEnum::AMTRAK->value)
-                                            {{ $booking->amtrakBooking->departure_date }}
-                                            @break
-                                        @default
-                                    @endswitch
+                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                        {{ $booking->flightBooking->departure_date }}
+                                    @else
+                                        {{ $booking->amtrakBooking->departure_date }}
+                                    @endif
                                 </td>
                                 <td>
-                                    @switch($booking->saleBooking->service->id)
-                                        @case(ServiceEnum::FLIGHTS->value)
-                                            {{ $booking->flightBooking->departure_hour}}:{{ $booking->flightBooking->departure_minute}}
-                                            @break
-                                        @case(ServiceEnum::AMTRAK->value)
-                                            {{ $booking->amtrakBooking->departure_hour}}:{{ $booking->amtrakBooking->departure_minute}}
-                                            @break
-                                        @default
-                                    @endswitch
+                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                        {{ $booking->flightBooking->departure_hour}}:{{ $booking->flightBooking->departure_minute}}
+                                    @else
+                                        {{ $booking->amtrakBooking->departure_hour}}:{{ $booking->amtrakBooking->departure_minute}}
+                                    @endif
                                 </td>
                                 <td>
-                                    @switch($booking->saleBooking->service->id)
-                                        @case(ServiceEnum::FLIGHTS->value)
-                                            {{ $booking->flightBooking->carrier}}
-                                            @break
-                                        @case(ServiceEnum::AMTRAK->value)
-                                            AMTRAK
-                                            @break
-                                        @default
-                                    @endswitch
+                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                        {{ $booking->flightBooking->airline_name}}
+                                    @else
+                                       AMTRAK
+                                    @endif
                                 </td>
                                 <td>
                                     @if ($booking->confirmation_number == null)
