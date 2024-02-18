@@ -2,7 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ServiceEnum;
+use App\Models\AmtrakBooking;
+use App\Models\AuthorizationForm;
+use App\Models\ChargeDetails;
+use App\Models\FlightBooking;
+use App\Models\Passenger;
+use App\Models\Payment;
+use App\Models\SaleBooking;
 use App\Models\TicketBookingMode;
+use App\Models\TravelItenaryUpload;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
