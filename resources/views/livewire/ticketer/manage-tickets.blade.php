@@ -60,17 +60,19 @@
                             @foreach ($confirmedBookings as $booking)
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
-                                <td>{{ Carbon\Carbon::parse($booking->saleBooking->service->departure_date)->format('F j, Y') }}</td>
-                                <td>
-                                    @switch($booking->saleBooking->service)
-                                        @case(ServiceEnum::FLIGHTS->value)
-                                            {{ $booking->saleBooking->flightBooking->departure_hour }}:{{ $booking->saleBooking->flightBooking->departure_minute }} HRS
-                                            @break
-                                        @case(ServiceEnum::AMTRAK->value)
-                                            {{ $booking->saleBooking->amtrakBooking->departure_hour }}:{{ $booking->saleBooking->amtrakBooking->departure_minute }} HRS
+                                @switch($booking->saleBooking->service)
+                                    @case(ServiceEnum::FLIGHTS->value)
+                                        <td>{{ $booking->flightBooking->departure_date }}</td>
+                                        <td>{{ $booking->flightBooking->departure_hour}}:{{ $booking->flightBooking->departure_minute}} </td>
                                         @break
-                                        @default
-                                    @endswitch
+                                    @case(ServiceEnum::AMTRAK->value)
+                                        <td>{{ $booking->amtrakBooking->departure_date }}</td>
+                                        <td>{{ $booking->amtrakBooking->departure_hour}}:{{ $booking->amtrakBooking->departure_minute}} </td>
+                                        @break
+                                    @default
+                                @endswitch
+                                <td>
+
                                 </td>
                                 <td>
                                     @if ($booking->confirmation_number == null)
