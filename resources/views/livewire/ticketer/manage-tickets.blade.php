@@ -61,11 +61,11 @@
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->saleBooking->service->departure_date)->format('F j, Y') }}</td>
-                                <td>{{ $booking->saleBooking->service->departure_time }}</td>
+                                <td>{{ $booking->saleBooking->service->departure_hour }}:{{ $booking->saleBooking->service->departure_minute }} HRS</td>
                                 <td>{{ $booking->saleBooking->service->service_name}}</td>
                                 <td>
                                     @if ($booking->confirmation_number == null)
-                                        <span class="badge badge-outline-danger ">Incomplete</span>
+                                        <span class="badge badge-outline-danger ">Ticket Not Booked</span>
                                     @else
                                         <span class="badge badge-outline-success">Ticket Issued</span>
                                     @endif
