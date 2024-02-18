@@ -26,7 +26,7 @@ class UploadConfirmedTicket extends Component
     public function mount($appID)
     {
         $this->bookingID = $appID;
-        $this->booking = SaleBooking::find($appID);
+        $this->booking = SaleBooking::where('id', $appID)->first();
     }
 
     public function saveConfirmation()
