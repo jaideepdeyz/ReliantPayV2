@@ -37,6 +37,7 @@ use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Agents\UploadConfirmedTicket;
 use App\Livewire\Dealer\ManageCustomers;
 use App\Livewire\Dealer\PendingAuthorization;
+use App\Livewire\Dealer\PendingPayments;
 use App\Livewire\Dealer\Registration\BankingDetails;
 use App\Livewire\Dealer\Registration\BusinessInformation;
 use App\Livewire\Dealer\Registration\Confirmation;
@@ -122,6 +123,7 @@ Route::middleware('auth')->group(function () {
     Route::get('addAgent', AddAgent::class)->middleware('dealerApprovalCheck')->name('addAgent');
     Route::get('manageCustomers', ManageCustomers::class)->name('manageCustomers');
     Route::get('pendingAuthorizations', PendingAuthorization::class)->name('pendingAuthorizations');
+    Route::get('pendingPayments', PendingPayments::class)->name('pendingPayments');
 
     //Common Routes for Admin, Affiliates and Dealers
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
@@ -150,7 +152,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('uploadTicket/{appID}', UploadConfirmedTicket::class)->name('uploadTicket');
 
-    //Ticketer routes   
+    //Ticketer routes
     Route::get('manageTickets', ManageTickets::class)->name('manageTickets');
 
     // Email routes
@@ -169,7 +171,7 @@ Route::middleware('auth', 'adminRoleCheck')->group(function () {
     Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
     Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
-    Route::get('registrationByAdmin/{userID}', RegistrationByAdmin::class)->name('registrationByAdmin'); 
+    Route::get('registrationByAdmin/{userID}', RegistrationByAdmin::class)->name('registrationByAdmin');
 });
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');

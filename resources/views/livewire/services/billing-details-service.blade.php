@@ -159,7 +159,7 @@
                             <div class="mb-3 col-md-6">
                                 <label for="cc_phone" class="form-label">Card Holder's Phone <span class="text-danger"><sup>*</sup></span></label>
                                 <input type="text" class="form-control @error('cc_phone') is-invalid @enderror"
-                                    wire:model="cc_phone">
+                                    wire:model="cc_phone" minlength="10" maxlength="10" placeholder="Enter 10 digit mobile number">
                                 @error('cc_phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

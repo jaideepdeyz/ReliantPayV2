@@ -2,7 +2,7 @@
     <div class="mt-3 col-md-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Step 1/5: Merchant Business Information </h5>
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Merchant Registration</h5>
                 <form wire:submit.prevent="save">
                     <div class="row">
                         <div class="mb-3 col-md-12">
@@ -30,7 +30,7 @@
 
 
                         <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">Next</button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Proceed</button>
                         </div>
                     </div>
                 </form>

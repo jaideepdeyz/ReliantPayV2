@@ -12,22 +12,22 @@
             <hr>
             <div class="row mt-3">
                 <div class="col-md-12 form-group mb-2">
-                    <label for="name">Business Owner's Name</label>
+                    <label for="name">Business Owner's Name <span class="text-danger"><sup>*</sup></span></label>
                     <input type="text" class="form-control @error('is-invalid') name @enderror" wire:model="name">
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 form-group mb-2">
-                    <label for="email">Business Owner's Email</label>
+                    <label for="email">Business Owner's Email <span class="text-danger"><sup>*</sup></span></label>
                     <input type="email" class="form-control  @error('is-invalid') email @enderror"  wire:model.live="email">
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 form-group mb-2">
-                    <label for="mobile">Business Owner's Mobile</label>
-                    <input type="text" class="form-control @error('is-invalid') mobile @enderror"  wire:model.live="mobile" minlength="10" maxlength="10">
+                    <label for="mobile">Business Owner's Mobile <span class="text-danger"><sup>*</sup></span></label>
+                    <input type="text" class="form-control @error('is-invalid') mobile @enderror"  wire:model.live="mobile" minlength="10" maxlength="10" placeholder="Enter the 10 digit mobile number without dashes">
                     @error('mobile')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

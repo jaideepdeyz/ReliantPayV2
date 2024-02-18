@@ -8,10 +8,10 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                         <li class="breadcrumb-item">Merchant Dashboard</li>
-                        <li class="breadcrumb-item active">Pending Authorizations</li>
+                        <li class="breadcrumb-item active">Pending Payments</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Pending Authorizations</h4>
+                <h4 class="page-title">Pending Payments</h4>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <h4 class="header-title">
-                                Pending Authorizations
+                                Pending Payments
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        @if ($pendingAuths->count() > 0)
+                        @if ($pendingPayments->count() > 0)
                         <div class="flex">
                             <table class="table table-hover table-striped table-borderless wrap table-fixed">
                                 <thead class="table-light">
@@ -88,7 +88,7 @@
                                 <tbody>
 
 
-                                    @foreach ($pendingAuths as $customer)
+                                    @foreach ($pendingPayments as $customer)
                                     <tr>
                                         <td>{{$customer->id}}</td>
                                         <td>{{$customer->agent->name}}</td>
@@ -104,7 +104,7 @@
                             </table>
 
                             <div class="d-flex justify-content-end">
-                                {{ $pendingAuths->links() }}
+                                {{ $pendingPayments->links() }}
                             </div>
 
                         </div>

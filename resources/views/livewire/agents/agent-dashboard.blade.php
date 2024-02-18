@@ -106,7 +106,7 @@
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $pendingPayment }}</span></h3>
                                     <p class="text-muted mb-1 text-truncate"><a
-                                            href="{{ route('pendingAuthorizations') }}">Pending Payments</a></p>
+                                            href="{{ route('pendingPayments') }}">Pending Payments</a></p>
                                 </div>
                             </div>
                         </div> <!-- end row-->

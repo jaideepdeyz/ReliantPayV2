@@ -34,7 +34,7 @@
                             <div class="form-floating">
                                 <input type="number" class="form-control @error('amount') is-invalid @enderror"
                                     wire:model="amount" placeholder="Amount Charged">
-                                <label for="amount" class="form-label">Amount Charged</label>
+                                <label for="amount" class="form-label">Amount Charged (in USD)</label>
                                 @error('amount')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -78,7 +78,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $charge->charge_type }}</td>
-                                <td>{{ $charge->amount }}</td>
+                                <td>$ {{ $charge->amount }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#alertModal"

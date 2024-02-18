@@ -64,9 +64,9 @@
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
-                                <td>{{ $booking->customer->customer_name }}</td>
+                                <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
-                                <td>{{ $booking->customer->customer_email }}</td>
+                                <td>{{ $booking->customer_email }}</td>
                                 <td>
                                     @if ($booking->app_status == StatusEnum::DRAFT->value)
                                     <span class="badge badge-outline-danger ">Incomplete</span>
@@ -160,7 +160,7 @@
                             <label for="customer_phone" class="form-label">Customer's
                                 Phone <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_phone') is-invalid @enderror"
-                                wire:model="customer_phone">
+                                wire:model="customer_phone" placeholder="10 digit mobile number">
                             @error('customer_phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

@@ -57,12 +57,12 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <select class="form-select @error('relationship_to_card_holder') is-invalid @enderror"
                                     wire:model="relationship_to_card_holder">
                                     <option value="">Select Option</option>
-                                    <option value="Card Holder">Card Holder</option>
+                                    <option value="Self">Self</option>
                                     <option value="Husband">Husband</option>
                                     <option value="Wife">Wife</option>
                                     <option value="Son">Son</option>
@@ -78,7 +78,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="col-md-3 mb-3">
                             <div class="form-floating">

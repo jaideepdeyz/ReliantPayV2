@@ -345,7 +345,7 @@ class AgentDashboard extends Component
         $customers = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::PAYMENT_DONE->value)->count();
         $topCustomers = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::PAYMENT_DONE->value)->orderBy('amount_charged', 'DESC')->paginate(10);
         $pendingPayment = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::AUTHORIZED->value)->count();
-        $pendingAuthorization = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::PENDING->value)->count();
+        $pendingAuthorization = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::SENT_FOR_AUTH->value)->count();
         $revenue = SaleBooking::where('agent_id', Auth::User()->id)
         ->where('app_status',StatusEnum::PAYMENT_DONE->value)
         ->whereYear('updated_at',date('Y'))

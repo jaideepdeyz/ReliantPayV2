@@ -19,13 +19,13 @@
             </div><br><br>
         </div>
         <div class="col-md-12" style="font-size:14px; padding-top:20px;">
-            Dear <b>{{ $saleBooking->customer->customer_name }}</b>,
+            Dear <b>{{ $saleBooking->customer_name }}</b>,
             <br><br>
         </div>
 
         <div class="col-md-12">
             <p style="font-size:12px; color:black;">
-                Thank you for choosing Reservation Assistance LLC for your travel arrangements. We are delighted to assist you in planning your upcomming trip. 
+                Thank you for choosing Reservation Assistance LLC for your travel arrangements. We are delighted to assist you in planning your upcomming trip.
             </p>
             <p style="font-size:12px; color:black;">
                 As per your recent enquiry, we have prepared a detailed itenary for your {{$type}} reservation. Please find attached the itenary document outlining your travel details, including the proposed itenerary and associated charges.
@@ -38,9 +38,9 @@
             </p>
             <p>
                 <ul style="font-size:12px; color:black;">
-                    <li><b>Name:</b> {{ $saleBooking->customer->customer_name }}</li>
+                    <li><b>Name:</b> {{ $saleBooking->customer_name }}</li>
                     <li><b>Contact Number:</b> {{ $saleBooking->customer_phone }}</li>
-                    <li><b>Email Address:</b> {{ $saleBooking->customer->customer_email }}</li>
+                    <li><b>Email Address:</b> {{ $saleBooking->customer_email }}</li>
                     <li><b>Customer's relationship with the Card Holder:</b> {{$saleBooking->relationship_to_card_holder}}</li>
                 </ul>
             </p>
@@ -112,7 +112,7 @@
                 </ol>
             </p>
         </div>
-        
+
         <div class="col-md-12" style="margin-bottom:0px;">
             <p style="font-size:12px; color:black;">
                 <b>Payment Method:</b>
@@ -223,7 +223,7 @@
                 </li>
             </ol>
         </div>
-       
+
         <div class="col-md-12" style="font-size:12px; color:black; border-style: solid;">
             <p style="text-align: center;"><b><u>Legal Binding Notice</u></b></p>
             <p style="padding-left:20px;">

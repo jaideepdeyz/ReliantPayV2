@@ -11,6 +11,7 @@ use App\Models\Payment;
 use App\Models\SaleBooking;
 use App\Models\ServiceMaster;
 use App\Models\TransactionLog;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -61,14 +62,17 @@ class BookSales extends Component
             DB::beginTransaction();
 
             //checking uniqueness of customer email
-            $customer = CustomerMaster::updateOrCreate([
-                'customer_email' => $this->customer_email
-            ],
-                [
-                'customer_name' => $this->customer_name,
-                'customer_gender' => $this->customer_gender,
-                'customer_dob' => $this->customer_dob
-            ]);
+            $customer = CustomerMaster::where('customer_email', $this->customer_email)->first();
+            if(!$customer)
+            {
+                $customer = CustomerMaster::create([
+                    'customer_email' => $this->customer_email,
+                    'customer_name' => $this->customer_name,
+                    'customer_gender' => $this->customer_gender,
+                    'customer_dob' => $this->customer_dob,
+                ]);
+            }
+
 
             // getting the service id from services table
 
@@ -79,6 +83,10 @@ class BookSales extends Component
                 'organization_id' => auth()->user()->organization_id,
                 'service_id' => $service->id,
                 'customer_id' => $customer->id,
+                'customer_name' => $this->customer_name,
+                'customer_gender' => $this->customer_gender,
+                'customer_dob' => $this->customer_dob,
+                'customer_email' => $this->customer_email,
                 'customer_phone' => $this->customer_phone,
                 'app_status' => StatusEnum::DRAFT,
                 'relationship_to_card_holder' => $this->relationship_to_card_holder,
