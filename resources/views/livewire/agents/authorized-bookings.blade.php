@@ -86,7 +86,19 @@
                                             <a class="dropdown-item"
                                             href={{ route('payment.stepOnePay', $booking->id) }}"><i
                                                     class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
-                                            @endif
+                                            @switch($booking->service->service_name)
+                                                @case('Flight Booking')
+                                                <a class="dropdown-item"
+                                                    href="{{ route('airlineBooking.show', $booking->id) }}"><i
+                                                        class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                @break
+                                                @case('AMTRAK Booking')
+                                                <a class="dropdown-item"
+                                                    href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
+                                                        class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                                @break
+                                                @default
+                                            @endswitch
                                             @if ($booking->app_status == StatusEnum::PAYMENT_DONE->value || $booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
                                                 @switch($booking->service->service_name)
                                                     @case('Flight Booking')
