@@ -61,8 +61,17 @@
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->saleBooking->service->departure_date)->format('F j, Y') }}</td>
-                                <td>{{ $booking->saleBooking->service->departure_hour }}:{{ $booking->saleBooking->service->departure_minute }} HRS</td>
-                                <td>{{ $booking->saleBooking->service->service_name}}</td>
+                                <td>
+                                    @switch($booking->saleBooking->service)
+                                        @case(ServiceEnum::FLIGHTS->value)
+                                            {{ $booking->saleBooking->flightBooking->departure_hour }}:{{ $booking->saleBooking->flightBooking->departure_minute }} HRS
+                                            @break
+                                        @case(ServiceEnum::AMTRAK->value)
+                                            {{ $booking->saleBooking->amtrakBooking->departure_hour }}:{{ $booking->saleBooking->amtrakBooking->departure_minute }} HRS
+                                        @break
+                                        @default
+                                    @endswitch
+                                </td>
                                 <td>
                                     @if ($booking->confirmation_number == null)
                                         <span class="badge badge-outline-danger ">Ticket Not Booked</span>
