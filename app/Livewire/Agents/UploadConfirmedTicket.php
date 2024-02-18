@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Agents;
 
+use App\Enums\StatusEnum;
 use App\Mail\TicketConfirmationMail;
 use App\Models\ConfirmedTicket;
 use App\Models\SaleBooking;
@@ -30,6 +31,13 @@ class UploadConfirmedTicket extends Component
         $this->validate([
             'confirmation_number' => 'required',
             'ticket_filepath' => 'required|file|mimes:pdf|max:6000',
+        ], [
+            'confirmation_number.required' => 'Confirmation number is required.',
+            'ticket_filepath.required' => 'Ticket file is required.',
+            'ticket_filepath.file' => 'Ticket file must be a file.',
+            'ticket_filepath.mimes' => 'Ticket file must be a pdf file.',
+            'ticket_filepath.max' => 'Ticket file must be less than 6MB.',
+
         ]);
 
         try {
@@ -40,6 +48,12 @@ class UploadConfirmedTicket extends Component
                 'confirmation_number' => $this->confirmation_number,
                 'ticket_filepath' => $this->ticket_filepath->storeAs('public/Tickets/' . $this->booking->id, 'Ticket' . '.' . $this->ticket_filepath->getClientOriginalExtension()),
             ]);
+
+            $booking = SaleBooking::find($this->booking->id);
+            $booking->update([
+                'app_status' => StatusEnum::TICKET_ISSUED->value,
+            ]);
+
             DB::commit();
             $mailData = [
                 'app_id' => $this->booking->id,

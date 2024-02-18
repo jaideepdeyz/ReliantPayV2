@@ -16,6 +16,7 @@ enum StatusEnum: string
     case CHARGEBACK = 'Chargeback'; // Sales Cahrgedback by customer
     case DELETED = 'Deleted'; // Sales Cahrgedback by customer
     case PAYMENT_DONE = 'Payment Done';
+    case TICKET_ISSUED = 'Ticket Issued';
 
 
 }
