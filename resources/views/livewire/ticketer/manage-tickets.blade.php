@@ -59,7 +59,7 @@
                         <tbody>
                             @foreach ($confirmedBookings as $booking)
                             <tr>
-                                <td>{{ $booking->saleBooking->app_id}}</td>
+                                <td>{{ $booking->saleBooking->id}}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->saleBooking->service->departure_date)->format('F j, Y') }}</td>
                                 <td>{{ $booking->saleBooking->service->departure_time }}</td>
                                 <td>{{ $booking->saleBooking->service->service_name}}</td>
