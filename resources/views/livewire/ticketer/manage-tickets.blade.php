@@ -60,7 +60,7 @@
                             @foreach ($confirmedBookings as $booking)
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
-                                @switch($booking->saleBooking->service)
+                                @switch($booking->saleBooking->service->id)
                                     @case(ServiceEnum::FLIGHTS->value)
                                         <td>{{ $booking->flightBooking->departure_date }}</td>
                                         <td>{{ $booking->flightBooking->departure_hour}}:{{ $booking->flightBooking->departure_minute}} </td>
