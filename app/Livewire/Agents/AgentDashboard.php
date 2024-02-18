@@ -306,6 +306,38 @@ class AgentDashboard extends Component
         }
     }
 
+    public function totalRevenue()
+    {
+
+        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+
+        $this->totalrevenueoptions = [
+            'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
+            'chart' => [
+                'type' => 'donut',
+            ],
+            'labels' => ['Total Revenue','Today','This Week','This Month','This Year'],
+            'responsive' => [
+                [
+                    'breakpoint' => 480,
+                    'options' => [
+                        'chart' => [
+                            'width' => 200,
+                        ],
+
+                    ],
+                ],
+            ],
+            'legend' => [
+                'show' => false,
+            ],
+        ];
+    }
+
     public function render()
     {
         $authorizations = SaleBooking::where('agent_id', auth()->user()->id)->where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();
@@ -347,38 +379,5 @@ class AgentDashboard extends Component
         ])->layout('layouts.dashboard-layout');
     }
 
-    public function totalRevenue()
-    {
 
-        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->sum('amount_charged');
-        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereDay('updated_at',date('d'))->sum('amount_charged');
-        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
-        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
-        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
-
-        $this->totalrevenueoptions = [
-            'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
-            'chart' => [
-                'type' => 'donut',
-            ],
-            'labels' => ['Total Revenue','Today','This Week','This Month','This Year'],
-            'responsive' => [
-                [
-                    'breakpoint' => 480,
-                    'options' => [
-                        'chart' => [
-                            'width' => 200,
-                        ],
-
-                    ],
-                ],
-            ],
-            'legend' => [
-                'show' => false,
-            ],
-        ];
-
-
-
-    }
 }

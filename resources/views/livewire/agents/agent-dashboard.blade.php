@@ -84,7 +84,7 @@
                             <div class="col-6">
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $customers }}</span></h3>
-                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageCustomers') }}">Customers</a>
+                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageCustomers') }}">Completed Bookings</a>
                                     </p>
                                 </div>
                             </div>

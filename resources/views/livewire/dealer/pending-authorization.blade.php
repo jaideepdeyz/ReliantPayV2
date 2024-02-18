@@ -73,11 +73,13 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>Sale ID</th>
+                                        <th>Agent</th>
                                         <th>Customer's Name</th>
                                         <th>Customer's Email</th>
                                         <th>Customer's Contact #</th>
                                         <th>Service Availed</th>
                                         <th>Service Amount</th>
+                                        <th>Status</th>
                                         {{-- <th class="col-md-1 text-center">Action</th> --}}
                                     </tr>
                                 </thead>
@@ -89,11 +91,13 @@
                                     @foreach ($pendingAuths as $customer)
                                     <tr>
                                         <td>{{$customer->id}}</td>
-                                        <td>{{$customer->customer_name}}</td>
-                                        <td>{{$customer->customer_email}}</td>
+                                        <td>{{$customer->agent->name}}</td>
+                                        <td>{{$customer->customer->customer_name}}</td>
+                                        <td>{{$customer->customer->customer_email}}</td>
                                         <td>{{$customer->customer_phone}}</td>
                                         <td>{{$customer->service->service_name}}</td>
                                         <td>{{$customer->amount_charged}}</td>
+                                        <td>{{$customer->app_status}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
