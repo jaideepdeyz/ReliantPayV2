@@ -62,7 +62,7 @@ class PdfController extends Controller
 
     public function showTicket($bookingID)
     {
-        $ticket = TicketBookingMode::where('id', $bookingID)->first();
+        $ticket = TicketBookingMode::where('app_id', $bookingID)->first();
         return view('pdf.showTicket', compact('ticket'));
     }
 
