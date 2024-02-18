@@ -60,8 +60,10 @@ class ZohoSignController extends Controller
             $partner->setActionType(Actions::SIGNER);
             $partner->setPrivateNotes('Please sign the document to authorize the booking');
             $partner->setSigningOrder(1);
-            $partner->setVerifyRecipient(true);
-            $partner->setVerificationType(Actions::EMAIL);
+            // $partner->setVerifyRecipient(true);
+            // $partner->setVerificationType(Actions::EMAIL);
+            $partner->setVerifyRecipient(false);
+            // $partner->setVerificationType(Actions::SMS);
             $reqObject->addAction($partner);
             $reqObject->setExpirationDays(1);
             // $pdf = Pdf::loadView('pdf.sample');
