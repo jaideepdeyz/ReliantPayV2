@@ -71,21 +71,49 @@
                             <table class="table table-hover table-striped table-borderless wrap table-fixed">
                                 <thead class="table-light">
                                     <tr>
+                                        @switch(Auth::User()->role)
+                                            @case(RoleEnum::ADMIN->value)
+                                            <th>Merchant</th>
+                                            <th>Agent</th>
+                                            @break
+                                            @case(RoleEnum::DEALER->value)
+                                            <th>Agent</th>
+                                            @break
+                                            @case(RoleEnum::AFFILIATE->value)
+                                            <th>Merchant</th>
+                                            <th>Agent</th>
+                                            @break
+                                        @endswitch
                                         <th>Amount</th>
-                                        <th>Date</th>
+                                        <th>Booking Date</th>
                                         <th>Process</th>
                                         <th>Customer's Name</th>
                                         <th>Customer's #</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($sales as $sale)
                                     <tr>
+                                        @switch(Auth::User()->role)
+                                            @case(RoleEnum::ADMIN->value)
+                                            <td>{{ $sale->agent->organization->business_name }}</td>
+                                            <td>{{ $sale->agent->name }}</td>
+                                            @break
+                                            @case(RoleEnum::DEALER->value)
+                                            <td>{{ $sale->agent->name }}</td>
+                                            @break
+                                            @case(RoleEnum::AFFILIATE->value)
+                                            <td>{{ $sale->agent->organization->business_name }}</td>
+                                            <td>{{ $sale->agent->name }}</td>
+                                            @break
+                                        @endswitch
                                         <th>$ {{ $sale->amount_charged }}</th>
                                         <td>{{ $sale->updated_at->format('F j, Y') }}</td>
                                         <td>{{ $sale->service->service_name }}</td>
-                                        <td>{{ $sale->customer_name }}</td>
+                                        <td>{{ $sale->customer->customer_name }}</td>
                                         <td>{{ $sale->customer_phone }}</td>
+                                        <td>{{ $sale->app_status}}</td>
                                     @endforeach
                                 </tbody>
                             </table>
