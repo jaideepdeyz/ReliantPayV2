@@ -30,7 +30,7 @@
                                     <div class="dropdownList">
                                         <label for="departure_location" class="form-label">Departure Station <span class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control @error('departureQuery') is-invalid @enderror"
-                                            placeholder="Search By Station Code" wire:model.live="departureQuery" required>
+                                            placeholder="Search By Departure Station Code" wire:model.live="departureQuery" required>
                                         @error('departureQuery')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -45,7 +45,7 @@
                                             @endforeach
                                         </div>
                                         @endif
-                                        
+
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
                                         <label for="destination_location" class="form-label">Destination Station <span
                                                 class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control @error('destinationQuery') is-invalid @enderror"
-                                            placeholder="Search Stations .." wire:model.live="destinationQuery"
+                                            placeholder="Search By Destination Station Code .." wire:model.live="destinationQuery"
                                             required>
                                         @error('destinationQuery')
                                         <div class="invalid-feedback">{{ $message }}</div>

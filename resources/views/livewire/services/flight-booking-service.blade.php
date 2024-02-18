@@ -55,7 +55,7 @@
                                         <label for="departure_location" class="form-label">Departure Airport <span
                                                 class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control @error('departureQuery') is-invalid @enderror"
-                                            placeholder="Search Airports .." wire:model.live="departureQuery" required>
+                                            placeholder="Search by Departure Airport Code" wire:model.live="departureQuery" required>
                                         @error('departureQuery')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -78,7 +78,7 @@
                                         <label for="destination_location" class="form-label">Destination Airport <span
                                                 class="text-danger"><sup>*</sup></span></label>
                                         <input type="text" class="form-input form-control @error('destinationQuery') is-invalid @enderror"
-                                            placeholder="Search Airports .." wire:model.live="destinationQuery"
+                                            placeholder="Search by Destination Airport Code" wire:model.live="destinationQuery"
                                             required>
                                         @error('destinationQuery')
                                             <div class="invalid-feedback">{{ $message }}</div>
