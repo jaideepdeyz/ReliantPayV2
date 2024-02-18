@@ -90,7 +90,7 @@
                                         <div class="dropdown-menu dropdown-menu-end" style="">
                                              @if ($booking->ticket_upload == null)
                                              <a class="dropdown-item"
-                                             href="{{ route('uploadTicket', $booking->id) }}"><i
+                                             href="{{ route('uploadTicket', $booking->app_id) }}"><i
                                                  class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
                                             @endif
                                         </div>
