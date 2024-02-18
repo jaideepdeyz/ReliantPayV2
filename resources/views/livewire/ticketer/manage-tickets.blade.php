@@ -95,10 +95,11 @@
                                             data-bs-toggle="dropdown" aria-expanded="false"><i
                                                 class="mdi mdi-dots-horizontal"></i></a>
                                         <div class="dropdown-menu dropdown-menu-end" style="">
-                                             @if ($booking->ticket_upload == null)
-                                             <a class="dropdown-item"
-                                             href="{{ route('uploadTicket', $booking->app_id) }}"><i
+                                            @if ($booking->ticket_upload == null)
+                                                <a class="dropdown-item" href="{{ route('uploadTicket', $booking->app_id) }}"><i
                                                  class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>
+                                            @else
+                                                <a class="dropdown-item" href="#"><i class="mdi mdi-eye me-2 text-primary vertical-middle"></i>View Ticket</a>
                                             @endif
                                         </div>
                                     </div>
