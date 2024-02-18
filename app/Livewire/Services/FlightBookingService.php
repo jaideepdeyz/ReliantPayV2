@@ -131,6 +131,13 @@ class FlightBookingService extends Component
             $this->airlines = [];
         } else {
             $this->airlines = Airline::where('name', 'like', '%' . $this->query . '%')->get();
+            if($this->airlines->count() == 0)
+            {
+                $this->addError('query', 'No Airlines Found. Please enter a valid Airline Name');
+            }else{
+                $this->resetValidation('query');
+            
+            }
         }
     }
 
@@ -143,6 +150,13 @@ class FlightBookingService extends Component
                 // ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
                 // ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
                 ->get();
+             if($this->departureAirports->count() == 0)
+            {
+                $this->addError('departureQuery', 'No Airports Found. Please enter a valid Airport Code');
+            }else{
+                $this->resetValidation('departureQuery');
+            
+            }
         }
     }
 
@@ -155,6 +169,12 @@ class FlightBookingService extends Component
                 // ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
                 // ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
                 ->get();
+            if($this->destinationAirports->count() == 0){
+                $this->addError('destinationQuery', 'No Airports Found. Please enter a valid Airport Code');
+            }else{
+                $this->resetValidation('destinationQuery');
+            
+            }
         }
     }
 
