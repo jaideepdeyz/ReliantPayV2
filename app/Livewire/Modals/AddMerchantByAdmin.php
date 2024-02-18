@@ -38,7 +38,7 @@ class AddMerchantByAdmin extends Component
                 'email' => $this->email,
                 'password' => Hash::make('Merchant@123#'),
                 'role' => RoleEnum::DEALER,
-                'is_active' => 'Yes',
+                'is_active' => 'No', // This will be approved by the admin when he completes the fill up the other details
                 'is_approved' => 'No', // This will be approved by the admin when he fills up the other details
                 'phone_number' => $this->mobile,
             ]);

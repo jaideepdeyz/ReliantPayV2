@@ -73,17 +73,19 @@
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'name',
-                                        'displayName' => 'Name',
+                                        'displayName' => 'User Name',
                                         'width' => 2,
                                         ])
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'email',
-                                        'displayName' => 'Email',
+                                        'displayName' => 'Registered Email',
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Phone</th>
+                                        <th class="col-md-1">Business Name</th>
+
+                                        <th class="col-md-1">Registerd Phone</th>
 
                                         <th class="col-md-2">Address</th>
 
@@ -98,7 +100,7 @@
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Action</th>
+                                        <th class="col-md-1 text-center">Action</th>
                                     </tr>
                                 </thead>
 
@@ -111,38 +113,62 @@
                                         <td class="table-user">
                                             <img src="{{ asset('auth/images/users/user-3.jpg') }}" alt="table-user"
                                                 class="me-2 rounded-circle">
-                                            {{ $d->business_name }}
+                                            {{ $d->name }}
+                                            {{-- Showing registered user name only --}}
                                         </td>
                                         <td>
-                                            {{ $d->business_email }}
-                                        </td>
-
-                                        <td>
-                                            {{ $d->business_phone }}
+                                            {{ $d->email }}
+                                            {{-- Showing registered user email only --}}
                                         </td>
 
                                         <td>
-                                            {{ $d->business_address }}
+                                            @if($d->organization)
+                                            {{ $d->organization->business_name}}
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            {{ $d->phone_number }}
+                                            {{-- Showing registered user phone only --}}
+                                        </td>
+
+                                        <td>
+                                            @if($d->organization)
+                                                {{ $d->organization->business_address}}
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @endif
                                         </td>
 
 
                                         <td>
-                                            @if ($d->status == 'Approved')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == 'Rejected')
-                                            <span class="badge bg-danger badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == 'Submitted')
-                                            <span class="badge bg-danger badge-lg">Approval Pending</span>
-                                            @elseif($d->status == null)
-                                            <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @if($d->organization)
+                                                @switch($d->organization->status)
+                                                    @case(StatusEnum::APPROVED->value)
+                                                        <span class="badge badge-soft-success badge-lg">{{ $d->organization->status }}</span>
+                                                        @break
+                                                    @case(StatusEnum::REJECTED->value)
+                                                        <span class="badge bg-danger badge-lg">{{ $d->organization->status }}</span>
+                                                        @break
+                                                    @case(StatusEnum::SUBMITTED->value)
+                                                        <span class="badge bg-danger badge-lg">Approval Pending</span>
+                                                        @break
+                                                    @case(null)
+                                                        <span class="badge bg-warning badge-lg">Incomplete</span>
+                                                        @break
+                                                @endswitch
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($d->user->is_active == 'Yes')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->user->is_active
+                                            @if ($d->is_active == 'Yes')
+                                            <span class="badge badge-soft-success badge-lg">{{ $d->is_active
                                                 }}</span>
-                                            @elseif($d->user->is_active == 'No')
-                                            <span class="badge bg-danger badge-lg">{{ $d->user->is_active }}</span>
+                                            @elseif($d->is_active == 'No')
+                                            <span class="badge bg-danger badge-lg">{{ $d->is_active }}</span>
                                             @endif
                                         </td>
 
@@ -161,22 +187,30 @@
 
                                                     <div class="dropdown-menu">
 
+                                                        @switch( $d->is_active )
+                                                            @case('Yes')
+                                                                <a href="{{ route('dealers.show', $d->id) }}" class="btn">
+                                                                    <i class="fas fa-eye text-success"></i> View</a>
 
-                                                        <a href="{{ route('dealers.show', $d->id) }}" class="btn">
-                                                            <i class="fas fa-eye text-success"></i> View</a>
+                                                                    <div class="dropdown-divider"></div>
 
+                                                                <!-- item-->
 
-                                                        <div class="dropdown-divider"></div>
+                                                                <a href="javascript:void(0);"
+                                                                    wire:click="activateDeactivate({{ $d->id }})" class="btn">
+                                                                    <i class="fas fa-trash text-danger"></i>
+                                                                    {{ $d->is_active == 'Yes' ? 'Deactivate' : 'Activate'
+                                                                    }}
 
-                                                        <!-- item-->
+                                                                </a>
+                                                                @break
+                                                            @case('No')
+                                                                <a href="{{ route('dealerRegBusinessInfo', ['userID'=> $d->id, 'viewOnly' => 'False']) }}" class="btn">
+                                                                    <i class="fas fa-eye text-dark"></i> Continue Regd.</a>
+                                                                @break
+                                                        @endswitch
 
-                                                        <a href="javascript:void(0);"
-                                                            wire:click="activateDeactivate({{ $d->id }})" class="btn">
-                                                            <i class="fas fa-trash text-danger"></i>
-                                                            {{ $d->user->is_active == 'Yes' ? 'Deactivate' : 'Activate'
-                                                            }}
-
-                                                        </a>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

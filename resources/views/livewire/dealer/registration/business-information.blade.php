@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="mb-3 col-md-4">
-                                <label for="business_website" class="form-label">Website <span class="text-danger"><sup>*</sup></span></label>
+                                <label for="business_website" class="form-label">Website @if(Auth::User()->role != RoleEnum::ADMIN->value) <span class="text-danger"><sup>*</sup></span> @endif</label>
                                 <input type="text"
                                     class="form-control @error('business_website') is-invalid @enderror"
                                     placeholder="Enter business website" value ="{{ old('business_website') }}"

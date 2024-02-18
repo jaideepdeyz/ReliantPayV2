@@ -19,6 +19,7 @@ use Livewire\Component;
 class Confirmation extends Component
 {
     public $orgID;
+    public $org;
     public $status;
     public $remarks;
     public $userID;
@@ -34,8 +35,8 @@ class Confirmation extends Component
     public function mount($orgID)
     {
         $this->orgID = $orgID;
-        $org = Organization::find($this->orgID);
-        $this->userID = $org->user_id;
+        $this->org = Organization::find($this->orgID);
+        $this->userID = $this->org->user_id;
     }
 
     public function save()
@@ -99,6 +100,7 @@ class Confirmation extends Component
             $user = User::find($this->userID);
             $user->update([
                 'organization_id' => $this->orgID,
+                'is_active' => 'Yes',
                 'is_approved' => $this->isApproved,
             ]);
 
