@@ -264,15 +264,15 @@
                             <div class="row mt-3">
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
-                                    <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
+                                    <h4><i class="text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
                                 </div>
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
-                                    <h4><i class="fe-arrow-up text-success me-1"></i>${{ $revenueThisMonth }}</h4>
+                                    <h4><i class="text-success me-1"></i>${{ $revenueThisMonth }}</h4>
                                 </div>
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
-                                    <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisYear }}</h4>
+                                    <h4><i class="text-danger me-1"></i>${{ $revenueThisYear }}</h4>
                                 </div>
                             </div>
 
