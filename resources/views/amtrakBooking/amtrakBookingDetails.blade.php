@@ -19,6 +19,21 @@
                         class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
             </h5>
 
+            @if ($bookingDetails->app_status == StatusEnum::PAYMENT_DONE)
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <ol>
+                                <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}"
+                                        target="_blank">Signed Authorization Form</a></li>
+                                <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
+                                        target="_blank">Completion Certificate</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-body">
                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
@@ -174,21 +189,7 @@
                         </table>
                     </div>
 
-                    @if ($bookingDetails->authorizationForm)
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <ol>
-                                        <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}"
-                                                target="_blank">Signed Authorization Form</a></li>
-                                        <li><a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
-                                                target="_blank">Completion Certificate</a></li>
-                                    </ol>
-                                </div>
-                            </div>
 
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

@@ -61,17 +61,14 @@ class BookSales extends Component
             DB::beginTransaction();
 
             //checking uniqueness of customer email
-            $customer = CustomerMaster::where('customer_email', $this->customer_email)->first();
-            if(!$customer)
-            {
-                $customer = CustomerMaster::create(
-                    [
-                    'customer_email' => $this->customer_email,
-                    'customer_name' => $this->customer_name,
-                    'customer_gender' => $this->customer_gender,
-                    'customer_dob' => $this->customer_dob
-                ]);
-            }
+            $customer = CustomerMaster::updateOrCreate([
+                'customer_email' => $this->customer_email
+            ],
+                [
+                'customer_name' => $this->customer_name,
+                'customer_gender' => $this->customer_gender,
+                'customer_dob' => $this->customer_dob
+            ]);
 
             // getting the service id from services table
 
