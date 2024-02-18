@@ -44,9 +44,9 @@ class AddMerchantByAdmin extends Component
             ]);
             DB::commit();
             $this->dispatch('hideModal');
-            return redirect()->route('dealerRegBusinessInfo', [
+            return redirect()->route('registrationByAdmin', [
                 'userID' => $user->id,
-                'viewOnly' => 'No',
+                // 'viewOnly' => 'No',
             ]);
         } catch(\Exception $e) {
             DB::rollback();
