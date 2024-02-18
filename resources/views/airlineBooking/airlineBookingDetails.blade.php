@@ -21,8 +21,8 @@
                         @switch($bookingDetails->app_status)
                             @case(StatusEnum::AUTHORIZED->value)
                             @case(StatusEnum::PAYMENT_DONE->value)
-                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
-                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
+                                <a href="{{ Storage::URL($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
+                                <a href="{{ Storage::URL($bookingDetails->authorizationForm->completion_certificate) }}"
                                     target="_blank" class="btn btn-primary">Completion Certificate</a>
                             @break
                         @endswitch
