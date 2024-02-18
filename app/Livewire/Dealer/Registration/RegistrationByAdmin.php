@@ -3,12 +3,16 @@
 namespace App\Livewire\Dealer\Registration;
 
 use App\Enums\StatusEnum;
+use App\Mail\MerchantAddedByAdminConfirmationMail;
+use App\Models\MerchantPasswordChangeLogs;
 use App\Models\Organization;
 use App\Models\OrganizationServiceMap;
 use App\Models\ProductService;
 use App\Models\ServiceMaster;
 use App\Models\User;
+use App\Service\TrueDialogSmsService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class RegistrationByAdmin extends Component
@@ -19,6 +23,13 @@ class RegistrationByAdmin extends Component
     public $productsServices = [];
     public $orgProductsServices = [];
 
+    private $smsService;
+
+
+    public function boot(){
+        $this->smsService = new TrueDialogSmsService();
+    }
+
     public function mount($userID)
     {
         $this->userID = $userID;
@@ -26,10 +37,8 @@ class RegistrationByAdmin extends Component
         $org = Organization::where('user_id', $this->userID)->first();
         if($org) {
             $this->business_name = $org->business_name;
-            
-        }
-        
 
+        }
     }
 
     public function save()
@@ -38,7 +47,7 @@ class RegistrationByAdmin extends Component
             'business_name' => 'required',
         ]);
 
-        try 
+        try
         {
             DB::beginTransaction();
             $org = Organization::updateOrCreate(
@@ -76,6 +85,20 @@ class RegistrationByAdmin extends Component
                 'is_approved' => 'Yes',
                 'organization_id' => $org->id,
             ]);
+
+            $mailData = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => 'Merchant@123#',
+            ];
+
+            $passwordChangeLog = MerchantPasswordChangeLogs::create([
+                'user_id' => $user->id,
+                'first_password_changed' => 'No',
+            ]);
+
+            Mail::to($user->email)->send(new MerchantAddedByAdminConfirmationMail($mailData));
+            $this->smsService->sendSms('+1'.$user->phone_number, 'Thank you for registering! Your application is APPROVED and CREDENTIALS have been intimated over email. Questions? Contact support@reliantpay.com');
 
             DB::commit();
             return redirect()->route('manageOrganizations');

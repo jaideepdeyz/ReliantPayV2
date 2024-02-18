@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'is_active' => 'Yes',
         //     'is_approved' => 'Yes'
         // ]);
+
         $this->call(BaseUserSeeder::class);
         $this->call(AffiliateSeeder::class);
         $this->call(ProducServiceSeeder::class);
@@ -31,6 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AirlineSeeder::class);
         $this->call(AirportSeeder::class);
         $this->call(TrainStationSeeder::class);
-        $this->call(UsCityStateSeeder::class);
+        // $this->call(UsCityStateSeeder::class);
     }
 }
