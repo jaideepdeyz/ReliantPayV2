@@ -64,7 +64,7 @@ class AddPassengerService extends Component
                 'requires_assistance' => $this->requires_assistance,
             ]);
             DB::commit();
-            $this->reset(['full_name','gender', 'dob', 'is_disabled', 'disability_type', 'requires_assistance']);
+            $this->reset(['full_name','gender', 'dob', 'is_disabled', 'disability_type', 'requires_assistance', 'relationship_to_card_holder']);
             $this->dispatch('message', heading:'success',text:'Passenger added');
             $this->reset(['full_name','gender', 'dob']);
         } catch (\Exception $e) {
