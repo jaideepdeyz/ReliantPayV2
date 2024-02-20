@@ -1,4 +1,4 @@
-<div class="row mt-4">
+<div class="row mb-3">
     <div class="col-12">
         <div class="page-title-box">
             <div class="page-title-right">
@@ -9,7 +9,6 @@
                     <li class="breadcrumb-item active">Billing Details</li>
                 </ol>
             </div>
-            <h4 class="page-title">Billing Details</h4>
         </div>
     </div>
     <div class="col-md-12">
@@ -23,7 +22,7 @@
                         <div class="row">
 
                             <div class="mb-3 col-md-4">
-                                <label for="cc_type" class="form-label">Credit Card Type? <span class="text-danger"><sup>*</sup></span></label>
+                                <label for="cc_type" class="form-label">Debit/Credit Card Type? <span class="text-danger"><sup>*</sup></span></label>
                                 <select class="form-control @error('cc_type') is-invalid @enderror"
                                     wire:model="cc_type">
                                     <option value="">Select</option>

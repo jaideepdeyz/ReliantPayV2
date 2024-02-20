@@ -21,9 +21,11 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-sm btn-primary">
+                    <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
+                        wire:loading.class='"disabled'>
+                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"
+                            wire:loading></span>
                         Add Agent
-                        <span class="spinner-border text-light m-2" role="status" wire:loading></span>
                     </button>
                 </div>
             </div>

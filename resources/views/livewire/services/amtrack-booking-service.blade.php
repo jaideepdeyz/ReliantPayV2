@@ -28,9 +28,12 @@
 
                                 <div class="mb-3 col-md-4">
                                     <div class="dropdownList">
-                                        <label for="departure_location" class="form-label">Departure Station <span class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control @error('departureQuery') is-invalid @enderror"
-                                            placeholder="Search By Departure Station Code" wire:model.live="departureQuery" required>
+                                        <label for="departure_location" class="form-label">Departure Station <span
+                                                class="text-danger"><sup>*</sup></span></label>
+                                        <input type="text"
+                                            class="form-input form-control @error('departureQuery') is-invalid @enderror"
+                                            placeholder="Search By Departure Station Code"
+                                            wire:model.live="departureQuery" required>
                                         @error('departureQuery')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -53,9 +56,10 @@
                                     <div class="dropdownList">
                                         <label for="destination_location" class="form-label">Destination Station <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control @error('destinationQuery') is-invalid @enderror"
-                                            placeholder="Search By Destination Station Code .." wire:model.live="destinationQuery"
-                                            required>
+                                        <input type="text"
+                                            class="form-input form-control @error('destinationQuery') is-invalid @enderror"
+                                            placeholder="Search By Destination Station Code .."
+                                            wire:model.live="destinationQuery" required>
                                         @error('destinationQuery')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -64,7 +68,8 @@
                                             @foreach ($destinationStations as $destinationStation)
                                             <a href="#" class="d-block dropdown-links"
                                                 wire:click="setDestinationStation('{{ $destinationStation->id }}')">
-                                                <span class="country-code">{{ $destinationStation->station_code }}</span>
+                                                <span class="country-code">{{ $destinationStation->station_code
+                                                    }}</span>
                                                 &nbsp;&nbsp;{{ $destinationStation->station_location }}
                                             </a>
                                             @endforeach
@@ -109,7 +114,9 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureHour"
-                                                    class="form-control @error('departureHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureHour') is-invalid @enderror"
+                                                    placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                    maxlength="2" minlength="2">
                                                 <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
@@ -117,7 +124,9 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureMinute"
-                                                    class="form-control @error('departureMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureMinute') is-invalid @enderror"
+                                                    placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                    maxlength="2" minlength="2">
                                                 <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
@@ -143,7 +152,9 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureETAHour"
-                                                    class="form-control @error('departureETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureETAHour') is-invalid @enderror"
+                                                    placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                    maxlength="2" minlength="2">
                                                 <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
@@ -151,16 +162,18 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureETAMinute"
-                                                    class="form-control @error('departureETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureETAMinute') is-invalid @enderror"
+                                                    placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                    maxlength="2" minlength="2">
                                                 <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {{-- Departure Block End  --}}
+                                {{-- Departure Block End --}}
 
-                                {{-- Return block  --}}
+                                {{-- Return block --}}
                                 <div class="row  @if($isRoundTrip == 'No') d-none @endif">
                                     <div class="mb-3 col-md-2">
                                         <label for="return_date" class="form-label">Return Date <span
@@ -180,14 +193,18 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnHour"
-                                                        class="form-control @error('returnHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnHour') is-invalid @enderror"
+                                                        placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                        maxlength="2" minlength="2">
                                                     <span class="input-group-text" id="basic-addon1">HH</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnMinute"
-                                                        class="form-control @error('returnMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnMinute') is-invalid @enderror"
+                                                        placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                        maxlength="2" minlength="2">
                                                     <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
@@ -212,14 +229,18 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnETAHour"
-                                                        class="form-control @error('$returnETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                        class="form-control @error('$returnETAHour') is-invalid @enderror"
+                                                        placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                        maxlength="2" minlength="2">
                                                     <span class="input-group-text" id="basic-addon1">HH</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnETAMinute"
-                                                        class="form-control @error('returnETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnETAMinute') is-invalid @enderror"
+                                                        placeholder="00" data-toggle="input-mask" data-mask-format="00"
+                                                        maxlength="2" minlength="2">
                                                     <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
@@ -264,6 +285,7 @@
                                     x-on:livewire-upload-error="uploading = false"
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
                                     <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
+                                        (jpg, png)
                                         <span class="text-danger"><sup>*</sup></span></label>
                                     <input type="file"
                                         class="form-control @error('itenary_screenshot') is-invalid @enderror"

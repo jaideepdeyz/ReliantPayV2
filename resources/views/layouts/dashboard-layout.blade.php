@@ -27,6 +27,7 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script> --}}
     <script src="{{ asset('auth/libs/jquery/jquery.min.js') }}"></script>
 
+
     @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
@@ -59,21 +60,21 @@
                         </a>
                     </li>
                     @switch(Auth::user()->role)
-                        @case(RoleEnum::ADMIN->value)
-                            <x-admin-menu />
-                            @break
-                        @case(RoleEnum::DEALER->value)
-                            <x-dealer-menu />
-                            @break
-                        @case(RoleEnum::AGENT->value)
-                            <x-agent-menu />
-                            @break
+                    @case(RoleEnum::ADMIN->value)
+                    <x-admin-menu />
+                    @break
+                    @case(RoleEnum::DEALER->value)
+                    <x-dealer-menu />
+                    @break
+                    @case(RoleEnum::AGENT->value)
+                    <x-agent-menu />
+                    @break
 
-                        @case(RoleEnum::AFFILIATE->value)
-                            <x-affilate-menu />
-                            @break
-                        @default
-                            <!-- Default case -->
+                    @case(RoleEnum::AFFILIATE->value)
+                    <x-affilate-menu />
+                    @break
+                    @default
+                    <!-- Default case -->
                     @endswitch
                 </ul>
                 <!--- End Menu -->
@@ -373,12 +374,19 @@
     <x-toast-session />
 
     <livewire:modals />
+    <script src="{{ asset('auth/libs/autonumeric/autoNumeric.min.js') }}"></script>
+    <script src="{{ asset('auth/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+    <script>
+        @if (Session::has('generatedpaymenturl'))
+            alert("{{ Session::get('generatedpaymenturl') }}");
+        @endif
+    </script>
+    {{-- script for input restriction to numbers only --}}
+    <script>
+        $(document).ready(function(){$('[data-toggle="input-mask"]').each(function(a,e){var t=$(e).data("maskFormat"),n=$(e).data("reverse");null!=n?$(e).mask(t,{reverse:n}):$(e).mask(t)}),$(".autonumber").each(function(a,e){new AutoNumeric(e)})});
+    </script>
     @livewireScripts
 </body>
-<script>
-    @if (Session::has('generatedpaymenturl'))
-        alert("{{ Session::get('generatedpaymenturl') }}");
-    @endif
-</script>
+
 
 </html>
