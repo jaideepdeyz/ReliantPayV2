@@ -5,6 +5,7 @@ namespace App\Livewire\Registration;
 use App\Enums\RoleEnum;
 use App\Models\EmailOtp;
 use App\Models\EmailPhoneOtp;
+use App\Models\MerchantPasswordChangeLogs;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -244,6 +245,10 @@ class MainPage extends Component
                 'is_active' => 'Yes',
                 'is_approved' => 'No',
                 'role' => RoleEnum::DEALER,
+            ]);
+            $passwordChangeLog = MerchantPasswordChangeLogs::create([
+                'user_id' => $user->id,
+                'first_password_changed' => 'Yes',
             ]);
             event(new Registered($user));
             Auth::login($user);

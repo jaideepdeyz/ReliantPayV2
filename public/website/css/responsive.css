@@ -291,7 +291,7 @@ h4 {font-size: 20px; line-height: 24px;}
 .navbar-nav .active > a {color: var(--e-global-color-white) !important; background-color: var(--e-global-color-secondary) !important;}
 .navbar-nav .nav-item a:hover{color: var(--e-global-color-white) !important; background-color: var(--e-global-color-secondary) !important;}
 .navbar li {margin: 0 !important; padding: 0;}
-.bannermain {padding: 118px 0 0;}
+.bannermain {padding: 174px 0 0;}
 .bannermain .banner h1 {margin-bottom: 10px;}
 .bannermain .banner h6 {margin-bottom: 8px;}
 .bannermain .banner p{margin-bottom: 25px;}
@@ -503,7 +503,7 @@ p {font-size: 16px; line-height: 22px;}
 .navbar-toggler{width: 50px;}
 .navbar-collapse {width: 40%;}
 .bannermain .button_text {font-size: 14px; line-height: 16px; padding: 15px;}
-.bannermain {padding: 60px 0 0;}
+.bannermain {padding: 163px 0 0;}
 .bannermain .banner{text-align: center;}
 .bannermain .banner p {padding: 0 70px;}
 .bannermain .banner-wrapper{text-align: center;}

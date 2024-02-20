@@ -30,18 +30,22 @@
                                     <div class="dropdownList">
                                         <label for="airline_name" class="form-label">Airline Name <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control"
+                                        <input type="text" class="form-input form-control @error('query') is-invalid @enderror""
                                             placeholder="Search Airlines .." wire:model.live="query" required>
-                                        @if ($airlines)
-                                        <div class="dropdown-container">
-                                            @foreach ($airlines as $airline)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setAirline('{{ $airline->name }}')">
-                                                <img src="{{ $airline->logo }}" alt="logo" width="45" height="45">
-                                                &nbsp;&nbsp;{{ $airline->name }}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @error('query')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @if (count($airlines) > 0 && $query != '')
+                                            <div class="dropdown-container">
+                                                @foreach ($airlines as $airline)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setAirline('{{ $airline->name }}')">
+                                                        <img src="{{ $airline->logo }}" alt="logo" width="45"
+                                                            height="45">
+                                                        &nbsp;&nbsp;{{ $airline->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -50,18 +54,21 @@
                                     <div class="dropdownList">
                                         <label for="departure_location" class="form-label">Departure Airport <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control"
-                                            placeholder="Search Airports .." wire:model.live="departureQuery" required>
-                                        @if ($departureAirports)
-                                        <div class="dropdown-container">
-                                            @foreach ($departureAirports as $depAirport)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setDepartureAirport('{{ $depAirport->id }}')">
-                                                <span class="country-code">{{ $depAirport->code }}</span>
-                                                &nbsp;&nbsp;{{ $depAirport->name }}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        <input type="text" class="form-input form-control @error('departureQuery') is-invalid @enderror"
+                                            placeholder="Search by Departure Airport Code" wire:model.live="departureQuery" required>
+                                        @error('departureQuery')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @if (count($departureAirports) > 0 && $departureQuery != '')
+                                            <div class="dropdown-container">
+                                                @foreach ($departureAirports as $depAirport)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setDepartureAirport('{{ $depAirport->id }}')">
+                                                        <span class="country-code">{{ $depAirport->code }}</span>
+                                                        &nbsp;&nbsp;{{ $depAirport->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -70,19 +77,22 @@
                                     <div class="dropdownList">
                                         <label for="destination_location" class="form-label">Destination Airport <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control"
-                                            placeholder="Search Airports .." wire:model.live="destinationQuery"
+                                        <input type="text" class="form-input form-control @error('destinationQuery') is-invalid @enderror"
+                                            placeholder="Search by Destination Airport Code" wire:model.live="destinationQuery"
                                             required>
-                                        @if ($destinationAirports)
-                                        <div class="dropdown-container">
-                                            @foreach ($destinationAirports as $destAirport)
-                                            <a href="#" class="d-block dropdown-links"
-                                                wire:click="setDestinationAirport('{{ $destAirport->id }}')">
-                                                <span class="country-code">{{ $destAirport->code }}</span>
-                                                &nbsp;&nbsp;{{ $destAirport->name }}
-                                            </a>
-                                            @endforeach
-                                        </div>
+                                        @error('destinationQuery')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @if (count($destinationAirports) > 0 && $destinationQuery != '')
+                                            <div class="dropdown-container">
+                                                @foreach ($destinationAirports as $destAirport)
+                                                    <a href="#" class="d-block dropdown-links"
+                                                        wire:click="setDestinationAirport('{{ $destAirport->id }}')">
+                                                        <span class="country-code">{{ $destAirport->code }}</span>
+                                                        &nbsp;&nbsp;{{ $destAirport->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -99,7 +109,7 @@
                                         <option value="Round Trip">Round Trip</option>
                                     </select>
                                     @error('tripType')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -112,7 +122,7 @@
                                         class="form-control @error('departure_date') is-invalid @enderror"
                                         wire:model="departure_date">
                                     @error('departure_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -123,7 +133,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureHour"
-                                                    class="form-control @error('departureHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureHour') is-invalid @enderror"
+                                                    placeholder="HH" minlength="2" maxlength="2">
                                                 <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
@@ -131,7 +142,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureMinute"
-                                                    class="form-control @error('departureMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureMinute') is-invalid @enderror"
+                                                    placeholder="MM" minlength="2" maxlength="2">
                                                 <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
@@ -145,7 +157,7 @@
                                         class="form-control @error('departure_eta_date') is-invalid @enderror"
                                         wire:model="departure_eta_date">
                                     @error('departure_eta_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -157,7 +169,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureETAHour"
-                                                    class="form-control @error('departureETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureETAHour') is-invalid @enderror"
+                                                    placeholder="HH" minlength="2" maxlength="2">
                                                 <span class="input-group-text" id="basic-addon1">HH</span>
                                             </div>
                                         </div>
@@ -165,7 +178,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <input type="text" wire:model="departureETAMinute"
-                                                    class="form-control @error('departureETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                    class="form-control @error('departureETAMinute') is-invalid @enderror"
+                                                    placeholder="MM" minlength="2" maxlength="2">
                                                 <span class="input-group-text" id="basic-addon1">MM</span>
                                             </div>
                                         </div>
@@ -175,15 +189,16 @@
                                 {{-- Departure Block End  --}}
 
                                 {{-- Return block  --}}
-                                <div class="row  @if($isRoundTrip == 'No') d-none @endif">
+                                <div class="row  @if ($isRoundTrip == 'No') d-none @endif">
                                     <div class="mb-3 col-md-2">
                                         <label for="return_date" class="form-label">Return Date <span
                                                 class="text-danger"><sup>*</sup></span></label>
                                         <input type="date"
                                             class="form-control @error('return_date') is-invalid @enderror"
-                                            wire:model="return_date" @if ($isRoundTrip=='Yes' ) required @endif>
+                                            wire:model="return_date"
+                                            @if ($isRoundTrip == 'Yes') required @endif>
                                         @error('return_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -195,7 +210,8 @@
                                                 <div class="input-group">
 
                                                     <input type="text" wire:model="returnHour"
-                                                        class="form-control @error('returnHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnHour') is-invalid @enderror"
+                                                        placeholder="HH" minlength="2" maxlength="2">
                                                     <span class="input-group-text" id="basic-addon1">HH</span>
 
                                                 </div>
@@ -203,7 +219,8 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnMinute"
-                                                        class="form-control @error('returnMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnMinute') is-invalid @enderror"
+                                                        placeholder="MM" minlength="2" maxlength="2">
                                                     <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
@@ -217,7 +234,7 @@
                                             class="form-control @error('return_eta_date') is-invalid @enderror"
                                             wire:model="return_eta_date">
                                         @error('return_eta_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -228,7 +245,8 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnETAHour"
-                                                        class="form-control @error('$returnETAHour') is-invalid @enderror" placeholder="HH" minlength="2" maxlength="2" >
+                                                        class="form-control @error('$returnETAHour') is-invalid @enderror"
+                                                        placeholder="HH" minlength="2" maxlength="2">
                                                     <span class="input-group-text" id="basic-addon1">HH</span>
 
                                                 </div>
@@ -236,7 +254,8 @@
                                             <div class="col-md-4">
                                                 <div class="input-group">
                                                     <input type="text" wire:model="returnETAMinute"
-                                                        class="form-control @error('returnETAMinute') is-invalid @enderror" placeholder="MM" minlength="2" maxlength="2">
+                                                        class="form-control @error('returnETAMinute') is-invalid @enderror"
+                                                        placeholder="MM" minlength="2" maxlength="2">
                                                     <span class="input-group-text" id="basic-addon1">MM</span>
                                                 </div>
                                             </div>
@@ -266,23 +285,22 @@
 
                                 <div class="mb-3 col-md-12">
                                     <label for="comments" class="form-label">Comments</label>
-                                    <textarea type="text" class="form-control @error('comments') is-invalid @enderror"
-                                        wire:model="comments" col=20 row=20></textarea>
+                                    <textarea type="text" class="form-control @error('comments') is-invalid @enderror" wire:model="comments" col=20
+                                        row=20></textarea>
                                     @error('comments')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
 
-                                <div class="mb-3 col-md-12" style="position:relative"
-                                    x-data="{ uploading: false, progress: 0 }"
+                                <div class="mb-3 col-md-12" style="position:relative" x-data="{ uploading: false, progress: 0 }"
                                     x-on:livewire-upload-start="uploading = true"
                                     x-on:livewire-upload-finish="uploading = false"
                                     x-on:livewire-upload-error="uploading = false"
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
                                     <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
                                         <span class="text-danger"><sup>*</sup></span></label>
-                                    <input type="file"
+                                        <input type="file"
                                         class="form-control @error('itenary_screenshot') is-invalid @enderror"
                                         wire:model="itenary_screenshot">
                                     <span class="text-danger"> @error('itenary_screenshot')

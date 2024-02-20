@@ -108,13 +108,21 @@ class AmtrackBookingService extends Component
 
     public function updatedDepartureQuery()
     {
+
         if($this->departureQuery == '')
         {
             $this->departureStations = [];
         } else {
             $this->departureStations = TrainStation::where('station_code', 'like', '%'.$this->departureQuery.'%')
-            ->orWhere('station_location', 'like', '%'.$this->departureQuery.'%')
+            // ->orWhere('station_location', 'like', '%'.$this->departureQuery.'%')
             ->get();
+            if($this->departureStations->count() == 0)
+            {
+                // trigger a validation error for departureQuery
+                $this->addError('departureQuery', 'No Stations Found, Please Search using valid Station Code');
+            } else {
+                $this->resetValidation('departureQuery');
+            }
         }
     }
 
@@ -125,8 +133,15 @@ class AmtrackBookingService extends Component
             $this->destinationStations = [];
         } else {
             $this->destinationStations = TrainStation::where('station_code', 'like', '%'.$this->destinationQuery.'%')
-            ->orWhere('station_location', 'like', '%'.$this->destinationQuery.'%')
+            // ->orWhere('station_location', 'like', '%'.$this->destinationQuery.'%')
             ->get();
+            if($this->destinationStations->count() == 0)
+            {
+                // trigger a validation error for destinationQuery
+                $this->addError('destinationQuery', 'No Stations Found, Please Search using valid Station Code');
+            } else {
+                $this->resetValidation('destinationQuery');
+            }
         }
     }
 
@@ -184,6 +199,17 @@ class AmtrackBookingService extends Component
             'departureETAMinute.digits' => 'Departure ETA Minute must be 2 digits',
         ]);
 
+        $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
+        if (!$itenary) {
+            $this->validate([
+                'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
+            ], [
+                'itenary_screenshot.required' => 'Please select a intenary to upload',
+                'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
+                'itenary_screenshot.max' => 'File size should not exceed 5MB',
+            ]);
+        }
+
         try {
             DB::beginTransaction();
             AmtrakBooking::updateOrCreate(
@@ -214,6 +240,7 @@ class AmtrackBookingService extends Component
             if ($this->itenary_screenshot) {
                 $this->storeFile($this->itenary_screenshot, 'AMTRAK Itenary');
             }
+
 
             DB::commit();
             Session::flash('message', ['heading' => 'success', 'text' => 'Flight Booking Details Saved Successfully']);

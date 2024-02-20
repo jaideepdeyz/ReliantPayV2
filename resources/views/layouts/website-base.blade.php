@@ -17,19 +17,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('website/images/favicon/apple-icon-180x180.png') }}">
     <link rel="icon" type="image/png" sizes="192x192"
         href="{{ asset('website/images/favicon/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('website/images/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96"
-        href="{{ asset('website/images/favicon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('website/images/favicon/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('website/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('website/images/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website/images/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('website/images/favicon/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- Latest compiled and minified CSS -->
     <link href="{{ asset('website/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('website/js/bootstrap.min.js') }}">
     <!-- Font Awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- StyleSheet link CSS -->
@@ -37,7 +33,9 @@
     <link href="{{ asset('website/css/responsive.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('website/css/custom-style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('website/css/special-classes.css') }}" type="text/css">
+    {{--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+    --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     @livewireStyles
 </head>
@@ -49,10 +47,12 @@
                 <div class="col-lg-6 col-md-6 sol-sm-12">
                     <div class="email">
                         <figure class="mb-0 emailicon">
-                            <img src="{{ asset('website/images/header-emailicon.png') }}" alt=""
-                                class="img-fluid">
+                            <img src="{{ asset('website/images/header-emailicon.png') }}" alt="" class="img-fluid">
                         </figure>
-                        <a href="mailto:support@repay.com" class="mb-0 text-size-14 text-white">support@reliantpay.com</a>
+                        <a href="mailto:support@repay.com"
+                            class="mb-0 text-size-14 text-white"><b>support@reliantpaygate.com</b> &nbsp;&nbsp;|
+                            &nbsp;&nbsp; <b><i class="fas fa-phone-square text-white"></i> 1800 961
+                                5292</b></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 sol-sm-12 d-md-block d-none">
@@ -82,12 +82,12 @@
         <div class="container">
             <nav class="navbar position-relative navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">
-                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-light.png') }}"
-                            alt="" class="img-fluid" style="max-height:100px"></figure>
+                    <figure class="mb-0"><img src="{{ asset('auth/images/adminlogo/admin-logo-dark-color.png') }}"
+                            alt="" class="img-fluid logo" style="max-height:100px"></figure>
                 </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
@@ -153,10 +153,10 @@
                                     alt="">
                             </figure>
                         </a>
-                        <p class="text-size-16 footer-text">Welcome to ReliantPay, your trusted partner in the world of secure and seamless online payments.</p>
+                        <p class="text-size-16 footer-text">Welcome to ReliantPay, your trusted partner in the world of
+                            secure and seamless online payments.</p>
                         <figure class="mb-0 payment-icon">
-                            <img src="{{ asset('website/images/payment-card.png') }}" class="img-fluid"
-                                alt="">
+                            <img src="{{ asset('website/images/payment-card.png') }}" class="img-fluid" alt="">
                         </figure>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-12 col-12 d-lg-block d-none">
@@ -169,14 +169,14 @@
                             <ul class="list-unstyled mb-0">
                                 <li><a href="{{url('/')}}" class=" text-size-16 text text-decoration-none">Home</a>
                                 </li>
-                                <li><a href="{{route('about-us')}}" class=" text-size-16 text text-decoration-none">About
+                                <li><a href="{{route('about-us')}}"
+                                        class=" text-size-16 text text-decoration-none">About
                                         Us</a></li>
                                 <li><a href="{{url('/#servicesSection')}}"
                                         class=" text-size-16 text text-decoration-none">Services</a></li>
                                 <li><a href="{{route('contact-us')}}"
                                         class=" text-size-16 text text-decoration-none">Contact</a></li>
-                                <li><a href="#"
-                                        class=" text-size-16 text text-decoration-none">Pricing</a></li>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">Pricing</a></li>
                                 <li><a href="#" class=" text-size-16 text text-decoration-none">FAQ</a></li>
                             </ul>
                         </div>
@@ -192,8 +192,7 @@
                                 </li>
                                 <li><a href="{{url('/#benefitSection')}}"
                                         class=" text-size-16 text text-decoration-none">Benefits</a></li>
-                                <li><a href="#"
-                                        class=" text-size-16 text text-decoration-none">Testimonial</a></li>
+                                <li><a href="#" class=" text-size-16 text text-decoration-none">Testimonial</a></li>
                                 <li><a href="#servicesSection" class=" text-size-16 text text-decoration-none">Coming
                                         Soon</a></li>
                             </ul>
@@ -241,9 +240,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{ asset('website/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('website/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('website/js/video_link.js') }}"></script>
+    {{-- <script src="{{ asset('website/js/video_link.js') }}"></script>
     <script src="{{ asset('website/js/video.js') }}"></script>
-    <script src="{{ asset('website/js/counter.js') }}"></script>
+    <script src="{{ asset('website/js/counter.js') }}"></script> --}}
     <script src="{{ asset('website/js/custom.js') }}"></script>
     <script src="{{ asset('website/js/animation_links.js') }}"></script>
     <script src="{{ asset('website/js/animation.js') }}"></script>
@@ -253,7 +252,27 @@
             Swal.fire(e.detail);
         });
     </script>
+    {{-- //jquery shift up menu on scroll down --}}
+    <script>
+        $(document).ready(function () {
+            var header = $(".header");
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 50) {
+                    header.addClass("scrolled");
+                    $('.logo').attr('src', "{{ asset('auth/images/adminlogo/admin-logo-light.png') }}");
+                    $('.logo').css('max-height', '60px');
+                    $('.logo').css('width', 'auto');
+                } else {
+                    header.removeClass("scrolled");
+                    $('.logo').attr('src', "{{ asset('auth/images/adminlogo/admin-logo-dark-color.png') }}");
+                    $('.logo').css('max-height', '100px');
+                }
+            });
+        });
+    </script>
     @livewireScripts
 </body>
 {!! RecaptchaV3::initJs() !!}
+
 </html>

@@ -44,7 +44,10 @@
                                     <th>1</th>
                                     <th>Business Information</th>
                                     <td>
-                                        <a href="{{ route('dealerRegBusinessInfo', 'view') }}" class="btn btn-primary btn-sm">View</a>
+                                        <a href="{{ route('dealerRegBusinessInfo', [
+                                            'userID'=> Auth::User()->id,
+                                            'viewOnly' => 'view'
+                                        ]) }}" class="btn btn-primary btn-sm">View</a>
                                         @if(Auth::User()->organization->status == StatusEnum::REJECTED->value)
                                         <a href="{{ route('dealerRegBusinessInfo') }}" class="btn btn-primary btn-sm">Edit</a>
                                         @endif
@@ -98,6 +101,43 @@
         </div>
     </div>
     @else
+    @switch($firstPasswordChanged)
+    @case('No')
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>This is your first login, please change your password before accessing any services.</h5>
+                    <hr>
+                    <form wire:submit.prevent="changePassword">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword"
+                                    wire:model="currentPassword" placeholder="Please enter current password">
+                                @error('currentPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword"
+                                    wire:model="newPassword" placeholder="Please provide a new password">
+                                @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    wire:model="confirmPassword" placeholder="Please retype the new password">
+                                @error('confirmPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @break
+    @case('Yes')
         <!-- end page title -->
         <div class="col-md-6 col-xl-3 mb-3">
             <div class="widget-rounded-circle card dashboard-card">
@@ -155,7 +195,7 @@
                             <div class="text-end">
                                 <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $customers }}</span></h3>
                                 <p class="text-muted mb-1 text-truncate"><a
-                                        href="{{ route('manageCustomers') }}">Customers</a></p>
+                                        href="{{ route('manageCustomers') }}">Completed Bookings</a></p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -224,15 +264,15 @@
                             <div class="row mt-3">
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
-                                    <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
+                                    <h4><i class="text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
                                 </div>
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
-                                    <h4><i class="fe-arrow-up text-success me-1"></i>${{ $revenueThisMonth }}</h4>
+                                    <h4><i class="text-success me-1"></i>${{ $revenueThisMonth }}</h4>
                                 </div>
                                 <div class="col-4">
                                     <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
-                                    <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisYear }}</h4>
+                                    <h4><i class="text-danger me-1"></i>${{ $revenueThisYear }}</h4>
                                 </div>
                             </div>
 
@@ -364,5 +404,6 @@
             </div> <!-- end col -->
         </div>
         <!-- end row -->
+    @endswitch
     @endif
 </div>

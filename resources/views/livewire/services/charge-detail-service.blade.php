@@ -16,7 +16,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                    Step 3/4: Add Details of Billing/Charges
+                    Step 4/5: Add Details of Billing/Charges
                 </h5>
                 <form wire:submit="storeCharge">
                     <div class="row">
@@ -34,7 +34,7 @@
                             <div class="form-floating">
                                 <input type="number" class="form-control @error('amount') is-invalid @enderror"
                                     wire:model="amount" placeholder="Amount Charged">
-                                <label for="amount" class="form-label">Amount Charged</label>
+                                <label for="amount" class="form-label">Amount Charged (in USD)</label>
                                 @error('amount')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -78,7 +78,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $charge->charge_type }}</td>
-                                <td>{{ $charge->amount }}</td>
+                                <td>$ {{ $charge->amount }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#alertModal"

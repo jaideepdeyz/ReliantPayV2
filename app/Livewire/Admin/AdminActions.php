@@ -37,8 +37,6 @@ class AdminActions extends Component
         $this->orgID = $orgID;
         $this->org = Organization::find($this->orgID);
         $this->docs = RegistrationUpload::where('organization_id', $this->orgID)->get();
-        $this->services = OrganizationServiceMap::where('organization_id', $this->orgID)->get();
-
     }
 
     public function openPdf($url, $title)
@@ -174,8 +172,22 @@ class AdminActions extends Component
             ]);
     }
 
+    public function activateDeactivate($serviceID)
+    {
+        // dd($serviceID);
+        $service = OrganizationServiceMap::find($serviceID);
+        if($service->service_status == StatusEnum::ACTIVE->value)
+        {
+            $service->update(['service_status' => StatusEnum::INACTIVE->value]);
+        }else{
+            $service->update(['service_status' => StatusEnum::ACTIVE->value]);
+        }
+        $this->render();
+    }
+
     public function render()
     {
+        $this->services = OrganizationServiceMap::where('organization_id', $this->orgID)->get();
         return view('livewire.admin.admin-actions')->layout('layouts.admin');
     }
 }

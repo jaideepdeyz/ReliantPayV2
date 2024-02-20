@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dealer\Registration;
 
+use App\Enums\RoleEnum;
 use App\Models\RegistrationUpload;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -42,45 +43,47 @@ class DocumentUploads extends Component
 
     public function save()
     {
-
-        $this->validate([
-            'business_scan_signed_contract' => 'required|mimes:pdf|max:5120',
-            'business_scan_EIN' => 'required|mimes:pdf|max:5120',
-            'business_scan_PAN' => 'required|mimes:pdf|max:5120',
-            'business_scan_registration_document' => 'required|mimes:pdf|max:5120',
-            'business_scan_bank_statement' => 'required|mimes:pdf|max:5120',
-            'business_scan_utility_bills' => 'required|mimes:pdf|max:5120',
-            'business_scan_business_tax_returns' => 'required|mimes:pdf|max:5120',
-            'business_premises_external_pictures' => 'required|mimes:pdf|max:5120',
-            'business_premises_internal_pictures' => 'required|mimes:pdf|max:5120'
-        ], [
-            'business_scan_signed_contract.required' => 'Signed Contract is required',
-            'business_scan_signed_contract.mimes' => 'Signed Contract must be a pdf file',
-            'business_scan_signed_contract.max' => 'Signed Contract should not be greater than 5MB',
-            'business_scan_EIN.required' => 'EIN is required',
-            'business_scan_EIN.mimes' => 'EIN must be a pdf file',
-            'business_scan_EIN.max' => 'EIN should not be greater than 5MB',
-            'business_scan_PAN.required' => 'PAN is required',
-            'business_scan_PAN.mimes' => 'PAN must be a pdf file',
-            'business_scan_PAN.max' => 'PAN should not be greater than 5MB',
-            'business_scan_registration_document.required' => 'Registration Document is required',
-            'business_scan_registration_document.mimes' => 'Registration Document must be a pdf file',
-            'business_scan_registration_document.max' => 'Registration Document should not be greater than 5MB',
-            'business_scan_bank_statement.required' => 'Bank Statement is required',
-            'business_scan_bank_statement.mimes' => 'Bank Statement must be a pdf file',
-            'business_scan_bank_statement.max' => 'Bank Statement should not be greater than 5MB',
-            'business_scan_utility_bills.required' => 'Utility Bills is required',
-            'business_scan_utility_bills.mimes' => 'Utility Bills must be a pdf file',
-            'business_scan_utility_bills.max' => 'Utility Bills should not be greater than 5MB',
-            'business_scan_business_tax_returns.required' => 'Tax Returns is required',
-            'business_scan_business_tax_returns.mimes' => 'Tax Returns must be a pdf file',
-            'business_scan_business_tax_returns.max' => 'Tax Returns should not be greater than 5MB',
-            'business_premises_external_pictures.required' => 'External Pictures is required',
-            'business_premises_external_pictures.mimes' => 'External Pictures must be a pdf file',
-            'business_premises_external_pictures.max' => 'External Pictures should not be greater than 5MB',
-            'business_premises_internal_pictures.required' => 'Internal Pictures is required',
-            'business_premises_internal_pictures.mimes' => 'Internal Pictures must be a pdf file',
-        ]);
+        if(auth()->user()->role != RoleEnum::ADMIN->value)
+        {
+            $this->validate([
+                'business_scan_signed_contract' => 'mimes:pdf|max:5120',
+                'business_scan_EIN' => 'mimes:pdf|max:5120',
+                'business_scan_PAN' => 'mimes:pdf|max:5120',
+                'business_scan_registration_document' => 'mimes:pdf|max:5120',
+                'business_scan_bank_statement' => 'mimes:pdf|max:5120',
+                'business_scan_utility_bills' => 'mimes:pdf|max:5120',
+                'business_scan_business_tax_returns' => 'mimes:pdf|max:5120',
+                'business_premises_external_pictures' => 'mimes:pdf|max:5120',
+                'business_premises_internal_pictures' => 'mimes:pdf|max:5120'
+            ], [
+                'business_scan_signed_contract.required' => 'Signed Contract is required',
+                'business_scan_signed_contract.mimes' => 'Signed Contract must be a pdf file',
+                'business_scan_signed_contract.max' => 'Signed Contract should not be greater than 5MB',
+                'business_scan_EIN.required' => 'EIN is required',
+                'business_scan_EIN.mimes' => 'EIN must be a pdf file',
+                'business_scan_EIN.max' => 'EIN should not be greater than 5MB',
+                'business_scan_PAN.required' => 'PAN is required',
+                'business_scan_PAN.mimes' => 'PAN must be a pdf file',
+                'business_scan_PAN.max' => 'PAN should not be greater than 5MB',
+                'business_scan_registration_document.required' => 'Registration Document is required',
+                'business_scan_registration_document.mimes' => 'Registration Document must be a pdf file',
+                'business_scan_registration_document.max' => 'Registration Document should not be greater than 5MB',
+                'business_scan_bank_statement.required' => 'Bank Statement is required',
+                'business_scan_bank_statement.mimes' => 'Bank Statement must be a pdf file',
+                'business_scan_bank_statement.max' => 'Bank Statement should not be greater than 5MB',
+                'business_scan_utility_bills.required' => 'Utility Bills is required',
+                'business_scan_utility_bills.mimes' => 'Utility Bills must be a pdf file',
+                'business_scan_utility_bills.max' => 'Utility Bills should not be greater than 5MB',
+                'business_scan_business_tax_returns.required' => 'Tax Returns is required',
+                'business_scan_business_tax_returns.mimes' => 'Tax Returns must be a pdf file',
+                'business_scan_business_tax_returns.max' => 'Tax Returns should not be greater than 5MB',
+                'business_premises_external_pictures.required' => 'External Pictures is required',
+                'business_premises_external_pictures.mimes' => 'External Pictures must be a pdf file',
+                'business_premises_external_pictures.max' => 'External Pictures should not be greater than 5MB',
+                'business_premises_internal_pictures.required' => 'Internal Pictures is required',
+                'business_premises_internal_pictures.mimes' => 'Internal Pictures must be a pdf file',
+            ]);
+        }
 
         try {
             DB::beginTransaction();
@@ -103,12 +106,16 @@ class DocumentUploads extends Component
 
     public function storeFile($file, $docName, $orgID)
     {
-        $file = RegistrationUpload::updateOrCreate(
-            ['organization_id' => $this->orgID, 'document_name' => $docName],
-            [
-            'document_name' => $docName,
-            'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
-        ]);
+        if(auth()->user()->role != RoleEnum::ADMIN->value)
+        {
+            $file = RegistrationUpload::updateOrCreate(
+                ['organization_id' => $this->orgID, 'document_name' => $docName],
+                [
+                'document_name' => $docName,
+                'document_filepath' => $file->storeAs('public/Registrations/'.$this->orgID, $docName.'.'.$file->getClientOriginalExtension()),
+            ]);
+        }
+
     }
 
     public function decreaseStep()

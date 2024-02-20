@@ -58,13 +58,23 @@
                             <span class="menu-text">Dashboard </span>
                         </a>
                     </li>
-                    @if (Auth::user()->role == RoleEnum::ADMIN->value)
-                    <x-admin-menu />
-                    @elseif (Auth::user()->role == RoleEnum::DEALER->value)
-                    <x-dealer-menu />
-                    @elseif (Auth::user()->role == RoleEnum::AGENT->value)
-                    <x-agent-menu />
-                    @endif
+                    @switch(Auth::user()->role)
+                        @case(RoleEnum::ADMIN->value)
+                            <x-admin-menu />
+                            @break
+                        @case(RoleEnum::DEALER->value)
+                            <x-dealer-menu />
+                            @break
+                        @case(RoleEnum::AGENT->value)
+                            <x-agent-menu />
+                            @break
+
+                        @case(RoleEnum::AFFILIATE->value)
+                            <x-affilate-menu />
+                            @break
+                        @default
+                            <!-- Default case -->
+                    @endswitch
                 </ul>
                 <!--- End Menu -->
                 <div class="clearfix"></div>

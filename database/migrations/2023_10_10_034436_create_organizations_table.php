@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('affiliate_id')->nullable();
             $table->string('business_name')->nullable();
             $table->longText('business_address')->nullable();
             $table->string('business_website')->nullable();
-            $table->string('business_email')->unique();
+            $table->string('business_email')->nullable(); // change it to nullable
             $table->string('business_phone')->nullable();
             $table->string('business_PCI_DSS_compliance_status')->nullable();
             $table->string('business_HTTPS_compliance_status')->nullable();

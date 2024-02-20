@@ -52,16 +52,18 @@ class ZohoSignController extends Controller
             ]);
             ZohoSign::setCurrentUser($user);
             $reqObject = new RequestObject();
-            $reqObject->setRequestName('Authorization Letter for ' . $saleBooking->customer->customer_name);
+            $reqObject->setRequestName('Authorization_Letter_for_'. $saleBooking->id);
             $partner = new Actions();
-            $partner->setRecipientName($saleBooking->customer->customer_name);
-            $partner->setRecipientEmail($saleBooking->customer->customer_email);
+            $partner->setRecipientName($saleBooking->customer_name);
+            $partner->setRecipientEmail($saleBooking->customer_email);
             $partner->setRecipientCountrycode('');
             $partner->setActionType(Actions::SIGNER);
             $partner->setPrivateNotes('Please sign the document to authorize the booking');
             $partner->setSigningOrder(1);
-            $partner->setVerifyRecipient(true);
-            $partner->setVerificationType(Actions::EMAIL);
+            // $partner->setVerifyRecipient(true);
+            // $partner->setVerificationType(Actions::EMAIL);
+            $partner->setVerifyRecipient(false);
+            // $partner->setVerificationType(Actions::SMS);
             $reqObject->addAction($partner);
             $reqObject->setExpirationDays(1);
             // $pdf = Pdf::loadView('pdf.sample');
@@ -82,8 +84,8 @@ class ZohoSignController extends Controller
             $sign1->setDocumentId($draftJSON->getDocumentIds()[0]->getDocumentId());
             $sign1->setFieldName('Signature');
             $sign1->setX_value(53);
-            $sign1->setY_value(5);
-            $sign1->setHeight(4);
+            $sign1->setY_value(20);
+            $sign1->setHeight(5);
             $sign1->setWidth(16);
             $sign1->setIsMandatory(true);
             $fields = new Fields();
@@ -166,8 +168,8 @@ class ZohoSignController extends Controller
                     $saleBooking = SaleBooking::find($authForm->app_id);
 
                     $authForm->update([
-                        'signed_document' => 'public/Signed/Authorization Letter for ' . $saleBooking->customer_name . '.pdf',
-                        'completion_certificate' => 'public/Signed/completion certificate-Authorization Letter for ' . $saleBooking->customer_name . '.pdf',
+                        'signed_document' => 'public/Signed/Authorization_Letter_for_'. $saleBooking->id.'.pdf',
+                        'completion_certificate' => 'public/Signed/completion certificate-Authorization_Letter_for_'. $saleBooking->id.'.pdf',
                     ]);
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,

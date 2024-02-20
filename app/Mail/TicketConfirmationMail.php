@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\ConfirmedTicket;
+use App\Models\TicketBookingMode;
 use Illuminate\Bus\Queueable;
 use Illuminate\Console\View\Components\Confirm;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,7 +25,7 @@ class TicketConfirmationMail extends Mailable
     public function __construct($mailData)
     {
         $this->mailData = $mailData;
-        $uploadedTicket = ConfirmedTicket::where('app_id', $mailData['app_id'])->first();
+        $uploadedTicket = TicketBookingMode::where('app_id', $mailData['app_id'])->first();
         $this->filePath = public_path(Storage::URL($uploadedTicket->ticket_filepath));
     }
 

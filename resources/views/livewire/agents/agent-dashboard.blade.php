@@ -24,14 +24,20 @@
                                 <div class="col-md-12 mb-2">
                                     <label for="currentPassword" class="form-label">Current Password</label>
                                     <input type="password" class="form-control" id="currentPassword"
-                                        wire:model.defer="currentPassword" placeholder="Please enter current password">
+                                        wire:model="currentPassword" placeholder="Please enter current password">
                                     @error('currentPassword') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label for="newPassword" class="form-label">New Password</label>
                                     <input type="password" class="form-control" id="newPassword"
-                                        wire:model.defer="newPassword" placeholder="Please provide a new password">
+                                        wire:model="newPassword" placeholder="Please provide a new password">
                                     @error('newPassword') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-md-12 mb-2">
+                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword"
+                                        wire:model="confirmPassword" placeholder="Please retype the new password">
+                                    @error('confirmPassword') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <button type="submit" class="btn btn-primary">Change Password</button>
@@ -78,7 +84,7 @@
                             <div class="col-6">
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $customers }}</span></h3>
-                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageCustomers') }}">Customers</a>
+                                    <p class="text-muted mb-1 text-truncate"><a href="{{ route('manageCustomers') }}">Completed Bookings</a>
                                     </p>
                                 </div>
                             </div>
@@ -100,7 +106,7 @@
                                 <div class="text-end">
                                     <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $pendingPayment }}</span></h3>
                                     <p class="text-muted mb-1 text-truncate"><a
-                                            href="{{ route('pendingAuthorizations') }}">Pending Payments</a></p>
+                                            href="{{ route('pendingPayments') }}">Pending Payments</a></p>
                                 </div>
                             </div>
                         </div> <!-- end row-->
@@ -169,15 +175,15 @@
                                 <div class="row mt-3">
                                     <div class="col-4">
                                         <p class="text-muted font-15 mb-1 text-truncate">This Week</p>
-                                        <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
+                                        <h4><i class="text-danger me-1"></i>${{ $revenueThisWeek }}</h4>
                                     </div>
                                     <div class="col-4">
                                         <p class="text-muted font-15 mb-1 text-truncate">This Month</p>
-                                        <h4><i class="fe-arrow-up text-success me-1"></i>${{ $revenueThisMonth }}</h4>
+                                        <h4><i class="text-success me-1"></i>${{ $revenueThisMonth }}</h4>
                                     </div>
                                     <div class="col-4">
                                         <p class="text-muted font-15 mb-1 text-truncate">This Year</p>
-                                        <h4><i class="fe-arrow-down text-danger me-1"></i>${{ $revenueThisYear }}</h4>
+                                        <h4><i class="text-danger me-1"></i>${{ $revenueThisYear }}</h4>
                                     </div>
                                 </div>
 

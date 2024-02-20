@@ -8,7 +8,7 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
                         <li class="breadcrumb-item">Admin Dashboard</li>
-                        <li class="breadcrumb-item active">Manage Merchants</li>
+                        <li class="breadcrumb-item active">Merchants</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Manage Merchants</h4>
@@ -28,13 +28,11 @@
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
-                            {{-- <a href="javascript:void(0);" class="btn btn-blue" data-bs-toggle="modal"
-                                data-bs-target="#Countries"><svg xmlns="http://www.w3.org/2000/svg" width="12"
+                            <button class="btn btn-success p-2" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.add-merchant-by-admin'}})"><svg xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
-                                </svg> Add
-                                Dealer </a> --}}
+                                </svg> Add New Merchant </button>
                         </div>
                     </div>
                 </div>
@@ -75,17 +73,19 @@
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'name',
-                                        'displayName' => 'Name',
+                                        'displayName' => 'User Name',
                                         'width' => 2,
                                         ])
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'email',
-                                        'displayName' => 'Email',
+                                        'displayName' => 'Registered Email',
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Phone</th>
+                                        <th class="col-md-1">Business Name</th>
+
+                                        <th class="col-md-1">Registerd Phone</th>
 
                                         <th class="col-md-2">Address</th>
 
@@ -100,7 +100,7 @@
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Action</th>
+                                        <th class="col-md-1 text-center">Action</th>
                                     </tr>
                                 </thead>
 
@@ -113,38 +113,62 @@
                                         <td class="table-user">
                                             <img src="{{ asset('auth/images/users/user-3.jpg') }}" alt="table-user"
                                                 class="me-2 rounded-circle">
-                                            {{ $d->business_name }}
+                                            {{ $d->name }}
+                                            {{-- Showing registered user name only --}}
                                         </td>
                                         <td>
-                                            {{ $d->business_email }}
-                                        </td>
-
-                                        <td>
-                                            {{ $d->business_phone }}
+                                            {{ $d->email }}
+                                            {{-- Showing registered user email only --}}
                                         </td>
 
                                         <td>
-                                            {{ $d->business_address }}
+                                            @if($d->organization)
+                                                {{ $d->organization->business_name}}
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            {{ $d->phone_number }}
+                                            {{-- Showing registered user phone only --}}
+                                        </td>
+
+                                        <td>
+                                            @if($d->organization)
+                                                {{ $d->organization->business_address}}
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @endif
                                         </td>
 
 
                                         <td>
-                                            @if ($d->status == 'Approved')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == 'Rejected')
-                                            <span class="badge bg-danger badge-lg">{{ $d->status }}</span>
-                                            @elseif($d->status == 'Submitted')
-                                            <span class="badge bg-danger badge-lg">Approval Pending</span>
-                                            @elseif($d->status == null)
-                                            <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @if($d->organization)
+                                                @switch($d->organization->status)
+                                                    @case(StatusEnum::APPROVED->value)
+                                                        <span class="badge badge-soft-success badge-lg">{{ $d->organization->status }}</span>
+                                                        @break
+                                                    @case(StatusEnum::REJECTED->value)
+                                                        <span class="badge bg-danger badge-lg">{{ $d->organization->status }}</span>
+                                                        @break
+                                                    @case(StatusEnum::SUBMITTED->value)
+                                                        <span class="badge bg-danger badge-lg">Approval Pending</span>
+                                                        @break
+                                                    @case(null)
+                                                        <span class="badge bg-warning badge-lg">Incomplete</span>
+                                                        @break
+                                                @endswitch
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($d->user->is_active == 'Yes')
-                                            <span class="badge badge-soft-success badge-lg">{{ $d->user->is_active
+                                            @if ($d->is_active == 'Yes')
+                                            <span class="badge badge-soft-success badge-lg">{{ $d->is_active
                                                 }}</span>
-                                            @elseif($d->user->is_active == 'No')
-                                            <span class="badge bg-danger badge-lg">{{ $d->user->is_active }}</span>
+                                            @elseif($d->is_active == 'No')
+                                            <span class="badge bg-danger badge-lg">{{ $d->is_active }}</span>
                                             @endif
                                         </td>
 
@@ -163,22 +187,39 @@
 
                                                     <div class="dropdown-menu">
 
+                                                        @switch( $d->is_active )
+                                                            @case('Yes')
+                                                            @if(Auth::User()->role == RoleEnum::ADMIN->value)
+                                                                <a href="{{ route('registrationByAdmin', ['userID'=> $d->id]) }}" class="btn">
+                                                                    <i class="fas fa-eye text-success"></i> View</a>
+                                                            @else
+                                                                <a href="{{ route('dealers.show', $d->id) }}" class="btn">
+                                                                    <i class="fas fa-eye text-success"></i> View</a>
 
-                                                        <a href="{{ route('dealers.show', $d->id) }}" class="btn">
-                                                            <i class="fas fa-eye text-success"></i> View</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                            @endif
+                                                                <!-- item-->
+
+                                                                <a href="javascript:void(0);"
+                                                                    wire:click="activateDeactivate({{ $d->id }})" class="btn">
+                                                                    <i class="fas fa-trash text-danger"></i>
+                                                                    {{ $d->is_active == 'Yes' ? 'Deactivate' : 'Activate'
+                                                                    }}
+
+                                                                </a>
+                                                                @break
+                                                            @case('No')
+                                                                    @if(Auth::User()->role == RoleEnum::ADMIN->value)
+                                                                        <a href="{{ route('registrationByAdmin', ['userID'=> $d->id]) }}" class="btn">
+                                                                            <i class="fas fa-eye text-success"></i> Continue Regd.</a>
+                                                                    @else
+                                                                        <a href="{{ route('dealerRegBusinessInfo', ['userID'=> $d->id, 'viewOnly' => 'False']) }}" class="btn">
+                                                                            <i class="fas fa-eye text-dark"></i> Continue Regd.</a>
+                                                                    @endif
+                                                                @break
+                                                        @endswitch
 
 
-                                                        <div class="dropdown-divider"></div>
-
-                                                        <!-- item-->
-
-                                                        <a href="javascript:void(0);"
-                                                            wire:click="activateDeactivate({{ $d->id }})" class="btn">
-                                                            <i class="fas fa-trash text-danger"></i>
-                                                            {{ $d->user->is_active == 'Yes' ? 'Deactivate' : 'Activate'
-                                                            }}
-
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,140 +244,4 @@
         </div> <!-- end col -->
     </div>
     <!-- end row -->
-
-
-    <!-- Insert Modal -->
-    <div wire:ignore.self class="modal fade" id="Countries" tabindex="-1" aria-labelledby="CountriesLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="CountriesLabel">Create Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        wire:click="closeModal"></button>
-                </div>
-
-
-                <form wire:submit.prevent="saveCountries">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label>Country Name</label>
-                            <input type="text" wire:model="name" class="form-control">
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Code</label>
-                            <input type="text" wire:model="code" class="form-control">
-                            @error('code')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Flag icon</label>
-                            <input type="text" wire:model="flagimage" class="form-control">
-                            @error('flagimage')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Update Country Modal -->
-    <div wire:ignore.self class="modal fade" id="updateCountries" tabindex="-1" aria-labelledby="updateCountriesLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateCountriesLabel">Edit Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
-                        aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="updateCountries">
-                    <div class="modal-body">
-                        <div class="mb-3" style="display:none;">
-                            <label>country id</label>
-                            <input type="text" wire:model="country_id" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Name</label>
-                            <input type="text" wire:model="name" class="form-control">
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Country Code</label>
-                            <input type="text" wire:model="code" class="form-control">
-                            @error('code')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Flag icon</label>
-                            <input type="text" wire:model="flagimage" class="form-control">
-                            @error('flagimage')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Delete Country Modal -->
-    <div wire:ignore.self class="modal fade" id="deleteCountries" tabindex="-1" aria-labelledby="deleteCountriesLabel"
-        aria-hidden="true" x-data="{ livewire: false }">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCountriesLabel">Delete Country</h5>
-                    <button type="button" class="btn-close" wire:click="closeModal" aria-label="Close"></button>
-                </div>
-                <form wire:submit.prevent="destroyCountry">
-                    <div class="modal-body">
-                        <h4>Are you sure you want to delete this data ?</h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Yes! Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-    {{-- @section('scripts') --}}
-    <script>
-        window.addEventListener('close-modal', event => {
-            console.log('close-modal event received:', event);
-            $('#Countries').modal('hide');
-            $('#updateCountries').modal('hide');
-            $('#deleteCountries').modal('hide');
-        })
-    </script>
-
 </div>

@@ -1,3 +1,18 @@
+/* .topbar{
+    background-color:#EBA438;
+} */
+
+.scrolled{
+    top:0px;
+    background:#f2f2f2;
+    border-bottom:1px solid #ddd;
+}
+.scrolled .navbar-nav .nav-item a{
+    color:#000 !important;
+}
+.logo{
+    transition: all 0.5s ease;
+}
 body {
 	margin:0;
 	padding:0;

@@ -14,10 +14,7 @@ class ProducServiceSeeder extends Seeder
     {
         $data = [
             ['name' => 'Flight Booking'],
-            ['name' => 'Hotel Booking'],
-            ['name' => 'Internet Services'],
-            ['name' => 'HVAC Services'],
-            ['name' => 'Other']
+            ['name' => 'AMTRAK Booking'],
         ];
         \App\Models\ProductService::insert($data);
     }

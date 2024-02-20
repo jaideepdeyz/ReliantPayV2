@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Dealer\Registration;
 
+use App\Enums\RoleEnum;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -59,7 +61,12 @@ class BankingDetails extends Component
                 'business_bank_routing_code' => $this->business_bank_routing_code,
             ]);
             DB::commit();
-            return redirect()->route('dealerDocs', ['orgID' => $this->orgID]);
+            if(Auth::User()->role == RoleEnum::ADMIN->value)
+            {
+                return redirect()->route('confirmation', ['orgID' => $this->orgID]);
+            } else {
+                return redirect()->route('dealerDocs', ['orgID' => $this->orgID]);
+            }
         } catch(\Exception $e){
             DB::rollBack();
             dd($e->getMessage());

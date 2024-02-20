@@ -10,6 +10,7 @@ use App\Models\FlightBooking;
 use App\Models\Passenger;
 use App\Models\Payment;
 use App\Models\SaleBooking;
+use App\Models\TicketBookingMode;
 use App\Models\TravelItenaryUpload;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ class PdfController extends Controller
 {
     public function authorizationForm($bookingID)
     {
-
+        $background = public_path('img/pdfPartials/reservationAssistanceTemplate.png');
+        $signature = public_path('img/pdfPartials/signature.png');
         $saleBooking = SaleBooking::find($bookingID);
-        $logo = public_path('website/images/reservation_assistance_logo.png');
+        // $logo = public_path('website/images/reservation_assistance_logo.png');
 
         // itenary
         $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
@@ -37,16 +39,25 @@ class PdfController extends Controller
         switch($saleBooking->service->service_name)
         {
             case ServiceEnum::FLIGHTS->value:
-                $flightDetails = FlightBooking::where('app_id', $bookingID)->first();
-                $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'flightDetails'));
+                $data = FlightBooking::where('app_id', $bookingID)->first();
+                $type = 'Flight';
+                $carrier = $data->airline_name;
+                $departureLocation = $data->departureAirport->name;
+                $destinationLocation = $data->destinationAirport->name;
+                // $pdf = Pdf::loadView('pdf.flightAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'flightDetails'));
                 break;
             case ServiceEnum::AMTRAK->value:
-                $amtrakDetails = AmtrakBooking::where('app_id', $bookingID)->first();
-                $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'amtrakDetails'));
+                $data = AmtrakBooking::where('app_id', $bookingID)->first();
+                $type = 'Train';
+                $carrier = 'AMTRAK';
+                $departureLocation = $data->departureStation->station_location;
+                $destinationLocation = $data->destinationStation->station_location;
+                // $pdf = Pdf::loadView('pdf.amtrakAuthorization', compact('logo', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'itenary', 'amtrakDetails'));
                 break;
             default:
                 break;
         }
+        $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers','itenary', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
         $content = $pdf->download()->getOriginalContent();
         $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
         $authFile = AuthorizationForm::updateOrCreate(
@@ -58,4 +69,11 @@ class PdfController extends Controller
         return view('pdf.showAuthFile', compact('authFile'));
 
     }
+
+    public function showTicket($bookingID)
+    {
+        $ticket = TicketBookingMode::where('app_id', $bookingID)->first();
+        return view('pdf.showTicket', compact('ticket'));
+    }
+
 }

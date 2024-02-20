@@ -49,44 +49,46 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-12">
-                                <label for="business_address" class="form-label">Address <span class="text-danger"><sup>*</sup></span></label>
-                                <textarea class="form-control @error('business_address') is-invalid @enderror" rows="4"
-                                    placeholder="Enter business address" wire:model="business_address"></textarea>
-                                @error('business_address')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            @if(Auth::User()->role != RoleEnum::ADMIN->value)
+                                <div class="mb-3 col-md-12">
+                                    <label for="business_address" class="form-label">Business Address <span class="text-danger"><sup>*</sup></span></label>
+                                    <textarea class="form-control @error('business_address') is-invalid @enderror" rows="4"
+                                        placeholder="Enter business address" wire:model="business_address"></textarea>
+                                    @error('business_address')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3 col-md-4">
-                                <label for="business_website" class="form-label">Website <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text"
-                                    class="form-control @error('business_website') is-invalid @enderror"
-                                    placeholder="Enter business website" value ="{{ old('business_website') }}"
-                                    wire:model="business_website">
-                                @error('business_website')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="business_website" class="form-label">Business Website  <span class="text-danger"><sup>*</sup></span></label>
+                                    <input type="text"
+                                        class="form-control @error('business_website') is-invalid @enderror"
+                                        placeholder="Enter business website" value ="{{ old('business_website') }}"
+                                        wire:model="business_website" @if(Auth::User()->role != RoleEnum::ADMIN->value) required @endif >
+                                    @error('business_website')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3 col-md-4">
-                                <label for="business_email" class="form-label">E-Mail <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text" class="form-control @error('business_email') is-invalid @enderror"
-                                    placeholder="Enter business email" wire:model="business_email">
-                                @error('business_email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="business_email" class="form-label">Business E-Mail (For Information of Customer if required) <span class="text-danger"><sup>*</sup></span></label>
+                                    <input type="text" class="form-control @error('business_email') is-invalid @enderror"
+                                        placeholder="Enter business email" wire:model="business_email">
+                                    @error('business_email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3 col-md-4">
-                                <label for="business_phone" class="form-label">Phone <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text"
-                                    class="form-control  @error('business_phone') is-invalid @enderror"
-                                    placeholder="Enter business phone" wire:model="business_phone">
-                                @error('business_phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="business_phone" class="form-label">Business Phone (For Information of Customer if required) <span class="text-danger"><sup>*</sup></span></label>
+                                    <input type="text"
+                                        class="form-control  @error('business_phone') is-invalid @enderror"
+                                        placeholder="Enter business phone" wire:model="business_phone">
+                                    @error('business_phone')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            @endif
 
                             <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
                                 <button type="submit" class="btn btn-success waves-effect waves-light">Next</button>

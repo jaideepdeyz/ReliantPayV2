@@ -16,11 +16,16 @@ return new class extends Migration
             $table->foreignId('agent_id')->constrained('users');
             $table->string('organization_id');
             $table->foreignId('service_id')->constrained('service_masters');
-            $table->foreignId('customer_id')->nullable();
+            $table->string('customer_id')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->string('customer_email')->nullable();
             $table->string('customer_phone')->nullable();
+            $table->string('customer_gender')->nullable();
+            $table->date('customer_dob')->nullable();
             $table->string('app_status')->nullable();
             $table->string('order_id')->nullable();
             $table->string('amount_charged')->nullable();
+            $table->string('relationship_to_card_holder')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

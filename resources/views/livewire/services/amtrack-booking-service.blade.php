@@ -29,10 +29,13 @@
                                 <div class="mb-3 col-md-4">
                                     <div class="dropdownList">
                                         <label for="departure_location" class="form-label">Departure Station <span class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control"
-                                            placeholder="Search Stations .." wire:model.live="departureQuery" required>
-                                        @if ($departureStations)
-                                        <div class="dropdown-container">
+                                        <input type="text" class="form-input form-control @error('departureQuery') is-invalid @enderror"
+                                            placeholder="Search By Departure Station Code" wire:model.live="departureQuery" required>
+                                        @error('departureQuery')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @if (count($departureStations) > 0)
+                                        <div class="dropdown-container pt-2">
                                             @foreach ($departureStations as $departureStation)
                                             <a href="#" class="d-block dropdown-links"
                                                 wire:click="setDepartureStation('{{ $departureStation->id }}')">
@@ -42,6 +45,7 @@
                                             @endforeach
                                         </div>
                                         @endif
+
                                     </div>
                                 </div>
 
@@ -49,11 +53,14 @@
                                     <div class="dropdownList">
                                         <label for="destination_location" class="form-label">Destination Station <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="text" class="form-input form-control"
-                                            placeholder="Search Stations .." wire:model.live="destinationQuery"
+                                        <input type="text" class="form-input form-control @error('destinationQuery') is-invalid @enderror"
+                                            placeholder="Search By Destination Station Code .." wire:model.live="destinationQuery"
                                             required>
-                                        @if ($destinationStations)
-                                        <div class="dropdown-container">
+                                        @error('destinationQuery')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @if (count($destinationStations) > 0)
+                                        <div class="dropdown-container pt-2">
                                             @foreach ($destinationStations as $destinationStation)
                                             <a href="#" class="d-block dropdown-links"
                                                 wire:click="setDestinationStation('{{ $destinationStation->id }}')">

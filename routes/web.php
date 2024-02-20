@@ -26,22 +26,29 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\JwtDocuSignController;
 use App\Http\Controllers\ZohoSignController;
 use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\Admin\ManageAffiliates;
 use App\Livewire\Admin\ManageAgents;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
+use App\Livewire\Affilate\AffilateDashboard;
+use App\Livewire\Affilate\ManageMerchants;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Agents\UploadConfirmedTicket;
 use App\Livewire\Dealer\ManageCustomers;
 use App\Livewire\Dealer\PendingAuthorization;
+use App\Livewire\Dealer\PendingPayments;
 use App\Livewire\Dealer\Registration\BankingDetails;
 use App\Livewire\Dealer\Registration\BusinessInformation;
 use App\Livewire\Dealer\Registration\Confirmation;
 use App\Livewire\Dealer\Registration\DocumentUploads;
+use App\Livewire\Dealer\Registration\RegistrationByAdmin;
 use App\Livewire\Dealer\Registration\ServicesCompliances;
 use App\Livewire\Payment\MakePayment;
+use App\Livewire\Registration\ByInvite;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
+use App\Livewire\Ticketer\ManageTickets;
 use App\Livewire\User\ResetPassword;
 use App\Models\AmtrakBooking;
 
@@ -58,6 +65,9 @@ use App\Models\AmtrakBooking;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('alt', function () {
+    return view('welcome-uc');
 });
 Route::get('reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
 
@@ -77,7 +87,7 @@ Route::get('checkAuthorizationForm/{appId}', [JwtDocuSignController::class, 'che
 Route::get('authorizeAndSend/{id}', [ZohoSignController::class, 'authorizeAndSend'])->name('authorizeAndSend');
 Route::post('zohoWebhook', [ZohoSignController::class, 'zohoWebhook'])->name('zohoWebhook');
 Route::get('checkAuthorizationFormStatus/{appId}', [ZohoSignController::class, 'checkAuthorizationFormStatus'])->name('checkAuthorizationFormStatus');
-
+Route::get('registrationByInvitation/{code}', ByInvite::class)->name('registrationByInvitation');
 
 // page routes
 Route::view('about-us', 'pages.about-us')->name('about-us');
@@ -91,11 +101,12 @@ Route::middleware('auth')->group(function () {
     // Route::get('dealer_register', Registration::class)->name('dealer_register');
 
     // Dealer Registration Routes
-    Route::get('dealerRegBusinessInfo/{viewOnly}', BusinessInformation::class)->name('dealerRegBusinessInfo');
-    Route::get('dealerServicesCompliances/{orgID}/{viewOnly}', ServicesCompliances::class)->name('dealerServicesCompliances');
-    Route::get('dealerBankingDetails/{orgID}/{viewOnly}', BankingDetails::class)->name('dealerBankingDetails');
-    Route::get('dealerDocs/{orgID}/{viewOnly}', DocumentUploads::class)->name('dealerDocs');
-    Route::get('confirmation/{orgID}/{viewOnly}', Confirmation::class)->name('confirmation');
+    Route::get('dealerRegBusinessInfo/{userID}/{viewOnly}', BusinessInformation::class)->name('dealerRegBusinessInfo');
+    Route::get('dealerServicesCompliances/{orgID}/{viewOnly?}', ServicesCompliances::class)->name('dealerServicesCompliances');
+    Route::get('dealerBankingDetails/{orgID}/{viewOnly?}', BankingDetails::class)->name('dealerBankingDetails');
+    Route::get('dealerDocs/{orgID}/{viewOnly?}', DocumentUploads::class)->name('dealerDocs');
+    Route::get('confirmation/{orgID}/{viewOnly?}', Confirmation::class)->name('confirmation');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -112,12 +123,15 @@ Route::middleware('auth')->group(function () {
     Route::get('addAgent', AddAgent::class)->middleware('dealerApprovalCheck')->name('addAgent');
     Route::get('manageCustomers', ManageCustomers::class)->name('manageCustomers');
     Route::get('pendingAuthorizations', PendingAuthorization::class)->name('pendingAuthorizations');
+    Route::get('pendingPayments', PendingPayments::class)->name('pendingPayments');
 
-    //admin Routes
-    Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
-    Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
+    //Common Routes for Admin, Affiliates and Dealers
     Route::get('manageAgents', ManageAgents::class)->name('manageAgents');
     Route::get('manageSales', ManageSales::class)->name('manageSales');
+
+    //Affilate Routes
+    Route::get('affiliateDashboard', AffilateDashboard::class)->name('affiliateDashboard');
+    Route::get('manageMerchants', ManageMerchants::class)->name('manageMerchants');
 
     // Agents Routes
     Route::get('agentDashboard', AgentDashboard::class)->name('agentDashboard');
@@ -135,6 +149,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('uploadTicket/{appID}', UploadConfirmedTicket::class)->name('uploadTicket');
 
+    //Ticketer routes
+    Route::get('manageTickets', ManageTickets::class)->name('manageTickets');
+
     // Email routes
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
     // payment routes
@@ -144,6 +161,15 @@ Route::middleware('auth')->group(function () {
 
     // PDF Routes
     Route::get('authorizationForm/{bookingID}', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
+    Route::get('showTicket/{bookingID}', [App\Http\Controllers\PdfController::class, 'showTicket'])->name('showTicket');
+});
+
+Route::middleware('auth', 'adminRoleCheck')->group(function () {
+    //admin Routes
+    Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
+    Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
+    Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+    Route::get('registrationByAdmin/{userID}', RegistrationByAdmin::class)->name('registrationByAdmin');
 });
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');

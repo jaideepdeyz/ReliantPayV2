@@ -131,6 +131,13 @@ class FlightBookingService extends Component
             $this->airlines = [];
         } else {
             $this->airlines = Airline::where('name', 'like', '%' . $this->query . '%')->get();
+            if($this->airlines->count() == 0)
+            {
+                $this->addError('query', 'No Airlines Found. Please enter a valid Airline Name');
+            }else{
+                $this->resetValidation('query');
+
+            }
         }
     }
 
@@ -140,9 +147,16 @@ class FlightBookingService extends Component
             $this->departureAirports = [];
         } else {
             $this->departureAirports = Airport::where('code', 'like', '%' . $this->departureQuery . '%')
-                ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
-                ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
+                // ->orWhere('city', 'like', '%' . $this->departureQuery . '%')
+                // ->orWhere('name', 'like', '%' . $this->departureQuery . '%')
                 ->get();
+             if($this->departureAirports->count() == 0)
+            {
+                $this->addError('departureQuery', 'No Airports Found. Please enter a valid Airport Code');
+            }else{
+                $this->resetValidation('departureQuery');
+
+            }
         }
     }
 
@@ -152,9 +166,15 @@ class FlightBookingService extends Component
             $this->destinationAirports = [];
         } else {
             $this->destinationAirports = Airport::where('code', 'like', '%' . $this->destinationQuery . '%')
-                ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
-                ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
+                // ->orWhere('city', 'like', '%' . $this->destinationQuery . '%')
+                // ->orWhere('name', 'like', '%' . $this->destinationQuery . '%')
                 ->get();
+            if($this->destinationAirports->count() == 0){
+                $this->addError('destinationQuery', 'No Airports Found. Please enter a valid Airport Code');
+            }else{
+                $this->resetValidation('destinationQuery');
+
+            }
         }
     }
 
@@ -206,6 +226,18 @@ class FlightBookingService extends Component
             'departureETAHour' => 'required|digits:2',
             'departureETAMinute' => 'required|digits:2',
         ]);
+
+        $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
+        if (!$itenary) {
+            $this->validate([
+                'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
+            ], [
+                'itenary_screenshot.required' => 'Please select a intenary to upload',
+                'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
+                'itenary_screenshot.max' => 'File size should not exceed 5MB',
+            ]);
+        }
+
         try {
             DB::beginTransaction();
 

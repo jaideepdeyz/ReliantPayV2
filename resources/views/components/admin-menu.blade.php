@@ -15,6 +15,25 @@
         </ul>
     </div>
 </li>
+<li class="menu-item">
+
+    <a href="#menuAffiliates" data-bs-toggle="collapse" class="menu-link">
+        <span class="menu-icon"><i class="mdi mdi-account-multiple"></i></span>
+        <span class="menu-text"> Affilates </span>
+        <span class="menu-arrow"></span>
+    </a>
+    <div class="collapse" id="menuAffiliates">
+        <ul class="sub-menu">
+            <li class="menu-item">
+                <a href="{{ route('manageAffiliates') }}" class="menu-link">
+                    <span class="menu-text"> Manage Affilates </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+            
 {{-- <li class="menu-item">
     <a href="#menuAdministration" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-account-star"></i></span>

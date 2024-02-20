@@ -74,10 +74,23 @@ class ManageOrganizations extends Component
     public function render()
     {
 
-        $dealers = Organization::search($this->search)
+        // $dealers = Organization::search($this->search)
+        // ->orderBy($this->sortBy, $this->sortDirection)
+        //     ->paginate($this->perPage);
+        // // Log::info('Admin Merchants Listing Results: ' . json_encode($dealers));
+        // return view('livewire.admin.manage-organizations', [
+        //     'dealers'=>$dealers,
+        // ])->layout('layouts.dashboard-layout');
+
+        $dealers = User::when($this->search, function($query, $search){
+            return $query->where('name', 'like', '%'.$search.'%')
+            ->orWhere('email', 'like', '%'.$search.'%')
+            ->orWhere('phone_number', 'like', '%'.$search.'%');
+        })
+        ->where('role', RoleEnum::DEALER->value)
         ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate($this->perPage);
-        Log::info('Admin Merchants Listing Results: ' . json_encode($dealers));
+        // Log::info('Admin Merchants Listing Results: ' . json_encode($dealers));
         return view('livewire.admin.manage-organizations', [
             'dealers'=>$dealers,
         ])->layout('layouts.dashboard-layout');

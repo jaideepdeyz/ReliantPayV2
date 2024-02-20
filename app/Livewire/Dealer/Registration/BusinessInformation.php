@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Dealer\Registration;
 
+use App\Enums\RoleEnum;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -16,9 +18,17 @@ class BusinessInformation extends Component
     public $business_phone;
     public $viewOnly = 'No';
 
-    public function mount($viewOnly = null)
+    public $userID;
+
+    public function mount($userID = null, $viewOnly = null)
     {
-        $org = Organization::where('user_id', auth()->user()->id)->first();
+        $this->userID = $userID;
+        if($userID != null)
+        {
+            $this->userID = $userID;
+        }
+
+        $org = Organization::where('user_id', $this->userID)->first();
         if($org) {
             $this->business_name = $org->business_name;
             $this->business_address = $org->business_address;
@@ -39,18 +49,36 @@ class BusinessInformation extends Component
 
     public function storeBusinessInfo()
     {
-        $this->validate([
-            'business_name' => 'required',
-            'business_address' => 'required',
-            'business_website' => 'required',
-            'business_email' => 'required',
-            'business_phone' => 'required',
-        ]);
+        if(Auth::User()->role != RoleEnum::ADMIN->value)
+        {
+            $this->validate([
+                'business_name' => 'required',
+                'business_address' => 'required',
+                'business_website' => 'required',
+                'business_email' => 'required',
+                'business_phone' => 'required',
+            ]);
+        } else {
+            $this->validate([
+                'business_name' => 'required',
+            ]);
+        }
+        
+    
 
         try {
             DB::beginTransaction();
+            switch(auth()->user()->role)
+            {
+                case RoleEnum::ADMIN->value:
+                    $userID = $this->userID;
+                    break;
+                default:
+                    $userID = auth()->user()->id;
+                    break;
+            }
             $org = Organization::updateOrCreate(
-                ['user_id' => auth()->user()->id],
+                ['user_id' => $userID],
                 [
                     'business_name' => $this->business_name,
                     'business_address' => $this->business_address,

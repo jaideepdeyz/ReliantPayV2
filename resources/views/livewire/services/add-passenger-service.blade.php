@@ -16,7 +16,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                    Step 3/4: Add Passengers
+                    Step 3/5: Add Passengers
                 </h5>
                 <form wire:submit="storePassenger">
                     <div class="row">
@@ -62,7 +62,7 @@
                                 <select class="form-select @error('relationship_to_card_holder') is-invalid @enderror"
                                     wire:model="relationship_to_card_holder">
                                     <option value="">Select Option</option>
-                                    <option value="Card Holder">Card Holder</option>
+                                    <option value="Self">Self</option>
                                     <option value="Husband">Husband</option>
                                     <option value="Wife">Wife</option>
                                     <option value="Son">Son</option>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <div class="form-floating">
                                 <select class="form-select @error('is_disabled') is-invalid @enderror"
                                     wire:model.live="is_disabled">
@@ -153,7 +153,7 @@
                                 <th>Name</th>
                                 <th>DOB</th>
                                 <th>Gender</th>
-                                <th>Relationship</th>
+                                {{-- <th>Relationship</th> --}}
                                 <th>Needs Assistance</th>
                                 <th>Actions</th>
                             </tr>
@@ -165,8 +165,14 @@
                                 <td>{{ $passenger->full_name }}</td>
                                 <td>{{ $passenger->dob }}</td>
                                 <td>{{ $passenger->gender }}</td>
-                                <td>{{ $passenger->relationship_to_card_holder }}</td>
-                                <td>{{ $passenger->requires_assistance }}</td>
+                                {{-- <td>{{ $passenger->relationship_to_card_holder }}</td> --}}
+                                <td>
+                                    @if($passenger->requires_assistance == 'Yes')
+                                        Yes
+                                    @else
+                                        No
+                                    @endif
+                                </td>
                                 <td>
                                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#alertModal"

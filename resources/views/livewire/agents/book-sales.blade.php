@@ -64,7 +64,7 @@
                                 <td>{{ $booking->id }}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
-                                <td>{{ $booking->customer->customer_name }}</td>
+                                <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
                                 <td>{{ $booking->customer_email }}</td>
                                 <td>
@@ -135,12 +135,12 @@
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
                         <div class="form-group mb-2">
-                            <label for="service_id" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
-                            <select class="form-control @error('service_id') is-invalid @enderror"
-                                wire:model="service_id">
+                            <label for="serviceName" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('serviceName') is-invalid @enderror"
+                                wire:model="serviceName">
                                 <option value="">Select Service</option>
                                 @foreach ($services as $service)
-                                <option value="{{ $service->id }}">
+                                <option value="{{ $service->service_name }}">
                                     {{ $service->service_name }}</option>
                                 @endforeach
                             </select>
@@ -160,7 +160,7 @@
                             <label for="customer_phone" class="form-label">Customer's
                                 Phone <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_phone') is-invalid @enderror"
-                                wire:model="customer_phone">
+                                wire:model="customer_phone" placeholder="10 digit mobile number">
                             @error('customer_phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -194,6 +194,25 @@
                                 <option value="Other">Others</option>
                             </select>
                             @error('customer_gender')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="relationship_to_card_holder" class="form-label">Relationship to Card
+                                Holder <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('relationship_to_card_holder') is-invalid @enderror"
+                                wire:model="relationship_to_card_holder">
+                                <option value="">Select Option</option>
+                                <option value="Self">Self</option>
+                                <option value="Husband">Husband</option>
+                                <option value="Wife">Wife</option>
+                                <option value="Son">Son</option>
+                                <option value="Daughter">Daughter</option>
+                                <option value="Uncle">Uncle</option>
+                                <option value="Aunt">Aunt</option>
+                                <option value="Colleague">Colleague</option>
+                            </select>
+                            @error('relationship_to_card_holder')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
