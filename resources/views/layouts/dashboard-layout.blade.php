@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>ReliantPAY| Dashboard</title>
+    <title>Reliant Payment Gateway</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -247,16 +247,9 @@
                                 <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}" alt="user-image"
                                     class="rounded-circle">
                                 @else
-                                <?php $words = explode(' ', Auth::user()->name);
-                                    $acronym = '';
-                                    foreach ($words as $w) {
-                                        $acronym .= mb_substr($w, 0, 1);
-                                    } ?>
-                                <span
-                                    class="pro-user-name text-dark bg-light rounded-circle text-center font-weight-bold bg-soft-secondary p-1"
-                                    style="font-size: 12px;">
-                                    {{ $acronym }}
-                                </span>
+
+                                <img src="{{ env('PROFILE_IMAGE_PATH_EMPTY') }}{{ Auth::user()->name }}" alt="user-image"
+                                    class="rounded-circle">
                                 @endif
 
 

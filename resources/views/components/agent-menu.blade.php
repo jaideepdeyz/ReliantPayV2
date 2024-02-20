@@ -30,5 +30,5 @@
     </div>
 </li>
 
-<li class="menu-title">MIS Reports</li>
+<li class="menu-title">Reports</li>
 <li class="menu-title">Settings</li>
