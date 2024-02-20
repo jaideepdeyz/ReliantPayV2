@@ -35,6 +35,7 @@ use App\Livewire\Affilate\ManageMerchants;
 use App\Livewire\Agents\AgentDashboard;
 use App\Livewire\Agents\AuthorizedBookings;
 use App\Livewire\Agents\UploadConfirmedTicket;
+use App\Livewire\Cancellations\ExternalCustomer;
 use App\Livewire\Dealer\ManageCustomers;
 use App\Livewire\Dealer\PendingAuthorization;
 use App\Livewire\Dealer\PendingPayments;
@@ -48,6 +49,7 @@ use App\Livewire\Payment\MakePayment;
 use App\Livewire\Registration\ByInvite;
 use App\Livewire\Services\AmtrackBookingService;
 use App\Livewire\Services\ChargeDetailService;
+use App\Livewire\Services\TransactionDetailsService;
 use App\Livewire\Ticketer\ManageTickets;
 use App\Livewire\User\ResetPassword;
 use App\Models\AmtrakBooking;
@@ -144,6 +146,7 @@ Route::middleware('auth')->group(function () {
     Route::get('flightBooking/{appID}', FlightBookingService::class)->name('flightBooking');
     Route::get('amtrakBooking/{appID}', AmtrackBookingService::class)->name('amtrakBooking');
     Route::get('addPassengers/{appID}', AddPassengerService::class)->name('addPassengers');
+    Route::get('addTransactionDetails/{appID}', TransactionDetailsService::class)->name('addTransactionDetails');
     Route::get('addChargeDetails/{appID}', ChargeDetailService::class)->name('addChargeDetails');
     Route::get('billingDetails/{appID}', BillingDetailsService::class)->name('billingDetails');
 
@@ -162,6 +165,9 @@ Route::middleware('auth')->group(function () {
     // PDF Routes
     Route::get('authorizationForm/{bookingID}', [App\Http\Controllers\PdfController::class, 'authorizationForm'])->name('authorizationForm');
     Route::get('showTicket/{bookingID}', [App\Http\Controllers\PdfController::class, 'showTicket'])->name('showTicket');
+
+    // Cancellation Routes
+    Route::get('cancelBookingExternalCustomer/{appID}', ExternalCustomer::class)->name('cancelBookingExternalCustomer');
 });
 
 Route::middleware('auth', 'adminRoleCheck')->group(function () {

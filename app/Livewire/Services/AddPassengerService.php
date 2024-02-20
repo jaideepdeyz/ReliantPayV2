@@ -100,7 +100,7 @@ class AddPassengerService extends Component
             return;
         }
         Session::flash('message', ['heading'=>'success','text'=>'Passenger Details Saved Successfully']);
-        return redirect()->route('addChargeDetails', ['appID' => $this->appID]);
+        return redirect()->route('addTransactionDetails', ['appID' => $this->appID]);
     }
 
     public function previousStep()

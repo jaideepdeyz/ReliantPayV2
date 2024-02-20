@@ -21,7 +21,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                                Step 2/5: Details for AmTRAK Booking
+                                Step 1/5: Details for AMTRAK Booking
                             </h5>
                             <div class="row">
                                 {{-- testing livewire searchable dropdown --}}

@@ -37,6 +37,7 @@ class BookSales extends Component
     public $customer_dob;
     public $customer_gender;
     public $relationship_to_card_holder;
+    public $sale_type;
 
     public function storeSaleBooking()
     {
@@ -48,6 +49,7 @@ class BookSales extends Component
             'customer_dob' => 'required',
             'customer_gender' => 'required',
             'relationship_to_card_holder' => 'required',
+            'sale_type' => 'required',
         ], [
             'serviceName.required' => 'Service is required',
             'customer_name.required' => 'Customer Name is required',
@@ -56,6 +58,7 @@ class BookSales extends Component
             'customer_dob.required' => 'Customer Date of Birth is required',
             'customer_gender.required' => 'Customer Gender is required',
             'relationship_to_card_holder.required' => 'Relationship to Card Holder is required',
+            'sale_type.required' => 'Sale Type is required',
         ]);
 
         try {
@@ -82,6 +85,7 @@ class BookSales extends Component
                 'agent_id' => auth()->user()->id,
                 'organization_id' => auth()->user()->organization_id,
                 'service_id' => $service->id,
+                'sale_type' => $this->sale_type,
                 'customer_id' => $customer->id,
                 'customer_name' => $this->customer_name,
                 'customer_gender' => $this->customer_gender,
@@ -96,8 +100,15 @@ class BookSales extends Component
             $this->transactionLog();
 
             DB::commit();
-            $this->reset(['serviceName', 'customer_name', 'customer_phone', 'customer_email', 'customer_dob', 'customer_gender']);
+            $this->reset(['serviceName', 'sale_type', 'customer_name', 'customer_phone', 'customer_email', 'customer_dob', 'customer_gender']);
             $this->dispatch('close-modal');
+
+            if($this->sale_type == 'Cancellation')
+            {
+                $this->dispatch('message', heading:'success',text:'Cancellation Created')->self();
+                return redirect()->route('cancelBookingExternalCustomer', ['appID' => $this->sale->id]);
+            }
+
             $this->dispatch('message', heading:'success',text:'Booking Created')->self();
             switch($this->sale->service->service_name)
             {

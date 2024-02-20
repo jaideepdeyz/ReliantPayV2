@@ -5,6 +5,7 @@ namespace App\Livewire\Services;
 use App\Enums\ServiceEnum;
 use App\Models\ChargeDetails;
 use App\Models\SaleBooking;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -14,15 +15,19 @@ class ChargeDetailService extends Component
 
     public $appID;
     public $charge_type;
+    public $transactionDetail;
     public $amount;
     public $saleBooking;
-    public $totalCharges;
+    public $totalTransactionCharges;
+    public $totalCharges = 0;
     public $chargeID;
 
     public function mount($appID)
     {
         $this->appID = $appID;
         $this->saleBooking = SaleBooking::find($this->appID);
+        $this->transactionDetail = TransactionDetail::where('sale_booking_id', $this->appID)->first();
+
     }
 
     public function storeCharge()
@@ -39,6 +44,7 @@ class ChargeDetailService extends Component
                 'charge_type' => $this->charge_type,
                 'amount' => $this->amount,
             ]);
+
             DB::commit();
             $this->dispatch('message', heading:'success',text:'Charges/Billing added');
             $this->reset(['charge_type','amount']);
@@ -56,6 +62,12 @@ class ChargeDetailService extends Component
             $this->dispatch('message', heading:'error',text:'Please add atleast one Charges against this booking');
             return;
         }
+        // checking if total tranasaction charges is equal to the sum of charges added
+        if($this->totalTransactionCharges != $this->totalCharges){
+            $this->dispatch('message', heading:'error',text:'Sum of Total Charges added should be equal to Total Transaction Charges');
+            return;
+        }
+
         Session::flash('message', ['heading'=>'success','text'=>'Billing / Charges Details Saved Successfully']);
         return redirect()->route('billingDetails', ['appID' => $this->appID]);
     }
@@ -63,7 +75,7 @@ class ChargeDetailService extends Component
     public function previousStep()
     {
         Session::flash('message', ['heading'=>'success','text'=>'Billing / Charges Details Saved Successfully']);
-        return redirect()->route('addPassengers', ['appID' => $this->appID]);
+        return redirect()->route('addTransactionDetails', ['appID' => $this->appID]);
     }
 
     public function selectId($id)
@@ -88,7 +100,8 @@ class ChargeDetailService extends Component
     public function render()
     {
         $charges = ChargeDetails::where('app_id', $this->appID)->get();
-        $this->totalCharges = $charges->sum('amount');
+        $this->totalTransactionCharges = $this->transactionDetail->total_amount;
+        $this->totalCharges = ChargeDetails::where('app_id', $this->appID)->sum('amount');
         return view('livewire.services.charge-detail-service', [
             'charges' => $charges,
         ])->layout('layouts.dashboard-layout');

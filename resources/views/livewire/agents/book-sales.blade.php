@@ -135,6 +135,18 @@
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
                         <div class="form-group mb-2">
+                            <label for="sale_type" class="form-label">Sale Type <span class="text-danger"><sup>*</sup></span></label>
+                            <select class="form-control @error('sale_type') is-invalid @enderror"
+                                wire:model="sale_type">
+                                <option value="">Select Type</option>
+                                <option value="New Sale">New Sale</option>
+                                <option value="Cancellation">Cancellation</option>
+                            </select>
+                            @error('sale_type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
                             <label for="serviceName" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
                             <select class="form-control @error('serviceName') is-invalid @enderror"
                                 wire:model="serviceName">
