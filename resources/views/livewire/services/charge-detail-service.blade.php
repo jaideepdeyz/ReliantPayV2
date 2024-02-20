@@ -43,8 +43,8 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body bg-success text-center">
-                                    <p class="text-white">Total Charges</p>
-                                    <h5 class="text-white">$ {{ $totalCharges }} </h5>
+                                    <p class="text-white">Total Transaction Charges</p>
+                                    <h5 class="text-white">$ {{ $totalTransactionCharges }} </h5>
                                 </div>
                             </div>
                         </div>
