@@ -6,7 +6,8 @@
     <div class="modal-body">
         <h6>Please Provide the details of the Merchant to create Login</h6>
         <p>
-            <small>Merchant Added will be automatically approved. The User Login credentials using the details that is provided below.</small>
+            <small>Merchant Added will be automatically approved. The User Login credentials using the details that is
+                provided below.</small>
         </p>
         <form wire:submit.prevent="createUser">
             <hr>
@@ -15,25 +16,31 @@
                     <label for="name">Business Owner's Name <span class="text-danger"><sup>*</sup></span></label>
                     <input type="text" class="form-control @error('is-invalid') name @enderror" wire:model="name">
                     @error('name')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 form-group mb-2">
                     <label for="email">Business Owner's Email <span class="text-danger"><sup>*</sup></span></label>
-                    <input type="email" class="form-control  @error('is-invalid') email @enderror"  wire:model.live="email">
+                    <input type="email" class="form-control  @error('is-invalid') email @enderror" wire:model="email">
                     @error('email')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 form-group mb-2">
                     <label for="mobile">Business Owner's Mobile <span class="text-danger"><sup>*</sup></span></label>
-                    <input type="text" class="form-control @error('is-invalid') mobile @enderror"  wire:model.live="mobile" minlength="10" maxlength="10" placeholder="Enter the 10 digit mobile number without dashes">
+                    <input type="text" class="form-control @error('is-invalid') mobile @enderror" wire:model="mobile"
+                        minlength="10" maxlength="10" placeholder="Enter the 10 digit mobile number without dashes">
                     @error('mobile')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-md-12 mb-2">
-                    <button type="submit" class="btn btn-primary">Create User & Proceed</button>
+                <div class="col-md-12 mb-2 mt-2">
+                    <button type="submit" class="btn btn-primary" wire:loading.attr="disabled"
+                        wire:loading.class='"disabled'>
+                        <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"
+                            wire:loading></span>
+                        Create User & Proceed
+                    </button>
                 </div>
             </div>
         </form>

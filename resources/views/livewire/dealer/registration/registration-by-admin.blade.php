@@ -6,11 +6,12 @@
                 <form wire:submit.prevent="save">
                     <div class="row">
                         <div class="mb-3 col-md-12">
-                            <label for="business_name" class="form-label">Business Name <span class="text-danger"><sup>*</sup></span></label>
+                            <label for="business_name" class="form-label">Business Name <span
+                                    class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('business_name') is-invalid @enderror"
                                 placeholder="Enter business name" wire:model="business_name">
                             @error('business_name')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         {{-- Services Offered --}}
@@ -19,18 +20,23 @@
                                 services) <span class="text-danger"><sup>*</sup></span></h5>
                         </div>
                         @foreach ($services as $service)
-                            <div class="col-md-3 mb-2">
-                                <div class="form-group">
-                                    <input type="checkbox" class="form-check-input"
-                                        wire:model="business_product_services.{{ $service->name }}">
-                                    <label for="" class="form-check-label">{{ $service->name }}</label>
-                                </div>
+                        <div class="col-md-3 mb-2">
+                            <div class="form-group">
+                                <input type="checkbox" class="form-check-input"
+                                    wire:model="business_product_services.{{ $service->name }}">
+                                <label for="" class="form-check-label">{{ $service->name }}</label>
                             </div>
+                        </div>
                         @endforeach
 
 
-                        <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">Proceed</button>
+                        <div class="my-3 col-md-12 action-buttons d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success waves-effect waves-light"
+                                wire:loading.attr="disabled" wire:loading.class='"disabled'>
+                                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"
+                                    wire:loading></span>
+                                Proceed
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -39,4 +45,3 @@
         </div> <!-- end card -->
     </div>
 </div>
-

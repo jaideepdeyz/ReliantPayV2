@@ -21,8 +21,8 @@ class AgentDashboard extends Component
     public $charttype = '10';
     public $firstPasswordChanged = 'No';
     public $currentPassword;
-    public $newPassword;
-    public $confirmPassword;
+    public $password;
+    public $password_confirmation;
     public $totalrevenueoptions;
 
     public function mount()
@@ -268,41 +268,47 @@ class AgentDashboard extends Component
 
     public function changePassword()
     {
-        if($this->currentPassword == $this->newPassword){
-            $this->dispatch('message', heading:'error', text: 'New Password cannot be same as Old Password')->self();
+        $this->validate([
+            'currentPassword' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|min:8',
+        ], [
+            'currentPassword.required' => 'Current Password is required',
+            'password.required' => 'New Password is required',
+            'password.min' => 'New Password must be at least 8 characters',
+            'password.confirmed' => 'The passwords provided do not match',
+            'password_confirmation.required' => 'Confirm Password is required',
+            'password_confirmation.min' => 'Confirm Password must be at least 8 characters',
+        ]);
+
+        if ($this->currentPassword == $this->password) {
+            $this->dispatch('message', ['heading' => 'error', 'text' => 'New Password cannot be same as Old Password'])->self();
             return;
-        } else {
-            $this->validate([
-                'currentPassword' => 'required',
-                'newPassword' => 'required|min:8',
-                'confirmPassword' => 'required|min:8|same:newPassword',
-            ], [
-                'currentPassword.required' => 'Current Password is required',
-                'newPassword.required' => 'New Password is required',
-                'newPassword.min' => 'New Password must be at least 8 characters',
-                'confirmPassword.required' => 'Confirm Password is required',
-                'confirmPassword.min' => 'Confirm Password must be at least 8 characters',
-                'confirmPassword.same' => 'The passwords provided do not match',
-            ]);
+        }
 
-            try
-            {
-                DB::beginTransaction();
-                $user = User::where('id', Auth::User()->id)->first();
-                $user->password = Hash::make($this->newPassword);
-                $user->save();
+        if (!Hash::check($this->currentPassword, Auth::user()->password))
+        {
+            $this->dispatch('message', ['heading' => 'error', 'text' => 'Current Password is incorrect'])->self();
+            return;
+        }
 
-                $agentLogs = AgentPasswordChangeLogs::where('user_id', Auth::User()->id)->first();
-                $agentLogs->first_password_changed = 'Yes';
-                $agentLogs->save();
-                DB::commit();
-                $this->firstPasswordChanged = 'Yes';
-                $this->dispatch('message', heading:'success',text:'Password Updated successfully')->self();
-            } catch (\Exception $e) {
-                DB::rollBack();
-                $this->dispatch('message', heading:'error', text: $e->getMessage())->self();
-                return;
-            }
+        try
+        {
+            DB::beginTransaction();
+            $user = User::where('id', Auth::User()->id)->first();
+            $user->password = Hash::make($this->password);
+            $user->save();
+
+            $agentLogs = AgentPasswordChangeLogs::where('user_id', Auth::User()->id)->first();
+            $agentLogs->first_password_changed = 'Yes';
+            $agentLogs->save();
+            DB::commit();
+            $this->firstPasswordChanged = 'Yes';
+            $this->dispatch('message', heading:'success',text:'Password Updated successfully')->self();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->dispatch('message', heading:'error', text: $e->getMessage())->self();
+            return;
         }
     }
 

@@ -90,21 +90,22 @@
                                         <div class="dropdown-menu dropdown-menu-end" style="">
                                             <a class="dropdown-item" href="#"
                                                 wire:click="viewBooking({{ $booking->id }})"><i
-                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Complete Booking</a>
-                                             @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                                @switch($booking->service->service_name)
-                                                    @case('Flight Booking')
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('airlineBooking.show', $booking->id) }}"><i
-                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
-                                                    @break
-                                                    @case('AMTRAK Booking')
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
-                                                            class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
-                                                    @break
-                                                    @default
-                                                @endswitch
+                                                    class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Complete
+                                                Booking</a>
+                                            @if ($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
+                                            @switch($booking->service->service_name)
+                                            @case('Flight Booking')
+                                            <a class="dropdown-item"
+                                                href="{{ route('airlineBooking.show', $booking->id) }}"><i
+                                                    class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                            @break
+                                            @case('AMTRAK Booking')
+                                            <a class="dropdown-item"
+                                                href="{{ route('amtrakBookingDetails.show', $booking->id) }}"><i
+                                                    class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                                            @break
+                                            @default
+                                            @endswitch
                                             @endif
                                             <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#alertModal"
@@ -120,7 +121,8 @@
                         </tbody>
                     </table>
                     {{ $bookedSales->links() }}
-                {{-- </div> --}}
+                    {{--
+                </div> --}}
             </div>
         </div>
     </div>
@@ -135,7 +137,8 @@
                 <div class="modal-body">
                     <form wire:submit="storeSaleBooking">
                         <div class="form-group mb-2">
-                            <label for="sale_type" class="form-label">Sale Type <span class="text-danger"><sup>*</sup></span></label>
+                            <label for="sale_type" class="form-label">Sale Type <span
+                                    class="text-danger"><sup>*</sup></span></label>
                             <select class="form-control @error('sale_type') is-invalid @enderror"
                                 wire:model="sale_type">
                                 <option value="">Select Type</option>
@@ -147,7 +150,8 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label for="serviceName" class="form-label">Service <span class="text-danger"><sup>*</sup></span></label>
+                            <label for="serviceName" class="form-label">Service <span
+                                    class="text-danger"><sup>*</sup></span></label>
                             <select class="form-control @error('serviceName') is-invalid @enderror"
                                 wire:model="serviceName">
                                 <option value="">Select Service</option>
@@ -161,7 +165,8 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label for="customer_name" class="form-label">Customer's Name <span class="text-danger"><sup>*</sup></span></label>
+                            <label for="customer_name" class="form-label">Customer's Name <span
+                                    class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_name') is-invalid @enderror"
                                 wire:model="customer_name">
                             @error('customer_name')
@@ -172,7 +177,8 @@
                             <label for="customer_phone" class="form-label">Customer's
                                 Phone <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('customer_phone') is-invalid @enderror"
-                                wire:model="customer_phone" placeholder="10 digit mobile number">
+                                wire:model="customer_phone" placeholder="10 digit mobile number" minlength="10"
+                                maxlength="10">
                             @error('customer_phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -229,8 +235,11 @@
                             @enderror
                         </div>
                         <div class="my-3">
-                            <button type="submit" class="btn w-sm btn-success waves-effect waves-light">Create
-                                New Booking</button>
+                            <button type="submit" class="btn w-sm btn-success waves-effect waves-light"
+                                wire:loading.attr="disabled" wire:loading.class='"disabled'>
+                                <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"
+                                    wire:loading></span>
+                                Create New Booking</button>
                         </div>
                     </form>
                 </div>
@@ -251,4 +260,5 @@
         </div>
     </div>
     <x-toast-livewire />
+
 </div>
