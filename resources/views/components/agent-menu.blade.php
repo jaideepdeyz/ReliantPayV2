@@ -1,3 +1,5 @@
+<li class="menu-title">Sales Transactions</li>
+
 <li class="menu-item">
     <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="fas fa-money-check"></i></span>
@@ -27,3 +29,6 @@
         </ul>
     </div>
 </li>
+
+<li class="menu-title">MIS Reports</li>
+<li class="menu-title">Settings</li>
