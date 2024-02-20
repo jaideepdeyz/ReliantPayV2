@@ -26,7 +26,7 @@
                                 <label for="cc_type" class="form-label">Credit Card Type? <span class="text-danger"><sup>*</sup></span></label>
                                 <select class="form-control @error('cc_type') is-invalid @enderror"
                                     wire:model="cc_type">
-                                    <option value="">Select Option</option>
+                                    <option value="">Select</option>
                                     <option value="Mastercard">Mastercard</option>
                                     <option value="VISA">VISA</option>
                                     <option value="American Express">American Express</option>
@@ -39,7 +39,7 @@
 
                             <div class="mb-3 col-md-4">
                                 <label for="cc_number" class="form-label">Credit Card Number <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text" class="form-control @error('cc_number') is-invalid @enderror"
+                                <input type="text" data-toggle="input-mask" data-mask-format="0000-0000-0000-0000" class="form-control @error('cc_number') is-invalid @enderror"
                                     wire:model="cc_number" minlength="16" maxlength="16">
                                 @error('cc_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -48,7 +48,7 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="cc_expiration_date" class="form-label">Card Expiry Date  <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text"
+                                <input type="text" data-toggle="input-mask" data-mask-format="00/00"
                                     class="form-control @error('cc_expiration_date') is-invalid @enderror"
                                     wire:model="cc_expiration_date" placeholder="MM/YY">
                                 @error('cc_expiration_date')

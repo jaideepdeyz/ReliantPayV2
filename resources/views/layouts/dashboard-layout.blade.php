@@ -351,9 +351,13 @@
     {{-- <script src="{{ asset('auth/js/pages/dashboard-1.init.js') }}"></script> --}}
 
     <!-- Plugins js-->
+    <script src="{{ asset('auth/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('auth/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('auth/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script src="{{ asset('auth/libs/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
+
+    <script src="{{ asset('auth/js/pages/form-masks.init.js') }}"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
