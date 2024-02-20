@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <!-- start page title -->
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -11,7 +11,7 @@
                         <li class="breadcrumb-item active">Merchants</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Manage Merchants</h4>
+
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <h4 class="header-title">
-                                Merchants
+                                <h4 class="page-title">Manage Merchants</h4>
                             </h4>
                         </div>
                         <div class="text-sm-end col-md-8">
@@ -72,35 +72,33 @@
                                     <tr>
 
                                         @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'name',
-                                        'displayName' => 'User Name',
-                                        'width' => 2,
+                                        'name' => 'business_name',
+                                        'displayName' => 'MERCHANT',
+                                        'width' => 3,
                                         ])
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'email',
-                                        'displayName' => 'Registered Email',
+                                        'displayName' => 'E-MAIL',
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1">Business Name</th>
+                                        <th class="col-md-1">PHONE</th>
 
-                                        <th class="col-md-1">Registerd Phone</th>
-
-                                        <th class="col-md-2">Address</th>
 
                                         @include('livewire.util.datatable-sortable-th', [
                                         'name' => 'status',
-                                        'displayName' => 'Status',
-                                        'width' => 1,
-                                        ])
-                                        @include('livewire.util.datatable-sortable-th', [
-                                        'name' => 'Is Active?',
-                                        'displayName' => 'Is Active?',
+                                        'displayName' => 'REG STATUS',
                                         'width' => 1,
                                         ])
 
-                                        <th class="col-md-1 text-center">Action</th>
+                                        @include('livewire.util.datatable-sortable-th', [
+                                        'name' => 'Is Active?',
+                                        'displayName' => 'ACTIVE',
+                                        'width' => 1,
+                                        ])
+
+                                        <th class="col-md-1 text-center">ACTION</th>
                                     </tr>
                                 </thead>
 
@@ -110,19 +108,12 @@
 
                                     @foreach ($dealers as $d)
                                     <tr wire:key={{ $d->id }}>
+
                                         <td class="table-user">
                                             <img src="{{ asset('auth/images/users/user-3.jpg') }}" alt="table-user"
                                                 class="me-2 rounded-circle">
-                                            {{ $d->name }}
-                                            {{-- Showing registered user name only --}}
-                                        </td>
-                                        <td>
-                                            {{ $d->email }}
-                                            {{-- Showing registered user email only --}}
-                                        </td>
 
-                                        <td>
-                                            @if($d->organization)
+                                                @if($d->organization)
                                                 {{ $d->organization->business_name}}
                                             @else
                                                 <span class="badge bg-warning badge-lg">Incomplete</span>
@@ -130,17 +121,30 @@
                                         </td>
 
                                         <td>
+                                            {{ $d->email }}
+                                            {{-- Showing registered user email only --}}
+                                        </td>
+
+                                        {{-- <td>
+                                            @if($d->organization)
+                                                {{ $d->organization->business_name}}
+                                            @else
+                                                <span class="badge bg-warning badge-lg">Incomplete</span>
+                                            @endif
+                                        </td> --}}
+
+                                        <td>
                                             {{ $d->phone_number }}
                                             {{-- Showing registered user phone only --}}
                                         </td>
 
-                                        <td>
+                                        {{-- <td>
                                             @if($d->organization)
                                                 {{ $d->organization->business_address}}
                                             @else
                                                 <span class="badge bg-warning badge-lg">Incomplete</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
 
 
                                         <td>
@@ -182,7 +186,7 @@
                                                         data-bs-toggle="dropdown" href="#" role="button"
                                                         aria-haspopup="false" aria-expanded="false">
                                                         <i class="mdi mdi-chevron-down-box text-success"
-                                                            style="font-size: 24px;"></i>
+                                                            style="font-size: 18px;"></i>
                                                     </a>
 
                                                     <div class="dropdown-menu">

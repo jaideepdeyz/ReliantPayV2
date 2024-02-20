@@ -1,10 +1,12 @@
+<li class="menu-title">Merchants</li>
+
 <li class="menu-item">
-    <a href="#dealers" data-bs-toggle="collapse" class="menu-link">
+    <a href="#merchants" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-clipboard-account"></i></span>
         <span class="menu-text"> Merchants </span>
         <span class="menu-arrow"></span>
     </a>
-    <div class="collapse" id="dealers">
+    <div class="collapse" id="merchants">
         <ul class="sub-menu">
 
             <li class="menu-item">
@@ -15,6 +17,9 @@
         </ul>
     </div>
 </li>
+
+<li class="menu-title">Affiliates</li>
+
 <li class="menu-item">
 
     <a href="#menuAffiliates" data-bs-toggle="collapse" class="menu-link">
@@ -33,7 +38,11 @@
     </div>
 </li>
 
-            
+<li class="menu-title">MIS Reports</li>
+
+<li class="menu-title">Settings</li>
+
+
 {{-- <li class="menu-item">
     <a href="#menuAdministration" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-account-star"></i></span>
