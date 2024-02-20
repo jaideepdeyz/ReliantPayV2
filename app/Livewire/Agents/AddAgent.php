@@ -13,7 +13,32 @@ class AddAgent extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme = 'bootstrap';
+    #[Url(history::true)]
+    public $search = '';
+
+    #[Url(history::true)]
+    public $perPage = 10;
+
+    #[Url(history::true)]
+    public $sortBy = 'created_at';
+
+    #[Url(history::true)]
+    public $sortDirection = 'desc';
+
+    public function setSortBy($sortColumn)
+    {
+        Log::info('Entered Sort By in Admin Countries Listing for sorting by ' . $sortColumn);
+
+
+        if ($this->sortBy  === $sortColumn) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortDirection = 'asc';
+        }
+        $this->sortBy = $sortColumn;
+    }
+
+    // protected $paginationTheme = 'bootstrap';
 
     #[On('updatedAgent')]
     public function updatedAgent()
@@ -41,7 +66,10 @@ class AddAgent extends Component
 
     public function render()
     {
-        $agents = User::where('role', RoleEnum::AGENT->value)->where('organization_id', auth()->user()->organization_id)->get();
+        $agents = User::where('role', RoleEnum::AGENT->value)
+                    ->where('organization_id', auth()->user()->organization_id)
+                    ->orderBy($this->sortBy, $this->sortDirection)
+                    ->paginate($this->perPage);
         return view('livewire.agents.add-agent', compact('agents'))->layout('layouts.dashboard-layout');
     }
 }

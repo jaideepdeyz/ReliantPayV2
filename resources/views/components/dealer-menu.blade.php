@@ -1,4 +1,7 @@
 @if(Auth::user()->is_approved == 'Yes' && Auth::user()->is_active == 'Yes')
+
+<li class="menu-title">Agents</li>
+
 <li class="menu-item">
     <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="fas fa-users-cog"></i></span>
@@ -16,4 +19,8 @@
         </ul>
     </div>
 </li>
+
+<li class="menu-title">Reports</li>
+
+<li class="menu-title">Settings</li>
 @endif

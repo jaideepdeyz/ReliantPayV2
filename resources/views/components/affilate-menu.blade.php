@@ -1,3 +1,4 @@
+<li class="menu-title">Merchants</li>
 <li class="menu-item">
     <a href="#dealers" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-clipboard-account"></i></span>
@@ -15,7 +16,8 @@
         </ul>
     </div>
 </li>
-
+<li class="menu-title">Reports</li>
+<li class="menu-title">Settings</li>
 
 
 {{-- <li class="menu-item">

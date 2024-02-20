@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <!-- start page title -->
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -11,7 +11,7 @@
                         <li class="breadcrumb-item active">Manage Customers</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Manage Customers</h4>
+
             </div>
         </div>
     </div>
@@ -23,9 +23,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-4">
-                            <h4 class="header-title">
-                                Customers
-                            </h4>
+                            <h4 class="page-title">Manage Customers</h4>
                         </div>
                         <div class="text-sm-end col-md-8">
                             {{-- <a href="javascript:void(0);" class="btn btn-blue" data-bs-toggle="modal"
@@ -104,8 +102,8 @@
 
                         </div>
                     </div>
-                    @else 
-                    No data found 
+                    @else
+                    No data found
                     @endif
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -114,5 +112,5 @@
     <!-- end row -->
 
 
-    
+
 </div>
