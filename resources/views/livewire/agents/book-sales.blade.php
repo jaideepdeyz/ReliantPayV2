@@ -1,27 +1,64 @@
-<div class="row mb-5" x:data=''>
+<div class="row mb-3" x:data=''>
     <!-- start page title -->
     <div class="col-12">
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Reliant Pay</a></li>
-                    <li class="breadcrumb-item active">Agent Dashboard</li>
+                    <li class="breadcrumb-item">Agent Dashboard</li>
+                    <li class="breadcrumb-item active">Manage Sales</li>
                 </ol>
             </div>
-            <h4 class="page-title">Agent Dashboard</h4>
+
         </div>
     </div>
     <div class="col-md-12 mt-3">
         <div class="card h-100">
             <div class="card-header">
-                <h5 class="d-inline header-title mb-0">Incomplete Bookings</h5>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
+                <h5 class="d-inline header-title mb-0">Manage Sales Transactions</h5>
+
+
+                {{-- <button type="button" data-bs-toggle="modal" data-bs-target="#newBookingModal"
                     class="btn btn-blue float-right"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                         fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path
                             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
                     </svg> Create new
-                    Booking</button>
+                    Booking
+                </button> --}}
+
+                <div class="btn-group mb-2 float-right">
+
+                    <button type="button" class="btn dropdown-toggle btn-success p-2"
+
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                            fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                            <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                        </svg>
+                        Create New Transaction <i class="mdi mdi-chevron-down"></i>
+
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <a class="dropdown-item btn" data-bs-toggle="modal" data-bs-target="#newBookingModal"
+                            href="#">
+                            New Reservation
+                        </a>
+                        <a class="dropdown-item btn" data-bs-toggle="modal" data-bs-target="#newBookingModal"
+                            href="#">
+                            Reservation Cancellation
+                        </a>
+                        {{-- <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a> --}}
+                    </div>
+                </div><!-- /btn-group -->
+
+
             </div>
             <div class="card-body">
                 <div class="row mb-3">
