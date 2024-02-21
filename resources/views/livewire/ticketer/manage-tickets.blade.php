@@ -61,21 +61,21 @@
                             <tr>
                                 <td>{{ $booking->saleBooking->id}}</td>
                                 <td>
-                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                    @if($booking->saleBooking->service->service_name == ServiceEnum::FLIGHTS->value)
                                         {{ $booking->flightBooking->departure_date }}
                                     @else
                                         {{ $booking->amtrakBooking->departure_date }}
                                     @endif
                                 </td>
                                 <td>
-                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                    @if($booking->saleBooking->service->service_name == ServiceEnum::FLIGHTS->value)
                                         {{ $booking->flightBooking->departure_hour}}:{{ $booking->flightBooking->departure_minute}}
                                     @else
                                         {{ $booking->amtrakBooking->departure_hour}}:{{ $booking->amtrakBooking->departure_minute}}
                                     @endif
                                 </td>
                                 <td>
-                                    @if($booking->saleBooking->service->id == ServiceEnum::FLIGHTS->value)
+                                    @if($booking->saleBooking->service->service_name == ServiceEnum::FLIGHTS->value)
                                         {{ $booking->flightBooking->airline_name}}
                                     @else
                                        AMTRAK
