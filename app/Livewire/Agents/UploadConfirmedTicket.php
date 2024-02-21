@@ -49,7 +49,7 @@ class UploadConfirmedTicket extends Component
                 'app_id' => $this->bookingID,
             ], [
                 'confirmation_number' => $this->confirmation_number,
-                'ticket_upload' => $this->ticket_filepath->storeAs('public/Tickets/'. $this->bookingID, 'Ticket_' .'.' . $this->ticket_filepath->getClientOriginalExtension()),
+                'ticket_upload' => $this->ticket_filepath->storeAs('Tickets/'. $this->bookingID, 'Ticket_' .'.' . $this->ticket_filepath->getClientOriginalExtension()),
             ]);
 
             $booking = SaleBooking::where('id', $this->bookingID)->first();
