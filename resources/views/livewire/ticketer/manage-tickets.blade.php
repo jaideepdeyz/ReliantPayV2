@@ -53,6 +53,7 @@
                                 <th>Departure Time</th>
                                 <th>Carrier</th>
                                 <th>Confirmation Number</th>
+                                <th>Booking Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -87,6 +88,9 @@
                                     @else
                                         <span class="badge badge-outline-success">{{$booking->confirmation_number}}</span>
                                     @endif
+                                </td>
+                                <td>
+                                    {{ $booking->saleBooking->app_status }}
                                 </td>
                                 <td>
                                     <div class="btn-group dropdown">

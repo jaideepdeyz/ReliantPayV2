@@ -243,7 +243,6 @@ class AmtrackBookingService extends Component
             AmtrakBooking::updateOrCreate(
                 ['app_id' => $this->appID],
                 [
-                    'confirmation_number' => $this->confirmation_number,
                     'departure_location' => $this->departure_location,
                     'destination_location' => $this->destination_location,
                     'oneway_or_roundtrip' => $this->tripType,
@@ -269,12 +268,10 @@ class AmtrackBookingService extends Component
 
             if($this->saleType == 'Cancellation')
             {
-                Cancellation::updateOrCreate(
-                    ['sale_booking_id' => $this->appID],
-                    [
-                        'confirmation_number' => $this->confirmation_number,
-                    ]
-                );
+                $booking = SaleBooking::where('id', $this->appID)->first();
+                $booking->update([
+                    'confirmation_number' => $this->confirmation_number,
+                ]);
             }
 
             if ($this->itenary_screenshot) {

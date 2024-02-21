@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('app_id')->constrained('sale_bookings');
             $table->string('airline_name')->nullable();
-            $table->string('confirmation_number')->nullable();
             $table->string('departure_country')->nullable();
             $table->string('departure_location')->nullable();
             $table->date('departure_date')->nullable();

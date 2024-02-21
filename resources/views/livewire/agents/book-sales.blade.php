@@ -63,16 +63,23 @@
                 <div class="row mb-3">
                     <div class="col-md-9">
                         <div class="form-floating">
-                            <input wire:model.live.debounce.800ms="search" class="form-control">
-                            <label for="">Search by Name, Email or Phone</label>
+                            <input wire:model.live.debounce.200ms="search" class="form-control">
+                            <label for="">Search by Name, Email, Confirmation # ..</label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating">
                             <select wire:model.live.debounce.800ms="statusSearch" class="form-select">
                                 <option value="" class="select">Select Status</option>
-                                <option value="{{StatusEnum::DRAFT->value}}">Draft</option>
-                                <option value="{{StatusEnum::PENDING->value}}">{{StatusEnum::PENDING->value}}</option>
+                                <option value="{{StatusEnum::DRAFT->value}}">Incomplete</option>
+                                <option value="{{StatusEnum::SENT_FOR_AUTH->value}}">Authorization Pending</option>
+                                <option value="{{StatusEnum::AUTHORIZED->value}}">Authorized</option>
+                                <option value="{{StatusEnum::PAYMENT_DONE->value}}">Payment Completed</option>
+                                <option value="{{StatusEnum::TICKET_ISSUED->value}}">Ticket Issued</option>
+                                <option value="{{StatusEnum::CANCELLATION_REQUESTED->value}}">Cancellation Initiated</option>
+                                <option value="{{StatusEnum::TICKET_CANCELLED->value}}">Ticket Cancelled</option>
+                                <option value="{{StatusEnum::REFUND_REQUESTED->value}}">Refund Initiated</option>
+                                <option value="{{StatusEnum::REFUNDED->value}}">Refunded</option>
                             </select>
                             <label for="">Search by Status</label>
                         </div>
@@ -88,6 +95,7 @@
                                 <th>Type</th>
                                 <th>Booking Date</th>
                                 <th>Service</th>
+                                <th>Confirmation #</th>
                                 <th>Customer's Name</th>
                                 <th>Customer's Phone</th>
                                 <th>Customer's Email</th>
@@ -102,6 +110,7 @@
                                 <td>{{ $booking->sale_type }}</td>
                                 <td>{{ Carbon\Carbon::parse($booking->created_at)->format('F j, Y') }}</td>
                                 <td>{{ $booking->service->service_name }}</td>
+                                <td>{{ $booking->confirmation_number }}</td>
                                 <td>{{ $booking->customer_name }}</td>
                                 <td>{{ $booking->customer_phone }}</td>
                                 <td>{{ $booking->customer_email }}</td>

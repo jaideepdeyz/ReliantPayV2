@@ -55,6 +55,7 @@ class UploadConfirmedTicket extends Component
             $booking = SaleBooking::where('id', $this->bookingID)->first();
             $booking->update([
                 'app_status' => StatusEnum::TICKET_ISSUED->value,
+                'confirmation_number' => $this->confirmation_number,
             ]);
 
             DB::commit();

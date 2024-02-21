@@ -194,16 +194,17 @@ class BookSales extends Component
         ->get();
 
         $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)
-        ->whereIn('app_status', [
-            StatusEnum::DRAFT->value,
-            StatusEnum::PENDING->value,
-            // StatusEnum::PAYMENT_DONE->value,
-            ])
+        // ->whereIn('app_status', [
+        //     StatusEnum::DRAFT->value,
+        //     StatusEnum::PENDING->value,
+        //     // StatusEnum::PAYMENT_DONE->value,
+        //     ])
         ->when($this->search, function($query){
             $query->where('id', 'like', '%'.$this->search.'%')
             ->orWhere('customer_name', 'like', '%'.$this->search.'%')
             ->orWhere('customer_email', 'like', '%'.$this->search.'%')
-            ->orWhere('customer_phone', 'like', '%'.$this->search.'%');
+            ->orWhere('customer_phone', 'like', '%'.$this->search.'%')
+            ->orWhere('confirmation_number', 'like', '%'.$this->search.'%');
         })->when($this->statusSearch, function($query){
             $query->where('app_status', $this->statusSearch);
         })

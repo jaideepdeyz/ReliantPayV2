@@ -48,9 +48,17 @@ class PaymentController extends Controller
             if ($gwResponse['result'] == "1")
             {
                 $salebooking = SaleBooking::where('order_id', $gwResponse['order-id'])->first();
-                $salebooking->update([
-                    'app_status' => StatusEnum::PAYMENT_DONE,
-                ]);
+                if($salebooking->sale_type == 'Cancellation')
+                {
+                    $salebooking->update([
+                        'app_status' => StatusEnum::CANCELLATION_REQUESTED,
+                    ]);
+                } else {
+                    $salebooking->update([
+                        'app_status' => StatusEnum::PAYMENT_DONE,
+                    ]);
+                }
+                
 
                 $successfulPaymentResponse = SuccessfulPaymentResponse::create([
                     'sale_booking_id' => $salebooking->id,
@@ -80,6 +88,9 @@ class PaymentController extends Controller
                         $departureDate = $salebooking->amtrakBooking->departure_date;
                         break;
                 }
+
+                // switch by sale_type  
+                
 
                 $mailData = [
                     'bookingId' => $salebooking->id,

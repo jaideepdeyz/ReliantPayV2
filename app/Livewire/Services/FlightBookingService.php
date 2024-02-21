@@ -273,7 +273,6 @@ class FlightBookingService extends Component
                 ['app_id' => $this->appID],
                 [
                     'airline_name' => $this->airline_name,
-                    'confirmation_number' => $this->confirmation_number,
                     'departure_country' => $this->departureCountry,
                     'departure_location' => $this->departure_location,
                     'departure_date' => $this->departure_date,
@@ -296,14 +295,14 @@ class FlightBookingService extends Component
                 ]
             );
 
+            
+
             if($this->saleType == 'Cancellation')
             {
-                Cancellation::updateOrCreate(
-                    ['sale_booking_id' => $this->appID],
-                    [
-                        'confirmation_number' => $this->confirmation_number,
-                    ]
-                );
+                $booking = SaleBooking::where('id', $this->appID)->first();
+                $booking->update([
+                    'confirmation_number' => $this->confirmation_number,
+                ]);
             }
 
             if ($this->itenary_screenshot) {

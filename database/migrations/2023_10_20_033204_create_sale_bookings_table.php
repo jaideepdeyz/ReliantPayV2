@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('organization_id');
             $table->foreignId('service_id')->constrained('service_masters');
             $table->string('sale_type')->nullable();
+            $table->string('confirmation_number')->nullable();
             $table->string('customer_id')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('customer_email')->nullable();

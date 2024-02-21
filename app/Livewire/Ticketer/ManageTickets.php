@@ -14,7 +14,10 @@ class ManageTickets extends Component
 
     public function render()
     {
+        
+
         $confirmedBookings = TicketBookingMode::where('bookedThroughReservationAssistance', 'Yes')
+        ->orderBy('departure_date', 'ASC')
         ->paginate(10);
         return view('livewire.ticketer.manage-tickets', [
             'confirmedBookings' => $confirmedBookings

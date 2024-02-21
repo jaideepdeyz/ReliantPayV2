@@ -121,7 +121,7 @@
                                             {{-- show upload ticket in below case based on user role and ticket booking mode --}}
                                                 @if(Auth::User()->role == RoleEnum::AGENT->value && $booking->app_status == StatusEnum::PAYMENT_DONE->value)
                                                 @switch($booking->ticketBooking->bookedThroughReservationAssistance)
-                                                    @case('Yes')
+                                                    @case('No')
                                                     <a class="dropdown-item"
                                                         href="{{ route('uploadTicket', $booking->id) }}"><i
                                                             class="mdi mdi-upload me-2 text-primary vertical-middle"></i>Upload Ticket</a>

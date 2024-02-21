@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('amtrak_bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('app_id')->constrained('sale_bookings');
-            $table->string('confirmation_number')->nullable();
             $table->string('departure_location')->nullable();
             $table->date('departure_date')->nullable();
             $table->string('departure_hour')->nullable();
