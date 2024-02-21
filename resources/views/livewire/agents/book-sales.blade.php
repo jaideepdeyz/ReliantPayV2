@@ -115,21 +115,29 @@
                                 <td>{{ $booking->customer_phone }}</td>
                                 <td>{{ $booking->customer_email }}</td>
                                 <td>
-                                    @if ($booking->app_status == StatusEnum::DRAFT->value)
-                                    <span class="badge badge-outline-danger ">Incomplete</span>
-                                    @elseif($booking->app_status == StatusEnum::PENDING->value)
-                                    <span class="badge badge-outline-secondary">Authorization Pending</span>
-                                    @elseif($booking->app_status == StatusEnum::AUTHORIZED->value)
-                                    <span class="badge badge-outline-info">Authorized</span>
-                                    @elseif($booking->app_status == StatusEnum::PAYMENT_DONE->value)
-                                    <span class="badge badge-outline-success">Payment Done</span>
-                                    @elseif($booking->app_status == StatusEnum::SENT_FOR_AUTH->value)
-                                    <span class="badge badge-outline-warning">{{ StatusEnum::SENT_FOR_AUTH->value
-                                        }}</span>
-                                    @endif
+                                    @switch($booking->app_status)
+                                        @case(StatusEnum::DRAFT->value)
+                                        @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                                        @case(StatusEnum::REFUND_REQUESTED->value)
+                                            <span class="badge bg-danger rounded-pill d-grid">{{$booking->app_status}}</span>
+                                            @break
+                                        @case(StatusEnum::PENDING->value)
+                                            <span class="badge bg-secondary rounded-pill d-grid">{{$booking->app_status}}</span>
+                                            @break
+                                        @case(StatusEnum::AUTHORIZED->value)
+                                        @case(StatusEnum::PAYMENT_DONE->value)
+                                        @case(StatusEnum::TICKET_ISSUED->value)
+                                        @case(StatusEnum::TICKET_CANCELLED->value)
+                                        @case(StatusEnum::REFUNDED->value)
+                                            <span class="badge bg-success rounded-pill d-grid">{{$booking->app_status}}</span>
+                                            @break
+                                        @case(StatusEnum::SENT_FOR_AUTH->value)
+                                            <span class="badge bg-warning rounded-pill d-grid">{{$booking->app_status}}</span>
+                                            @break
+                                    @endswitch
                                 </td>
                                 <td>
-                                    <div class="btn-group dropdown">
+                                    {{-- <div class="btn-group dropdown">
                                         <a href="javascript: void(0);"
                                             class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-xs"
                                             data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -161,7 +169,10 @@
 
 
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    @livewire('user.action-buttons', [
+                                        'appID' => $booking->id
+                                    ])
                                 </td>
                             </tr>
                             @endforeach

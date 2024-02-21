@@ -127,49 +127,7 @@ class BookSales extends Component
 
     }
 
-    public function selectId($id)
-    {
-        $this->selectedID = $id;
-    }
-
-    public function viewBooking($bookingID)
-    {
-        // dd($bookingID);
-        $booking = SaleBooking::find($bookingID);
-        switch($booking->service->service_name)
-        {
-            case ServiceEnum::FLIGHTS->value:
-                return redirect()->route('flightBooking', ['appID' => $bookingID]);
-            case ServiceEnum::AMTRAK->value:
-                return redirect()->route('amtrakBooking', ['appID' => $bookingID]);
-            default:
-                return redirect()->back();
-        }
-    }
-
-    public function deleteSaleBooking()
-    {
-
-        $this->sale = SaleBooking::find($this->selectedID);
-        try {
-            DB::beginTransaction();
-            $this->sale->flightBooking()->delete();
-            $this->sale->payment()->delete();
-            $this->sale->passengers()->delete();
-            $this->sale->delete();
-
-            $this->status = StatusEnum::DELETED;
-            $this->remarks = 'Sale Deleted';
-            $this->transactionLog();
-
-            DB::commit();
-            $this->reset('selectedID');
-            $this->dispatch('message', heading:'success',text:'Booking deleted')->to(AgentDashboard::class);
-        } catch (\Exception $e) {
-            DB::rollback();
-            dd($e->getMessage());
-        }
-    }
+    
 
     public function transactionLog()
     {

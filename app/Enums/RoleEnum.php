@@ -8,4 +8,5 @@ enum RoleEnum: string
     case AGENT = 'Agent';
     case AFFILIATE = 'Affilate';
     case TICKETER = 'Ticketer';
+    case FINANCE = 'Finance';
 }
