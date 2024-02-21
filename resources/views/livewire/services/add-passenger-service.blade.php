@@ -24,7 +24,7 @@
                             <div class="form-floating">
                                 <input type="text" class="form-control @error('full_name') is-invalid @enderror"
                                     wire:model="full_name" placeholder="Passenger Name">
-                                <label for="full_name" class="form-label">Passenger's Name</label>
+                                <label for="full_name" class="form-label">Passenger's Name <span class="text-danger"><sup>*</sup></span></label>
                                 @error('full_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -39,7 +39,7 @@
                                     <option value="Female">Female</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                <label for="gender" class="form-label">Gender</label>
+                                <label for="gender" class="form-label">Gender <span class="text-danger"><sup>*</sup></span></label>
                                 @error('gender')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -50,7 +50,7 @@
                             <div class="form-floating">
                                 <input type="date" class="form-control @error('dob') is-invalid @enderror"
                                     wire:model="dob" placeholder="Date of Birth">
-                                <label for="dob" class="form-label">Date of Birth</label>
+                                <label for="dob" class="form-label">Date of Birth (dd-mm-YYYY) <span class="text-danger"><sup>*</sup></span></label>
                                 @error('dob')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -73,7 +73,7 @@
                                 </select>
                                 <label for="relationship_to_card_holder" class="form-label">Relationship to Card
                                     Holder
-                                    ?</label>
+                                    ? <span class="text-danger"><sup>*</sup></span></label>
                                 @error('relationship_to_card_holder')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -89,7 +89,7 @@
                                     <option value="No">No</option>
                                 </select>
                                 <label for="is_disabled" class="form-label">Does the passenger have any disability
-                                    ?</label>
+                                    ? <span class="text-danger"><sup>*</sup></span></label>
                                 @error('is_disabled')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -107,7 +107,7 @@
                                     <option value="Needs Not Listed">Needs Not Listed</option>
                                 </select>
                                 <label for="disability_type" class="form-label">Disability Type
-                                    ?</label>
+                                    ? <span class="text-danger"><sup>*</sup></span></label>
                                 @error('disability_type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -123,7 +123,7 @@
                                     <option value="No">No</option>
                                 </select>
                                 <label for="requires_assistance" class="form-label">Passenger requires Airport/Station Assistance
-                                    ?</label>
+                                    ? <span class="text-danger"><sup>*</sup></span></label>
                                 @error('requires_assistance')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

@@ -25,22 +25,18 @@ class PdfController extends Controller
         $saleBooking = SaleBooking::find($bookingID);
         // $logo = public_path('website/images/reservation_assistance_logo.png');
 
-        // itenary
-        $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
-        $url = Storage::URL($itenaryUpload->document_filepath);
-        $path = public_path($url);
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $itenary = 'data:image/' . $type . ';base64,' . base64_encode($data);
+       
 
         $paymentDetails = Payment::where('app_id', $bookingID)->first();
         $charges = ChargeDetails::where('app_id', $bookingID)->get();
         $passengers = Passenger::where('app_id', $bookingID)->get();
+
+        
         switch($saleBooking->service->service_name)
         {
             case ServiceEnum::FLIGHTS->value:
                 $data = FlightBooking::where('app_id', $bookingID)->first();
-                $type = 'Flight';
+                $type = 'FLIGHT';
                 $carrier = $data->airline_name;
                 $departureLocation = $data->departureAirport->name;
                 $destinationLocation = $data->destinationAirport->name;
@@ -48,7 +44,7 @@ class PdfController extends Controller
                 break;
             case ServiceEnum::AMTRAK->value:
                 $data = AmtrakBooking::where('app_id', $bookingID)->first();
-                $type = 'Train';
+                $type = 'TRAIN';
                 $carrier = 'AMTRAK';
                 $departureLocation = $data->departureStation->station_location;
                 $destinationLocation = $data->destinationStation->station_location;
@@ -57,17 +53,40 @@ class PdfController extends Controller
             default:
                 break;
         }
-        $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers','itenary', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
-        $content = $pdf->download()->getOriginalContent();
-        $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
-        $authFile = AuthorizationForm::updateOrCreate(
-            ['app_id' => $bookingID,],
-            [
-                'unsigned_document' => 'public/Unsigned/authorization'.$saleBooking->id.'.pdf',
-            ]);
 
-        return view('pdf.showAuthFile', compact('authFile'));
+        if($saleBooking->sale_type == 'Cancellation')
+        {
+            $pdf = Pdf::loadView('pdf.cancellationCommonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
+            $content = $pdf->download()->getOriginalContent();
+            $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
+            $authFile = AuthorizationForm::updateOrCreate(
+                ['app_id' => $bookingID,],
+                [
+                    'unsigned_document' => 'public/Unsigned/authorization'.$saleBooking->id.'.pdf',
+                ]);
+    
+            return view('pdf.showAuthFile', compact('authFile'));
+    
+        } else {
+             // itenary
+            $itenaryUpload = TravelItenaryUpload::where('app_id', $bookingID)->first();
+            $url = Storage::URL($itenaryUpload->document_filepath);
+            $path = public_path($url);
+            $extension = pathinfo($path, PATHINFO_EXTENSION);
+            $file = file_get_contents($path);
+            $itenary = 'data:image/' . $extension . ';base64,' . base64_encode($file);
 
+            $pdf = Pdf::loadView('pdf.commonAuthorization', compact('background','signature', 'saleBooking', 'paymentDetails', 'charges', 'passengers','itenary', 'data', 'type', 'carrier', 'departureLocation', 'destinationLocation'));
+            $content = $pdf->download()->getOriginalContent();
+            $file = Storage::put('public/Unsigned/authorization'.$saleBooking->id.'.pdf', $content);
+            $authFile = AuthorizationForm::updateOrCreate(
+                ['app_id' => $bookingID,],
+                [
+                    'unsigned_document' => 'public/Unsigned/authorization'.$saleBooking->id.'.pdf',
+                ]);
+    
+            return view('pdf.showAuthFile', compact('authFile'));
+        }
     }
 
     public function showTicket($bookingID)

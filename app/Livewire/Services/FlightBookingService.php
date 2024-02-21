@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\FlightBooking;
 use App\Models\SaleBooking;
 use App\Models\TravelItenaryUpload;
+use App\Models\Cancellation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -73,23 +74,31 @@ class FlightBookingService extends Component
     public $departureAirports = [];
     public $destinationAirports = [];
 
+    public $saleType;
+    public $transport_number;
+    public $travel_class;
+
     public function mount($appID)
     {
         $this->appID = $appID;
         $flightBooking = FlightBooking::where('app_id', $this->appID)->first();
+        $booking = SaleBooking::where('id', $this->appID)->first();
+        $this->saleType = $booking->sale_type;
         if ($flightBooking) {
             // $this->airline_name = $flightBooking->airline_name;
             $this->query = $flightBooking->airline_name;
             $this->airline_name = $flightBooking->airline_name;
             $this->departureQuery = $flightBooking->departureAirport->name;
             $this->destinationQuery = $flightBooking->destinationAirport->name;
-            // $this->confirmation_number = $flightBooking->confirmation_number;
+            $this->confirmation_number = $flightBooking->confirmation_number;
             $this->departureCountry = $flightBooking->departure_country;
             $this->departure_location = $flightBooking->departure_location;
             $this->departure_date = $flightBooking->departure_date;
             $this->destination_location = $flightBooking->destination_location;
             $this->destinationCountry = $flightBooking->destination_country;
             $this->tripType = $flightBooking->oneway_or_roundtrip;
+            $this->transport_number = $flightBooking->transport_number;
+            $this->travel_class = $flightBooking->travel_class;
             if($this->tripType == 'Round Trip')
             {
                 $this->isRoundTrip = 'Yes';
@@ -227,15 +236,32 @@ class FlightBookingService extends Component
             'departureETAMinute' => 'required|digits:2',
         ]);
 
+        if($this->saleType == 'Cancellation')
+        {
+            $this->validate([
+                'confirmation_number' => 'required',
+                'transport_number' => 'required',
+                'travel_class' => 'required',
+            ], [
+                'confirmation_number.required' => 'Confirmation Number is required for Cancellation Service',
+                'transport_number.required' => 'Train Number is required for Cancellation Service',
+                'travel_class.required' => 'Travel Class is required for Cancellation Service',
+            ]);
+            
+        }
+
         $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
         if (!$itenary) {
-            $this->validate([
-                'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
-            ], [
-                'itenary_screenshot.required' => 'Please select a intenary to upload',
-                'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
-                'itenary_screenshot.max' => 'File size should not exceed 5MB',
-            ]);
+            if($this->saleType != 'Cancellation')
+            {
+                $this->validate([
+                    'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
+                ], [
+                    'itenary_screenshot.required' => 'Please select a intenary to upload',
+                    'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
+                    'itenary_screenshot.max' => 'File size should not exceed 5MB',
+                ]);
+            }
         }
 
         try {
@@ -247,7 +273,7 @@ class FlightBookingService extends Component
                 ['app_id' => $this->appID],
                 [
                     'airline_name' => $this->airline_name,
-                    // 'confirmation_number' => $this->confirmation_number,
+                    'confirmation_number' => $this->confirmation_number,
                     'departure_country' => $this->departureCountry,
                     'departure_location' => $this->departure_location,
                     'departure_date' => $this->departure_date,
@@ -265,8 +291,21 @@ class FlightBookingService extends Component
                     'return_eta_minute' => $this->returnETAMinute,
                     'departure_eta_date' => $this->departure_eta_date,
                     'return_eta_date' => $this->return_eta_date,
+                    'transport_number' => $this->transport_number,
+                    'travel_class' => $this->travel_class,
                 ]
             );
+
+            if($this->saleType == 'Cancellation')
+            {
+                Cancellation::updateOrCreate(
+                    ['sale_booking_id' => $this->appID],
+                    [
+                        'confirmation_number' => $this->confirmation_number,
+                    ]
+                );
+            }
+
             if ($this->itenary_screenshot) {
                 $this->storeFile($this->itenary_screenshot, 'Flight Itenary');
             }

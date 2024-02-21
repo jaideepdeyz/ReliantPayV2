@@ -17,6 +17,8 @@ enum StatusEnum: string
     case DELETED = 'Deleted'; // Sales Cahrgedback by customer
     case PAYMENT_DONE = 'Payment Done';
     case TICKET_ISSUED = 'Ticket Issued';
-
-
+    case CANCELLATION_REQUESTED = 'Cancellation Requested'; // this is for internal customers only initiated by agent, need to show apps with this status to ticketer login
+    case TICKET_CANCELLED = 'Ticket Cancelled'; // will be updated by the ticketer login
+    case REFUND = 'Refund Requested'; // Refund Requested by ticketer login, need to show apps with this status to finance login
+    case REFUNDED = 'Refunded'; // Refund Issued by Finance Team
 }

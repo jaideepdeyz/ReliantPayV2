@@ -274,15 +274,6 @@
                                 </div>
 
 
-                                {{-- <div class="mb-3 col-md-6">
-                                    <label for="confirmation_number" class="form-label">Confirmation #</label>
-                                    <input class="form-control @error('confirmation_number') is-invalid @enderror"
-                                        wire:model="confirmation_number">
-                                    @error('confirmation_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div> --}}
-
                                 {{-- <div class="mb-3 col-md-4">
                                     <label for="no_days_hotel_car" class="form-label">No. of days (Hotel / Car)</label>
                                     <input type="text"
@@ -302,27 +293,54 @@
                                     @enderror
                                 </div>
 
-
-                                <div class="mb-3 col-md-12" style="position:relative"
-                                    x-data="{ uploading: false, progress: 0 }"
-                                    x-on:livewire-upload-start="uploading = true"
-                                    x-on:livewire-upload-finish="uploading = false"
-                                    x-on:livewire-upload-error="uploading = false"
-                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
-                                        (jpg,png)
-                                        <span class="text-danger"><sup>*</sup></span></label>
-                                    <input type="file"
-                                        class="form-control @error('itenary_screenshot') is-invalid @enderror"
-                                        wire:model="itenary_screenshot">
-                                    <span class="text-danger"> @error('itenary_screenshot')
-                                        {{ $message }}
-                                        @enderror </span>
-                                    <div class="mt-1" x-show="uploading"
-                                        style="position:absolute;bottom:-19px;width:96%">
-                                        <progress max="100" x-bind:value="progress"></progress>
+                                @if($saleType == 'Cancellation')
+                                    <div class="mb-3 col-md-4">
+                                        <label for="confirmation_number" class="form-label">Confirmation Number <span class="text-danger"><sup>*</sup></span></label>
+                                        <input class="form-control @error('is-invalid') confirmation_number @enderror"
+                                            wire:model="confirmation_number">
+                                        @error('confirmation_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label for="transport_number" class="form-label">Train Number <span class="text-danger"><sup>*</sup></span></label>
+                                        <input class="form-control @error('is-invalid') transport_number @enderror"
+                                            wire:model="transport_number">
+                                        @error('transport_number')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label for="travel_class" class="form-label">Travel Class <span class="text-danger"><sup>*</sup></span></label>
+                                        <input class="form-control @error('is-invalid') travel_class @enderror"
+                                            wire:model="travel_class">
+                                        @error('travel_class')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @else
+                                    {{-- itenary_screenshot section  --}}
+                                    <div class="mb-3 col-md-12" style="position:relative"
+                                        x-data="{ uploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="uploading = true"
+                                        x-on:livewire-upload-finish="uploading = false"
+                                        x-on:livewire-upload-error="uploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                        <label for="itenary_screenshot" class="form-label">Screenshot of Travel Itenary
+                                            (jpg, png)
+                                            <span class="text-danger"><sup>*</sup></span></label>
+                                        <input type="file"
+                                            class="form-control @error('itenary_screenshot') is-invalid @enderror"
+                                            wire:model="itenary_screenshot">
+                                        <span class="text-danger"> @error('itenary_screenshot')
+                                            {{ $message }}
+                                            @enderror </span>
+                                        <div class="mt-1" x-show="uploading"
+                                            style="position:absolute;bottom:-19px;width:96%">
+                                            <progress max="100" x-bind:value="progress"></progress>
+                                        </div>
+                                    </div>
+                                @endif
 
                                 <div class="mb-3 col-md-12 action-buttons d-flex justify-content-between">
                                     <button type="submit"

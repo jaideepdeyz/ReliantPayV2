@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('return_eta_hour')->nullable();
             $table->string('return_eta_minute')->nullable();
             $table->string('no_days_hotel_car')->nullable();
+            $table->string('transport_number')->nullable();
+            $table->string('travel_class')->nullable();
             $table->longText('comments')->nullable();
             $table->timestamps();
             $table->softDeletes();

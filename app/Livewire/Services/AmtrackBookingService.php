@@ -5,6 +5,7 @@ namespace App\Livewire\Services;
 use App\Models\AmtrakBooking;
 use App\Models\SaleBooking;
 use App\Models\TrainStation;
+use App\Models\Cancellation;
 use App\Models\TravelItenaryUpload;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -61,16 +62,25 @@ class AmtrackBookingService extends Component
     public $departureStations = [];
     public $destinationStations = [];
 
+    public $saleType;
+    public $transport_number;
+    public $travel_class;
+
     public function mount($appID)
     {
         $this->appID = $appID;
+        $booking = SaleBooking::where('id', $this->appID)->first();
+        $this->saleType = $booking->sale_type;
+
         $amtrakBooking = AmtrakBooking::where('app_id', $this->appID)->first();
         if ($amtrakBooking) {
-            // $this->confirmation_number = $flightBooking->confirmation_number;
+            $this->confirmation_number = $amtrakBooking->confirmation_number;
             $this->departure_location = $amtrakBooking->departure_location;
             $this->departure_date = $amtrakBooking->departure_date;
             $this->destination_location = $amtrakBooking->destination_location;
             $this->tripType = $amtrakBooking->oneway_or_roundtrip;
+            $this->transport_number = $amtrakBooking->transport_number;
+            $this->travel_class = $amtrakBooking->travel_class;
             if($this->tripType == 'Round Trip')
             {
                 $this->isRoundTrip = 'Yes';
@@ -199,15 +209,33 @@ class AmtrackBookingService extends Component
             'departureETAMinute.digits' => 'Departure ETA Minute must be 2 digits',
         ]);
 
+        if($this->saleType == 'Cancellation')
+        {
+            $this->validate([
+                'confirmation_number' => 'required',
+                'transport_number' => 'required',
+                'travel_class' => 'required',
+            ], [
+                'confirmation_number.required' => 'Confirmation Number is required for Cancellation Service',
+                'transport_number.required' => 'Train Number is required for Cancellation Service',
+                'travel_class.required' => 'Travel Class is required for Cancellation Service',
+            ]);
+            
+        }
+
+       
         $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
         if (!$itenary) {
-            $this->validate([
-                'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
-            ], [
-                'itenary_screenshot.required' => 'Please select a intenary to upload',
-                'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
-                'itenary_screenshot.max' => 'File size should not exceed 5MB',
-            ]);
+            if($this->saleType != 'Cancellation')
+            {
+                $this->validate([
+                    'itenary_screenshot' => 'required|mimes:jpeg,jpg,png|max:5098',
+                ], [
+                    'itenary_screenshot.required' => 'Please select a intenary to upload',
+                    'itenary_screenshot.mimes' => 'Please select a valid file type (jpeg, jpg, png)',
+                    'itenary_screenshot.max' => 'File size should not exceed 5MB',
+                ]);
+            }
         }
 
         try {
@@ -215,7 +243,7 @@ class AmtrackBookingService extends Component
             AmtrakBooking::updateOrCreate(
                 ['app_id' => $this->appID],
                 [
-                    // 'confirmation_number' => $this->confirmation_number,
+                    'confirmation_number' => $this->confirmation_number,
                     'departure_location' => $this->departure_location,
                     'destination_location' => $this->destination_location,
                     'oneway_or_roundtrip' => $this->tripType,
@@ -233,9 +261,21 @@ class AmtrackBookingService extends Component
                     'return_eta_date' => $this->return_eta_date,
                     'return_eta_hour' => $this->returnETAHour,
                     'return_eta_minute' => $this->returnETAMinute,
+                    'transport_number' => $this->transport_number,
+                    'travel_class' => $this->travel_class,
 
                 ]
             );
+
+            if($this->saleType == 'Cancellation')
+            {
+                Cancellation::updateOrCreate(
+                    ['sale_booking_id' => $this->appID],
+                    [
+                        'confirmation_number' => $this->confirmation_number,
+                    ]
+                );
+            }
 
             if ($this->itenary_screenshot) {
                 $this->storeFile($this->itenary_screenshot, 'AMTRAK Itenary');

@@ -16,15 +16,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
                     <span>
                         @switch($bookingDetails->app_status)
                             @case(StatusEnum::AUTHORIZED->value)
                             @case(StatusEnum::PAYMENT_DONE->value)
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
-                                    target="_blank" class="btn btn-primary">Completion Certificate</a>
+                                    target="_blank" class="btn btn-danger">Completion Certificate</a>
+                                <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a>
                             @break
+                            @default
+                                <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
+                                @break
                         @endswitch
                     </span>
                 </div>
@@ -42,14 +45,14 @@
                             <tr>
                                 <td><strong>Booking ID:</strong></td>
                                 <td>{{ $bookingDetails->id }}</td>
-                                <td><strong>Agent Name:</strong></td>
-                                <td>{{ $bookingDetails->agent->name }}</td>
+                                <td class="table-info"><strong>Agent Name:</strong></td>
+                                <td class="table-info">{{ $bookingDetails->agent->name }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Service Type:</strong></td>
-                                <td>{{ $bookingDetails->service->service_name }}</td>
-                                <td><strong>Booking Status:</strong></td>
-                                <td>{{ $bookingDetails->app_status }}</td>
+                                <td>{{$bookingDetails->service->service_name }} ({{ $bookingDetails->sale_type}})</td>
+                                <td class="table-success"><strong>Booking Status:</strong></td>
+                                <td class="table-success">{{ $bookingDetails->app_status }}</td>
                             </tr>
                             <tr>
                                 <td><strong>Customer's Name:</strong></td>
