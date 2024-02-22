@@ -63,7 +63,7 @@ class BaseUserSeeder extends Seeder
             'name' => 'FINANCE',
             'email' => 'finance@g.com',
             'phone_number' => '1234500222',
-            'role' => 'Ticketer',
+            'role' => 'Finance',
             'password' => Hash::make('Finace@123#'),
             'is_active' => 'Yes',
             'is_approved' => 'Yes',

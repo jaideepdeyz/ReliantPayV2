@@ -14,8 +14,6 @@ class BaseOrgSeeder extends Seeder
     {
         \App\Models\Organization::create([
             'user_id' => 1,
-            'name' => 'Reliant Payments',
-            'affiliate_id' => 1,
             'business_name' => 'Reliant Payment Systems',
             'business_phone' => '9591989321',
             'status' => 'Approved',
