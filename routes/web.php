@@ -30,6 +30,7 @@ use App\Livewire\Admin\ManageAffiliates;
 use App\Livewire\Admin\ManageAgents;
 use App\Livewire\Admin\ManageOrganizations;
 use App\Livewire\Admin\ManageSales;
+use App\Livewire\Admin\ManageUsers;
 use App\Livewire\Affilate\AffilateDashboard;
 use App\Livewire\Affilate\ManageMerchants;
 use App\Livewire\Agents\AgentDashboard;
@@ -175,6 +176,7 @@ Route::middleware('auth', 'adminRoleCheck')->group(function () {
     Route::get('adminDashboard', AdminDashboard::class)->name('adminDashboard');
     Route::get('manageOrganizations', ManageOrganizations::class)->name('manageOrganizations');
     Route::get('manageAffiliates', ManageAffiliates::class)->name('manageAffiliates');
+    Route::get('manageUsers', ManageUsers::class)->name('manageUsers');
     Route::get('registrationByAdmin/{userID}', RegistrationByAdmin::class)->name('registrationByAdmin');
 });
 // payment Link routes

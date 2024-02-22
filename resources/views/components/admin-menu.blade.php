@@ -42,7 +42,23 @@
 
 <li class="menu-title">Settings</li>
 
+<li class="menu-item">
 
+    <a href="#menuUsers" data-bs-toggle="collapse" class="menu-link">
+        <span class="menu-icon"><i class="mdi mdi-account-multiple"></i></span>
+        <span class="menu-text"> Users </span>
+        <span class="menu-arrow"></span>
+    </a>
+    <div class="collapse" id="menuUsers">
+        <ul class="sub-menu">
+            <li class="menu-item">
+                <a href="{{ route('manageUsers') }}" class="menu-link">
+                    <span class="menu-text"> Manage Users </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
 {{-- <li class="menu-item">
     <a href="#menuAdministration" data-bs-toggle="collapse" class="menu-link">
         <span class="menu-icon"><i class="mdi mdi-account-star"></i></span>
