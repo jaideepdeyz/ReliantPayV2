@@ -44,6 +44,15 @@ class HomeController extends Controller
                     return redirect('login');
                 }
                 break;
+            case RoleEnum::FINANCE->value;
+            if (Auth::User()->is_active == 'Yes') {
+                return redirect()->route('financeDash');
+            } else {
+                Session::flush();
+                Auth::logout();
+                return redirect('login');
+            }
+            break;
             default:
                 return redirect()->route('login');
                 break;

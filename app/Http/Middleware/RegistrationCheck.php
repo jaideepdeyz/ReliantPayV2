@@ -52,6 +52,9 @@ class RegistrationCheck
             case RoleEnum::TICKETER->value:
                 return $next($request);
                 break;
+            case RoleEnum::FINANCE->value:
+                return $next($request);
+                break;
         }
     }
 }

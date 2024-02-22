@@ -12,6 +12,8 @@ class ManageUsers extends Component
 {
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
+
     #[On('operationComplete')]
     public function updatedAgent()
     {

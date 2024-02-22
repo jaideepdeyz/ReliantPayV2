@@ -46,6 +46,7 @@ use App\Livewire\Dealer\Registration\Confirmation;
 use App\Livewire\Dealer\Registration\DocumentUploads;
 use App\Livewire\Dealer\Registration\RegistrationByAdmin;
 use App\Livewire\Dealer\Registration\ServicesCompliances;
+use App\Livewire\Finance\FianceDashboard;
 use App\Livewire\Payment\MakePayment;
 use App\Livewire\Registration\ByInvite;
 use App\Livewire\Services\AmtrackBookingService;
@@ -53,7 +54,6 @@ use App\Livewire\Services\ChargeDetailService;
 use App\Livewire\Services\TransactionDetailsService;
 use App\Livewire\Ticketer\ManageTickets;
 use App\Livewire\User\ResetPassword;
-use App\Models\AmtrakBooking;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +169,9 @@ Route::middleware('auth')->group(function () {
 
     // Cancellation Routes
     Route::get('cancelBookingExternalCustomer/{appID}', ExternalCustomer::class)->name('cancelBookingExternalCustomer');
+
+    // Finance routes
+    Route::get('financeDash', FianceDashboard::class)->name('financeDash');
 });
 
 Route::middleware('auth', 'adminRoleCheck')->group(function () {
