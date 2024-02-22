@@ -8,6 +8,7 @@ use App\Livewire\Agents\BookSales;
 use App\Models\SaleBooking;
 use App\Models\TransactionLog;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ActionButtons extends Component
@@ -20,6 +21,12 @@ class ActionButtons extends Component
     public $selectedID;
     public $status;
     public $remarks;
+
+    #[On('operationCompleted')]
+    public function operationCompleted()
+    {
+        $this->render();
+    }
 
     public function mount($appID)
     {
@@ -49,6 +56,7 @@ class ActionButtons extends Component
                 return redirect()->back();
         }
     }
+
 
     public function deleteSaleBooking()
     {

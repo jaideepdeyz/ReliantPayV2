@@ -118,7 +118,9 @@
                                     @switch($booking->app_status)
                                         @case(StatusEnum::DRAFT->value)
                                         @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                                        @case(StatusEnum::TICKET_CANCELLED->value)
                                         @case(StatusEnum::REFUND_REQUESTED->value)
+                                        @case(StatusEnum::REFUNDED->value)
                                             <span class="badge bg-danger rounded-pill d-grid">{{$booking->app_status}}</span>
                                             @break
                                         @case(StatusEnum::PENDING->value)
@@ -127,8 +129,6 @@
                                         @case(StatusEnum::AUTHORIZED->value)
                                         @case(StatusEnum::PAYMENT_DONE->value)
                                         @case(StatusEnum::TICKET_ISSUED->value)
-                                        @case(StatusEnum::TICKET_CANCELLED->value)
-                                        @case(StatusEnum::REFUNDED->value)
                                             <span class="badge bg-success rounded-pill d-grid">{{$booking->app_status}}</span>
                                             @break
                                         @case(StatusEnum::SENT_FOR_AUTH->value)

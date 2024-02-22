@@ -12,6 +12,7 @@ use Livewire\Component;
 class CancelBooking extends Component
 {
     public $appID;
+    public $booking;
     public $bookingType;
     public $isTicketIssued = 'No';
     public $remarks;
@@ -22,6 +23,7 @@ class CancelBooking extends Component
         $this->appID = $appID;
         $saleBooking = SaleBooking::find($appID);
         $this->bookingType = $saleBooking->sale_type;
+        $this->booking = $saleBooking;
         if($saleBooking->confirmation_number != null)
         {
             $this->isTicketIssued = 'Yes';
@@ -31,97 +33,102 @@ class CancelBooking extends Component
 
     public function cancelBooking()
     {
-       switch(auth()->user()->role)
-       {
-            case RoleEnum::AGENT->value:
-            if($this->bookingType == 'Cancellation')
+        try {
+            DB::beginTransaction();
+            switch(auth()->user()->role)
             {
-                try {
-                    DB::beginTransaction();
-                    $bookingCancellation = BookingCancellation::updateOrCreate(
-                        ['app_id' => $this->appID],
-                        [
-                            'agent_id' => auth()->user()->id,
-                            'organization_id' => auth()->user()->organization_id,
-                            'remarks' => $this->remarks,
-                        ]
-                    );
-    
-                   
-                    if($bookingCancellation->cancellation_receipt != null)
-                    {
-                        $status = StatusEnum::TICKET_CANCELLED->value;
-                    }
-                    else
-                    {
-                        $status = StatusEnum::CANCELLATION_REQUESTED->value;
-                    }
+                    case RoleEnum::AGENT->value:
+                        if($this->bookingType == 'Cancellation')
+                        {
+                            DB::beginTransaction();
+                                $bookingCancellation = BookingCancellation::updateOrCreate(
+                                    ['app_id' => $this->appID],
+                                    [
+                                        'agent_id' => auth()->user()->id,
+                                        'organization_id' => auth()->user()->organization_id,
+                                        'remarks' => $this->remarks,
+                                    ]
+                                );
+                
+                            
+                                if($bookingCancellation->cancellation_receipt != null)
+                                {
+                                    $status = StatusEnum::TICKET_CANCELLED->value;
+                                }
+                                else
+                                {
+                                    $status = StatusEnum::CANCELLATION_REQUESTED->value;
+                                }
 
-                    $sale = SaleBooking::find($this->appID);
-                    $sale->update([
-                        'app_status' => $status,
-                    ]);
-    
-                    // save uploaded cancellation receipt todo
-                    DB::commit();
-                } catch (\Exception $e) {
-                    DB::rollback();
-                    $this->dispatch('error', 'Error: '.$e->getMessage());
-                }
-               
-            } else {
-                $bookingCancellation = BookingCancellation::updateOrCreate(
-                    ['app_id' => $this->appID],
-                    [
-                        'agent_id' => auth()->user()->id,
-                        'organization_id' => auth()->user()->organization_id,
-                        'remarks' => $this->remarks,
-                    ]
-                );
+                                $sale = SaleBooking::find($this->appID);
+                                $sale->update([
+                                    'app_status' => $status,
+                                ]);
+                
+                        
+                        
+                        } else {
+                            $bookingCancellation = BookingCancellation::updateOrCreate(
+                                ['app_id' => $this->appID],
+                                [
+                                    'agent_id' => auth()->user()->id,
+                                    'organization_id' => auth()->user()->organization_id,
+                                    'remarks' => $this->remarks,
+                                ]
+                            );
 
-               if($this->isTicketIssued == 'Yes')
-               {
-                    $status = StatusEnum::REFUND_REQUESTED->value;
-               }
-               else
-               {
-                    $status = StatusEnum::TICKET_CANCELLED->value;
-               }
+                            if($this->isTicketIssued == 'Yes')
+                            {
+                                    $status = StatusEnum::REFUND_REQUESTED->value;
+                            }
+                            else
+                            {
+                                    $status = StatusEnum::TICKET_CANCELLED->value;
+                            }
 
-                $sale = SaleBooking::find($this->appID);
-                $sale->update([
-                    'app_status' => $status,
-                ]);
+                            $sale = SaleBooking::find($this->appID);
+                            $sale->update([
+                                'app_status' => $status,
+                            ]);
+                        }
+                    break;
+
+                    case RoleEnum::FINANCE->value:
+                        $bookingCancellation = BookingCancellation::updateOrCreate(
+                            ['app_id' => $this->appID],
+                            [
+                                'agent_id' => auth()->user()->id,
+                                'organization_id' => auth()->user()->organization_id,
+                                'remarks' => $this->remarks,
+                            ]
+                        );
+
+                        // todo store cancellation receipt if file is uploaded 
+
+                        if($bookingCancellation->cancellation_receipt != null)
+                        {
+                            $status = StatusEnum::REFUNDED->value;
+                        }
+                        else
+                        {
+                            $status = StatusEnum::REFUND_REQUESTED->value;
+                        }
+
+                        $sale = SaleBooking::find($this->appID);
+                        $sale->update([
+                            'app_status' => $status,
+                        ]);
+                    break;
             }
-            break;
-
-            case RoleEnum::FINANCE->value:
-                $bookingCancellation = BookingCancellation::updateOrCreate(
-                    ['app_id' => $this->appID],
-                    [
-                        'agent_id' => auth()->user()->id,
-                        'organization_id' => auth()->user()->organization_id,
-                        'remarks' => $this->remarks,
-                    ]
-                );
-
-                // todo store cancellation receipt if file is uploaded 
-
-                if($bookingCancellation->cancellation_receipt != null)
-                {
-                    $status = StatusEnum::REFUNDED->value;
-                }
-                else
-                {
-                    $status = StatusEnum::REFUND_REQUESTED->value;
-                }
-
-                $sale = SaleBooking::find($this->appID);
-                $sale->update([
-                    'app_status' => $status,
-                ]);
-            break;
-       }
+            DB::commit();
+            $this->dispatch('hideModal');
+            $this->dispatch('operationCompleted');
+            return redirect()->route('bookSales');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e->getMessage());
+        }
+       
     }
 
     public function render()

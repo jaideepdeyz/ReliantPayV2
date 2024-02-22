@@ -15,7 +15,7 @@
                     @elseif($sale->service->service_name == ServiceEnum::AMTRAK->value)
                         <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
                     @endif
-                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID': $sale->id}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
                 @break
 
                 @case(StatusEnum::AUTHORIZED->value)
@@ -25,7 +25,7 @@
                     @elseif($sale->service->service_name == ServiceEnum::AMTRAK->value)
                         <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
                     @endif
-                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID': $sale->id}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
                 @break
 
                 @case(StatusEnum::PAYMENT_DONE->value)
@@ -44,7 +44,7 @@
                     @elseif($sale->service->service_name == ServiceEnum::AMTRAK->value)
                         <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
                     @endif
-                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID': $sale->id}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                    <a class="dropdown-item"  wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"></i>Cancel Booking</a>
                 @break
 
                 @case(StatusEnum::TICKET_ISSUED->value)
@@ -54,7 +54,7 @@
                         <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View Details</a>
                     @endif
                     <a class="dropdown-item" href="{{route('showTicket', $sale->id)}}"><i class="mdi mdi-eye me-2 text-primary vertical-middle"></i>View Ticket</a>
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-delete me-2 text-danger vertical-middle" wire:click="showCancellationModal({{$sale->id}})"></i>Cancel Booking</a>
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
                 @break
 
                 @default
