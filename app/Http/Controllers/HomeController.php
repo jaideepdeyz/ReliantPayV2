@@ -14,6 +14,7 @@ class HomeController extends Controller
     public function redirector()
     {
         switch (Auth::User()->role) {
+            case RoleEnum::SADMIN->value:
             case RoleEnum::ADMIN->value:
                 return redirect()->route('adminDashboard');
                 break;

@@ -15,13 +15,15 @@ class AdminRoleCheck
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::User()->role != RoleEnum::ADMIN->value)
-        {
-            return redirect()->route('dashboard');
+        switch (Auth::user()->role) {
+            case RoleEnum::ADMIN->value:
+            case RoleEnum::SADMIN->value:
+                return $next($request);
+            default:
+                return redirect()->route('dashboard');
         }
-
-        return $next($request);
     }
 }

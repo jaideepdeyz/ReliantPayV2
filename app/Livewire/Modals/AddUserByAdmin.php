@@ -6,7 +6,9 @@ use App\Livewire\Admin\ManageUsers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use App\Mail\UserAddedByAdminConfirmationMail;
 
 class AddUserByAdmin extends Component
 {
@@ -54,13 +56,14 @@ class AddUserByAdmin extends Component
             // ]);
 
             DB::commit();
-            // $mailData = [
-            //     'name' => $user->name,
-            //     'email' => $user->email,
-            //     'organization_name' => $user->organization->business_name,
-            // ];
+            $mailData = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+                'password' => 'User@123#',
+            ];
 
-            // Mail::to($user->email)->send(new AgentCreationMail($mailData));
+            Mail::to($user->email)->send(new UserAddedByAdminConfirmationMail($mailData));
             $this->dispatch('hideModal');
             $this->dispatch('operationComplete');
             $this->dispatch('message', heading:'success',text:'User added successfully')->to(ManageUsers::class);

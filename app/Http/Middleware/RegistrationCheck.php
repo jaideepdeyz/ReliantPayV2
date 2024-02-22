@@ -42,6 +42,7 @@ class RegistrationCheck
                      return $next($request);
                 }
                 break;
+            case RoleEnum::SADMIN->value:
             case RoleEnum::ADMIN->value:
                     $userID = null;
                     return $next($request);

@@ -60,6 +60,7 @@
                         </a>
                     </li>
                     @switch(Auth::user()->role)
+                    @case(RoleEnum::SADMIN->value)
                     @case(RoleEnum::ADMIN->value)
                     <x-admin-menu />
                     @break
