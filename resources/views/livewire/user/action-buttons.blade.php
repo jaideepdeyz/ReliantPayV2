@@ -6,7 +6,7 @@
                 @case(StatusEnum::DRAFT->value)
                     <a class="dropdown-item" href="#" wire:click="viewBooking({{ $sale->id }})"><i class="mdi mdi-pencil me-2 text-success vertical-middle"></i>Complete Booking</a>
 
-                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#alertModal" wire:click='selectId({{ $sale->id }})'><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
+                    <a class="dropdown-item" href="#" wire:click='deleteSale({{ $sale->id }})' wire:confirm><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Delete</a>
                 @break
 
                 @case(StatusEnum::SENT_FOR_AUTH->value)
@@ -20,12 +20,15 @@
 
                 @case(StatusEnum::AUTHORIZED->value)
                     <a class="dropdown-item" href="{{ route('payment.stepOnePay', $sale->id) }}"><i class="mdi mdi-currency-usd me-2 text-danger vertical-middle"></i>Charge Card</a>
-                    @if($sale->service->service_name == ServiceEnum::FLIGHTS->value)
-                        <a class="dropdown-item" href="{{ route('airlineBooking.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
-                    @elseif($sale->service->service_name == ServiceEnum::AMTRAK->value)
-                        <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
-                    @endif
-                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                        @if($sale->service->service_name == ServiceEnum::FLIGHTS->value)
+                            <a class="dropdown-item" href="{{ route('airlineBooking.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                        @elseif($sale->service->service_name == ServiceEnum::AMTRAK->value)
+                            <a class="dropdown-item" href="{{ route('amtrakBookingDetails.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View</a>
+                        @endif
+
+                        @if($sale->sale_type != 'Cancellation')
+                            <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                        @endif
                 @break
 
                 @case(StatusEnum::PAYMENT_DONE->value)
@@ -67,7 +70,7 @@
             @endswitch
         </div>
 
-    {{-- Confirm Deletion Modal --}}
+    {{-- Confirm Deletion Modal
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="rejectionModalLabel" aria-hidden="true"
         wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
@@ -80,5 +83,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>

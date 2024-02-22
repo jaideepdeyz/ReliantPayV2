@@ -37,30 +37,9 @@ class ActionButtons extends Component
 
     }
 
-    public function selectId($id)
+    public function deleteSale($id)
     {
         $this->selectedID = $id;
-    }
-
-    public function viewBooking($bookingID)
-    {
-        // dd($bookingID);
-        $sale = SaleBooking::find($bookingID);
-        switch($sale->service->service_name)
-        {
-            case ServiceEnum::FLIGHTS->value:
-                return redirect()->route('flightBooking', ['appID' => $bookingID]);
-            case ServiceEnum::AMTRAK->value:
-                return redirect()->route('amtrakBooking', ['appID' => $bookingID]);
-            default:
-                return redirect()->back();
-        }
-    }
-
-
-    public function deleteSaleBooking()
-    {
-
         $target = SaleBooking::find($this->selectedID);
         try {
             DB::beginTransaction();
@@ -88,10 +67,26 @@ class ActionButtons extends Component
 
             DB::commit();
             $this->reset('selectedID');
+            $this->dispatch('operationCompleted')->self();
             $this->dispatch('message', heading:'success',text:'Booking deleted')->to(BookSales::class);
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
+        }
+    }
+
+    public function viewBooking($bookingID)
+    {
+        // dd($bookingID);
+        $sale = SaleBooking::find($bookingID);
+        switch($sale->service->service_name)
+        {
+            case ServiceEnum::FLIGHTS->value:
+                return redirect()->route('flightBooking', ['appID' => $bookingID]);
+            case ServiceEnum::AMTRAK->value:
+                return redirect()->route('amtrakBooking', ['appID' => $bookingID]);
+            default:
+                return redirect()->back();
         }
     }
 

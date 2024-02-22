@@ -11,7 +11,7 @@
         <ul class="sub-menu">
             <li class="menu-item">
                 <a href="{{ route('bookSales') }}" class="menu-link">
-                    <span class="menu-text">New Sale </span>
+                    <span class="menu-text">Manage Sales </span>
                     {{-- <span class="menu-icon"><i class="fas fa-plane-departure"></i></span> --}}
                 </a>
             </li>
@@ -20,12 +20,12 @@
                     <span class="menu-text">All Bookings </span>
                 </a>
             </li> --}}
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="{{ route('authorizedSales') }}" class="menu-link">
                     <span class="menu-text">Sales Listing </span>
-                    {{-- <span class="menu-icon"><i class="fas fa-user-check"></i></span> --}}
+                    <span class="menu-icon"><i class="fas fa-user-check"></i></span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </li>

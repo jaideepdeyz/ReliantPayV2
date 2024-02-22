@@ -111,7 +111,7 @@ class ZohoSignController extends Controller
                 'amount_charged' => $saleBooking->payment->amount_charged,
             ]);
 
-            return redirect()->route('dashboard');
+            return redirect()->route('bookSales');
         } catch (SignException $e) {
             Log::info($e);
             return redirect()->back()->with('error', $e);
@@ -174,6 +174,7 @@ class ZohoSignController extends Controller
                     $saleBooking->update([
                         'app_status' => StatusEnum::AUTHORIZED->value,
                     ]);
+                    // return redirect()->route('bookSales');
                 } else {
                     // webhook for someother action
                     throw new Exception("Error Processing Request - 2", 2);
