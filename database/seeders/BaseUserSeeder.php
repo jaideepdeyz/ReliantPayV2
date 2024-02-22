@@ -13,6 +13,20 @@ class BaseUserSeeder extends Seeder
      */
     public function run(): void
     {
+        //create a Super Admin user
+        \App\Models\User::create([
+            'name' => 'Jaideep Dey',
+            'email' => 'jaideep.deyz@gmail.com',
+            'phone_number' => '9591989321',
+            'role' => 'Super Admin',
+            'password' => Hash::make('RoPH6Cr8bRow&S6!H3SW'),
+            'is_active' => 'Yes',
+            'is_approved' => 'Yes',
+            'organization_id' => 1,
+        ]);
+
+        
+
         //create an admin user
         \App\Models\User::create([
             'name' => 'Admin',
@@ -22,6 +36,7 @@ class BaseUserSeeder extends Seeder
             'password' => Hash::make('Password123#'),
             'is_active' => 'Yes',
             'is_approved' => 'Yes',
+            'organization_id' => 1,
         ]);
 
         \App\Models\User::create([
@@ -42,6 +57,17 @@ class BaseUserSeeder extends Seeder
             'password' => Hash::make('Ticketer@123#'),
             'is_active' => 'Yes',
             'is_approved' => 'Yes',
+            'organization_id' => 1,
+        ]);
+        \App\Models\User::create([
+            'name' => 'FINANCE',
+            'email' => 'finance@g.com',
+            'phone_number' => '1234500222',
+            'role' => 'Ticketer',
+            'password' => Hash::make('Finace@123#'),
+            'is_active' => 'Yes',
+            'is_approved' => 'Yes',
+            'organization_id' => 1,
         ]);
     }
 }

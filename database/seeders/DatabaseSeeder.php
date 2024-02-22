@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         //     'is_approved' => 'Yes'
         // ]);
 
+        $this->call(BaseOrgSeeder::class);
         $this->call(BaseUserSeeder::class);
         $this->call(AffiliateSeeder::class);
         $this->call(ProducServiceSeeder::class);
