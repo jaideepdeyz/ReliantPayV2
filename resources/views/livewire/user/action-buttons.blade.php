@@ -60,6 +60,11 @@
                     <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
                 @break
 
+                @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                @case(StatusEnum::REFUND_REQUESTED->value)
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel | Refund Booking</a>
+                @break
+
                 @default
                     @if($sale->service->service_name == ServiceEnum::FLIGHTS->value)
                         <a class="dropdown-item" href="{{ route('airlineBooking.show', $sale->id) }}"><i class="mdi mdi-eye me-2 text-success vertical-middle"></i>View Details</a>

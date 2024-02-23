@@ -68,7 +68,9 @@ class CancelBooking extends Component
                 
                         
                         
-                        } else {
+                        } 
+                        else 
+                        {
                             $bookingCancellation = BookingCancellation::updateOrCreate(
                                 ['app_id' => $this->appID],
                                 [

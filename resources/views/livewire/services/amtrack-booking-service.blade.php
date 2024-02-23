@@ -280,7 +280,7 @@
                                 @if($saleType == 'Cancellation')
                                     <div class="mb-3 col-md-4">
                                         <label for="confirmation_number" class="form-label">Confirmation Number <span class="text-danger"><sup>*</sup></span></label>
-                                        <input class="form-control @error('is-invalid') confirmation_number @enderror"
+                                        <input class="form-control @error('confirmation_number')  is-ivalid @enderror"
                                             wire:model="confirmation_number">
                                         @error('confirmation_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -288,7 +288,7 @@
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="transport_number" class="form-label">Train Number <span class="text-danger"><sup>*</sup></span></label>
-                                        <input class="form-control @error('is-invalid') transport_number @enderror"
+                                        <input class="form-control @error('transport_number') transport_number   @enderror"
                                             wire:model="transport_number">
                                         @error('transport_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -296,7 +296,7 @@
                                     </div>
                                     <div class="mb-3 col-md-4">
                                         <label for="travel_class" class="form-label">Travel Class <span class="text-danger"><sup>*</sup></span></label>
-                                        <input class="form-control @error('is-invalid') travel_class @enderror"
+                                        <input class="form-control @error('travel_class') is-invalid  @enderror"
                                             wire:model="travel_class">
                                         @error('travel_class')
                                         <div class="invalid-feedback">{{ $message }}</div>
