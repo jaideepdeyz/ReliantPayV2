@@ -49,14 +49,21 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-dark">Upload and Confirm</button>
+                            <button class="btn btn-dark">Upload and Confirm cancellation</button>
                         </div>
                     </form>
                 @endif
-
-                <div class="col-md-12">
-                    <button class="btn btn-danger" wire:click="cancelBooking">Cancel Booking</button>
-                </div>
+                
+                @switch($booking->app_status)
+                    @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                    @case(StatusEnum::REFUND_REQUESTED->value)
+                        {{-- Do nothing --}}
+                        @break
+                    @default
+                        <div class="col-md-12">
+                            <button class="btn btn-danger" wire:click="cancelBooking">Cancel Booking</button>
+                        </div>
+                @endswitch
                 
             </div>
     </div>
