@@ -9,9 +9,13 @@ use App\Models\BookingCancellation;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CancelBooking extends Component
 {
+
+    use WithFileUploads;
+    
     public $appID;
     public $booking;
     public $bookingType;
