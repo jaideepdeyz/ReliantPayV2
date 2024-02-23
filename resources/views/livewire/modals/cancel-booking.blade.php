@@ -35,10 +35,29 @@
                         </tr>
                     </table>
                 </div>
+                @if($booking->app_status == StatusEnum::CANCELLATION_REQUESTED->value || $booking->app_status == StatusEnum::REFUND_REQUESTED->value)
+                    <form wire:submit="saveCancellation" class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label for="receipt">Cancellation Receipt</label>
+                                <input type="file" wire:model="receipt" class="form-control @error('receipt') is-invalid @enderror">
+                                @error('receipt')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-dark">Upload and Confirm</button>
+                        </div>
+                    </form>
+                @endif
 
                 <div class="col-md-12">
                     <button class="btn btn-danger" wire:click="cancelBooking">Cancel Booking</button>
                 </div>
+                
             </div>
     </div>
 

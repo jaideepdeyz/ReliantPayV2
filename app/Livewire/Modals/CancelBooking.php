@@ -18,6 +18,11 @@ class CancelBooking extends Component
     public $isTicketIssued = 'No';
     public $remarks;
     public $receipt;
+    public $cancellation_charges;
+    public $refund_amount;
+
+    public $cancellationRequested = 'No';
+    public $refundRequested = 'No';
 
     public function mount($appID)
     {
@@ -25,9 +30,24 @@ class CancelBooking extends Component
         $saleBooking = SaleBooking::find($appID);
         $this->bookingType = $saleBooking->sale_type;
         $this->booking = $saleBooking;
+
         if($saleBooking->confirmation_number != null)
         {
             $this->isTicketIssued = 'Yes';
+        }
+
+        switch($saleBooking->app_status)
+        {
+            case StatusEnum::CANCELLATION_REQUESTED->value:
+                $this->cancellationRequested = 'Yes';
+                break;
+            case StatusEnum::REFUND_REQUESTED->value:
+                $this->refundRequested = 'Yes';
+                break;
+            default:
+                $this->cancellationRequested = 'No';
+                $this->refundRequested = 'No';
+                break;
         }
         
     }
@@ -132,6 +152,54 @@ class CancelBooking extends Component
             dd($e->getMessage());
         }
        
+    }
+
+    public function saveCancellation()
+    {
+        $this->validate([
+            'receipt' => 'required|mimes:jpeg,jpg,png',
+        ], [
+            'receipt.required' => 'Please upload a receipt',
+            'receipt.mimes' => 'Please upload a valid image file',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            BookingCancellation::updateOrCreate(
+                ['app_id' => $this->appID],
+                [
+                    'agent_id' => auth()->user()->id, 
+                    'organization_id' => auth()->user()->organization->id,
+                    'remarks' => $this->remarks,
+                    'cancellation_charges' => $this->cancellation_charges,
+                    'refund_amount' => $this->refund_amount,
+                    'cancellation_receipt' => $this->receipt->storeAs('public/CancellationReceipts/' . $this->appID, 'cancellationReceipt_' .$this->appID .'.'. $this->receipt->getClientOriginalExtension()),
+                ]);
+    
+                switch (auth()->user()->role) {
+                    case RoleEnum::AGENT->value:
+                        $status = StatusEnum::TICKET_CANCELLED->value;
+                        break;
+                    default:
+                        $status = StatusEnum::REFUNDED->value;
+                        break;
+                }
+    
+                $booking = SaleBooking::find($this->appID);
+                
+                $booking->update([
+                    'app_status' => $status,
+                ]);
+                DB::commit();
+                $this->dispatch('hideModal');
+                $this->dispatch('operationCompleted')->to(BookSales::class);
+                return redirect()->route('bookSales');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->dispatch('hideModal');
+            $this->dispatch('operationFailed')->to(BookSales::class);
+        }
     }
 
     public function render()
