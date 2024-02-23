@@ -348,12 +348,12 @@ class AgentDashboard extends Component
     {
         $authorizations = SaleBooking::where('agent_id', auth()->user()->id)->where('app_status', StatusEnum::AUTHORIZED->value)->latest()->take(5)->get();
         $bookings = SaleBooking::where('agent_id', auth()->user()->id)->latest()->take(5)->get();
-        $customers = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::PAYMENT_DONE->value)->count();
-        $topCustomers = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::PAYMENT_DONE->value)->orderBy('amount_charged', 'DESC')->paginate(10);
+        $customers = SaleBooking::where('agent_id', Auth::User()->id)->whereIn('app_status',[StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->count();
+        $topCustomers = SaleBooking::where('agent_id', Auth::User()->id)->whereIn('app_status',[StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->orderBy('amount_charged', 'DESC')->paginate(10);
         $pendingPayment = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::AUTHORIZED->value)->count();
         $pendingAuthorization = SaleBooking::where('agent_id', Auth::User()->id)->where('app_status',StatusEnum::SENT_FOR_AUTH->value)->count();
         $revenue = SaleBooking::where('agent_id', Auth::User()->id)
-        ->where('app_status',StatusEnum::PAYMENT_DONE->value)
+        ->whereIn('app_status',[StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
         ->whereYear('updated_at',date('Y'))
         ->get();
         $revenueThisDay= 0;
