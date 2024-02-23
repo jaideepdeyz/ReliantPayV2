@@ -29,17 +29,22 @@ class TransactionDetailsService extends Component
 
     public function save()
     {
-        $this->validate([
-            'mco_amount' => 'required|numeric',
-            'ticket_amount' => 'required|numeric',
-        ]);
+        if($this->saleBooking->sale_type != 'Cancellation')
+        {
+            $this->validate([
+                'mco_amount' => 'required|numeric',
+                'ticket_amount' => 'required|numeric',
+            ]);
+        } else {
+            $this->validate([
+                'mco_amount' => 'required|numeric',
+            ]);
+            $this->ticket_amount = 0;
+        }
 
        try {
         DB::beginTransaction();
-        // if booking type is cancellation then no ticket charges
-        if($this->saleBooking->sale_type == 'cancellation'){
-            $this->ticket_amount = 0;
-        }
+        
 
         $transaction = TransactionDetail::updateOrCreate(
             ['sale_booking_id' => $this->appID],

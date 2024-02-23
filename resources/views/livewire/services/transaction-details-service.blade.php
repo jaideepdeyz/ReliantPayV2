@@ -25,11 +25,15 @@
                             <input type="text" class="form-control @error('is-invalid') mco_amount @enderror" wire:model="mco_amount">
                             @error('mco_amount') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+
+                        @if($saleBooking->sale_type != 'Cancellation')
                         <div class="mb-3 col-md-4">
                             <label for="ticket_amount" class="form-label">Ticket Cost <span class="text-danger"><sup>*</sup></span></label>
                             <input type="text" class="form-control @error('is-invalid') ticket_amount @enderror" wire:model="ticket_amount">
                             @error('ticket_amount') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+                        @endif
+                        
                         <div class="mb-3 mt-3 col-md-4 action-buttons d-flex justify-content-between">
                             <button type="submit" class="btn w-sm btn-blue waves-effect waves-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"

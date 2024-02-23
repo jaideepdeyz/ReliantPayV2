@@ -20,6 +20,10 @@
                             <td>{{$booking->sale_type}} ({{$booking->service->service_name}})</td>
                         </tr>
                         <tr>
+                            <th>Confirmation Number:</th>
+                            <td>{{$booking->confirmation_number}}</td>
+                        </tr>
+                        <tr>
                             <th>Is Ticket Issued:</th>
                             <td>
                                 @if($booking->confirmation_number != null)
