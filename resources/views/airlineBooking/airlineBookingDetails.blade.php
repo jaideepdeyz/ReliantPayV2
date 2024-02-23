@@ -18,8 +18,12 @@
                 <div class="card-body">
                     <span>
                         @switch($bookingDetails->app_status)
-                            @case(StatusEnum::AUTHORIZED->value)
-                            @case(StatusEnum::PAYMENT_DONE->value)
+                        @case(StatusEnum::AUTHORIZED->value)
+                        @case(StatusEnum::PAYMENT_DONE->value)
+                        @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                        @case(StatusEnum::TICKET_CANCELLED->value)
+                        @case(StatusEnum::REFUND_REQUESTED->value)
+                        @case(StatusEnum::REFUNDED->value)
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
                                     target="_blank" class="btn btn-primary">Completion Certificate</a>

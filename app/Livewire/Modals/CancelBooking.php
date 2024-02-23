@@ -4,6 +4,7 @@ namespace App\Livewire\Modals;
 
 use App\Enums\RoleEnum;
 use App\Enums\StatusEnum;
+use App\Livewire\Agents\BookSales;
 use App\Models\BookingCancellation;
 use App\Models\SaleBooking;
 use Illuminate\Support\Facades\DB;
@@ -122,7 +123,7 @@ class CancelBooking extends Component
             }
             DB::commit();
             $this->dispatch('hideModal');
-            $this->dispatch('operationCompleted');
+            $this->dispatch('operationCompleted')->to(BookSales::class);
             return redirect()->route('bookSales');
         } catch (\Exception $e) {
             DB::rollBack();

@@ -13,6 +13,7 @@ use App\Models\ServiceMaster;
 use App\Models\TransactionLog;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -38,6 +39,12 @@ class BookSales extends Component
     public $customer_gender;
     public $relationship_to_card_holder;
     public $sale_type;
+
+    #[On('operationCompleted')]
+    public function operationCompleted()
+    {
+        $this->render();
+    }
 
     public function storeSaleBooking()
     {

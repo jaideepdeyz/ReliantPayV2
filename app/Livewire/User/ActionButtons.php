@@ -67,7 +67,7 @@ class ActionButtons extends Component
 
             DB::commit();
             $this->reset('selectedID');
-            $this->dispatch('operationCompleted')->self();
+            $this->dispatch('operationCompleted')->to(BookSales::class);
             $this->dispatch('message', heading:'success',text:'Booking deleted')->to(BookSales::class);
         } catch (\Exception $e) {
             DB::rollback();
