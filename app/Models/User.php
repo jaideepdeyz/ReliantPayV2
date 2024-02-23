@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function agentActivity()
     {
-        return $this->hasMany(SaleBooking::class, 'agent_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+        return $this->hasMany(SaleBooking::class, 'agent_id', 'id')->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value]);
     }
 
     public function totalAgentRevenue()

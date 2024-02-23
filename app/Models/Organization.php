@@ -48,7 +48,7 @@ class Organization extends Model
 
     public function merchantSuccessBooking()
     {
-        return $this->hasMany(SaleBooking::class, 'organization_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+        return $this->hasMany(SaleBooking::class, 'organization_id', 'id')->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value]);
     }
 
     public function totalMerchantRevenue()

@@ -72,7 +72,7 @@ class DealerDashboard extends Component
             $last10DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -140,7 +140,7 @@ class DealerDashboard extends Component
             $last30DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status',[StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -210,7 +210,7 @@ class DealerDashboard extends Component
             $last60DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -309,11 +309,11 @@ class DealerDashboard extends Component
     public function totalRevenue()
     {
 
-        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->sum('amount_charged');
-        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('organization_id', auth()->user()->organization_id)->whereDay('updated_at',date('d'))->sum('amount_charged');
-        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('organization_id', auth()->user()->organization_id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
-        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('organization_id', auth()->user()->organization_id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
-        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('organization_id', auth()->user()->organization_id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+        $totalRevenue=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('organization_id', auth()->user()->organization_id)->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('organization_id', auth()->user()->organization_id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('organization_id', auth()->user()->organization_id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('organization_id', auth()->user()->organization_id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
 
         $this->totalrevenueoptions = [
             'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
@@ -341,10 +341,10 @@ class DealerDashboard extends Component
     public function render()
     {
         $agents = User::where('organization_id', Auth::User()->organization_id)->where('role', RoleEnum::AGENT->value)->count();
-        $customers = SaleBooking::where('organization_id', Auth::User()->organization_id)->where('app_status', StatusEnum::PAYMENT_DONE->value)->count();
+        $customers = SaleBooking::where('organization_id', Auth::User()->organization_id)->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->count();
         $pendingAuthorizations = SaleBooking::where('app_status', StatusEnum::SENT_FOR_AUTH->value)->where('organization_id', Auth::User()->organization_id)->count();
 
-        $revenue = SaleBooking::where('organization_id', Auth::User()->organization_id)->where('app_status', StatusEnum::PAYMENT_DONE->value)
+        $revenue = SaleBooking::where('organization_id', Auth::User()->organization_id)->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
         ->whereYear('updated_at', date('Y'))
         ->get();
         $revenueThisDay = 0;

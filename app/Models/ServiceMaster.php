@@ -19,12 +19,12 @@ class ServiceMaster extends Model
 
     public function successBooking()
     {
-        return $this->hasMany(SaleBooking::class, 'service_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value);
+        return $this->hasMany(SaleBooking::class, 'service_id', 'id')->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value]);
     }
 
     public function successBookingByMerchant()
     {
-        return $this->hasMany(SaleBooking::class, 'service_id', 'id')->where('app_status', StatusEnum::PAYMENT_DONE->value)->where('organization_id', auth()->user()->organization_id);
+        return $this->hasMany(SaleBooking::class, 'service_id', 'id')->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('organization_id', auth()->user()->organization_id);
     }
 
     public function totalRevenue()

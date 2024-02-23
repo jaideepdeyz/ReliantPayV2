@@ -56,7 +56,7 @@ class AdminDashboard extends Component
         foreach ($days as $day) {
             $last10DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
-                'amount' => SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)
+                'amount' => SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -123,7 +123,7 @@ class AdminDashboard extends Component
         foreach ($days as $day) {
             $last30DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
-                'amount' => SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)
+                'amount' => SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -190,7 +190,7 @@ class AdminDashboard extends Component
         foreach ($days as $day) {
             $last60DaysAmountChargedSumArray[] = [
                 'day' => Carbon::parse($day)->format('d M Y'),
-                'amount' => SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)
+                'amount' => SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -247,13 +247,13 @@ class AdminDashboard extends Component
 
     public function render()
     {
-        $authorizations = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->latest()->take(5)->get();
+        $authorizations = SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->latest()->take(5)->get();
         $bookings = SaleBooking::latest()->take(5)->get();
         $agents = User::where('role', RoleEnum::AGENT->value)->count();
         $dealers = User::where('role', RoleEnum::DEALER->value)->count();
         $pendingRegistrations = User::where('role', RoleEnum::DEALER->value)->whereIn('is_approved', ['No'])->where('organization_id', '!=', NULL)->count();
 
-        $revenue = SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)
+        $revenue = SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
             ->whereYear('updated_at', date('Y'))
             ->get();
         $revenueThisDay = 0;
@@ -311,11 +311,11 @@ class AdminDashboard extends Component
     public function totalRevenue()
     {
 
-        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->sum('amount_charged');
-        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereDay('updated_at',date('d'))->sum('amount_charged');
-        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
-        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereMonth('updated_at',date('m'))->sum('amount_charged');
-        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+        $totalRevenue=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->whereYear('updated_at',date('Y'))->sum('amount_charged');
 
         $this->totalrevenueoptions = [
             'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
