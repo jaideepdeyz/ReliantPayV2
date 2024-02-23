@@ -261,7 +261,7 @@
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
 
 
-                                <!-- item-->
+                                {{-- <!-- item-->
                                 <a href="#" class="dropdown-item notify-item">
                                     <i class="fe-user"></i>
                                     <span>My Profile</span>
@@ -271,7 +271,7 @@
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="fe-settings"></i>
                                     <span>Settings</span>
-                                </a>
+                                </a> --}}
 
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
