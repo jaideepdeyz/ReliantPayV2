@@ -75,8 +75,15 @@
                 @break
 
                 @case(StatusEnum::CANCELLATION_REQUESTED->value)
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                @break
+
                 @case(StatusEnum::REFUND_REQUESTED->value)
-                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel | Refund Booking</a>
+                    @if(Auth::User()->role == RoleEnum::FINANCE->value)
+                        <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Refund Booking</a>
+                    @else
+                    <a class="dropdown-item" href="#" wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"><i class="mdi mdi-delete me-2 text-danger vertical-middle"></i>Cancel Booking</a>
+                    @endif
                 @break
 
                 @default
