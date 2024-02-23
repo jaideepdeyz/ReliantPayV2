@@ -92,12 +92,14 @@
                                 <td><strong>Remarks (if any):</strong></td>
                                 <td colspan="2">{{ $amtrakDetails->comments }}</td>
                             </tr>
+                            @if($amtrakDetails->itenary != null)
                             <tr>
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
                                     <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary">
                                 </td>
                             </tr>
+                            @endif
 
                         </table>
                     </div>

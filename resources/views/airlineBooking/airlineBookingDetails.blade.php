@@ -96,7 +96,14 @@
                                 <td><strong>Remarks (if any):</strong></td>
                                 <td colspan="2">{{ $flightDetails->comments }}</td>
                             </tr>
-
+                            @if($flightDetails->itenary != null)
+                            <tr>
+                                <td><b>Uploaded Itenary</b></td>
+                                <td colspan=4>
+                                    <img src="{{Storage::URL($flightDetails->itenary->document_filepath)}}" alt="Itenary">
+                                </td>
+                            </tr>
+                            @endif
                         </table>
                     </div>
                 </div>

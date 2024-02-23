@@ -70,7 +70,7 @@ class AgentDashboard extends Component
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('agent_id', Auth::User()->id)
                 ->where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -139,7 +139,7 @@ class AgentDashboard extends Component
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('agent_id', Auth::User()->id)
                 ->where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -210,7 +210,7 @@ class AgentDashboard extends Component
                 'day' => Carbon::parse($day)->format('d M Y'),
                 'amount' => SaleBooking::where('agent_id', Auth::User()->id)
                 ->where('organization_id', Auth::User()->organization_id)
-                ->where('app_status', StatusEnum::PAYMENT_DONE->value)
+                ->whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])
                     ->whereDate('updated_at', $day)
                     ->sum('amount_charged')
             ];
@@ -315,11 +315,11 @@ class AgentDashboard extends Component
     public function totalRevenue()
     {
 
-        $totalRevenue=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->sum('amount_charged');
-        $totalRevenueThisDay=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereDay('updated_at',date('d'))->sum('amount_charged');
-        $totalRevenueThisWeek=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
-        $totalRevenueThisMonth=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
-        $totalRevenueThisYear=SaleBooking::where('app_status', StatusEnum::PAYMENT_DONE->value)->where('agent_id', auth()->user()->id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
+        $totalRevenue=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('agent_id', auth()->user()->id)->sum('amount_charged');
+        $totalRevenueThisDay=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('agent_id', auth()->user()->id)->whereDay('updated_at',date('d'))->sum('amount_charged');
+        $totalRevenueThisWeek=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('agent_id', auth()->user()->id)->whereBetween('updated_at',[date('Y-m-d', strtotime('monday this week')),date('Y-m-d', strtotime('sunday this week'))])->sum('amount_charged');
+        $totalRevenueThisMonth=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('agent_id', auth()->user()->id)->whereMonth('updated_at',date('m'))->sum('amount_charged');
+        $totalRevenueThisYear=SaleBooking::whereIn('app_status', [StatusEnum::PAYMENT_DONE->value, StatusEnum::TICKET_ISSUED->value])->where('agent_id', auth()->user()->id)->whereYear('updated_at',date('Y'))->sum('amount_charged');
 
         $this->totalrevenueoptions = [
             'series' => [$totalRevenue,$totalRevenueThisDay,$totalRevenueThisWeek,$totalRevenueThisMonth,$totalRevenueThisYear],
