@@ -61,6 +61,7 @@
                     <li><b>Airline/Carrier Name:</b> {{ $carrier }}</li>
                     <li><b>Flight / Train Number:</b> {{ $data->transport_number }}</li>
                     <li><b>Class:</b> {{ $data->travel_class }}</li>
+                    <li><b>Confirmation Number:</b> {{ $saleBooking->confirmation_number }}</li>
                 </ul>
             </p>
             {{-- add travel iternary here
