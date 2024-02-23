@@ -56,11 +56,11 @@ class BillingDetailsService extends Component
         $charges = ChargeDetails::where('app_id', $this->appID)->get();
         $this->amount_charged = $charges->sum('amount');
 
-        // checking if ID is required
-        if($this->amount_charged >= 500)
-        {
-            $this->showIdUpload = 'Yes';
-        }
+        // checking if ID is required, commented out for now till further clarity is received
+        // if($this->amount_charged >= 500)
+        // {
+        //     $this->showIdUpload = 'Yes';
+        // }
 
         $billingDetails = Payment::where('app_id', $this->appID)->first();
         if($billingDetails)
