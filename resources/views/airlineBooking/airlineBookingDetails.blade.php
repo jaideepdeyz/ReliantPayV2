@@ -23,7 +23,7 @@
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
                                     target="_blank" class="btn btn-primary">Completion Certificate</a>
-                                <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a>
+                                {{-- <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a> --}}
                             @break
                             @default
                                 <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>

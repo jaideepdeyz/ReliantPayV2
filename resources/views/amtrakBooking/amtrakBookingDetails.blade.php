@@ -23,7 +23,7 @@
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
                                     target="_blank" class="btn btn-danger">Completion Certificate</a>
-                                <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a>
+                                {{-- <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a> --}}
                             @break
                             @default
                                 <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
@@ -91,6 +91,12 @@
                                 <td>{{ $amtrakDetails->return_date }}</td>
                                 <td><strong>Remarks (if any):</strong></td>
                                 <td colspan="2">{{ $amtrakDetails->comments }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Uploaded Itenary</b></td>
+                                <td colspan=4>
+                                    <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary">
+                                </td>
                             </tr>
 
                         </table>

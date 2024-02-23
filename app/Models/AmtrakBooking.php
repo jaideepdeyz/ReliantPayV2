@@ -31,4 +31,9 @@ class AmtrakBooking extends Model
     {
         return $this->hasOne(TrainStation::class, 'id', 'destination_location');
     }
+
+    public function itenary()
+    {
+        return $this->hasOne(TravelItenaryUpload::class, 'app_id', 'app_id');
+    }
 }
