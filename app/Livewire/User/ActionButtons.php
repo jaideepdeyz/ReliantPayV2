@@ -22,11 +22,13 @@ class ActionButtons extends Component
     public $status;
     public $remarks;
 
-    #[On('operationCompleted')]
-    public function operationCompleted()
+    #[On('reRender')]
+    public function reRender()
     {
         $this->render();
     }
+
+
 
     public function mount($appID)
     {

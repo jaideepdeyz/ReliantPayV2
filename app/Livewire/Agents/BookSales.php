@@ -44,6 +44,7 @@ class BookSales extends Component
     public function operationCompleted()
     {
         $this->render();
+        $this->dispatch('reRender');
     }
 
     public function storeSaleBooking()
@@ -153,17 +154,11 @@ class BookSales extends Component
     public function render()
     {
         $this->agent_name = auth()->user()->name;
-        // $services = ServiceMaster::all();
         $services = OrganizationServiceMap::where('organization_id', auth()->user()->organization_id)
         ->where('service_status', 'Activated')
         ->get();
 
         $bookedSales = SaleBooking::where('agent_id', auth()->user()->id)
-        // ->whereIn('app_status', [
-        //     StatusEnum::DRAFT->value,
-        //     StatusEnum::PENDING->value,
-        //     // StatusEnum::PAYMENT_DONE->value,
-        //     ])
         ->when($this->search, function($query){
             $query->where('id', 'like', '%'.$this->search.'%')
             ->orWhere('customer_name', 'like', '%'.$this->search.'%')
@@ -172,10 +167,7 @@ class BookSales extends Component
             ->orWhere('confirmation_number', 'like', '%'.$this->search.'%');
         })->when($this->statusSearch, function($query){
             $query->where('app_status', $this->statusSearch);
-        })
-        // ->where('app_status', StatusEnum::DRAFT->value)
-        // ->where('app_status', StatusEnum::PENDING->value)
-        ->orderBy('created_at', 'DESC')->paginate(10);
+        })->orderBy('created_at', 'DESC')->paginate(10);
 
         return view('livewire.agents.book-sales', compact('services', 'bookedSales'))->layout('layouts.dashboard-layout');
     }
