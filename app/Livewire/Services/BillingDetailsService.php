@@ -24,9 +24,11 @@ class BillingDetailsService extends Component
     public $cc_email;
     public $cc_dob;
     public $cc_number;
-    public $cc_type;
+    public $cc_type="Mastercard";
     public $cc_expiration_date;
     public $cc_cvc;
+
+
 
     public $cc_billing_address_street;
     public $cc_billing_address_city;
@@ -86,6 +88,8 @@ class BillingDetailsService extends Component
             $this->bookedThroughReservationAssistance = $billingDetails->ticketBookingMode->bookedThroughReservationAssistance;
         }
     }
+
+
 
     public function updatedCityQuery()
     {
@@ -211,7 +215,7 @@ class BillingDetailsService extends Component
                 ['app_id' => $this->appID],
                 [
                 'bookedThroughReservationAssistance' => $this->bookedThroughReservationAssistance,
-                'departure_date' => $departureDate, 
+                'departure_date' => $departureDate,
                 'departure_time' => $departureTime,
                 'carrier' => $carrier,
                 ]

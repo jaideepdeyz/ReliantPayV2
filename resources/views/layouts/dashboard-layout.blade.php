@@ -370,6 +370,7 @@
     <livewire:modals />
     <script src="{{ asset('auth/libs/autonumeric/autoNumeric.min.js') }}"></script>
     <script src="{{ asset('auth/libs/jquery-mask-plugin/jquery.mask.min.js') }}"></script>
+
     <script>
         @if (Session::has('generatedpaymenturl'))
             alert("{{ Session::get('generatedpaymenturl') }}");

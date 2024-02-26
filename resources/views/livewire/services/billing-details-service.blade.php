@@ -24,12 +24,11 @@
                             <div class="mb-3 col-md-4">
                                 <label for="cc_type" class="form-label">Debit/Credit Card Type? <span class="text-danger"><sup>*</sup></span></label>
                                 <select class="form-control @error('cc_type') is-invalid @enderror"
-                                    wire:model="cc_type">
-                                    <option value="">Select</option>
-                                    <option value="Mastercard">Mastercard</option>
+                                    wire:model.live="cc_type">
+                                    <option value="Mastercard" selected>Mastercard</option>
                                     <option value="VISA">VISA</option>
                                     <option value="American Express">American Express</option>
-                                    <option value="Others">Others</option>
+
                                 </select>
                                 @error('cc_type')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -38,8 +37,16 @@
 
                             <div class="mb-3 col-md-4">
                                 <label for="cc_number" class="form-label">Credit Card Number <span class="text-danger"><sup>*</sup></span></label>
-                                <input type="text" data-toggle="input-mask" data-mask-format="0000-0000-0000-0000" class="form-control @error('cc_number') is-invalid @enderror"
-                                    wire:model="cc_number" minlength="16" maxlength="16">
+
+                                <input type="text" data-toggle="input-mask"
+                                data-mask-format={{ $cc_type=='American Express'? "0000-00000000-0000" : "0000-0000-0000-0000"}}
+                                placeholder={{ $cc_type=='American Express'? "0000-00000000-0000" : "0000-0000-0000-0000"}}
+                                class="form-control @error('cc_number') is-invalid @enderror"
+                                wire:model="cc_number"
+                                minlength={{ $cc_type=='American Express'? 17 : 19}}
+                                maxlength={{ $cc_type=='American Express'? 17 : 19}}>
+
+
                                 @error('cc_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
