@@ -160,7 +160,7 @@ Route::middleware('auth')->group(function () {
     Route::get('sendAuthorizationMail/{appID}', [MailController::class, 'authorizationMail'])->name('sendAuthorizationMail');
     // payment routes
     Route::get('payment/stepOnePay/{id}', [App\Http\Controllers\PaymentController::class, 'stepOnePay'])->name('payment.stepOnePay');
-    Route::get('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
+  
     Route::get('payment/generatePaymentLink/{id}', [App\Http\Controllers\PaymentController::class, 'generatePaymentLink'])->name('payment.generatePaymentLink');
 
     // PDF Routes
@@ -185,5 +185,7 @@ Route::middleware('auth', 'adminRoleCheck')->group(function () {
 // payment Link routes
 Route::get('payment-link/{id}', [App\Http\Controllers\PaymentController::class, 'paymentLink'])->name('paymentLink');
 Route::post('makePaymentLinkPayment',[App\Http\Controllers\PaymentController::class, 'makePaymentLinkPayment'])->name('makePaymentLinkPayment');
+// Step Three Pay
 
+Route::get('payment/stepThreePay', [App\Http\Controllers\PaymentController::class, 'stepThreePay'])->name('payment.stepThreePay');
 require __DIR__ . '/auth.php';
