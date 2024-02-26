@@ -16,10 +16,12 @@ use Xml;
 class PaymentController extends Controller
 {
     protected $paymentService;
+    
     public function __construct(PaymentService $paymentService)
     {
         $this->paymentService = $paymentService;
     }
+
     public function stepOnePay($id)
     {
         try {
