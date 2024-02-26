@@ -276,7 +276,7 @@
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="fe-lock"></i>
-                                    <span>Change Password/span>
+                                    <span>Change Password</span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>
