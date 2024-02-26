@@ -94,9 +94,9 @@ class PaymentController extends Controller
 
                 $mailData = [
                     'bookingId' => $salebooking->id,
-                    'name' => $salebooking->customer->customer_name,
+                    'name' => $salebooking->customer_name,
                     'email' => $salebooking->customer->customer_email,
-                    'phone' => $salebooking->customer->customer_phone,
+                    'phone' => $salebooking->customer_phone,
                     'type' => $type,
                     'mode' => $mode,
                     'fromAirport' => $fromAirport,
@@ -113,7 +113,8 @@ class PaymentController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->with('error', $e->getMessage());
+            // return redirect()->back()->with('error', $e->getMessage());
+            return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
         }
     }
 

@@ -50,11 +50,11 @@
                     <table class="table table-sm table-striped table-bordered">
                         <tr>
                             <th>Customer's Name:</th>
-                            <td>{{$salebooking->customer->customer_name}}</td>
+                            <td>{{$salebooking->customer_name}}</td>
                         </tr>
                         <tr>
                             <th>Customer's Email:</th>
-                            <td>{{$salebooking->customer->customer_email}}</td>
+                            <td>{{$salebooking->customer_email}}</td>
                         </tr>
                         <tr>
                             <th>Customer's Phone #:</th>
