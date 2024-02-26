@@ -116,7 +116,7 @@ class PaymentController extends Controller
         catch (\Exception $e)
         {
             // return redirect()->back()->with('error', $e->getMessage());
-            return view('payment.payment-response', compact('gwResponse', 'response', 'salebooking'));
+            return view('payment.payment-response', compact('gwResponse', 'response'));
         }
     }
 
