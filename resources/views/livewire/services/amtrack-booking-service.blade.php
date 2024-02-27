@@ -96,18 +96,18 @@
 
 
                                 {{-- Departure Block --}}
-                                <div class="mb-3 col-md-2">
-                                    <label for="departure_date" class="form-label">Departure Date <span
+                                <div class="mb-3 col-md-3">
+                                    <label for="departure_date" class="form-label">Departure Date & Time <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="date"
-                                        class="form-control @error('departure_date') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control @error('departure_date') is-invalid @enderror datetime-datepicker"
                                         wire:model="departure_date">
                                     @error('departure_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                <div class="mb-3 col-md-4 form-group">
+                                {{-- <div class="mb-3 col-md-4 form-group">
                                     <label for="departure_time" class="form-label">Departure Time <span
                                             class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
@@ -131,13 +131,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="mb-3 col-md-2">
-                                    <label for="departure_eta_date" class="form-label">Arrival Date <span
+                                <div class="mb-3 col-md-3">
+                                    <label for="departure_eta_date" class="form-label">Destination (Arrival Date & TIme )  <span
                                             class="text-danger"><sup>*</sup></span></label>
-                                    <input type="date"
-                                        class="form-control @error('departure_eta_date') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control @error('departure_eta_date') is-invalid @enderror datetime-datepicker"
                                         wire:model="departure_eta_date">
                                     @error('departure_eta_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -145,7 +145,7 @@
                                 </div>
 
 
-                                <div class="mb-3 col-md-4 form-group">
+                                {{-- <div class="mb-3 col-md-4 form-group">
                                     <label for="departure_time" class="form-label">Arrival Time<span
                                             class="text-danger"><sup>*</sup></span></label>
                                     <div class="row">
@@ -169,24 +169,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 {{-- Departure Block End --}}
 
                                 {{-- Return block --}}
                                 <div class="row  @if($isRoundTrip == 'No') d-none @endif">
-                                    <div class="mb-3 col-md-2">
-                                        <label for="return_date" class="form-label">Return Date <span
+                                    <div class="mb-4 col-md-3">
+                                        <label for="return_date" class="form-label">Return Date & Time <span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="date"
-                                            class="form-control @error('return_date') is-invalid @enderror"
+                                        <input type="text"
+                                            class="form-control @error('return_date') is-invalid @enderror datetime-datepicker"
                                             wire:model="return_date" @if ($isRoundTrip=='Yes' ) required @endif>
                                         @error('return_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col-md-4 form-group">
+                                    {{-- <div class="mb-3 col-md-4 form-group">
                                         <label for="return_time" class="form-label">Return Time <span
                                                 class="text-danger"><sup>*</sup></span></label>
                                         <div class="row">
@@ -209,20 +209,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="mb-3 col-md-2">
-                                        <label for="return_eta_date" class="form-label">Return Date <span
+                                    <div class="mb-4 col-md-3">
+                                        <label for="return_eta_date" class="form-label">Return Destination (Arrival Date & Time)<span
                                                 class="text-danger"><sup>*</sup></span></label>
-                                        <input type="date"
-                                            class="form-control @error('return_eta_date') is-invalid @enderror"
+                                        <input type="text"
+                                            class="form-control @error('return_eta_date') is-invalid @enderror datetime-datepicker"
                                             wire:model="return_eta_date">
                                         @error('return_eta_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3 col-md-4 form-group">
+                                    {{-- <div class="mb-3 col-md-4 form-group">
                                         <label for="departure_time" class="form-label">Return Time
                                             <span class="text-danger"><sup>*</sup></span></label>
                                         <div class="row">
@@ -245,7 +245,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
 

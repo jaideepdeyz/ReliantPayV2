@@ -5,6 +5,7 @@ namespace App\Livewire\Modals;
 use App\Enums\ServiceEnum;
 use App\Enums\StatusEnum;
 use App\Livewire\Agents\BookSales;
+use App\Models\CustomerEnquiry;
 use App\Models\CustomerMaster;
 use App\Models\OrganizationServiceMap;
 use App\Models\SaleBooking;
@@ -136,7 +137,38 @@ class NewSale extends Component
         ]);
     }
 
-    
+    public function saveEnquiry()
+    {
+        $this->validate([
+            'customer_name' => 'required',
+            'customer_phone' => 'required',
+            'customer_email' => 'required',
+            'customer_dob' => 'required',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            CustomerEnquiry::create([
+                'agent_id' => auth()->user()->id,
+                'organization_id' => auth()->user()->organization_id,
+                'customer_name' => $this->customer_name,
+                'customer_phone' => $this->customer_phone,
+                'customer_email' => $this->customer_email,
+                'customer_gender' => $this->customer_gender,
+                'customer_dob' => $this->customer_dob,
+            ]);
+            DB::commit();
+            $this->dispatch('hideModal');
+            $this->dispatch('message', heading:'success', text:'Enquiry Added Successfully')->to(BookSales::class);
+            return redirect()->route('bookSales');
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->dispatch('message', heading:'error', text:$e->getMessage())->to(BookSales::class);
+            $this->dispatch('hideModal');
+        }
+    }
+
+
 
     public function render()
     {

@@ -98,6 +98,7 @@
                     <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"
                         wire:loading></span>
                     Create New Booking</button>
+                <button type="button" class="btn w-sm btn-danger waves-effect waves-light" wire:click="saveEnquiry">Save Enquiry</button>
             </div>
         </form>
     </div>

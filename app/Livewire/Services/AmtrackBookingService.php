@@ -30,21 +30,21 @@ class AmtrackBookingService extends Component
     public $tripType;
     public $no_days_hotel_car;
     public $comments;
-    public $departureHour;
-    public $departureMinute;
+    // public $departureHour;
+    // public $departureMinute;
     public $itenary_screenshot;
 
     public $departure_eta_date;
-    public $departureETAHour;
-    public $departureETAMinute;
+    // public $departureETAHour;
+    // public $departureETAMinute;
 
     public $return_date;
-    public $returnHour;
-    public $returnMinute;
+    // public $returnHour;
+    // public $returnMinute;
 
     public $return_eta_date;
-    public $returnETAHour;
-    public $returnETAMinute;
+    // public $returnETAHour;
+    // public $returnETAMinute;
 
     //passenger details
     public $full_name;
@@ -85,23 +85,23 @@ class AmtrackBookingService extends Component
             {
                 $this->isRoundTrip = 'Yes';
                 $this->return_date = $amtrakBooking->return_date;
-                $this->returnHour = $amtrakBooking->return_hour;
-                $this->returnMinute = $amtrakBooking->return_minute;
+                // $this->returnHour = $amtrakBooking->return_hour;
+                // $this->returnMinute = $amtrakBooking->return_minute;
                 $this->return_eta_date = $amtrakBooking->return_eta_date;
-                $this->returnETAHour = $amtrakBooking->return_eta_hour;
-                $this->returnETAMinute = $amtrakBooking->return_eta_minute;
+                // $this->returnETAHour = $amtrakBooking->return_eta_hour;
+                // $this->returnETAMinute = $amtrakBooking->return_eta_minute;
             }
             // $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $amtrakBooking->comments;
             $this->departureStation = TrainStation::find($this->departure_location)->name;
             $this->destinationStation = TrainStation::find($this->destination_location)->name;
-            $this->departureHour = $amtrakBooking->departure_hour;
-            $this->departureMinute = $amtrakBooking->departure_minute;
+            // $this->departureHour = $amtrakBooking->departure_hour;
+            // $this->departureMinute = $amtrakBooking->departure_minute;
             $this->departureQuery = $amtrakBooking->departureStation->station_location;
             $this->destinationQuery = $amtrakBooking->destinationStation->station_location;
             $this->departure_eta_date = $amtrakBooking->departure_eta_date;
-            $this->departureETAHour = $amtrakBooking->departure_eta_hour;
-            $this->departureETAMinute = $amtrakBooking->departure_eta_minute;
+            // $this->departureETAHour = $amtrakBooking->departure_eta_hour;
+            // $this->departureETAMinute = $amtrakBooking->departure_eta_minute;
 
         }
     }
@@ -181,11 +181,11 @@ class AmtrackBookingService extends Component
             // 'no_days_hotel_car' => 'required',
             // 'comments' => 'required',
             'departure_date' => 'required',
-            'departureHour' => 'required|numeric|between:00,24',
-            'departureMinute' => 'required|numeric|between:00,59',
+            // 'departureHour' => 'required|numeric|between:00,24',
+            // 'departureMinute' => 'required|numeric|between:00,59',
             'departure_eta_date' => 'required',
-            'departureETAHour' => 'required|numeric|between:00,24',
-            'departureETAMinute' => 'required|numeric|between:00,59',
+            // 'departureETAHour' => 'required|numeric|between:00,24',
+            // 'departureETAMinute' => 'required|numeric|between:00,59',
         ], [
             // 'confirmation_number.required' => 'Confirmation Number is required',
             'departure_location.required' => 'Departure Location is required',
@@ -194,19 +194,19 @@ class AmtrackBookingService extends Component
             'tripType.required' => 'Trip Type is required',
             // 'no_days_hotel_car.required' => 'Number of Days Hotel Car is required',
             // 'comments.required' => 'Comments is required',
-            'departureHour.required' => 'Departure Hour is required',
-            'departureHour.numeric' => 'Departure Hour must be numeric',
-            'departureHour.between' => 'Departure Hour must be between 00 and 24',
-            'departureMinute.required' => 'Departure Minute is required',
-            'departureMinute.numeric' => 'Departure Minute must be numeric',
-            'departureMinute.between' => 'Departure Minute must be between 00 and 59',
+            // 'departureHour.required' => 'Departure Hour is required',
+            // 'departureHour.numeric' => 'Departure Hour must be numeric',
+            // 'departureHour.between' => 'Departure Hour must be between 00 and 24',
+            // 'departureMinute.required' => 'Departure Minute is required',
+            // 'departureMinute.numeric' => 'Departure Minute must be numeric',
+            // 'departureMinute.between' => 'Departure Minute must be between 00 and 59',
             'departure_eta_date.required' => 'Departure ETA Date is required',
-            'departureETAHour.required' => 'Departure ETA Hour is required',
-            'departureETAHour.numeric' => 'Departure ETA Hour must be numeric',
-            'departureETAHour.between' => 'Departure ETA Hour must be between 00 and 24',
-            'departureETAMinute.required' => 'Departure ETA Minute is required',
-            'departureETAMinute.numeric' => 'Departure ETA Minute must be numeric',
-            'departureETAMinute.between' => 'Departure ETA Minute must be between 00 and 59',
+            // 'departureETAHour.required' => 'Departure ETA Hour is required',
+            // 'departureETAHour.numeric' => 'Departure ETA Hour must be numeric',
+            // 'departureETAHour.between' => 'Departure ETA Hour must be between 00 and 24',
+            // 'departureETAMinute.required' => 'Departure ETA Minute is required',
+            // 'departureETAMinute.numeric' => 'Departure ETA Minute must be numeric',
+            // 'departureETAMinute.between' => 'Departure ETA Minute must be between 00 and 59',
         ]);
 
         if($this->saleType == 'Cancellation')
@@ -220,10 +220,10 @@ class AmtrackBookingService extends Component
                 'transport_number.required' => 'Train Number is required for Cancellation Service',
                 'travel_class.required' => 'Travel Class is required for Cancellation Service',
             ]);
-            
+
         }
 
-       
+
         $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
         if (!$itenary) {
             if($this->saleType != 'Cancellation')
@@ -249,17 +249,17 @@ class AmtrackBookingService extends Component
                     // 'no_days_hotel_car' => $this->no_days_hotel_car,
                     'comments' => $this->comments,
                     'departure_date' => $this->departure_date,
-                    'departure_hour' => $this->departureHour,
-                    'departure_minute' => $this->departureMinute,
+                    // 'departure_hour' => $this->departureHour,
+                    // 'departure_minute' => $this->departureMinute,
                     'departure_eta_date' => $this->departure_eta_date,
-                    'departure_eta_hour' => $this->departureETAHour,
-                    'departure_eta_minute' => $this->departureETAMinute,
+                    // 'departure_eta_hour' => $this->departureETAHour,
+                    // 'departure_eta_minute' => $this->departureETAMinute,
                     'return_date' => $this->return_date,
-                    'return_hour' => $this->returnHour,
-                    'return_minute' => $this->returnMinute,
+                    // 'return_hour' => $this->returnHour,
+                    // 'return_minute' => $this->returnMinute,
                     'return_eta_date' => $this->return_eta_date,
-                    'return_eta_hour' => $this->returnETAHour,
-                    'return_eta_minute' => $this->returnETAMinute,
+                    // 'return_eta_hour' => $this->returnETAHour,
+                    // 'return_eta_minute' => $this->returnETAMinute,
                     'transport_number' => $this->transport_number,
                     'travel_class' => $this->travel_class,
 

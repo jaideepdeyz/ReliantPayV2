@@ -37,24 +37,24 @@ class FlightBookingService extends Component
     public $confirmation_number;
     public $departure_location;
     public $departure_date;
-    public $departureHour;
-    public $departureMinute;
+    // public $departureHour;
+    // public $departureMinute;
     public $destination_location;
     public $tripType;
     public $return_date;
-    public $returnHour;
-    public $returnMinute;
+    // public $returnHour;
+    // public $returnMinute;
     public $no_days_hotel_car;
     public $comments;
     public $itenary_screenshot;
 
     public $departure_eta_date;
-    public $departureETAHour;
-    public $departureETAMinute;
+    // public $departureETAHour;
+    // public $departureETAMinute;
 
     public $return_eta_date;
-    public $returnETAHour;
-    public $returnETAMinute;
+    // public $returnETAHour;
+    // public $returnETAMinute;
 
     //passenger details
     public $full_name;
@@ -103,11 +103,11 @@ class FlightBookingService extends Component
             {
                 $this->isRoundTrip = 'Yes';
                 $this->return_date = $flightBooking->return_date;
-                $this->returnHour = $flightBooking->return_hour;
-                $this->returnMinute = $flightBooking->return_minute;
+                // $this->returnHour = $flightBooking->return_hour;
+                // $this->returnMinute = $flightBooking->return_minute;
                 $this->return_eta_date = $flightBooking->return_eta_date;
-                $this->returnETAHour = $flightBooking->return_eta_hour;
-                $this->returnETAMinute = $flightBooking->return_eta_minute;
+                // $this->returnETAHour = $flightBooking->return_eta_hour;
+                // $this->returnETAMinute = $flightBooking->return_eta_minute;
             }
             // $this->no_days_hotel_car = $flightBooking->no_days_hotel_car;
             $this->comments = $flightBooking->comments;
@@ -117,11 +117,11 @@ class FlightBookingService extends Component
             $this->destination_country_name = $flightBooking->destination_country;
             $this->departureAirport = Airport::find($this->departure_location)->name;
             $this->destinationAirport = Airport::find($this->destination_location)->name;
-            $this->departureHour = $flightBooking->departure_hour;
-            $this->departureMinute = $flightBooking->departure_minute;
+            // $this->departureHour = $flightBooking->departure_hour;
+            // $this->departureMinute = $flightBooking->departure_minute;
             $this->departure_eta_date = $flightBooking->departure_eta_date;
-            $this->departureETAHour = $flightBooking->departure_eta_hour;
-            $this->departureETAMinute = $flightBooking->departure_eta_minute;
+            // $this->departureETAHour = $flightBooking->departure_eta_hour;
+            // $this->departureETAMinute = $flightBooking->departure_eta_minute;
         }
     }
 
@@ -229,12 +229,12 @@ class FlightBookingService extends Component
             'tripType' => 'required',
             // 'no_days_hotel_car' => 'required',
             // 'comments' => 'required',
-            'departureHour' => 'required|numeric|between:00,24',
-            'departureMinute' => 'required|numeric|between:00,59',
+            // 'departureHour' => 'required|numeric|between:00,24',
+            // 'departureMinute' => 'required|numeric|between:00,59',
             'departure_eta_date' => 'required',
-            'departureETAHour' => 'required|numeric|between:00,24',
-            'departureETAMinute' => 'required|numeric|between:00,59',
-            
+            // 'departureETAHour' => 'required|numeric|between:00,24',
+            // 'departureETAMinute' => 'required|numeric|between:00,59',
+
         ], [
             'airline_name.required' => 'Airline Name is required',
             // 'confirmation_number.required' => 'Confirmation Number is required',
@@ -246,19 +246,19 @@ class FlightBookingService extends Component
             'tripType.required' => 'Trip Type is required',
             // 'no_days_hotel_car.required' => 'Number of Days for Hotel/Car is required',
             // 'comments.required' => 'Comments is required',
-            'departureHour.required' => 'Departure Hour is required',
-            'departureHour.numeric' => 'Departure Hour should be a number',
-            'departureHour.between' => 'Departure Hour should be between 00 and 24',
-            'departureMinute.required' => 'Departure Minute is required',
-            'departureMinute.numeric' => 'Departure Minute should be a number',
-            'departureMinute.between' => 'Departure Minute should be between 00 and 59',
+            // 'departureHour.required' => 'Departure Hour is required',
+            // 'departureHour.numeric' => 'Departure Hour should be a number',
+            // 'departureHour.between' => 'Departure Hour should be between 00 and 24',
+            // 'departureMinute.required' => 'Departure Minute is required',
+            // 'departureMinute.numeric' => 'Departure Minute should be a number',
+            // 'departureMinute.between' => 'Departure Minute should be between 00 and 59',
             'departure_eta_date.required' => 'Departure ETA Date is required',
-            'departureETAHour.required' => 'Departure ETA Hour is required',
-            'departureETAHour.numeric' => 'Departure ETA Hour should be a number',
-            'departureETAHour.between' => 'Departure ETA Hour should be between 00 and 24',
-            'departureETAMinute.required' => 'Departure ETA Minute is required',
-            'departureETAMinute.numeric' => 'Departure ETA Minute should be a number',
-            'departureETAMinute.between' => 'Departure ETA Minute should be between 00 and 59',
+            // 'departureETAHour.required' => 'Departure ETA Hour is required',
+            // 'departureETAHour.numeric' => 'Departure ETA Hour should be a number',
+            // 'departureETAHour.between' => 'Departure ETA Hour should be between 00 and 24',
+            // 'departureETAMinute.required' => 'Departure ETA Minute is required',
+            // 'departureETAMinute.numeric' => 'Departure ETA Minute should be a number',
+            // 'departureETAMinute.between' => 'Departure ETA Minute should be between 00 and 59',
         ]);
 
         if($this->saleType == 'Cancellation')
@@ -272,7 +272,7 @@ class FlightBookingService extends Component
                 'transport_number.required' => 'Train Number is required for Cancellation Service',
                 'travel_class.required' => 'Travel Class is required for Cancellation Service',
             ]);
-            
+
         }
 
         $itenary = TravelItenaryUpload::where('app_id', $this->appID)->first();
@@ -307,12 +307,12 @@ class FlightBookingService extends Component
                     'return_date' => $this->return_date,
                     // 'no_days_hotel_car' => $this->no_days_hotel_car,
                     'comments' => $this->comments,
-                    'departure_hour' => $this->departureHour,
-                    'departure_minute' => $this->departureMinute,
-                    'departure_eta_hour' => $this->departureETAHour,
-                    'departure_eta_minute' => $this->departureETAMinute,
-                    'return_eta_hour' => $this->returnETAHour,
-                    'return_eta_minute' => $this->returnETAMinute,
+                    // 'departure_hour' => $this->departureHour,
+                    // 'departure_minute' => $this->departureMinute,
+                    // 'departure_eta_hour' => $this->departureETAHour,
+                    // 'departure_eta_minute' => $this->departureETAMinute,
+                    // 'return_eta_hour' => $this->returnETAHour,
+                    // 'return_eta_minute' => $this->returnETAMinute,
                     'departure_eta_date' => $this->departure_eta_date,
                     'return_eta_date' => $this->return_eta_date,
                     'transport_number' => $this->transport_number,
@@ -320,7 +320,7 @@ class FlightBookingService extends Component
                 ]
             );
 
-            
+
 
             if($this->saleType == 'Cancellation')
             {
