@@ -53,10 +53,10 @@
             <p style="font-size:12px; color:black;">
                 <ul style="font-size:12px; color:black;">
                     <li><b>Departure Date:</b> {{ Carbon\Carbon::parse($data->departure_date)->format('F j, Y') }}</li>
-                    <li><b>Departure Time:</b> {{ $data->departure_hour }} : {{ $data->departure_minute }}</li>
+                    <li><b>Departure Time:</b> {{ Carbon\Carbon::parse($data->departure_date)->format('h:i:sa') }} </li>
                     <li><b>Departure Airport/Station/Port:</b> {{$departureLocation}}</li>
                     <li><b>Arrival Date:</b> {{ Carbon\Carbon::parse($data->departure_eta_date)->format('F j, Y') }}</li>
-                    <li><b>Arrival Time:</b> {{ $data->departure_eta_hour }} : {{ $data->departure_eta_minute }}</li>
+                    <li><b>Arrival Time:</b> {{ Carbon\Carbon::parse($data->departure_eta_date)->format('h:i:sa') }}</li>
                     <li><b>Arrival Airport/Station/Port:</b> {{ $destinationLocation }}</li>
                     <li><b>Airline/Carrier Name:</b> {{ $carrier }}</li>
                     {{-- <li><b>Flight / Train Number:</b> </li>
