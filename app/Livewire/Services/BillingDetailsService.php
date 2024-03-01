@@ -66,10 +66,10 @@ class BillingDetailsService extends Component
 
         if($this->saleBooking->relationship_to_card_holder == 'Self')
         {
-            $this->cc_name = $this->saleBooking->passenger->first_name.' '.$this->saleBooking->passenger->last_name;
-            $this->cc_phone = $this->saleBooking->passenger->phone;
-            $this->cc_email = $this->saleBooking->passenger->email;
-            $this->cc_dob = $this->saleBooking->passenger->dob;
+            $this->cc_name = $this->saleBooking->customer_name;
+            $this->cc_phone = $this->saleBooking->customer_phone;
+            $this->cc_email = $this->saleBooking->customer_email;
+            $this->cc_dob = $this->saleBooking->customer_dob;
         }
 
         $billingDetails = Payment::where('app_id', $this->appID)->first();
