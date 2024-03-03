@@ -79,6 +79,8 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Age</th>
+                        <th>Does the Passenger have any Disability ?</th>
+                        <th>Passenger requires assistance ?</th>
                     </tr>
                 </thead>
                 <tbody style="font-size:12px; color:black;">
@@ -87,6 +89,14 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $passenger->full_name }}</td>
                             <td>{{ $passenger->gender }}</td>
+                            <td>{{ $passenger->is_disabled}}</td>
+                            <td>
+                                @if($passenger->requires_assistance == 'Yes')
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
                             <td>
                                 @php
                                     $dob = Carbon\Carbon::parse($passenger->dob);
