@@ -9,6 +9,7 @@ use App\Models\SaleBooking;
 use App\Models\TicketBookingMode;
 use App\Models\UsCityState;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -24,9 +25,11 @@ class BillingDetailsService extends Component
     public $cc_email;
     public $cc_dob;
     public $cc_number;
-    public $cc_type="Mastercard";
+    public $cc_type = "Mastercard";
     public $cc_expiration_date;
     public $cc_cvc;
+    public $maskFormat = "0000-0000-0000-0000";
+    public $cc_length = 19;
 
 
 
@@ -52,8 +55,12 @@ class BillingDetailsService extends Component
 
     public function mount($appID)
     {
+        $this->dispatch('maskChange', [
+            'mask' => $this->maskFormat,
+            'cc_length' => $this->cc_length,
+        ]);
         $this->appID = $appID;
-        $this->saleBooking = SaleBooking::find($this->appID);
+        $this->saleBooking = SaleBooking::where('id', $this->appID)->first();
         // charges calculation
         $charges = ChargeDetails::where('app_id', $this->appID)->get();
         $this->amount_charged = $charges->sum('amount');
@@ -63,18 +70,18 @@ class BillingDetailsService extends Component
         // {
         //     $this->showIdUpload = 'Yes';
         // }
+        if ($this->saleBooking) {
 
-        if($this->saleBooking->relationship_to_card_holder == 'Self')
-        {
-            $this->cc_name = $this->saleBooking->customer_name;
-            $this->cc_phone = $this->saleBooking->customer_phone;
-            $this->cc_email = $this->saleBooking->customer_email;
-            $this->cc_dob = $this->saleBooking->customer_dob;
+            if ($this->saleBooking->relationship_to_card_holder == 'Self') {
+                $this->cc_name = $this->saleBooking->customer_name;
+                $this->cc_phone = $this->saleBooking->customer_phone;
+                $this->cc_email = $this->saleBooking->customer_email;
+                $this->cc_dob = $this->saleBooking->customer_dob;
+            }
         }
 
         $billingDetails = Payment::where('app_id', $this->appID)->first();
-        if($billingDetails)
-        {
+        if ($billingDetails) {
             $this->cc_name = $billingDetails->cc_name;
             $this->cc_phone = $billingDetails->cc_phone;
             $this->cc_email = $billingDetails->cc_email;
@@ -96,6 +103,35 @@ class BillingDetailsService extends Component
             $this->bookedThroughReservationAssistance = $billingDetails->ticketBookingMode->bookedThroughReservationAssistance;
         }
     }
+    public function updatedCcType($value)
+    {
+        switch ($value) {
+            case 'Mastercard':
+            case 'Visa':
+                $this->maskFormat = '0000-0000-0000-0000';
+                $this->cc_length = 19;
+                break;
+            case 'American Express':
+                $this->maskFormat = '0000-00000000-0000';
+                $this->cc_length = 17;
+                break;
+            case 'Discover':
+                $this->maskFormat = '0000-000000-00000';
+                $this->cc_length = 15;
+                break;
+            default:
+                $this->maskFormat = '0000-0000-0000-0000';
+                $this->cc_length = 19;
+                break;
+        }
+        $this->dispatch('maskChange', [
+            'mask' => $this->maskFormat,
+            'cc_length' => $this->cc_length,
+        ]);
+        
+        
+        $this->cc_number = '';
+    }
 
 
 
@@ -114,8 +150,8 @@ class BillingDetailsService extends Component
             $this->states = [];
         } else {
             $this->states = UsCityState::distinct('state_name')
-            ->where('state_name', 'like', '%' . $this->stateQuery . '%')
-            ->get();
+                ->where('state_name', 'like', '%' . $this->stateQuery . '%')
+                ->get();
         }
     }
 
@@ -177,43 +213,41 @@ class BillingDetailsService extends Component
             $payment = Payment::updateOrCreate(
                 ['app_id' => $this->appID],
                 [
-                'app_id' => $this->appID,
-                'cc_name' => $this->cc_name,
-                'cc_phone' => $this->cc_phone,
-                'cc_email' => $this->cc_email,
-                'cc_dob' => $this->cc_dob,
-                'cc_number' => str_replace('-','',$this->cc_number),
-                'cc_type' => $this->cc_type,
-                'cc_expiration_date' => str_replace('/','',$this->cc_expiration_date),
-                'cc_cvc' => $this->cc_cvc,
-                'cc_billing_address_street' => $this->cc_billing_address_street,
-                'cc_billing_address_city' => $this->cc_billing_address_city,
-                'cc_billing_address_state' => $this->cc_billing_address_state,
-                'cc_billing_address_zip' => $this->cc_billing_address_zip,
-                'amount_charged' => $this->amount_charged,
-                'comments' => $this->billingComments,
+                    'app_id' => $this->appID,
+                    'cc_name' => $this->cc_name,
+                    'cc_phone' => $this->cc_phone,
+                    'cc_email' => $this->cc_email,
+                    'cc_dob' => $this->cc_dob,
+                    'cc_number' => str_replace('-', '', $this->cc_number),
+                    'cc_type' => $this->cc_type,
+                    'cc_expiration_date' => str_replace('/', '', $this->cc_expiration_date),
+                    'cc_cvc' => $this->cc_cvc,
+                    'cc_billing_address_street' => $this->cc_billing_address_street,
+                    'cc_billing_address_city' => $this->cc_billing_address_city,
+                    'cc_billing_address_state' => $this->cc_billing_address_state,
+                    'cc_billing_address_zip' => $this->cc_billing_address_zip,
+                    'amount_charged' => $this->amount_charged,
+                    'comments' => $this->billingComments,
                 ]
             );
 
-            if($this->primary_passenger_id_doc)
-            {
+            if ($this->primary_passenger_id_doc) {
                 $payment->update([
-                'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/'.$this->appID.'/passengerID_doc.'.$this->primary_passenger_id_doc->getClientOriginalExtension()),
+                    'primary_passenger_id_doc' => $this->primary_passenger_id_doc->storeAs('public/PaymentOrders/' . $this->appID . '/passengerID_doc.' . $this->primary_passenger_id_doc->getClientOriginalExtension()),
                 ]);
             }
 
             $booking = SaleBooking::find($this->appID);
-            switch($booking->service->service_name)
-            {
+            switch ($booking->service->service_name) {
                 case ServiceEnum::FLIGHTS->value:
                     $carrier = $booking->flightBooking->airline_name;
                     $departureDate = $booking->flightBooking->departure_date;
-                    $departureTime = $booking->flightBooking->departure_hour.":".$booking->flightBooking->departure_minute;
+                    $departureTime = $booking->flightBooking->departure_hour . ":" . $booking->flightBooking->departure_minute;
                     break;
                 case ServiceEnum::AMTRAK->value:
                     $carrier = 'Train';
                     $departureDate = $booking->amtrakBooking->departure_date;
-                    $departureTime = $booking->amtrakBooking->departure_hour.":".$booking->amtrakBooking->departure_minute;
+                    $departureTime = $booking->amtrakBooking->departure_hour . ":" . $booking->amtrakBooking->departure_minute;
                     break;
                 default:
                     break;
@@ -222,17 +256,16 @@ class BillingDetailsService extends Component
             $ticketBookingMode = TicketBookingMode::updateOrCreate(
                 ['app_id' => $this->appID],
                 [
-                'bookedThroughReservationAssistance' => $this->bookedThroughReservationAssistance,
-                'departure_date' => $departureDate,
-                'departure_time' => $departureTime,
-                'carrier' => $carrier,
+                    'bookedThroughReservationAssistance' => $this->bookedThroughReservationAssistance,
+                    'departure_date' => $departureDate,
+                    'departure_time' => $departureTime,
+                    'carrier' => $carrier,
                 ]
             );
 
             DB::commit();
-            Session::flash('message', ['heading'=>'success','text'=>'Billing Details Saved Successfully']);
-            switch($this->saleBooking->service->service_name)
-            {
+            Session::flash('message', ['heading' => 'success', 'text' => 'Billing Details Saved Successfully']);
+            switch ($this->saleBooking->service->service_name) {
                 case ServiceEnum::FLIGHTS->value:
                     return redirect()->route('airlineBooking.show', $this->appID);
                 case ServiceEnum::AMTRAK->value:
@@ -240,7 +273,6 @@ class BillingDetailsService extends Component
                 default:
                     return redirect()->back();
             }
-
         } catch (\Exception $e) {
             DB::rollback();
             dd($e->getMessage());
