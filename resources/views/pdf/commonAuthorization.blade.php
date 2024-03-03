@@ -78,9 +78,9 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Gender</th>
-                        <th>Age</th>
                         <th>Does the Passenger have any Disability ?</th>
                         <th>Passenger requires assistance ?</th>
+                        <th>Age</th>
                     </tr>
                 </thead>
                 <tbody style="font-size:12px; color:black;">
