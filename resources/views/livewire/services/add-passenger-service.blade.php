@@ -156,6 +156,7 @@
                                 <th>DOB</th>
                                 <th>Gender</th>
                                 <th>Is PwD?</th>
+                                <th>Type of Disability</th>
                                 {{-- <th>Relationship</th> --}}
                                 <th>Needs Assistance</th>
                                 <th>Actions</th>
@@ -169,6 +170,7 @@
                                 <td>{{ $passenger->dob }}</td>
                                 <td>{{ $passenger->gender }}</td>
                                 <td>{{ $passenger->is_disabled}}</td>
+                                <td>{{ $passenger->disability_type}}</td>
                                 {{-- <td>{{ $passenger->relationship_to_card_holder }}</td> --}}
                                 <td>
                                     @if($passenger->requires_assistance == 'Yes')
