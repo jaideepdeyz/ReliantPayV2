@@ -79,6 +79,7 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Does the Passenger have any Disability ?</th>
+                        <th>Type of Disability</th>
                         <th>Passenger requires assistance ?</th>
                         <th>Age</th>
                     </tr>
@@ -90,6 +91,7 @@
                             <td>{{ $passenger->full_name }}</td>
                             <td>{{ $passenger->gender }}</td>
                             <td>{{ $passenger->is_disabled}}</td>
+                            <td>{{ $passenger->disability_type}}</td>
                             <td>
                                 @if($passenger->requires_assistance == 'Yes')
                                     Yes
