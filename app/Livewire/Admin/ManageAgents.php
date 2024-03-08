@@ -24,6 +24,14 @@ class ManageAgents extends Component
     public $sortDirection = 'desc';
 
     public $user;
+    public function mount (){
+        $allowedRoles = [RoleEnum::ADMIN->value, RoleEnum::DEALER->value];
+        if(!in_array(Auth::User()->role, $allowedRoles))
+        {
+            return redirect()->route('dashboard');
+        }
+
+    }
 
     public function setSortBy($sortColumn)
     {
@@ -75,7 +83,10 @@ class ManageAgents extends Component
                 ->paginate(10);
             break;
             default:
-             return redirect()->back();
+            // WARNING : This should never happen and dont redirect in render method
+            throw new \Exception('Invalid Role');
+            break;
+         
         }
 
         return view('livewire.admin.manage-agents', [
