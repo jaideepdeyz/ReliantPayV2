@@ -258,6 +258,7 @@
 
             $('#cc_number').attr('minlength', event.detail[0]['cc_length']);
             $('#cc_number').attr('maxlength', event.detail[0]['cc_length']);
+            
 
 
         });
