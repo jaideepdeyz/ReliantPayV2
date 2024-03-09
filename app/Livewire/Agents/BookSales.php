@@ -21,7 +21,7 @@ class BookSales extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme = 'bootstrap';
+    // protected $paginationTheme = 'bootstrap';
 
     public $agent_name;
     // public $service_id;
@@ -50,6 +50,11 @@ class BookSales extends Component
     public function upddatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function paginationView()
+    {
+        return 'livewire.util.pagination';
     }
 
     public function storeSaleBooking()
