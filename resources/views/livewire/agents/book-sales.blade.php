@@ -178,7 +178,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $bookedSales->links() }}
+
+                     <div class="d-flex justify-content-end">
+                        {{ $bookedSales->links() }}
+                    </div>
+
+                    {{-- {{ $bookedSales->links() }} --}}
                     {{--
                 </div> --}}
             </div>

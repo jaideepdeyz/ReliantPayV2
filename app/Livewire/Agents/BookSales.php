@@ -47,6 +47,11 @@ class BookSales extends Component
         $this->dispatch('reRender');
     }
 
+    public function paginationView()
+    {
+        return 'livewire.util.pagination';
+    }
+
     public function storeSaleBooking()
     {
         $this->validate([
@@ -135,7 +140,7 @@ class BookSales extends Component
 
     }
 
-    
+
 
     public function transactionLog()
     {
