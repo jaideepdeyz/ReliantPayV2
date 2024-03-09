@@ -47,9 +47,14 @@ class BookSales extends Component
         $this->dispatch('reRender');
     }
 
-    public function paginationView()
+    // public function paginationView()
+    // {
+    //     return 'livewire.util.pagination';
+    // }
+
+    public function upddatingSearch()
     {
-        return 'livewire.util.pagination';
+        $this->resetPage();
     }
 
     public function storeSaleBooking()
