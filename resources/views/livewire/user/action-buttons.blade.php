@@ -50,7 +50,7 @@
 
                     @if($sale->sale_type == 'Cancellation')
                         <a class="dropdown-item"  wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"></i>Request Cancellation</a>
-                    @else
+                    {{-- @else
                         @switch($sale->confirmation_number)
                             @case(null)
                             <a class="dropdown-item"  wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"></i>Refund Booking</a>
@@ -58,7 +58,7 @@
                             @default
                                 <a class="dropdown-item"  wire:click="$dispatch('showModal', {data: {'alias' : 'modals.cancel-booking','params' :{'appID':'{{$sale->id}}'}}})"></i>Request Refund</a>
                             @break
-                        @endswitch
+                        @endswitch --}}
                     @endif
                 @break
 
