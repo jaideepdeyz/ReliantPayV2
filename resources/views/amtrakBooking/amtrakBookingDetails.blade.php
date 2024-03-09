@@ -101,7 +101,18 @@
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
                                     <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary" width="400">
+
+                                    <button class="btn"
+                                    type="button" data-bs-toggle="modal"
+                                    data-bs-target="#PreviewModal">
+                                        <span>
+                                            <i class="mdi mdi-desktop-mac me-2"></i> Preview itinerary
+                                        </span>
+                                    </button>
+
                                 </td>
+
+
                             </tr>
                             @endif
 
@@ -207,4 +218,36 @@
             </div>
         </div>
     </div>
+
+    <div wire:ignore.self class="modal fade" id="PreviewModal" tabindex="-1"
+            aria-labelledby="ImagePreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Document Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
+                        aria-label="Close"></button>
+                </div>
+
+                    <div class="modal-body text-center">
+
+                        @if ($amtrakDetails->itenary->document_filepath)
+
+                            <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary" width="600">
+
+
+
+                        @endif
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </x-dashboard-layout>
