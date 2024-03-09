@@ -10,11 +10,13 @@ class PdfReader extends Component
 {
     public $url;
     public $title;
+    public $type;
 
-    public function mount($url, $title)
+    public function mount($url, $title,$type=null)
     {
         $this->url = Storage::URL($url);
         $this->title = $title;
+        $this->type = $type;
     }
 
     public function render()

@@ -104,7 +104,17 @@
                             <tr>
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
-                                    <img src="{{Storage::URL($flightDetails->itenary->document_filepath)}}" style="display:block;" width="100%" >
+                                    <button class="btn" type="button"
+                                    onclick="Livewire.dispatch('showModal', {'data': {'alias' : 'modals.pdf-reader','params' :{
+                                   'url':'{{ $flightDetails->itenary->document_filepath }}',
+                                   'title':'Itenary Preview For Booking ID: {{ $bookingDetails->id }}',
+                                   'type':'image'
+                                    }}})">
+                                   <span>
+                                       <i class="mdi mdi-desktop-mac me-2"></i> Preview itinerary
+                                   </span>
+                               </button>
+                                  
                                 </td>
                             </tr>
                             @endif

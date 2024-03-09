@@ -106,8 +106,12 @@
                                     <td><b>Uploaded Itenary</b></td>
                                     <td colspan=4>
 
-                                        <button class="btn" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#PreviewModal">
+                                        <button class="btn" type="button"
+                                             onclick="Livewire.dispatch('showModal', {'data': {'alias' : 'modals.pdf-reader','params' :{
+                                            'url':'{{ $amtrakDetails->itenary->document_filepath }}',
+                                            'title':'Itenary Preview For Booking ID: {{ $bookingDetails->id }}',
+                                            'type':'image'
+                                             }}})">
                                             <span>
                                                 <i class="mdi mdi-desktop-mac me-2"></i> Preview itinerary
                                             </span>
@@ -227,7 +231,7 @@
             </div>
         </div>
     </div>
-
+    {{-- 
     <div wire:ignore.self class="modal fade" id="PreviewModal" tabindex="-1" aria-labelledby="ImagePreviewModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -253,7 +257,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 </x-dashboard-layout>
