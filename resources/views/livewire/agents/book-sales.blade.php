@@ -170,9 +170,7 @@
 
                                         </div>
                                     </div> --}}
-                                    @livewire('user.action-buttons', [
-                                        'appID' => $booking->id
-                                    ])
+                                    @livewire('user.action-buttons', ['appID' => $booking->id], key($booking->id))
                                 </td>
                             </tr>
                             @endforeach
