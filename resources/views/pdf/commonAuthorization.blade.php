@@ -128,7 +128,7 @@
                 </thead>
                 <tbody style="font-size:12px; color:black;">
                     @foreach ($passengers as $passenger)
-                        <tr style="text-align:center;">
+                        <tr style="text-align:left;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $passenger->full_name }}</td>
                             <td>{{ $passenger->gender }}</td>
@@ -142,12 +142,8 @@
                                 @endif
                             </td>
                             <td>
-                                @php
-                                    $dob = Carbon\Carbon::parse($passenger->dob);
-                                    $age = $dob->diffInYears(Carbon\Carbon::now());
-                                    $isAdult = $age > 16 ? 'Adult' : 'Minor';
-                                @endphp
-                                {{ $isAdult }}
+                               {{-- $passenger->dob get current age --}}
+                               {{ \Carbon\Carbon::parse($passenger->dob)->age }}
                             </td>
                         </tr>
                     @endforeach
