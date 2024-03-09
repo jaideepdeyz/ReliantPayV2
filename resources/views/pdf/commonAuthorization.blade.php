@@ -217,7 +217,7 @@
                             <td>{{ $passenger->full_name }}</td>
                             <td>{{ $passenger->gender }}</td>
                             <td>{{ $passenger->is_disabled }}</td>
-                            <td>{{ $passenger->disability_type }}</td>
+                            <td>{{ $passenger->disability_type ?? 'NA' }}</td>
                             <td>
                                 @if ($passenger->requires_assistance == 'Yes')
                                     Yes
