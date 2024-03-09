@@ -100,7 +100,7 @@
                             <tr>
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
-                                    <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary">
+                                    <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary" style="width-max:400px">
                                 </td>
                             </tr>
                             @endif
