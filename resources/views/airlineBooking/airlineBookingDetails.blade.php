@@ -129,6 +129,9 @@
                                     <th>Gender</th>
                                     <th>DOB</th>
                                     <th>Relation to Card Holder</th>
+                                    <th>Does the passenger have any Disability?</th>
+                                    <th>Type of Disability</th>
+                                    <th>Passenger requires assistance?</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,6 +142,9 @@
                                         <td>{{ $passenger->gender }}</td>
                                         <td>{{ $passenger->dob }}</td>
                                         <td>{{ $passenger->relationship_to_card_holder }}</td>
+                                        <td>{{ $passenger->is_disabled }}</td>
+                                        <td>{{ $passenger->disability_type ?? 'NA' }}</td>
+                                        <td>{{ $passenger->requires_assistance ?? 'NA' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
