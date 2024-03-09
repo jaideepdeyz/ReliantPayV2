@@ -128,7 +128,7 @@
                 </thead>
                 <tbody style="font-size:12px; color:black;">
                     @foreach ($passengers as $passenger)
-                        <tr style="text-align:left;">
+                        <tr style="text-align:center;">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $passenger->full_name }}</td>
                             <td>{{ $passenger->gender }}</td>
