@@ -74,7 +74,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">
-                        Amtrak Details
+                        Trip Details
                     </h5>
                     <div class="table-responsive">
                         <table class="table table-sm table-bordered">
