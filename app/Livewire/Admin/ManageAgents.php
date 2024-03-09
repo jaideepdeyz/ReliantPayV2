@@ -35,7 +35,7 @@ class ManageAgents extends Component
 
     public function setSortBy($sortColumn)
     {
-        Log::info('Entered Sort By in Admin Countries Listing for sorting by ' . $sortColumn);
+        // Log::info('Entered Sort By in Admin Countries Listing for sorting by ' . $sortColumn);
 
 
         if ($this->sortBy  === $sortColumn) {
