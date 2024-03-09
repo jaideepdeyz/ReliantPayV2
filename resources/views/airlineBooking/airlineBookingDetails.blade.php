@@ -104,7 +104,7 @@
                             <tr>
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
-                                    <img src="{{Storage::URL($flightDetails->itenary->document_filepath)}}" alt="Itenary">
+                                    <img src="{{Storage::URL($flightDetails->itenary->document_filepath)}}" style="display:block;" width="100%" >
                                 </td>
                             </tr>
                             @endif

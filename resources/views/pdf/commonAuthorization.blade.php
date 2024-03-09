@@ -59,7 +59,98 @@
             <p style="font-size:12px; color:black;">
                 <b>{{ $type }} Information:</b>
             </p>
-            <p style="font-size:12px; color:black;">
+            <table class="table table-sm text-left mx-4 table-bordered" style="font-size:12px; color:black;">
+                <tbody>
+                    @if ($data->oneway_or_roundtrip == 'One Way')
+                        <tr>
+                            <td><b>Departure Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Departure Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Departure Airport/Station/Port:</b></td>
+                            <td>{{ $departureLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Arrival Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_eta_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Arrival Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_eta_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Arrival Airport/Station/Port:</b></td>
+                            <td>{{ $destinationLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Airline/Carrier Name:</b></td>
+                            <td>{{ $carrier }}</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td><b>Outbound Departure Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Departure Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Departure Airport/Station/Port:</b></td>
+                            <td>{{ $departureLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Arrival Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_eta_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Arrival Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->departure_eta_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Arrival Airport/Station/Port:</b></td>
+                            <td>{{ $destinationLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Outbound Airline/Carrier Name:</b></td>
+                            <td>{{ $carrier }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Departure Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->return_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Departure Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->return_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Departure Airport/Station/Port:</b></td>
+                            <td>{{ $destinationLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Arrival Date:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->return_eta_date)->format('F j, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Arrival Time:</b></td>
+                            <td>{{ Carbon\Carbon::parse($data->return_eta_date)->format('h:i:sa') }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Arrival Airport/Station/Port:</b></td>
+                            <td>{{ $departureLocation }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Return Airline/Carrier Name:</b></td>
+                            <td>{{ $carrier }}</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+            {{-- <p style="font-size:12px; color:black;">
             <ul style="font-size:12px; color:black;">
                 @if ($data->oneway_or_roundtrip == 'One Way')
                     <li><b>Departure Date:</b> {{ Carbon\Carbon::parse($data->departure_date)->format('F j, Y') }}</li>
@@ -96,15 +187,8 @@
                     <li><b>Return Arrival Airport/Station/Port:</b> {{ $departureLocation }}</li>
                     <li><b>Return Airline/Carrier Name:</b> {{ $carrier }}</li>
                 @endif
-
-
-
-
-
-                {{-- <li><b>Flight / Train Number:</b> </li>
-                    <li><b>Class:</b> </li> --}}
             </ul>
-            </p>
+            </p> --}}
             {{-- add travel iternary here --}}
             <p>
                 <img src="{{ $itenary }}" alt="" width="100%">
@@ -114,7 +198,7 @@
             <p style="font-size:12px; color:black;">
                 <b>Passengers (As per booking request):</b>
             </p>
-            <table class="table" style="font-size:12px; color:black;">
+            <table class="table table-sm text-left mx-4 table-bordered" style="font-size:12px; color:black;">
                 <thead style="font-size:12px; color:black;">
                     <tr>
                         <th>#</th>
