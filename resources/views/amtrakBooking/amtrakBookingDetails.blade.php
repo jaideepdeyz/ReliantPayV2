@@ -100,7 +100,6 @@
                             <tr>
                                 <td><b>Uploaded Itenary</b></td>
                                 <td colspan=4>
-                                    <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary" width="400">
 
                                     <button class="btn"
                                     type="button" data-bs-toggle="modal"
