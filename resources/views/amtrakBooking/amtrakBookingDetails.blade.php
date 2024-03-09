@@ -20,18 +20,23 @@
                         @switch($bookingDetails->app_status)
                             @case(StatusEnum::AUTHORIZED->value)
                             @case(StatusEnum::PAYMENT_DONE->value)
+
                             @case(StatusEnum::CANCELLATION_REQUESTED->value)
                             @case(StatusEnum::TICKET_CANCELLED->value)
+
                             @case(StatusEnum::REFUND_REQUESTED->value)
                             @case(StatusEnum::REFUNDED->value)
-                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}" target="_blank" class="btn btn-info">Signed Authorization Form</a>
+                                <a href="{{ Storage::Url($bookingDetails->authorizationForm->signed_document) }}"
+                                    target="_blank" class="btn btn-info">Signed Authorization Form</a>
                                 <a href="{{ Storage::Url($bookingDetails->authorizationForm->completion_certificate) }}"
                                     target="_blank" class="btn btn-danger">Completion Certificate</a>
                                 {{-- <a href="{{ route('payment.stepOnePay', $bookingDetails->id) }}" target="_blank" class="btn btn-success">Charge Card</a> --}}
                             @break
+
                             @default
-                                <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
-                                @break
+                                <a href="{{ route('authorizationForm', $bookingDetails->id) }}" class="btn btn-success"><i
+                                        class="ri-mail-send-line font-13"></i> View Authorizaton Form</a>
+                            @break
                         @endswitch
                     </span>
                 </div>
@@ -54,7 +59,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Service Type:</strong></td>
-                                <td>{{$bookingDetails->service->service_name }} ({{ $bookingDetails->sale_type}})</td>
+                                <td>{{ $bookingDetails->service->service_name }} ({{ $bookingDetails->sale_type }})</td>
                                 <td class="table-success"><strong>Booking Status:</strong></td>
                                 <td class="table-success">{{ $bookingDetails->app_status }}</td>
                             </tr>
@@ -96,23 +101,22 @@
                                 <td><strong>Remarks (if any):</strong></td>
                                 <td colspan="2">{{ $amtrakDetails->comments }}</td>
                             </tr>
-                            @if($amtrakDetails->itenary != null)
-                            <tr>
-                                <td><b>Uploaded Itenary</b></td>
-                                <td colspan=4>
+                            @if ($amtrakDetails->itenary != null)
+                                <tr>
+                                    <td><b>Uploaded Itenary</b></td>
+                                    <td colspan=4>
 
-                                    <button class="btn"
-                                    type="button" data-bs-toggle="modal"
-                                    data-bs-target="#PreviewModal">
-                                        <span>
-                                            <i class="mdi mdi-desktop-mac me-2"></i> Preview itinerary
-                                        </span>
-                                    </button>
+                                        <button class="btn" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#PreviewModal">
+                                            <span>
+                                                <i class="mdi mdi-desktop-mac me-2"></i> Preview itinerary
+                                            </span>
+                                        </button>
 
-                                </td>
+                                    </td>
 
 
-                            </tr>
+                                </tr>
                             @endif
 
                         </table>
@@ -136,17 +140,23 @@
                                     <th>Gender</th>
                                     <th>DOB</th>
                                     <th>Relation to Card Holder</th>
+                                    <th>Does the passenger have any Disability?</th>
+                                    <th>Type of Disability</th>
+                                    <th>Passenger requires assistance?</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($passengerDetails as $passenger)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $passenger->full_name }}</td>
-                                    <td>{{ $passenger->gender }}</td>
-                                    <td>{{ $passenger->dob }}</td>
-                                    <td>{{ $passenger->relationship_to_card_holder }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $passenger->full_name }}</td>
+                                        <td>{{ $passenger->gender }}</td>
+                                        <td>{{ $passenger->dob }}</td>
+                                        <td>{{ $passenger->relationship_to_card_holder }}</td>
+                                        <td>{{ $passenger->is_disabled }}</td>
+                                        <td>{{ $passenger->disability_type ?? 'NA' }}</td>
+                                        <td>{{ $passenger->requires_assistance ?? 'NA' }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -198,9 +208,9 @@
                                     {{ $billingDetails->cc_billing_address_zip }}
                                 </td>
                                 <td>
-                                    @if($billingDetails->primary_passenger_id_doc != null)
-                                    <a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}"
-                                        class="btn btn-sm btn-primary" target="_blank">Customer's ID</a>
+                                    @if ($billingDetails->primary_passenger_id_doc != null)
+                                        <a href="{{ Storage::URL($billingDetails->primary_passenger_id_doc) }}"
+                                            class="btn btn-sm btn-primary" target="_blank">Customer's ID</a>
                                     @endif
                                 </td>
                             </tr>
@@ -218,8 +228,8 @@
         </div>
     </div>
 
-    <div wire:ignore.self class="modal fade" id="PreviewModal" tabindex="-1"
-            aria-labelledby="ImagePreviewModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="PreviewModal" tabindex="-1" aria-labelledby="ImagePreviewModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,21 +238,18 @@
                         aria-label="Close"></button>
                 </div>
 
-                    <div class="modal-body text-center">
+                <div class="modal-body text-center">
 
-                        @if ($amtrakDetails->itenary->document_filepath)
+                    @if ($amtrakDetails->itenary->document_filepath)
+                        <img src="{{ Storage::URL($amtrakDetails->itenary->document_filepath) }}" alt="Itenary"
+                            width="1000">
+                    @endif
 
-                            <img src="{{Storage::URL($amtrakDetails->itenary->document_filepath)}}" alt="Itenary" width="1000">
-
-
-
-                        @endif
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" wire:click="closeModal"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
                 </form>
             </div>
         </div>
