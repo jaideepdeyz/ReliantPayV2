@@ -135,29 +135,32 @@ footer {
   }
 .table {
     width: 100%;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     color: #212529;
+    border-collapse: collapse;
+    /* border: 1px solid black; */
   }
 
   .table th,
   .table td {
     padding: 0.40rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6;
+    border: 1px solid black;
   }
+  
 
   .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+    border: 1px solid black;
   }
 
   .table tbody + tbody {
-    border-top: 2px solid #dee2e6;
+    /* border: 1px solid black; */
   }
 
   .table-sm th,
   .table-sm td {
-    padding: 0.3rem;
+    /* padding: 0.3rem; */
   }
 
   .table-bordered {
@@ -171,7 +174,7 @@ footer {
 
   .table-bordered thead th,
   .table-bordered thead td {
-    border-bottom-width: 2px;
+    /* border-bottom-width: 2px; */
   }
 
   .table-borderless th,

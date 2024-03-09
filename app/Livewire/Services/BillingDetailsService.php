@@ -55,10 +55,10 @@ class BillingDetailsService extends Component
 
     public function mount($appID)
     {
-        $this->dispatch('maskChange', [
-            'mask' => $this->maskFormat,
-            'cc_length' => $this->cc_length,
-        ]);
+        // $this->dispatch('maskChange', [
+        //     'mask' => $this->maskFormat,
+        //     'cc_length' => $this->cc_length,
+        // ]);
         $this->appID = $appID;
         $this->saleBooking = SaleBooking::where('id', $this->appID)->first();
         // charges calculation
@@ -101,9 +101,10 @@ class BillingDetailsService extends Component
             $this->cc_billing_address_city = $billingDetails->cc_billing_address_state;
             $this->cc_billing_address_state = $billingDetails->cc_billing_address_city;
             $this->bookedThroughReservationAssistance = $billingDetails->ticketBookingMode->bookedThroughReservationAssistance;
+            
         }
     }
-    public function updatedCcType($value)
+    public function updatedCcType($value, $oldValue = null)
     {
         switch ($value) {
             case 'Mastercard':
@@ -127,11 +128,14 @@ class BillingDetailsService extends Component
         $this->dispatch('maskChange', [
             'mask' => $this->maskFormat,
             'cc_length' => $this->cc_length,
+            'oldValue' => $oldValue,
         ]);
-        
-        
-        $this->cc_number = '';
+      
     }
+
+
+
+
 
 
 
@@ -290,5 +294,9 @@ class BillingDetailsService extends Component
         return view('livewire.services.billing-details-service', [
             'saleBooking' => $saleBooking,
         ])->layout('layouts.dashboard-layout');
+    }
+    public function rendered($view, $html)
+    {
+        $this->updatedCcType($this->cc_type, $this->cc_number);
     }
 }

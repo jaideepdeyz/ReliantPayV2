@@ -44,7 +44,7 @@
                                 <input type="text" id="cc_number" {{-- data-toggle="input-mask"
                                 data-mask-format={{ $maskFormat}}
                                 placeholder={{ $maskFormat}} --}}
-                                placeholder={{ $maskFormat}}
+                                    placeholder={{ $maskFormat }}
                                     class="form-control @error('cc_number') is-invalid @enderror"
                                     wire:model.live="cc_number">
 
@@ -252,9 +252,10 @@
     </div>
     <script>
         window.addEventListener('maskChange', event => {
-      
-            $('#cc_number').mask(event.detail[0]['mask']);
            
+
+            $('#cc_number').mask(event.detail[0]['mask']);
+
             $('#cc_number').attr('minlength', event.detail[0]['cc_length']);
             $('#cc_number').attr('maxlength', event.detail[0]['cc_length']);
 
