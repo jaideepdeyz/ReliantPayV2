@@ -243,7 +243,7 @@
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light"
                                 data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                 aria-expanded="false">
-
+{{-- 
                                 @if (isset(Auth::user()->image) && !empty(Auth::user()->image))
                                 <img src="{{ env('PROFILE_IMAGE_PATH') }}{{ Auth::user()->image }}" alt="user-image"
                                     class="rounded-circle">
@@ -251,7 +251,7 @@
 
                                 <img src="{{ env('PROFILE_IMAGE_PATH_EMPTY') }}{{ Auth::user()->name }}" alt="user-image"
                                     class="rounded-circle">
-                                @endif
+                                @endif --}}
 
 
                                 <span class="ms-1 d-none d-md-inline-block">
