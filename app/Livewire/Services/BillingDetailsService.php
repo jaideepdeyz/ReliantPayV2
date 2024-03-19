@@ -101,9 +101,23 @@ class BillingDetailsService extends Component
             $this->cc_billing_address_city = $billingDetails->cc_billing_address_state;
             $this->cc_billing_address_state = $billingDetails->cc_billing_address_city;
             $this->bookedThroughReservationAssistance = $billingDetails->ticketBookingMode->bookedThroughReservationAssistance;
+            $this->setMask($this->cc_type);
         }
     }
     public function updatedCcType($value)
+    {
+        $this->setMask($value);
+
+
+        $this->cc_number = '';
+
+        $this->dispatch('maskChange', [
+            'mask' => $this->maskFormat,
+            'cc_length' => $this->cc_length,
+
+        ]);
+    }
+    private function setMask($value)
     {
         switch ($value) {
             case 'Mastercard':
@@ -124,15 +138,6 @@ class BillingDetailsService extends Component
                 $this->cc_length = 19;
                 break;
         }
-
-
-        $this->cc_number = '';
-
-        $this->dispatch('maskChange', [
-            'mask' => $this->maskFormat,
-            'cc_length' => $this->cc_length,
-
-        ]);
     }
 
 
@@ -299,6 +304,5 @@ class BillingDetailsService extends Component
     }
     public function rendered($view, $html)
     {
-        
     }
 }

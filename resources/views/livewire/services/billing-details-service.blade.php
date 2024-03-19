@@ -262,5 +262,13 @@
 
 
         });
+        $(document).ready(function(){
+            $('#cc_number').mask('{{ $maskFormat }}');
+            $('#cc_number').attr('minlength', '{{ $cc_length }}');
+            $('#cc_number').attr('maxlength', '{{ $cc_length }}');
+
+
+        });
+       
     </script>
 </div>
