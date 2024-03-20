@@ -25,7 +25,7 @@ class PaymentService
         //  $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
         $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
         $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
-        $this->redirect_url = 'https://reliant.yellowberry.in/payment/stepThreePay';
+        $this->redirect_url = env('PAYMENT_CALLBACK_URL');
         $this->paymentApiUrl = 'https://secure.nationalprocessinggateway.com/api/transact.php';
         // $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
         $this->tokenizationKey = 'YjdVSz-jg23c4-45a5qu-rqMhWD';
