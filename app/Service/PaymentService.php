@@ -21,15 +21,13 @@ class PaymentService
 
     public function __construct()
     {
-        // TODO : get these from .env later
-        //  $this->api_key = '78WVbrs25G7HGy5nE52FKHSenetRrm6j';
-        $this->api_key = 'K759TMMNX823rt39442c2Chy9VzPx6Mg';
-        $this->post_url = 'https://secure.nationalprocessinggateway.com/api/v2/three-step';
-        $this->redirect_url = env('PAYMENT_CALLBACK_URL');
-        $this->paymentApiUrl = 'https://secure.nationalprocessinggateway.com/api/transact.php';
-        // $this->post_url = 'https://integratepayments.transactiongateway.com/api/v2/three-step';
-        $this->tokenizationKey = 'YjdVSz-jg23c4-45a5qu-rqMhWD';
+        $this->api_key = env('PAYMENT_GATEWAY_API_KEY');
+        $this->post_url = env('PAYMENT_GATEWAY_POST_URL');
+        $this->redirect_url = env('PAYMENT_GATEWAY_CALLBACK_URL');
+        $this->paymentApiUrl = env('PAYMENT_GATEWAY_API_URL');
+        $this->tokenizationKey = env('PAYMENT_GATEWAY_TOKENIZATION_KEY');
     }
+
     public function stepOnePay($id)
     {
         $salebooking = SaleBooking::find($id);
